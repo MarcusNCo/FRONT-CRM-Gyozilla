@@ -24,9 +24,9 @@ const Products = () => {
             });
         }, []);
     return (
-        <div class="products">
+        <div className='products'>
             {
-                products.length === 0 ? (
+                products.length ===0 ? (
                     <CircularProgress/>
                 ) : products.map((item)=>{
                     return (
