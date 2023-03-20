@@ -1,11 +1,11 @@
-import logo from './images/Sans_titre-1_105_copie.png';
-import './App.css';
-import Header from './components/Header';
+import logo from './assets/images/Sans_titre-1_105_copie.png'
+import './App.css'
+import Header from '../src/template/header/Header'
 
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -21,7 +21,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
