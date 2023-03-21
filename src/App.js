@@ -26,7 +26,7 @@ function App() {
       <Badge badgeContent={4}>
         <MailIcon color="action" />
       </Badge>
-      <Alert>waouaauauauauauauauuaua</Alert>
+      <Alert severity="warning">waouaauauauauauauauuaua</Alert>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -44,23 +44,21 @@ function App() {
         </header>
         {/* <Log /> */}
         <Products />
+        <CustomButton variant={'annule'} text="coucou" onClick={handleClick} />
         <CustomButton
-          variant="contained"
-          text="coucou"
-          color={'secondary'}
-          onClick={handleClick}
+          variant="outlined"
+          text="re coucou"
+          style={{ color: 'blue' }}
         />
         <CustomCard
-          sizeTitle="h5"
           width="50%"
           height={'100%'}
           title="Titre de la card"
           description="lorem ipsum uudsbifuq fuhsufqsidf uifqGQSD GIUNUI UFIU  U UFUDSGWGFBhfg iugnui ugs"
           buttonCardText="Details de la Card"
           onButtonCardClick={handleCardButtonClick}
-          backgroundColor="red"
-          colorParagraph={'blue'}
-          colorTitle={'toto'}
+          backgroundColor="grey"
+          styleTitle={'h5'}
         ></CustomCard>
       </div>
     </ThemeProvider>

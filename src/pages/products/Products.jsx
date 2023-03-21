@@ -44,20 +44,9 @@ const Products = () => {
                 <Typography gutterBottom variant="h5" component="div">
                   {item.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {item.description}
-                </Typography>
+                <Typography variant="p">{item.description}</Typography>
               </CardContent>
-              <Button
-                sx={{
-                  background: 'black',
-                  color: 'white',
-                  border: '1px solid white',
-                }}
-                variant="outlined"
-              >
-                Commander
-              </Button>
+              <Button variant="outlined">Commander</Button>
             </Card>
           )
         })
