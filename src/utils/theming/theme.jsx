@@ -3,6 +3,7 @@ import { green, purple, red } from '@mui/material/colors'
 
 const theme = createTheme({
   components: {
+    //        Style des Alert        //
     MuiAlert: {
       styleOverrides: {
         standard: {
@@ -11,6 +12,12 @@ const theme = createTheme({
         standardWarning: {
           color: 'blue',
         },
+      },
+    },
+    //        Style des inputs        //
+    MuiInput: {
+      styleOverrides: {
+        backgroundColor: '#ffrr12',
       },
     },
     //        Style des boutons        //
