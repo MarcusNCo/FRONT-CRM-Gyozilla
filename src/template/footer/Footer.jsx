@@ -1,16 +1,15 @@
-import { Grid, Typography, IconButton, Button, Link } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import styled from '@mui/material/styles/styled';
+import { Grid, Typography, IconButton, Button, Link } from '@mui/material'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import styled from '@mui/material/styles/styled'
 import logo from '../../images/gyozilla-ecriture.png'
 import android from '../../images/appstore-300x101.png'
 import apple from '../../images/Play_Store.png'
 import './Footer.css'
-import CustomButton from '../button/CustomButton';
+import CustomButton from '../../components/button/CustomButton'
 
 const Footer = (props) => {
-
   const FooterContainer = styled('div')(({ theme }) => ({
     backgroundColor: '#242928',
     color: '#CDE8E7',
@@ -19,7 +18,7 @@ const Footer = (props) => {
     [theme.breakpoints.down('sm')]: {
       minHeight: '300px',
     },
-  }));
+  }))
 
   const Divider = styled('hr')({
     backgroundColor: '#000',
@@ -27,65 +26,65 @@ const Footer = (props) => {
     border: '1px black solid',
     opacity: '30%',
     margin: '0',
-  });
+  })
 
   const SocialIcons = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  });
+  })
 
   const Icon = styled(IconButton)({
     margin: '0 10px',
-  });
+  })
 
   const Facebook = styled(FacebookIcon)({
     color: '#CDE8E7',
     width: '40px',
     height: '30px',
-  });
+  })
 
   const Instagram = styled(InstagramIcon)({
     color: '#CDE8E7',
     width: '40px',
     height: '30px',
-  });
+  })
 
   const Twitter = styled(TwitterIcon)({
     color: '#CDE8E7',
     width: '40px',
     height: '30px',
-  });
+  })
 
   const Logo = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  });
+  })
 
   const LogoImg = styled('img')({
     height: '50px',
     color: 'inherit',
-  });
+  })
 
   const AppIcons = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     margin: '20px 0',
-  });
+  })
 
   const AppIcon = styled('img')({
     height: '40px',
     margin: '0 10px',
     color: 'inherit',
-  });
+  })
 
   const LinkContainer = styled('div')({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-  });
+  })
 
   // const Link = styled(Button)({
   //   color: '#CDE8E7',
@@ -105,12 +104,11 @@ const Footer = (props) => {
   const BottomText = styled(Typography)({
     fontSize: '0.6rem',
     textAlign: 'center',
-    padding: '10px 0 10px 0 !important'
-  });
-
+    padding: '10px 0 10px 0 !important',
+  })
 
   return (
-    <FooterContainer sx={{ marginTop: '20px' }} >
+    <FooterContainer sx={{ marginTop: '20px' }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
           <Typography variant="h7" align="center">
@@ -128,7 +126,11 @@ const Footer = (props) => {
             </Icon>
           </SocialIcons>
         </Grid>
-        <Grid item xs={12} sm={4} sx={{
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          sx={{
             '@media (max-width: 600px)': {
               display: 'none',
             },
@@ -138,7 +140,7 @@ const Footer = (props) => {
             <LogoImg src={logo} alt="Logo" />
           </Logo>
         </Grid>
-        <Grid item xs={12} sm={4} sx={{ padding: '32px 32px 0 0 !important' }} >
+        <Grid item xs={12} sm={4} sx={{ padding: '32px 32px 0 0 !important' }}>
           <Typography variant="h7" align="center">
             Télécharger l'application sur votre smartphone
           </Typography>
@@ -150,27 +152,47 @@ const Footer = (props) => {
         <Divider />
         <Grid item xs={12} sm={6}>
           <LinkContainer>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >La carte</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Nos engagements</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Actualités</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }}>
+              La carte
+            </Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }}>
+              Nos engagements
+            </Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }}>
+              Actualités
+            </Link>
           </LinkContainer>
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ padding: '32px 32px 0 0 !important' }} >
+        <Grid item xs={12} sm={6} sx={{ padding: '32px 32px 0 0 !important' }}>
           <LinkContainer className="toRight">
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Recrutement</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Mentions légales</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }}>
+              Recrutement
+            </Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }}>
+              Mentions légales
+            </Link>
             <CustomButton text="Contactez-nous" variant="contained" />
           </LinkContainer>
         </Grid>
       </Grid>
       <BottomText>
-        GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes par jour.
-        <Link href="https://www.mangerbouger.fr/" target="_blank" rel="noopener" sx={{ margin: '0 !important', padding: '0 0 0 5px !important', fontSize: '0.6rem' }}>
+        GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes
+        par jour.
+        <Link
+          href="https://www.mangerbouger.fr/"
+          target="_blank"
+          rel="noopener"
+          sx={{
+            margin: '0 !important',
+            padding: '0 0 0 5px !important',
+            fontSize: '0.6rem',
+          }}
+        >
           www.mangerbouger.fr
         </Link>
       </BottomText>
     </FooterContainer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

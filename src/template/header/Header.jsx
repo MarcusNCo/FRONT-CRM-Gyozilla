@@ -27,6 +27,7 @@ import {
   Divider,
 } from '@mui/material'
 import { SafetyDividerOutlined } from '@mui/icons-material'
+import CustomInput from '../../components/input/CustomInput'
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -211,15 +212,7 @@ const Header = () => {
           </a>
         </div>
         <div className="containSearch">
-          <div className="search">
-            <TextField
-              id="outlined"
-              variant="outlined"
-              fullWidth
-              label="Que recherchez-vous?"
-              color="warning"
-            />
-          </div>
+          <CustomInput variant="standard" />
           {/* <List /> */}
         </div>
         <div className="header-right">

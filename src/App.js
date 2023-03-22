@@ -16,7 +16,8 @@ import {
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
 import CustomInput from './components/input/CustomInput'
-import Footer from './components/footer/Footer'
+import Footer from './template/footer/Footer'
+import Header from './template/header/Header'
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -32,6 +33,7 @@ function App() {
   const theme = useTheme()
   return (
     <ThemeProvider theme={defaultTheme}>
+      <Header />
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
