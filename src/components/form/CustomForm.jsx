@@ -1,11 +1,19 @@
-// import React from 'react'
+import React from 'react';
+import CustomInput from '../input/CustomInput';
 
-// const CustomForm = () => {
 
+const CustomForm = ({ fields }) => {
 
-//     return (
-        
-//     )
-// }
+    return (
+        <>
+            {fields.map((field, index) => (
+                <CustomInput
+                    {...field}
+                    key = {index}
+                />
+            ))}
+        </>
+    );
+}
 
-// export default CustomForm
+export default CustomForm
