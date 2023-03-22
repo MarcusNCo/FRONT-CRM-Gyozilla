@@ -17,7 +17,38 @@ const theme = createTheme({
     //        Style des inputs        //
     MuiInput: {
       styleOverrides: {
-        backgroundColor: '#ffrr12',
+        root: {
+          backgroundColor: '#EAEAEA',
+          color: '#F8A500',
+          borderRadius: '1px',
+        },
+      },
+    },
+    //        Style des cards        //
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#EAEAEA',
+          border: '1px solid black',
+          margin: '2px',
+          width: '40vw',
+          height: '30vh',
+          color: '#F8A500',
+          margin: '2rem',
+          justifyContent: 'space-between',
+          boxShadow:
+            '3px 2px 1px -1px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 2px 3px 0px rgba(0,0,0,0.12)',
+        },
+      },
+    },
+    MuiCardActions: {
+      styleOverrides: {
+        root: {
+          color: '#F8A500',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'flex-end',
+        },
       },
     },
     //        Style des boutons        //
@@ -30,7 +61,7 @@ const theme = createTheme({
           '&:hover': {
             color: '#EAEAEA',
             backgroundColor: '#F8A500',
-            border: '2px solid #EAEAEA',
+            border: '1px solid #EAEAEA',
           },
         },
         outlined: {
@@ -45,7 +76,7 @@ const theme = createTheme({
           '&:hover': {
             color: '#F8A500',
             backgroundColor: '#EAEAEA',
-            border: '2px solid #F8A500',
+            border: '1px solid #F8A500',
           },
         },
         annule: {
@@ -58,17 +89,29 @@ const theme = createTheme({
   },
   //        Style des typographies        //
   typography: {
+    fontFamily: 'Garamond',
     h5: {
       color: '#F8A500',
       fontSize: '4rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
     },
     subTitle: {
       color: '#5F8D85',
       fontSize: '2rem',
+      fontFamily: 'Garamond',
     },
     p: {
       color: '#182A27',
       fontSize: '1rem',
+      fontFamily: 'Garamond',
+    },
+    '@font-face': {
+      fontFamily: 'Garamond',
+      src: 'url("../fonts/Nunito-Regular.ttf") format("truetype")',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      fontDisplay: 'swap',
     },
   },
   palette: {

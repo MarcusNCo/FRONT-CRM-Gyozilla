@@ -5,9 +5,16 @@ import Log from './pages/log/Log'
 import CustomButton from './components/button/CustomButton'
 import { useState } from 'react'
 import CustomCard from './components/Card/CustomCard'
-import { Alert, Badge, ThemeProvider, useTheme } from '@mui/material'
+import {
+  Alert,
+  Badge,
+  ThemeProvider,
+  useTheme,
+  FormControl,
+} from '@mui/material'
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
+import CustomInput from './components/input/CustomInput'
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -33,22 +40,31 @@ function App() {
         </Badge>
         {/* <Log /> */}
         <Products />
-        <CustomButton variant={'annule'} text="coucou" onClick={handleClick} />
         <CustomButton
-          variant="outlined"
-          text="re coucou"
-          style={{ color: 'blue' }}
+          // variant={'annule'}
+          text="coucou"
+          onClick={handleClick}
+          color="red"
+          backgroundColor="blue"
         />
+        <CustomButton variant="text" text="re coucou" />
         <CustomCard
-          width="50%"
+          width="80%"
           height={'100%'}
           title="Titre de la card"
           description="lorem ipsum uudsbifuq fuhsufqsidf uifqGQSD GIUNUI UFIU  U UFUDSGWGFBhfg iugnui ugs"
           buttonCardText="Details de la Card"
           onButtonCardClick={handleCardButtonClick}
-          backgroundColor="grey"
           styleTitle={'h5'}
         ></CustomCard>
+        <FormControl>
+          <CustomInput
+            type="password"
+            secure={true}
+            value="toto"
+            placeholder="ecrire ici"
+          />
+        </FormControl>
       </div>
     </ThemeProvider>
   )

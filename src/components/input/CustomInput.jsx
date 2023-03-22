@@ -1,20 +1,20 @@
-import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
-import React, { useState } from 'react';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import React, { useState } from 'react'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import './CustomInput.css'
 
 const CustomInput = (props) => {
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault()
+  }
 
-    const { input } = props;
-    const inputAttribute = {
+  const input = props
+  const inputAttribute = {
     type: input.type,
     name: input.name,
     id: input.id,
@@ -34,30 +34,38 @@ const CustomInput = (props) => {
     step: input.step,
     readOnly: input.readOnly,
     onChange: input.onChange,
-    secure: input.secure
-    };
+    secure: input.secure,
+  }
 
-    return (
-        <>
-            <Input
-                {...inputAttribute}
-                type={inputAttribute.type != 'password' ? inputAttribute.type : showPassword ? 'text' : 'password'}
-                        endAdornment={
-                            inputAttribute.secure ? (
-                                <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                            ) : ""
-                        }
-            />
-        </>
-    );
-};
+  return (
+    <>
+      <Input
+        {...inputAttribute}
+        type={
+          inputAttribute.type != 'password'
+            ? inputAttribute.type
+            : showPassword
+            ? 'text'
+            : 'password'
+        }
+        endAdornment={
+          inputAttribute.secure ? (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ) : (
+            ''
+          )
+        }
+      />
+    </>
+  )
+}
 
-export default CustomInput;
+export default CustomInput
