@@ -53,6 +53,61 @@ const Products = () => {
       )}
     </div>
   )
+  useEffect(() => {
+    //tous ce qui va se charger au chargement du component
+    getAllProducts()
+      .then((res) => {
+        setProducts(res.data)
+        setError(null)
+      })
+      .catch((error) => {
+        setProducts([])
+        setError(error)
+      })
+    return () => {
+      setProducts([])
+      setError(null)
+    }
+  }, [])
+  return (
+    <div className="products">
+      {products.length === 0 ? (
+        <CircularProgress />
+      ) : (
+        products.map((item) => {
+          return (
+            <Card
+              sx={{
+                maxWidth: 345,
+                background: 'grey',
+                border: '1px solid black',
+                margin: '2px',
+              }}
+            >
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+              </CardContent>
+              <Button
+                sx={{
+                  background: 'black',
+                  color: 'white',
+                  border: '1px solid white',
+                }}
+                variant="outlined"
+              >
+                Commander
+              </Button>
+            </Card>
+          )
+        })
+      )}
+    </div>
+  )
 }
 
 export default Products
