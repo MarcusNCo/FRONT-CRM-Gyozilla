@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   useTheme,
   FormControl,
+  Divider,
 } from '@mui/material'
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
@@ -58,6 +59,7 @@ function App() {
           onButtonCardClick={handleCardButtonClick}
           styleTitle={'h5'}
         ></CustomCard>
+        <Divider />
         <FormControl>
           <CustomInput
             type="password"

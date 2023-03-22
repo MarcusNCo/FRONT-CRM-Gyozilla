@@ -14,6 +14,17 @@ const theme = createTheme({
         },
       },
     },
+    //        style des liens footer       //
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: '#EAEAEA',
+          '&:hover': {
+            color: '#F8A500',
+          },
+        },
+      },
+    },
     //        Style des inputs        //
     MuiInput: {
       styleOverrides: {
