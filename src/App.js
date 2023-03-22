@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import './App.css'
 import logo from './images/Sans_titre-1_105_copie.png'
 import Products from './pages/products/Products'
@@ -16,13 +15,6 @@ import {
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
 import CustomInput from './components/input/CustomInput'
-=======
-import logo from './images/Sans_titre-1_105_copie.png';
-import Products from './pages/products/Products';
-import './App.css';
-import Footer from './components/footer/Footer';
-// import Log from './pages/log/Log';
->>>>>>> 7e1aef7d5f89803e858fb3cd27cf7e5fa6be030c
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -73,6 +65,7 @@ function App() {
             placeholder="ecrire ici"
           />
         </FormControl>
+        <Footer
       </div>
     </ThemeProvider>
   )
