@@ -3,12 +3,16 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import styled from '@mui/material/styles/styled';
+import logo from '../../images/gyozilla-ecriture.png'
+import android from '../../images/appstore-300x101.png'
+import apple from '../../images/Play_Store.png'
+import './Footer.css'
 
 const FooterContainer = styled('div')(({ theme }) => ({
   backgroundColor: '#242928',
   color: '#CDE8E7',
   padding: theme.spacing(4),
-  minHeight: '200px',
+  minHeight: '100px',
   [theme.breakpoints.down('sm')]: {
     minHeight: '300px',
   },
@@ -16,8 +20,10 @@ const FooterContainer = styled('div')(({ theme }) => ({
 
 const Divider = styled('hr')({
   backgroundColor: '#000',
-  height: '1px',
-  margin: '40px 0',
+  width: '100%',
+  border: '1px black solid',
+  opacity: '30%',
+  margin: '0',
 });
 
 const SocialIcons = styled('div')({
@@ -27,20 +33,25 @@ const SocialIcons = styled('div')({
 });
 
 const Icon = styled(IconButton)({
-  fontSize: '28px',
   margin: '0 10px',
 });
 
 const Facebook = styled(FacebookIcon)({
   color: '#CDE8E7',
+  width: '40px',
+  height: '30px',
 });
 
 const Instagram = styled(InstagramIcon)({
   color: '#CDE8E7',
+  width: '40px',
+  height: '30px',
 });
 
 const Twitter = styled(TwitterIcon)({
   color: '#CDE8E7',
+  width: '40px',
+  height: '30px',
 });
 
 const Logo = styled('div')({
@@ -50,7 +61,7 @@ const Logo = styled('div')({
 });
 
 const LogoImg = styled('img')({
-  height: '60px',
+  height: '50px',
   color: 'inherit',
 });
 
@@ -62,7 +73,7 @@ const AppIcons = styled('div')({
 });
 
 const AppIcon = styled('img')({
-  height: '32px',
+  height: '40px',
   margin: '0 10px',
   color: 'inherit',
 });
@@ -79,24 +90,27 @@ const Link = styled(Button)({
   '&:hover': {
     color: '#fff',
   },
+  fontSize: '0.7rem',
 });
 
 const ContactButton = styled(Button)({
   margin: '10px',
+  color: '#F8A500',
+  borderColor: '#F8A500',
 });
 
 const BottomText = styled(Typography)({
-  marginTop: '20px',
-  fontSize: '12px',
+  fontSize: '0.8rem',
   textAlign: 'center',
+  padding: '10px 0 10px 0 !important'
 });
 
 function Footer() {
   return (
     <FooterContainer>
       <Grid container spacing={4}>
-        <Grid item xs={6} sm={4}>
-          <Typography variant="h6" align="center">
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h7" align="center">
             Retrouvez-nous sur les réseaux
           </Typography>
           <SocialIcons>
@@ -111,20 +125,26 @@ function Footer() {
             </Icon>
           </SocialIcons>
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid item xs={12} sm={4} sx={{
+            '@media (max-width: 600px)': {
+              display: 'none',
+            },
+          }}
+        >
           <Logo>
-            <LogoImg src="./src/images/gyozilla-ecriture.png" alt="Logo" />
+            <LogoImg src={logo} alt="Logo" />
           </Logo>
         </Grid>
-        <Grid item xs={6} sm={4}>
-          <Typography variant="h6" align="center">
+        <Grid item xs={12} sm={4} sx={{ padding: '32px 32px 0 0 !important' }} >
+          <Typography variant="h7" align="center">
             Télécharger l'application sur votre smartphone
           </Typography>
           <AppIcons>
-            <AppIcon src="../../src/images/appstore-300x101.png" alt="Apple" />
-            <AppIcon src="../../images/Play_Store.png" alt="Android" />
+            <AppIcon src={android} alt="Apple" />
+            <AppIcon src={apple} alt="Android" />
           </AppIcons>
         </Grid>
+        <Divider />
         <Grid item xs={12} sm={6}>
           <LinkContainer>
             <Link href="#">La carte</Link>
@@ -132,8 +152,8 @@ function Footer() {
             <Link href="#">Actualités</Link>
           </LinkContainer>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <LinkContainer>
+        <Grid item xs={12} sm={6} sx={{ padding: '32px 32px 0 0 !important' }} >
+          <LinkContainer className="toRight">
             <Link href="#">Recrutement</Link>
             <Link href="#">Mentions légales</Link>
             <ContactButton variant="outlined">Contactez-nous</ContactButton>
@@ -141,8 +161,8 @@ function Footer() {
         </Grid>
       </Grid>
       <BottomText>
-        GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes par jour.{' '}
-        <Link href="https://www.mangerbouger.fr/" target="_blank" rel="noopener">
+        GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes par jour.
+        <Link href="https://www.mangerbouger.fr/" target="_blank" rel="noopener" sx={{ margin: '0 !important', padding: '0 0 0 5px !important' }}>
           www.mangerbouger.fr
         </Link>
       </BottomText>

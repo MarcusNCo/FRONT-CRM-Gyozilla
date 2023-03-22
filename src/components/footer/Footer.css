@@ -1,0 +1,27 @@
+.css-480o17-MuiGrid-root {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+.css-3blv9p {
+    padding: 0 !important;
+}
+
+.toRight {
+    justify-content: flex-end !important;
+}
+
+@media (max-width: 599px) {
+    .css-480o17-MuiGrid-root>.MuiGrid-item{
+        padding: 15px 0 0 0 !important;
+        /* padding-left: 0 !important; */
+    }
+
+    .css-8io3p6-MuiGrid-root, .css-7fjbqd-MuiGrid-root, .css-peuj4f-MuiTypography-root{
+        padding: 15px 0 0 0 !important;
+    }
+
+    .toRight, .css-1k6yql2 {
+        justify-content: center !important;
+    }
+}

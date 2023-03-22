@@ -1,5 +1,4 @@
 import logo from './images/Sans_titre-1_105_copie.png';
-// import logo from './images/hypnose.png';
 import Products from './pages/products/Products';
 import './App.css';
 import Footer from './components/footer/Footer';
