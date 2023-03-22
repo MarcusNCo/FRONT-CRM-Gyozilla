@@ -1,8 +1,27 @@
+  /* ------------------------- Mobile CSS ----------------------- */
+
   .headerMobile {
-    color: aqua
-    ;
+    /* background-color: aqua;
+    height: 100vh */
   }
-  
+
+  /* .alignLog{
+    display: flex;
+    justify-content: center;
+  } */
+
+  #mobileLogo{
+    width: '30px';
+    position: relative;
+    top: 60px;
+    /* right: -50%;
+    left: -50%; */
+    align-self: center;
+  }
+  /* ------------------------------------------------------------- */
+
+  /* ------------------------- Web CSS --------------------------- */
+
   /* Style the header with a grey background and some padding */
   .headerWeb {
     overflow: hidden;
@@ -75,8 +94,9 @@
     background-color: #739B94;
     color: #f1f1f1;
   }
+  /* ------------------------------------------------------------- */
 
-  /* Mobile version */
+  /* -- Mobile version -- */
   @media screen and (max-width: 992px) {
     .headerMobile {
       display: flex;
@@ -86,8 +106,9 @@
       display: none;
     }
   }
+  /* -------------------- */
 
-  /* Web version */
+  /* ---- Web version --- */
   @media screen and (min-width: 992px) {
     .headerMobile {
       display: none;
@@ -97,3 +118,4 @@
       display: flex;
     }
   }
+  /* -------------------- */
