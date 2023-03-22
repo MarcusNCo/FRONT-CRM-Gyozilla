@@ -29,6 +29,12 @@ function App() {
   const handleCardButtonClick = () => {
     setTest2('changement de state initial du bouton card')
   }
+
+  const [valueInput, setvalueInput] = useState()
+  const handleChangeInput = (e) => {
+    console.log(e)
+    setvalueInput(e.target.value)
+  }
   console.log(test, test2)
   const theme = useTheme()
   return (
@@ -64,10 +70,13 @@ function App() {
         <Divider />
         <FormControl>
           <CustomInput
+            placeholder="Mot de passe"
             type="password"
             secure={true}
-            value="toto"
-            placeholder="ecrire ici"
+            value={valueInput}
+            label="Mot de passe"
+            htmlFor="toto"
+            id="toto"
           />
         </FormControl>
         <Footer />

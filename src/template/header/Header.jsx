@@ -28,6 +28,7 @@ import {
 } from '@mui/material'
 import { SafetyDividerOutlined } from '@mui/icons-material'
 import CustomInput from '../../components/input/CustomInput'
+import { Form } from 'formik'
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -86,7 +87,11 @@ const Header = () => {
       <Divider />
     </List>
   )
-
+  const [valueInput, setvalueInput] = useState('toto')
+  const handleChangeInput = (e) => {
+    console.log(e)
+    setvalueInput(e.target.value)
+  }
   return (
     <div>
       {/* // -------------------- Mobile version -------------------------- */}
@@ -212,7 +217,15 @@ const Header = () => {
           </a>
         </div>
         <div className="containSearch">
-          <CustomInput variant="standard" />
+          <CustomInput
+            htmlFor="toto"
+            id="toto"
+            variant="standard"
+            label="Que cherchez-vous"
+            onChange={handleChangeInput}
+            value={valueInput}
+          />
+          {/* <Form /> */}
           {/* <List /> */}
         </div>
         <div className="header-right">
