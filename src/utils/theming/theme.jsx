@@ -30,7 +30,7 @@ const theme = createTheme({
           '&:hover': {
             color: '#EAEAEA',
             backgroundColor: '#F8A500',
-            border: '2px solid #EAEAEA',
+            border: '1px solid #EAEAEA',
           },
         },
         outlined: {
@@ -45,7 +45,7 @@ const theme = createTheme({
           '&:hover': {
             color: '#F8A500',
             backgroundColor: '#EAEAEA',
-            border: '2px solid #F8A500',
+            border: '1px solid #F8A500',
           },
         },
         annule: {
