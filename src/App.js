@@ -8,7 +8,7 @@ import CustomCard from './components/Card/CustomCard'
 import { Alert, Badge, ThemeProvider, useTheme } from '@mui/material'
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
-import Footer from './components/footer/Footer';
+import Footer from './template/footer/Footer';
 
 function App() {
   const [test, setTest] = useState('state initial')
