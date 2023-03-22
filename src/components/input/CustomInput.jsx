@@ -1,4 +1,4 @@
-import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
+import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
 import React, { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -12,38 +12,44 @@ const CustomInput = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-    const { input } = props;
-    const inputAttribute = {
-    type: input.type,
-    name: input.name,
-    id: input.id,
-    className: input.className,
-    style: input.style,
-    value: input.value || '',
-    placeholder: input.placeholder,
-    disabled: input.disabled,
-    autoFocus: input.autoFocus,
-    onFocus: input.onFocus,
-    onBlur: input.onBlur,
-    autoComplete: input.autoComplete,
-    pattern: input.pattern,
-    required: input.required,
-    min: input.min,
-    max: input.max,
-    step: input.step,
-    readOnly: input.readOnly,
-    onChange: input.onChange,
-    secure: input.secure
+    const  field  = props;
+    const fieldAttribute = {
+    type: field.type,
+    name: field.name,
+    id: field.id,
+    className: field.className,
+    style: field.style,
+    value: field.value || '',
+    placeholder: field.placeholder,
+    disabled: field.disabled,
+    autoFocus: field.autoFocus,
+    onFocus: field.onFocus,
+    onBlur: field.onBlur,
+    autoComplete: field.autoComplete,
+    pattern: field.pattern,
+    required: field.required,
+    min: field.min,
+    max: field.max,
+    step: field.step,
+    readOnly: field.readOnly,
+    onChange: field.onChange,
+    secure: field.secure,
+    label: field.label,
+    htmlFor: field.htmlFor,
+    variant: field.variant
     };
-
     return (
-        <>
+        // <Customfield
+        // variant = 'filled' label = "Email" htmlFor = 'email' id = 'name' type= 'email'  name= 'name' color= "primary" value = {formState.name} onChange = {handleChange} 
+        // />
+        // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
+        <FormControl variant={fieldAttribute.variant}> 
+        <InputLabel htmlFor={fieldAttribute.htmlFor}>{fieldAttribute.label}</InputLabel>
             <Input
-                {...inputAttribute}
-                type={inputAttribute.type != 'password' ? inputAttribute.type : showPassword ? 'text' : 'password'}
+                {...fieldAttribute}
+                type={fieldAttribute.type != 'password' ? fieldAttribute.type : showPassword ? 'text' : 'password'}
                         endAdornment={
-                            inputAttribute.secure ? (
+                            fieldAttribute.secure ? (
                                 <InputAdornment position="end">
                                 <IconButton
                                 aria-label="toggle password visibility"
@@ -56,7 +62,7 @@ const CustomInput = (props) => {
                             ) : ""
                         }
             />
-        </>
+            </FormControl>
     );
 };
 
