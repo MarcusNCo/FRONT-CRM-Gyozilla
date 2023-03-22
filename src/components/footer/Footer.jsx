@@ -14,11 +14,14 @@ const Footer = (props) => {
   const FooterContainer = styled('div')(({ theme }) => ({
     backgroundColor: '#242928',
     color: '#CDE8E7',
-    padding: theme.spacing(4),
+    padding: '16px',
     minHeight: '100px',
     [theme.breakpoints.down('sm')]: {
-      minHeight: '300px',
+      minHeight: '400px',
     },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   }));
 
   const Divider = styled('hr')({
@@ -64,7 +67,7 @@ const Footer = (props) => {
   });
 
   const LogoImg = styled('img')({
-    height: '50px',
+    height: '40px',
     color: 'inherit',
   });
 
@@ -87,31 +90,19 @@ const Footer = (props) => {
     alignItems: 'center',
   });
 
-  // const Link = styled(Button)({
-  //   color: '#CDE8E7',
-  //   margin: '10px 20px',
-  //   '&:hover': {
-  //     color: '#fff',
-  //   },
-  //   fontSize: '0.7rem',
-  // });
-
-  // const ContactButton = styled(Button)({
-  //   margin: '10px',
-  //   color: '#F8A500',
-  //   borderColor: '#F8A500',
-  // });
-
-  const BottomText = styled(Typography)({
+  const BottomText = styled(Typography)(({ theme }) => ({
     fontSize: '0.6rem',
     textAlign: 'center',
-    padding: '10px 0 10px 0 !important'
-  });
+    margin: '10px 0 0 0 !important',
+    [theme.breakpoints.down('sm')]: {
+      margin: '30px 0 0 0 !important',
+    },
+  }));
 
 
   return (
     <FooterContainer sx={{ marginTop: '20px' }} >
-      <Grid container spacing={4}>
+      <Grid container spacing={1}>
         <Grid item xs={12} sm={4}>
           <Typography variant="h7" align="center">
             Retrouvez-nous sur les réseaux
@@ -138,7 +129,7 @@ const Footer = (props) => {
             <LogoImg src={logo} alt="Logo" />
           </Logo>
         </Grid>
-        <Grid item xs={12} sm={4} sx={{ padding: '32px 32px 0 0 !important' }} >
+        <Grid item xs={12} sm={4} >
           <Typography variant="h7" align="center">
             Télécharger l'application sur votre smartphone
           </Typography>
@@ -148,17 +139,17 @@ const Footer = (props) => {
           </AppIcons>
         </Grid>
         <Divider />
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} >
           <LinkContainer>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >La carte</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Nos engagements</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Actualités</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }} >La carte</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }} >Nos engagements</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }} >Actualités</Link>
           </LinkContainer>
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ padding: '32px 32px 0 0 !important' }} >
+        <Grid item xs={12} sm={6} className="toRight">
           <LinkContainer className="toRight">
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Recrutement</Link>
-            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px' }} >Mentions légales</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }} >Recrutement</Link>
+            <Link href="#" underline="none" sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }} >Mentions légales</Link>
             <CustomButton text="Contactez-nous" variant="contained" />
           </LinkContainer>
         </Grid>
