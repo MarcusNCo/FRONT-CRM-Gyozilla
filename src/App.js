@@ -15,6 +15,7 @@ import {
 import defaultTheme from './utils/theming/theme'
 import MailIcon from '@mui/icons-material/Mail'
 import CustomInput from './components/input/CustomInput'
+import Footer from './components/footer/Footer'
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -65,7 +66,7 @@ function App() {
             placeholder="ecrire ici"
           />
         </FormControl>
-        <Footer
+        <Footer />
       </div>
     </ThemeProvider>
   )
