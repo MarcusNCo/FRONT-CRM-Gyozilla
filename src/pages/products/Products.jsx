@@ -12,7 +12,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => { //tous ce qui va se charger au chargement du component
         getAllProducts()
             .then((res) => {
                 setProducts(res.data);
@@ -22,7 +22,10 @@ const Products = () => {
                 setProducts([]);
                 setError(error);
             });
-        }, []);
+            return ()=>{
+                setProducts([]);
+                setError(null)
+            }}, []);
     return (
         <div className='products'>
             {
