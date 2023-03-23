@@ -9,11 +9,10 @@ import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 
 const MyCard = styled(Card)({
-  minWidth: 275,
   height: '100%',
 })
 
-export default function ListItemProducts() {
+export default function ListItemProducts({ onClick }) {
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
@@ -22,7 +21,7 @@ export default function ListItemProducts() {
 
   return (
     <MyCard>
-      <CardContent>
+      <CardContent sx={{ height: '15%', width: '100%' }}>
         <List
           sx={{ height: '100%', width: '100%' }}
           component="nav"
@@ -33,25 +32,22 @@ export default function ListItemProducts() {
             </ListSubheader>
           }
         >
-          <ListItemButton onClick={handleClick}>
+          <ListItemButton onClick={(e) => onClick(e, 1)}>
             <ListItemText primary="Nouveautés" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={(e) => onClick(e, 2)}>
             <ListItemText primary="Les Menus" />
           </ListItemButton>
-          <ListItemButton>
-            <ListItemText primary="Bons Plans" />
-          </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={(e) => onClick(e, 3)}>
             <ListItemText primary="Entrées" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={(e) => onClick(e, 4)}>
             <ListItemText primary="Plats" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={(e) => onClick(e, 5)}>
             <ListItemText primary="Desserts" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={(e) => onClick(e, 6)}>
             <ListItemText primary="Boissons" />
           </ListItemButton>
         </List>
