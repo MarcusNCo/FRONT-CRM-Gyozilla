@@ -18,6 +18,11 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormGroup from '@mui/material/FormGroup'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
+import RiceBowlIcon from '@mui/icons-material/RiceBowl'
+import RamenDiningIcon from '@mui/icons-material/RamenDining'
+import CoPresentIcon from '@mui/icons-material/CoPresent'
+import PinDropIcon from '@mui/icons-material/PinDrop'
+import ContactMailIcon from '@mui/icons-material/ContactMail'
 import {
   IconButton,
   Drawer,
@@ -27,8 +32,12 @@ import {
   Divider,
 } from '@mui/material'
 import { SafetyDividerOutlined } from '@mui/icons-material'
+<<<<<<< HEAD
 import CustomInput from '../../components/input/CustomInput'
 import { Form } from 'formik'
+=======
+import { margin } from '@mui/system'
+>>>>>>> e26aa36dfd7a1ed34d141d2ad35d2e86e3282b04
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -73,17 +82,42 @@ const Header = () => {
   }
   const list = () => (
     <List>
-      <ListItem button onClick={toggleDrawer(false)}>
-        <ListItemText primary="La carte" />
-      </ListItem>
+      <a href="">
+        <ListItem button onClick={toggleDrawer(false)}>
+          <RamenDiningIcon />
+          <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
+        </ListItem>
+      </a>
       <Divider />
-      <ListItem button onClick={toggleDrawer(false)}>
-        <ListItemText primary="Nos engagements" />
-      </ListItem>
+      <a href="">
+        <ListItem button onClick={toggleDrawer(false)}>
+          <CoPresentIcon />
+          <ListItemText
+            primary="Nos engagements"
+            style={{ marginLeft: '10px' }}
+          />
+        </ListItem>
+      </a>
       <Divider />
-      <ListItem button onClick={toggleDrawer(false)}>
-        <ListItemText primary="Contactez-nous" />
-      </ListItem>
+      <a href="">
+        <ListItem button onClick={toggleDrawer(false)}>
+          <ContactMailIcon />
+          <ListItemText
+            primary="Contactez-nous"
+            style={{ marginLeft: '10px' }}
+          />
+        </ListItem>
+      </a>
+      <Divider />
+      <a href="">
+        <ListItem button onClick={toggleDrawer(false)}>
+          <PinDropIcon />
+          <ListItemText
+            primary="Trouver un resto"
+            style={{ marginLeft: '10px' }}
+          />
+        </ListItem>
+      </a>
       <Divider />
     </List>
   )
