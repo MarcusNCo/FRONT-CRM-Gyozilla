@@ -7,13 +7,13 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
-import Collapse from '@mui/material/Collapse'
 
 const MyCard = styled(Card)({
   minWidth: 275,
+  height: '100%',
 })
 
-export default function CardWithList() {
+export default function ListItemProducts() {
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
@@ -24,7 +24,7 @@ export default function CardWithList() {
     <MyCard>
       <CardContent>
         <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          sx={{ height: '100%', width: '100%' }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
@@ -34,23 +34,25 @@ export default function CardWithList() {
           }
         >
           <ListItemButton onClick={handleClick}>
-            <ListItemText primary="Sent mail" />
+            <ListItemText primary="Nouveautés" />
           </ListItemButton>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Starred" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Sent Mail" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Drafts" />
-              </ListItemButton>
-            </List>
-          </Collapse>
-          <ListItemButton onClick={handleClick}>
-            <ListItemText primary="Drafts" />
+          <ListItemButton>
+            <ListItemText primary="Les Menus" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="Bons Plans" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="Entrées" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="Plats" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="Desserts" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="Boissons" />
           </ListItemButton>
         </List>
       </CardContent>

@@ -19,7 +19,7 @@ import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
 import CustomListItem from './components/CustomListItem/CustomListItem'
-import CardWithList from './components/CustomListItem/CustomListItem copy'
+import ListItemProducts from './components/CustomListItem/CustomListItemProducts'
 import MenuBurger from './components/menu burger/MenuBurger'
 
 function App() {
@@ -47,11 +47,11 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <Alert severity="warning">waouaauauauauauauauuaua</Alert>
+        {/* <Alert severity="warning">waouaauauauauauauauuaua</Alert>
         <Badge badgeContent={4}>
           <MailIcon color="action" />
         </Badge>
-        {/* <Log /> */}
+        <Log />
         <Products />
         <CustomButton
           // variant={'annule'}
@@ -84,8 +84,9 @@ function App() {
           />
         </FormControl>
         <CustomListItem />
-        <CardWithList />
-        <MenuBurger />
+        <ListItemProducts />
+        <MenuBurger /> */}
+        <Products />
         <Footer />
       </div>
     </ThemeProvider>
