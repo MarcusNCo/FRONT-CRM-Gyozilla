@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import CustomForm from '../../components/form/CustomForm';
+import { login } from '../../utils/login';
 
 const Log = () => {
 
@@ -10,9 +11,9 @@ const Log = () => {
     password: '',
   };
 
-  const handleSubmit = (values) => {
-    console.log('submit',values);
-  };
+  // const handleSubmit = (values) => {
+  //   console.log('submit',values);
+  // };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email invalide').required('L\'email est obligatoire'),
@@ -24,9 +25,20 @@ const Log = () => {
     <Formik
       initialValues={initialValues} //transforme en state
       validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      onSubmit={(values, { setSubmitting }) => {
+        console.log(values)
+        login(values)
+          .then(response => {
+            console.log(response);
+            setSubmitting(false);
+          })
+          .catch(error => {
+            console.error(error);
+            setSubmitting(false);
+          });
+      }}
     >
-      {({values, handleChange, errors, touched }) => {
+      {({values, handleChange, errors, touched , isSubmitting}) => {
         return (
           <Form>
           <CustomForm
@@ -50,7 +62,7 @@ const Log = () => {
               },
             ]}
           />
-          <button type="submit">Envoyer</button>
+          <button type="submit"  disabled={isSubmitting}>Envoyer</button>
         </Form>
         ) 
       }}  
