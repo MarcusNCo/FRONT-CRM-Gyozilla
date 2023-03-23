@@ -14,6 +14,9 @@ const instance = axios.create({
 // Ajout d'un intercepteur de requête
 instance.interceptors.request.use(
     (config) => {
+
+        // console.log(config)
+
         // Récupération du token depuis le local storage
         // const token = localStorage.getItem("token");
 
@@ -32,7 +35,12 @@ instance.interceptors.request.use(
 // Ajout d'un intercepteur de réponse
 instance.interceptors.response.use(
     (response) => {
+
+
         // Vous pouvez traiter la réponse ici
+
+        console.log(response)
+
         return response;
     },
     (error) => {

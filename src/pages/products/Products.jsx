@@ -31,6 +31,8 @@ const Products = () => {
         <CircularProgress />
       ) : (
         products.map((item) => {
+
+          // console.log(item)
           return (
             // <Card key={item.id}>
             //   <CardContent>
@@ -44,6 +46,7 @@ const Products = () => {
             <CustomCard
               description={item.description}
               title={item.name}
+              image={item.image}
               buttonCardText="Details"
               variantButton={'contained'}
             ></CustomCard>

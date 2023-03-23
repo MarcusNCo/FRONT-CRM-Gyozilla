@@ -9,6 +9,7 @@ import { useTheme } from '@mui/material'
 const CustomCard = ({
   title,
   description,
+  image,
   buttonCardText,
   onButtonCardClick,
   width,
@@ -47,6 +48,7 @@ const CustomCard = ({
       >
         <Typography variant={'h5'}>{title}</Typography>
         <Typography variant={'p'}>{description}</Typography>
+        <img src={require({image})} alt="nems"></img>
       </CardContent>
       <CardActions
         style={{

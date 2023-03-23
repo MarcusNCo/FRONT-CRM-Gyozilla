@@ -35,13 +35,13 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <Header />
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <Alert severity="warning">waouaauauauauauauauuaua</Alert>
-        <Badge badgeContent={4}>
+        </header> */}
+        {/* <Alert severity="warning">waouaauauauauauauauuaua</Alert> */}
+        {/* <Badge badgeContent={4}>
           <MailIcon color="action" />
-        </Badge>
+        </Badge> */}
         {/* <Log /> */}
         <Products />
         <CustomButton
