@@ -1,5 +1,5 @@
-import axios from "./interceptor";
+import instance from "./interceptor";
 
 export const getAllProducts = () => {
-    return axios.get("products");
+    return instance.get("products");
 }

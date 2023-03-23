@@ -17,7 +17,7 @@ instance.interceptors.request.use(
         // Récupération du token depuis le local storage
         const token = localStorage.getItem("token");
 
-       // Ajout du token dans l'en-tête de la requête
+       // Si il y a un token on l'ajoute dans l'en-tête de la requête
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -29,12 +29,16 @@ instance.interceptors.request.use(
 );
 
 // Ajout d'un intercepteur de réponse
-axios.interceptors.response.use(
+instance.interceptors.response.use(
     (response) => {
+      if (response.data.message === 'Authentification réussi') {
+        localStorage.setItem('token', response.data.token)
+      }
       return response;
     },
     (error) => {
       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        console.log(error.response)
         // Déconnexion de l'utilisateur et suppression du token
         localStorage.removeItem('token');
         // window.location.href = '/login'; // rediriger vers la page de connexion
