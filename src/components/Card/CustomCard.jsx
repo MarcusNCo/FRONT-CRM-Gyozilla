@@ -27,6 +27,9 @@ const CustomCard = ({
   styleParagraph,
   variantButton,
 }) => {
+
+  // console.log(image)
+
   return (
     <Card
       style={{
@@ -48,7 +51,11 @@ const CustomCard = ({
       >
         <Typography variant={'h5'}>{title}</Typography>
         <Typography variant={'p'}>{description}</Typography>
-        <img src={require({image})} alt="nems"></img>
+
+
+
+        {/* <img src={require(`${image}`)} alt="nems"></img> */}
+        <img src={require(`../../images/products/${image}`)} alt="nems"></img>
       </CardContent>
       <CardActions
         style={{

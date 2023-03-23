@@ -39,7 +39,7 @@ instance.interceptors.response.use(
 
         // Vous pouvez traiter la réponse ici
 
-        console.log(response)
+        // console.log(response)
 
         return response;
     },
