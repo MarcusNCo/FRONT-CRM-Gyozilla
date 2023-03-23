@@ -13,7 +13,7 @@ const CustomInput = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    const input = props;
+    const input= props;
     const inputAttribute = {
         type: input.type,
         name: input.name,
@@ -40,6 +40,7 @@ const CustomInput = (props) => {
         variant: input.variant,
         errors: input.errors
     };
+    console.log(inputAttribute.name)
     return (
         // <Custominput
         // variant = 'filled' label = "Email" htmlFor = 'email' id = 'name' type= 'email'  name= 'name' color= "primary" value = {formState.name} onChange = {handleChange} 
@@ -64,9 +65,11 @@ const CustomInput = (props) => {
                     ) : ""
                 }
             />
-            <ErrorMessage name = {inputAttribute.name}>
-                {inputAttribute.errors ?? ''}
-            </ErrorMessage>
+            {inputAttribute.errors ? ( 
+            <small>
+                {inputAttribute.errors}
+            </small>): null}
+
         </FormControl>
     );
 };

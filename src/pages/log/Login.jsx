@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import CustomForm from '../../components/form/CustomForm';
 
@@ -26,8 +26,7 @@ const Log = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({values, handleChange, errors}) => {
-        console.log(errors)
+      {({values, handleChange, errors, touched }) => {
         return (
           <Form>
           <CustomForm
@@ -38,7 +37,7 @@ const Log = () => {
                 type: 'email',
                 value: values.email,
                 onChange: handleChange,
-                errors: errors.email,
+                errors: touched.email && errors.email,
               },
               {
                 name: 'password',
@@ -47,15 +46,14 @@ const Log = () => {
                 secure: 'true',
                 value: values.password,
                 onChange: handleChange,
-                errors: errors.password,
+                errors: touched.password && errors.password,
               },
             ]}
           />
-          <button type="submit">Submit</button>
+          <button type="submit">Envoyer</button>
         </Form>
-        )
-      }}
-
+        ) 
+      }}  
     </Formik>
   );
 };
