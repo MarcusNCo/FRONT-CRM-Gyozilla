@@ -6,11 +6,10 @@ const CustomForm = ({ fields }) => {
 
     return (
         <>
-            {fields.map((field, index, onChange) => (
+            {fields.map((field, index) => (
                 <CustomInput
                     {...field}
                     key={index}
-                    handleChange={onChange}
                 />
             ))}
         </>

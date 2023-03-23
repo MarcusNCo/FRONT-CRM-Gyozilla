@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './CustomInput.css'
+import { ErrorMessage } from 'formik';
 
 const CustomInput = (props) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -36,7 +37,8 @@ const CustomInput = (props) => {
         secure: input.secure,
         label: input.label,
         htmlFor: input.htmlFor,
-        variant: input.variant
+        variant: input.variant,
+        errors: input.errors
     };
     return (
         // <Custominput
@@ -47,7 +49,7 @@ const CustomInput = (props) => {
             <InputLabel htmlFor={inputAttribute.htmlFor}>{inputAttribute.label}</InputLabel>
             <Input
                 {...inputAttribute}
-                type={inputAttribute.type != 'password' ? inputAttribute.type : showPassword ? 'text' : 'password'}
+                type={inputAttribute.type !== 'password' ? inputAttribute.type : showPassword ? 'text' : 'password'}
                 endAdornment={
                     inputAttribute.secure ? (
                         <InputAdornment position="end">
@@ -62,6 +64,9 @@ const CustomInput = (props) => {
                     ) : ""
                 }
             />
+            <ErrorMessage name = {inputAttribute.name}>
+                {inputAttribute.errors ?? ''}
+            </ErrorMessage>
         </FormControl>
     );
 };
