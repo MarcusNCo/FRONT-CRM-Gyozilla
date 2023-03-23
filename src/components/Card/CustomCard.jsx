@@ -56,7 +56,7 @@ const CustomCard = ({
 
         {/* <img src={require(`${image}`)} alt="nems"></img> */}
         {/* <img src={require(`../../images/products/${image}`)} alt="nems"></img> */}
-        <img src=`../../images/products/${image}` alt="nems"></img>
+        {/* <img src=`../../images/products/${image}` alt="nems"></img> */}
       </CardContent>
       <CardActions
         style={{
