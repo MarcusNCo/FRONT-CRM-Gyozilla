@@ -8,10 +8,6 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 
-const MyCard = styled(Card)({
-  height: '100%',
-})
-
 export default function ListItemProducts({ onClick }) {
   const [open, setOpen] = useState(false)
 
@@ -20,16 +16,13 @@ export default function ListItemProducts({ onClick }) {
   }
 
   return (
-    <MyCard>
-      <CardContent sx={{ height: '15%', width: '100%' }}>
+    <Card style={{ width: '80vw', height: '50vh', display: 'flex' }}>
+      <CardContent>
         <List
-          sx={{ height: '100%', width: '100%' }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
-              La Carte
-            </ListSubheader>
+            <ListSubheader id="nested-list-subheader">La Carte</ListSubheader>
           }
         >
           <ListItemButton onClick={(e) => onClick(e, 1)}>
@@ -52,6 +45,6 @@ export default function ListItemProducts({ onClick }) {
           </ListItemButton>
         </List>
       </CardContent>
-    </MyCard>
+    </Card>
   )
 }

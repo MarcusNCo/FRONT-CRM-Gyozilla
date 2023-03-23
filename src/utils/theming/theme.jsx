@@ -55,7 +55,7 @@ const theme = createTheme({
     MuiList: {
       styleOverrides: {
         root: {
-          width: '20vw',
+          width: '10vw',
         },
       },
     },

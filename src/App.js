@@ -3,7 +3,7 @@ import logo from './images/Sans_titre-1_105_copie.png'
 import Products from './pages/products/Products'
 import CustomButton from './components/button/CustomButton'
 import { useState } from 'react'
-import CustomCard from './components/Card/CustomCard'
+import CustomCard from './components/card/CustomCard'
 import {
   Alert,
   Badge,
@@ -17,8 +17,8 @@ import MailIcon from '@mui/icons-material/Mail'
 import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
-import CustomListItem from './components/CustomListItem/CustomListItem'
-import ListItemProducts from './components/CustomListItem/CustomListItemProducts'
+import CustomListItem from './components/customListItem/CustomListItem'
+import ListItemProducts from './components/customListItem/CustomListItemProducts'
 import MenuBurger from './components/menu burger/MenuBurger'
 
 import Login from './pages/log/Login'
