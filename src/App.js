@@ -1,8 +1,6 @@
 import logo from './images/Sans_titre-1_105_copie.png';
-import Products from './pages/products/Products';
 import './App.css';
-import Log from './pages/log/Log';
-import CustomInput from './components/input/CustomInput';
+import Login from './pages/log/Login';
 
 function App() {
   return (
@@ -21,7 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <Log/>
+      <Login/>
     </div>
   );
 }

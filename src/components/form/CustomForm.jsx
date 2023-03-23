@@ -6,10 +6,11 @@ const CustomForm = ({ fields }) => {
 
     return (
         <>
-            {fields.map((field, index) => (
+            {fields.map((field, index, onChange) => (
                 <CustomInput
                     {...field}
-                    key = {index}
+                    key={index}
+                    handleChange={onChange}
                 />
             ))}
         </>
@@ -17,3 +18,4 @@ const CustomForm = ({ fields }) => {
 }
 
 export default CustomForm
+
