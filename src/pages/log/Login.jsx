@@ -3,6 +3,7 @@ import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import CustomForm from '../../components/form/CustomForm';
 import { login } from '../../utils/login';
+import { Button, LoadingButton } from '@mui/lab';
 
 const Log = () => {
 
@@ -10,10 +11,6 @@ const Log = () => {
     email: '',
     password: '',
   };
-
-  // const handleSubmit = (values) => {
-  //   console.log('submit',values);
-  // };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email invalide').required('L\'email est obligatoire'),
@@ -26,10 +23,9 @@ const Log = () => {
       initialValues={initialValues} //transforme en state
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values)
         login(values)
           .then(response => {
-            console.log(response);
+            console.log(response)
             setSubmitting(false);
           })
           .catch(error => {
@@ -62,7 +58,7 @@ const Log = () => {
               },
             ]}
           />
-          <button type="submit"  disabled={isSubmitting}>Envoyer</button>
+          <LoadingButton type='submit' loading = {isSubmitting}>Envoyer</LoadingButton>
         </Form>
         ) 
       }}  

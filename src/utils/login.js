@@ -1,5 +1,5 @@
-import axios from "./interceptor";
+import instance from "./interceptor";
 
-export const login = () => {
-    return axios.post("token");
+export const login = async (values) => {
+    return await instance.post("token", values)
 }
