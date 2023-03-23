@@ -1,7 +1,6 @@
 import './App.css'
 import logo from './images/Sans_titre-1_105_copie.png'
 import Products from './pages/products/Products'
-import Log from './pages/log/Log'
 import CustomButton from './components/button/CustomButton'
 import { useState } from 'react'
 import CustomCard from './components/Card/CustomCard'
@@ -21,6 +20,8 @@ import Header from './template/header/Header'
 import CustomListItem from './components/CustomListItem/CustomListItem'
 import ListItemProducts from './components/CustomListItem/CustomListItemProducts'
 import MenuBurger from './components/menu burger/MenuBurger'
+
+import Login from './pages/log/Login'
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -87,6 +88,7 @@ function App() {
         <ListItemProducts />
         <MenuBurger /> */}
         <Products />
+        <Login />
         <Footer />
       </div>
     </ThemeProvider>

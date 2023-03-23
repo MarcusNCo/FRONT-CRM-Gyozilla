@@ -2,14 +2,14 @@ import React from 'react';
 import CustomInput from '../input/CustomInput';
 
 
-const CustomForm = ({ fields }) => {
+const CustomForm = ({ inputs }) => {
 
     return (
         <>
-            {fields.map((field, index) => (
+            {inputs.map((input, index) => (
                 <CustomInput
-                    {...field}
-                    key = {index}
+                    {...input}
+                    key={index}
                 />
             ))}
         </>
@@ -17,3 +17,4 @@ const CustomForm = ({ fields }) => {
 }
 
 export default CustomForm
+

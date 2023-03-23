@@ -4,7 +4,7 @@ import env from 'react-dotenv'
 
 // Création d'une instance Axios
 const instance = axios.create({
-    baseURL: env.URL_API,
+    baseURL: env.URL_API+'/',
     timeout: 5000,
     headers: {
         "Content-Type": "application/json",
@@ -15,13 +15,12 @@ const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
         // Récupération du token depuis le local storage
-        // const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
-        // Ajout du token dans l'en-tête de la requête
-        // if (token) {
-        //     config.headers.Authorization = `Bearer ${token}`;
-        // }
-        // Vous pouvez ajouter des informations supplémentaires à la requête ici
+       // Ajout du token dans l'en-tête de la requête
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     (error) => {
@@ -30,14 +29,18 @@ instance.interceptors.request.use(
 );
 
 // Ajout d'un intercepteur de réponse
-instance.interceptors.response.use(
+axios.interceptors.response.use(
     (response) => {
-        // Vous pouvez traiter la réponse ici
-        return response;
+      return response;
     },
     (error) => {
-        return Promise.reject(error);
+      if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        // Déconnexion de l'utilisateur et suppression du token
+        localStorage.removeItem('token');
+        // window.location.href = '/login'; // rediriger vers la page de connexion
+      }
+      return Promise.reject(error);
     }
-);
+  );
 
 export default instance;
