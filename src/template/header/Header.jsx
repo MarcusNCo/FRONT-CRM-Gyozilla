@@ -32,12 +32,9 @@ import {
   Divider,
 } from '@mui/material'
 import { SafetyDividerOutlined } from '@mui/icons-material'
-<<<<<<< HEAD
 import CustomInput from '../../components/input/CustomInput'
 import { Form } from 'formik'
-=======
 import { margin } from '@mui/system'
->>>>>>> e26aa36dfd7a1ed34d141d2ad35d2e86e3282b04
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
