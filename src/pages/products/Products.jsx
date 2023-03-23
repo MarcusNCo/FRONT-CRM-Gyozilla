@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import './Products.css'
+import CustomCard from '../../components/Card/CustomCard'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -25,40 +26,28 @@ const Products = () => {
   }, [])
   //console.log(products)
   return (
-    <div className="products">
+    <div className="products" style={{ flexWrap: 'wrap' }}>
       {products.length === 0 ? (
         <CircularProgress />
       ) : (
         products.map((item) => {
           return (
-            <Card
+            // <Card key={item.id}>
+            //   <CardContent>
+            //     <Typography gutterBottom variant="h5" component="div">
+            //       {item.name}
+            //     </Typography>
+            //     <Typography variant="p">{item.description}</Typography>
+            //   </CardContent>
+            //   <Button variant="outlined">Commander</Button>
+            // </Card>
+            <CustomCard
               key={item.id}
-              sx={{
-                maxWidth: 345,
-                background: 'grey',
-                border: '1px solid black',
-                margin: '2px',
-              }}
-            >
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {item.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {item.description}
-                </Typography>
-              </CardContent>
-              <Button
-                sx={{
-                  background: 'black',
-                  color: 'white',
-                  border: '1px solid white',
-                }}
-                variant="outlined"
-              >
-                Commander
-              </Button>
-            </Card>
+              description={item.description}
+              title={item.name}
+              buttonCardText="Details"
+              variantButton={'contained'}
+            ></CustomCard>
           )
         })
       )}

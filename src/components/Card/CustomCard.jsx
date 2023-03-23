@@ -17,15 +17,14 @@ const CustomCard = ({
   backgroundColorContent,
   widthContent,
   heightContent,
-  sizeTitle,
-  sizeParagraph,
   heightActions,
   widthActions,
   backgroundColorActions,
   justifyContentCard,
   alignItemsCard,
-  colorTitle,
-  colorParagraph,
+  styleTitle,
+  styleParagraph,
+  variantButton,
 }) => {
   return (
     <Card
@@ -46,18 +45,11 @@ const CustomCard = ({
           backgroundColor: backgroundColorContent,
         }}
       >
-        <Typography variant={sizeTitle} color={colorTitle}>
-          {title}
-        </Typography>
-        <Typography variant={sizeParagraph} color={colorParagraph}>
-          {description}
-        </Typography>
+        <Typography variant={'h5'}>{title}</Typography>
+        <Typography variant={'p'}>{description}</Typography>
       </CardContent>
       <CardActions
         style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
           width: widthActions,
           height: heightActions,
           backgroundColor: backgroundColorActions,
@@ -65,8 +57,7 @@ const CustomCard = ({
       >
         <CustomButton
           onClick={onButtonCardClick}
-          variant="contained"
-          color="primary"
+          variant={variantButton}
           text={buttonCardText}
         />
       </CardActions>
