@@ -30,7 +30,7 @@ const Log = () => {
         return (
           <Form>
           <CustomForm
-            fields={[
+            inputs={[
               {
                 name: 'email',
                 label: 'Email',
