@@ -42,6 +42,7 @@ const Products = () => {
             //   <Button variant="outlined">Commander</Button>
             // </Card>
             <CustomCard
+              key={item.id}
               description={item.description}
               title={item.name}
               buttonCardText="Details"

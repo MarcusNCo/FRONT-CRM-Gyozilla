@@ -118,7 +118,7 @@ const Header = () => {
       <Divider />
     </List>
   )
-  const [valueInput, setvalueInput] = useState('toto')
+  const [valueInput, setvalueInput] = useState('')
   const handleChangeInput = (e) => {
     console.log(e)
     setvalueInput(e.target.value)

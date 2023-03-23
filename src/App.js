@@ -18,6 +18,9 @@ import MailIcon from '@mui/icons-material/Mail'
 import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
+import CustomListItem from './components/CustomListItem/CustomListItem'
+import CardWithList from './components/CustomListItem/CustomListItem copy'
+import MenuBurger from './components/menu burger/MenuBurger'
 
 function App() {
   const [test, setTest] = useState('state initial')
@@ -70,15 +73,19 @@ function App() {
         <Divider />
         <FormControl>
           <CustomInput
-            placeholder="Mot de passe"
+            //placeholder="Mot de passe"
             type="password"
-            secure={true}
+            secure="true"
             value={valueInput}
             label="Mot de passe"
-            htmlFor="toto"
-            id="toto"
+            htmlFor="toto1"
+            id="toto1"
+            onChange={handleChangeInput}
           />
         </FormControl>
+        <CustomListItem />
+        <CardWithList />
+        <MenuBurger />
         <Footer />
       </div>
     </ThemeProvider>
