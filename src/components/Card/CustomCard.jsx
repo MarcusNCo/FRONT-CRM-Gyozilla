@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import CustomButton from '../button/CustomButton'
-import { useTheme } from '@mui/material'
+// import { useTheme } from '@mui/material'
 
 const CustomCard = ({
   title,
@@ -28,7 +28,7 @@ const CustomCard = ({
   variantButton,
 }) => {
 
-  // console.log(image)
+  console.log(image)
 
   return (
     <Card
@@ -55,7 +55,8 @@ const CustomCard = ({
 
 
         {/* <img src={require(`${image}`)} alt="nems"></img> */}
-        <img src={require(`../../images/products/${image}`)} alt="nems"></img>
+        {/* <img src={require(`../../images/products/${image}`)} alt="nems"></img> */}
+        <img src=`../../images/products/${image}` alt="nems"></img>
       </CardContent>
       <CardActions
         style={{

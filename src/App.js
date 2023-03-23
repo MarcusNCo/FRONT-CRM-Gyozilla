@@ -1,36 +1,37 @@
-import './App.css'
-import logo from './images/Sans_titre-1_105_copie.png'
-import Products from './pages/products/Products'
-import Log from './pages/log/Log'
-import CustomButton from './components/button/CustomButton'
-import { useState } from 'react'
-import CustomCard from './components/Card/CustomCard'
+import "./App.css";
+// import logo from './images/Sans_titre-1_105_copie.png'
+import Products from "./pages/products/Products";
+// import Log from './pages/log/Log'
+import CustomButton from "./components/button/CustomButton";
+import { useState } from "react";
+import CustomCard from "./components/Card/CustomCard";
 import {
-  Alert,
-  Badge,
+  // Alert,
+  // Badge,
   ThemeProvider,
-  useTheme,
+  // useTheme,
   FormControl,
   Divider,
-} from '@mui/material'
-import defaultTheme from './utils/theming/theme'
-import MailIcon from '@mui/icons-material/Mail'
-import CustomInput from './components/input/CustomInput'
-import Footer from './template/footer/Footer'
-import Header from './template/header/Header'
+} from "@mui/material";
+import defaultTheme from "./utils/theming/theme";
+// import MailIcon from '@mui/icons-material/Mail'
+import CustomInput from "./components/input/CustomInput";
+import Footer from "./template/footer/Footer";
+import Header from "./template/header/Header";
+import Login from "./pages/log/Login";
 
 function App() {
-  const [test, setTest] = useState('state initial')
-  const [test2, setTest2] = useState('state initial du bouton card')
+  const [test, setTest] = useState("state initial");
+  const [test2, setTest2] = useState("state initial du bouton card");
 
   const handleClick = () => {
-    setTest('changement de state initial')
-  }
+    setTest("changement de state initial");
+  };
   const handleCardButtonClick = () => {
-    setTest2('changement de state initial du bouton card')
-  }
-  console.log(test, test2)
-  const theme = useTheme()
+    setTest2("changement de state initial du bouton card");
+  };
+  console.log(test, test2);
+  // const theme = useTheme()
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header />
@@ -54,12 +55,12 @@ function App() {
         <CustomButton variant="text" text="re coucou" />
         <CustomCard
           width="80%"
-          height={'100%'}
+          height={"100%"}
           title="Titre de la card"
           description="lorem ipsum uudsbifuq fuhsufqsidf uifqGQSD GIUNUI UFIU  U UFUDSGWGFBhfg iugnui ugs"
           buttonCardText="Details de la Card"
           onButtonCardClick={handleCardButtonClick}
-          styleTitle={'h5'}
+          styleTitle={"h5"}
         ></CustomCard>
         <Divider />
         <FormControl>
@@ -70,10 +71,11 @@ function App() {
             placeholder="ecrire ici"
           />
         </FormControl>
+        <Login />
         <Footer />
       </div>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
