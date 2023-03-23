@@ -12,29 +12,21 @@ const instance = axios.create({
 
 // Ajout d'un intercepteur de requête
 instance.interceptors.request.use(
-  (config) => {
-    // console.log(config)
+    (config) => {
+        // console.log(config)
 
-    // Récupération du token depuis le local storage
-    const token = localStorage.getItem("token");
+        // Récupération du token depuis le local storage
+        const token = localStorage.getItem("token");
 
-    // Ajout du token dans l'en-tête de la requête
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-       // Si il y a un token on l'ajoute dans l'en-tête de la requête
+        // Si il y a un token on l'ajoute dans l'en-tête de la requête
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
-    }
+    },
     (error) => {
         return Promise.reject(error);
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
 );
 
 // Ajout d'un intercepteur de réponse
@@ -53,8 +45,6 @@ instance.interceptors.response.use(
         // window.location.href = '/login'; // rediriger vers la page de connexion
       }
       return Promise.reject(error);
-    }
-    return Promise.reject(error);
   }
 );
 

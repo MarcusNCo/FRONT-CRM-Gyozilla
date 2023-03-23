@@ -32,7 +32,6 @@ const Products = () => {
       ) : (
         products.map((item) => {
 
-          // console.log(item)
           return (
             // <Card key={item.id}>
             //   <CardContent>
@@ -49,6 +48,8 @@ const Products = () => {
               image={item.image}
               buttonCardText="Details"
               variantButton={'contained'}
+              width="250px"
+              height="250px"
             ></CustomCard>
           )
         })
