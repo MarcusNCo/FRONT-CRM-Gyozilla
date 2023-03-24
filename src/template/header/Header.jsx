@@ -79,15 +79,15 @@ const Header = () => {
   }
   const list = () => (
     <List>
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <RamenDiningIcon />
           <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <CoPresentIcon />
           <ListItemText
             primary="Nos engagements"
@@ -96,8 +96,8 @@ const Header = () => {
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <ContactMailIcon />
           <ListItemText
             primary="Contactez-nous"
@@ -106,8 +106,8 @@ const Header = () => {
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <PinDropIcon />
           <ListItemText
             primary="Trouver un resto"

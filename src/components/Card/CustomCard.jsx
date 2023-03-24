@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import CustomButton from '../button/CustomButton'
+import './CustomCard.css'
 // import { string } from 'yargs'
 // import { useTheme } from '@mui/material'
 
@@ -57,9 +58,11 @@ const CustomCard = ({
           width: widthContent,
           height: heightContent,
           backgroundColor: backgroundColorContent,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <Typography variant={'h5'}>{title}</Typography>
+        <Typography variant={'h6'}>{title}</Typography>
         <Typography variant={'p'}>{description}</Typography>
       </CardContent>
       <CardActions

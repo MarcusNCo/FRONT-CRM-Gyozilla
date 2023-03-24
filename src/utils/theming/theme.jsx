@@ -39,7 +39,7 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#EAEAEA',
+          // backgroundColor: '#EAEAEA',
           border: '1px solid black',
           width: '28vw',
           height: '30vh',
@@ -112,6 +112,14 @@ const theme = createTheme({
       fontSize: '4rem',
       fontFamily: 'Garamond',
       fontWeight: 'bold',
+      marginBottom: '10px'
+    },
+    h6: {
+      color: '#F8A500',
+      fontSize: '2.5rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+      marginBottom: '10px'
     },
     subTitle: {
       color: '#5F8D85',
