@@ -1,3 +1,18 @@
 .products {
     display: flex;
 }
+
+@media screen and (max-width: 992px) {
+    #root > div.App > div:nth-child(1) > div > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-az05u4-MuiPaper-root-MuiCard-root {
+        display: none !important;
+    }
+    #root > div.App > div:nth-child(1) > button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-19k906t-MuiButtonBase-root-MuiButton-root {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #root > div.App > div:nth-child(1) > button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.css-2yg36p-MuiButtonBase-root-MuiFab-root {
+        display: none !important;
+    }
+}

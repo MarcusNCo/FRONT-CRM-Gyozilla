@@ -7,13 +7,17 @@ const CustomButton = ({
   text,
   color,
   style,
+  width,
+  height,
+  startIcon,
   backgroundColor,
 }) => {
   return (
     <Button
       onClick={onClick}
       variant={variant}
-      style={{ backgroundColor: backgroundColor, color: color }}
+      startIcon={startIcon}
+      style={{ backgroundColor: backgroundColor, color: color, width: width, height: height }}
     >
       {text}
     </Button>
