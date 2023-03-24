@@ -4,11 +4,13 @@ import CircularProgress from '@mui/material/CircularProgress'
 import './Products.css'
 import CustomCard from '../../components/card/CustomCard'
 import ListItemProducts from '../../components/customListItem/CustomListItemProducts'
+import CustomListItemProducts from '../../components/customListItem/CustomListItemProducts'
 
 const Products = () => {
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
   const [selectedListItem, setSelectedListItem] = useState(0)
+  const [selected, setSelected] = useState(0)
   const categories = [
     { id: 3, name: 'Entrées', description: 'Découvrez nos entrées' },
     { id: 4, name: 'Plats', description: 'Découvrez nos plats' },
@@ -31,7 +33,6 @@ const Products = () => {
   const handleListItemClick = (event, index) => {
     setSelectedListItem(index)
   }
-  console.log(selectedListItem)
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
   const filteredProducts = products.filter((product) => {
@@ -58,11 +59,14 @@ const Products = () => {
       return product.productCategory.id === 4
     }
   })
-  console.log(filteredProducts)
   return (
     <div className="container" style={{ display: 'flex' }}>
-      <ListItemProducts onClick={handleListItemClick} />
-      <div className="products" style={{ flexWrap: 'wrap' }}>
+      <CustomListItemProducts
+        selected={selected}
+        onClick={handleListItemClick}
+        setSelected={setSelected}
+      />
+      <div className="products" style={{ flexWrap: 'wrap', width: '100vw' }}>
         {selectedListItem === null || selectedListItem === 0 ? (
           // Afficher les cartes de catégorie ici
           categories.map((category) => {
