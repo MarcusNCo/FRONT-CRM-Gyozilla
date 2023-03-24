@@ -30,8 +30,7 @@ const CustomCard = ({
   styleParagraph,
   variantButton,
 }) => {
-
-  let dbImage = "";
+  let dbImage = ''
   if (image !== undefined) {
     dbImage = require('../../images/products/' + image)
   }
@@ -50,7 +49,7 @@ const CustomCard = ({
         backgroundImage: `url(${dbImage})`,
         backgroundSize: '100%',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'bottom'
+        backgroundPosition: 'bottom',
       }}
     >
       <CardContent
