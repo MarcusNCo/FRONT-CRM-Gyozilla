@@ -43,16 +43,17 @@ function App() {
   // const theme = useTheme()
   return (
     <>
-      <div className="App">
-        {/* <header className="App-header">
+      <ThemeProvider theme={defaultTheme}>
+        <div className="App">
+          {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header> */}
-        {/* <Alert severity="warning">waouaauauauauauauauuaua</Alert> */}
-        {/* <Badge badgeContent={4}>
+          {/* <Alert severity="warning">waouaauauauauauauauuaua</Alert> */}
+          {/* <Badge badgeContent={4}>
           <MailIcon color="action" />
         </Badge> */}
-        {/* <Log /> */}
-        {/* <CustomButton
+          {/* <Log /> */}
+          {/* <CustomButton
           // variant={'annule'}
           text="coucou"
           onClick={handleClick}
@@ -60,7 +61,7 @@ function App() {
           backgroundColor="blue"
         />
         <CustomButton variant="text" text="re coucou" /> */}
-        {/* <CustomCard
+          {/* <CustomCard
           width="80%"
           height={"100%"}
           title="Titre de la card"
@@ -70,7 +71,7 @@ function App() {
           styleTitle={"h5"}
         ></CustomCard>
         <Divider /> */}
-        {/* <FormControl>
+          {/* <FormControl>
           <CustomInput
             //placeholder="Mot de passe"
             type="password"
@@ -84,11 +85,12 @@ function App() {
         </FormControl>
         <CustomListItem />
         <ListItemProducts />*/}
-        <MenuBurger />
-        <Products />
-        <Login />
-        <Footer />
-      </div>
+          <Header />
+          <Products />
+          <Login />
+          <Footer />
+        </div>
+      </ThemeProvider>
     </>
   )
 }

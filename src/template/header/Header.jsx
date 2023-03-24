@@ -23,7 +23,7 @@ import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
 import PinDropIcon from '@mui/icons-material/PinDrop'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
-import MenuBurger from '../../components/menu burger/MenuBurger'
+import MenuBurger from '../../components/burger/MenuBurger'
 import {
   IconButton,
   Drawer,
