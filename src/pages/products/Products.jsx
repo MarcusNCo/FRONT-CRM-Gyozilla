@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getAllProducts } from '../../utils/getAllProducts'
 import CircularProgress from '@mui/material/CircularProgress'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+// import Card from '@mui/material/Card'
+// import CardContent from '@mui/material/CardContent'
+// import Button from '@mui/material/Button'
+// import Typography from '@mui/material/Typography'
 import './Products.css'
-import CustomCard from '../../components/Card/CustomCard'
+import CustomCard from '../../components/card/CustomCard'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -46,6 +46,7 @@ const Products = () => {
               description={item.description}
               title={item.name}
               image={item.image}
+              id={item.id}
               buttonCardText="Details"
               variantButton={'contained'}
               width="250px"

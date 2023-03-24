@@ -4,7 +4,7 @@ import Products from "./pages/products/Products";
 // import Log from './pages/log/Log'
 import CustomButton from "./components/button/CustomButton";
 import { useState } from "react";
-import CustomCard from "./components/Card/CustomCard";
+import CustomCard from "./components/card/CustomCard";
 import {
   // Alert,
   // Badge,
