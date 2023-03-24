@@ -70,7 +70,7 @@ const Products = () => {
         onClick={handleListItemClick}
         setSelected={setSelected}
       />
-      <div className="products" style={{ flexWrap: 'wrap', width: '100vw' }}>
+      <div className="products" style={{ flexWrap: 'wrap', width: '100vw', justifyContent: 'space-evenly' }}>
         {selectedListItem === null || selectedListItem === 0 ? (
           // Afficher les cartes de catégorie ici
           categories.map((category) => {
