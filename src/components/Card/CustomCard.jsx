@@ -9,7 +9,7 @@ import './CustomCard.css'
 // import { useTheme } from '@mui/material'
 
 const CustomCard = ({
-  key,
+  id,
   title,
   description,
   image,
@@ -37,7 +37,7 @@ const CustomCard = ({
 
   return (
     <Card
-      id={key}
+      id={id}
       style={{
         display: 'flex',
         flexDirection: 'column',

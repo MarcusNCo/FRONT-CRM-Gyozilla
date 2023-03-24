@@ -98,7 +98,7 @@ const Products = () => {
           filteredProducts.map((item) => {
             return (
               <CustomCard
-                key={item.id}
+                id={item.id}
                 description={item.description}
                 image={item.image}
                 buttonCardText="Details"
