@@ -17,19 +17,19 @@ import defaultTheme from './utils/theming/theme'
 import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
-import CustomListItem from './components/customlistitem/CustomListItem'
-import ListItemProducts from './components/customlistitem/CustomListItemProducts'
+import CustomListItem from './components/customListItem/CustomListItem'
+import ListItemProducts from './components/customListItem/CustomListItemProducts'
 import MenuBurger from './components/menu burger/MenuBurger'
 
 import Login from './pages/log/Login'
 
 function App() {
-  const [test, setTest] = useState("state initial");
-  const [test2, setTest2] = useState("state initial du bouton card");
+  const [test, setTest] = useState('state initial')
+  const [test2, setTest2] = useState('state initial du bouton card')
 
   const handleClick = () => {
-    setTest("changement de state initial");
-  };
+    setTest('changement de state initial')
+  }
   const handleCardButtonClick = () => {
     setTest2('changement de state initial du bouton card')
   }
@@ -53,7 +53,6 @@ function App() {
           <MailIcon color="action" />
         </Badge> */}
         {/* <Log /> */}
-        <Products />
         {/* <CustomButton
           // variant={'annule'}
           text="coucou"
@@ -95,4 +94,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
