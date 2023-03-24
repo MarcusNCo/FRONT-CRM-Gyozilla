@@ -7,10 +7,9 @@ const CustomForm = ({ inputs }) => {
     return (
         <>
             {inputs.map((input, index) => (
-                <CustomInput
-                    {...input}
-                    key={index}
-                />
+                <div key={index}>
+                    <CustomInput {...input} />
+                </div>
             ))}
         </>
     );

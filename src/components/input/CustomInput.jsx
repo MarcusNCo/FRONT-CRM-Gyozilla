@@ -9,7 +9,6 @@ import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import './CustomInput.css'
-import { ErrorMessage } from 'formik'
 
 const CustomInput = (props) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -47,9 +46,6 @@ const CustomInput = (props) => {
     errors: input.errors,
   }
   return (
-    // <Custominput
-    // variant = 'filled' label = "Email" htmlFor = 'email' id = 'name' type= 'email'  name= 'name' color= "primary" value = {formState.name} onChange = {handleChange}
-    // />
     // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
     <FormControl variant={inputAttribute.variant}>
       <InputLabel htmlFor={inputAttribute.htmlFor}>
@@ -61,8 +57,8 @@ const CustomInput = (props) => {
           inputAttribute.type !== 'password'
             ? inputAttribute.type
             : showPassword
-            ? 'text'
-            : 'password'
+              ? 'text'
+              : 'password'
         }
         endAdornment={
           inputAttribute.secure ? (
