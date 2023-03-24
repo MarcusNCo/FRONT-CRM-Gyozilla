@@ -7,10 +7,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import Typography from '@mui/material/Typography'
 import "./Products.css";
 import CustomCard from "../../components/card/CustomCard";
-import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
+// import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
 import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
 import CustomButton from "../../components/button/CustomButton";
-import { Fab, IconButton } from "@mui/material";
+// import { Fab, IconButton } from "@mui/material";
+import { Fab } from "@mui/material";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
 const Products = () => {
@@ -140,7 +141,6 @@ const Products = () => {
         aria-label="return">
         <KeyboardReturnIcon />
       </Fab>
-
     </div>
   );
 };

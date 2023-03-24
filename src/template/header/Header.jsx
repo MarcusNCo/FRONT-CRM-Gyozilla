@@ -9,7 +9,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import MenuIcon from '@mui/icons-material/Menu'
+// import MenuIcon from '@mui/icons-material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
@@ -20,7 +20,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail'
 import MenuBurger from '../../components/burger/MenuBurger'
 import {
   IconButton,
-  Drawer,
+  // Drawer,
   List,
   ListItem,
   ListItemText,
@@ -146,7 +146,7 @@ const Header = () => {
               </Typography>
               {auth && (
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <a href="#" style={{ marginTop: '30px' }}>
+                  <a href="/" style={{ marginTop: '30px' }}>
                     <ShoppingCartIcon
                       style={{ color: 'white', marginTop: '12px' }}
                     />
