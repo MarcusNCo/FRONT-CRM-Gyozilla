@@ -27,11 +27,7 @@ import {
   Divider,
 } from '@mui/material'
 import CustomInput from '../../components/input/CustomInput'
-<<<<<<< HEAD
-// import { Translate } from '@mui/icons-material'
-=======
 import { Link } from 'react-router-dom'
->>>>>>> 8f042405dd106315f838f6590bdbd1794a8f2c44
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
