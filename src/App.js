@@ -1,10 +1,9 @@
-import "./App.css";
+import './App.css'
 // import logo from './images/Sans_titre-1_105_copie.png'
-import Products from "./pages/products/Products";
-// import Log from './pages/log/Log'
-import CustomButton from "./components/button/CustomButton";
-import { useState } from "react";
-import CustomCard from "./components/card/CustomCard";
+import Products from './pages/products/Products'
+import CustomButton from './components/button/CustomButton'
+import { useState } from 'react'
+import CustomCard from './components/Card/CustomCard'
 import {
   // Alert,
   // Badge,
@@ -12,13 +11,17 @@ import {
   // useTheme,
   FormControl,
   Divider,
-} from "@mui/material";
-import defaultTheme from "./utils/theming/theme";
+} from '@mui/material'
+import defaultTheme from './utils/theming/theme'
 // import MailIcon from '@mui/icons-material/Mail'
-import CustomInput from "./components/input/CustomInput";
-import Footer from "./template/footer/Footer";
-import Header from "./template/header/Header";
-import Login from "./pages/log/Login";
+import CustomInput from './components/input/CustomInput'
+import Footer from './template/footer/Footer'
+import Header from './template/header/Header'
+import CustomListItem from './components/CustomListItem/CustomListItem'
+import ListItemProducts from './components/CustomListItem/CustomListItemProducts'
+import MenuBurger from './components/menu burger/MenuBurger'
+
+import Login from './pages/log/Login'
 
 function App() {
   const [test, setTest] = useState("state initial");
@@ -28,9 +31,15 @@ function App() {
     setTest("changement de state initial");
   };
   const handleCardButtonClick = () => {
-    setTest2("changement de state initial du bouton card");
-  };
-  console.log(test, test2);
+    setTest2('changement de state initial du bouton card')
+  }
+
+  const [valueInput, setvalueInput] = useState()
+  const handleChangeInput = (e) => {
+    console.log(e)
+    setvalueInput(e.target.value)
+  }
+  console.log(test, test2)
   // const theme = useTheme()
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -65,17 +74,25 @@ function App() {
         <Divider />
         <FormControl>
           <CustomInput
+            //placeholder="Mot de passe"
             type="password"
-            secure={true}
-            value="toto"
-            placeholder="ecrire ici"
+            secure="true"
+            value={valueInput}
+            label="Mot de passe"
+            htmlFor="toto1"
+            id="toto1"
+            onChange={handleChangeInput}
           />
         </FormControl>
+        <CustomListItem />
+        <ListItemProducts />
+        <MenuBurger />
+        <Products />
         <Login />
         <Footer />
       </div>
     </ThemeProvider>
-  );
+  )
 }
 
 export default App;

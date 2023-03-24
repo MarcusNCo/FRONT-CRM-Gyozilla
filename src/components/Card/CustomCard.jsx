@@ -8,7 +8,7 @@ import CustomButton from '../button/CustomButton'
 // import { useTheme } from '@mui/material'
 
 const CustomCard = ({
-  id,
+  key,
   title,
   description,
   image,
@@ -37,7 +37,7 @@ const CustomCard = ({
 
   return (
     <Card
-      id={id}
+      id={key}
       style={{
         display: 'flex',
         flexDirection: 'column',

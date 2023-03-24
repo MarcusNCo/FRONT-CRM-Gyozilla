@@ -42,13 +42,20 @@ const theme = createTheme({
           backgroundColor: '#EAEAEA',
           border: '1px solid black',
           margin: '2px',
-          width: '40vw',
+          width: '28vw',
           height: '30vh',
           color: '#F8A500',
           margin: '2rem',
           justifyContent: 'space-between',
           boxShadow:
             '3px 2px 1px -1px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 2px 3px 0px rgba(0,0,0,0.12)',
+        },
+      },
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          width: '20vw',
         },
       },
     },

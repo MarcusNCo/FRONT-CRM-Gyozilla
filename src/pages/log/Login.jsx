@@ -3,7 +3,7 @@ import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import CustomForm from '../../components/form/CustomForm';
 import { login } from '../../utils/login';
-import { Button, LoadingButton } from '@mui/lab';
+import { LoadingButton } from '@mui/lab';
 
 const Log = () => {
 
