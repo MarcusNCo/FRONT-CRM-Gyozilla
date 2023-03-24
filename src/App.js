@@ -42,8 +42,7 @@ function App() {
   console.log(test, test2)
   // const theme = useTheme()
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Header />
+    <>
       <div className="App">
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -90,7 +89,7 @@ function App() {
         <Login />
         <Footer />
       </div>
-    </ThemeProvider>
+    </>
   )
 }
 

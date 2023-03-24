@@ -1,0 +1,10 @@
+.burgerList{
+    color:#739B94 ;
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+  }
+
+.titleList{
+    marginLeft: '30px';
+}

@@ -23,6 +23,7 @@ import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
 import PinDropIcon from '@mui/icons-material/PinDrop'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
+import MenuBurger from '../../components/menu burger/MenuBurger'
 import {
   IconButton,
   Drawer,
@@ -142,17 +143,18 @@ const Header = () => {
           </FormGroup> */}
           <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
             <Toolbar>
-              {/* <IconButton
+              <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
                 sx={{ mr: 2 }}
               >
-                <MenuIcon />
-              </IconButton> */}
+                <MenuBurger></MenuBurger>
+                {/* <MenuIcon /> */}
+              </IconButton>{' '}
               <div>
-                <IconButton
+                {/* <IconButton
                   edge="start"
                   color="inherit"
                   aria-label="menu"
@@ -164,9 +166,9 @@ const Header = () => {
                   anchor="left"
                   open={openDrawer}
                   onClose={toggleDrawer(false)}
-                >
-                  {list()}
-                </Drawer>
+                > */}
+                {/* {list()}
+                </Drawer> */}
               </div>
               <Typography
                 variant="h6"
@@ -189,11 +191,11 @@ const Header = () => {
               </Typography>
               {auth && (
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  {/* <a href="#" style={{ marginTop: '30px' }}> */}
-                  <ShoppingCartIcon
-                    style={{ color: 'white', marginTop: '12px' }}
-                  />
-                  {/* </a> */}
+                  <a href="#" style={{ marginTop: '30px' }}>
+                    <ShoppingCartIcon
+                      style={{ color: 'white', marginTop: '12px' }}
+                    />
+                  </a>
                   <IconButton
                     size="large"
                     aria-label="account of current user"
