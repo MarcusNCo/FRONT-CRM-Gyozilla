@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material'
-import { green, purple, red } from '@mui/material/colors'
+import { green, red } from '@mui/material/colors'
 
 const theme = createTheme({
   components: {
@@ -41,7 +41,6 @@ const theme = createTheme({
         root: {
           backgroundColor: '#EAEAEA',
           border: '1px solid black',
-          margin: '2px',
           width: '28vw',
           height: '30vh',
           color: '#F8A500',
@@ -55,7 +54,7 @@ const theme = createTheme({
     MuiList: {
       styleOverrides: {
         root: {
-          width: '20vw',
+          width: '10vw',
         },
       },
     },

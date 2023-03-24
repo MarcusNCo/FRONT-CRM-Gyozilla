@@ -3,7 +3,7 @@ import './App.css'
 import Products from './pages/products/Products'
 import CustomButton from './components/button/CustomButton'
 import { useState } from 'react'
-import CustomCard from './components/Card/CustomCard'
+import CustomCard from './components/card/CustomCard'
 import {
   // Alert,
   // Badge,
@@ -54,15 +54,15 @@ function App() {
         </Badge> */}
         {/* <Log /> */}
         <Products />
-        <CustomButton
+        {/* <CustomButton
           // variant={'annule'}
           text="coucou"
           onClick={handleClick}
           color="red"
           backgroundColor="blue"
         />
-        <CustomButton variant="text" text="re coucou" />
-        <CustomCard
+        <CustomButton variant="text" text="re coucou" /> */}
+        {/* <CustomCard
           width="80%"
           height={"100%"}
           title="Titre de la card"
@@ -71,8 +71,8 @@ function App() {
           onButtonCardClick={handleCardButtonClick}
           styleTitle={"h5"}
         ></CustomCard>
-        <Divider />
-        <FormControl>
+        <Divider /> */}
+        {/* <FormControl>
           <CustomInput
             //placeholder="Mot de passe"
             type="password"
@@ -82,13 +82,13 @@ function App() {
             htmlFor="toto1"
             id="toto1"
             onChange={handleChangeInput}
-          />
-        </FormControl>
-        <CustomListItem />
-        <ListItemProducts />
-        <MenuBurger />
-        <Products />
-        <Login />
+          /> */}
+        {/* </FormControl> */}
+        {/* <CustomListItem /> */}
+        {/* <ListItemProducts /> */}
+        {/* <MenuBurger /> */}
+        {/* <Products /> */}
+        {/* <Login /> */}
         <Footer />
       </div>
     </ThemeProvider>
