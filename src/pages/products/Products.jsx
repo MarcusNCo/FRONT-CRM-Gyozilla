@@ -65,6 +65,8 @@ const Products = () => {
       return product.productCategory.id === 3;
     } else if (selectedListItem === 6) {
       return product.productCategory.id === 4;
+    } else {
+      return null;
     }
   });
   return (

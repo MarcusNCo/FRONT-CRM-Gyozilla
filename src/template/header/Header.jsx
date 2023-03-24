@@ -53,7 +53,7 @@ const Header = () => {
     return () => {
       setMobileVersion(false)
     }
-  }, [])
+  }, [openDrawer])
 
   const [auth, setAuth] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -69,47 +69,47 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  const list = () => (
-    <List>
-      <a href="/" onClick={null}>
-        <ListItem onClick={toggleDrawer(false)}>
-          <RamenDiningIcon />
-          <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="/" onClick={null}>
-        <ListItem onClick={toggleDrawer(false)}>
-          <CoPresentIcon />
-          <ListItemText
-            primary="Nos engagements"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="/" onClick={null}>
-        <ListItem onClick={toggleDrawer(false)}>
-          <ContactMailIcon />
-          <ListItemText
-            primary="Contactez-nous"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="/" onClick={null}>
-        <ListItem onClick={toggleDrawer(false)}>
-          <PinDropIcon />
-          <ListItemText
-            primary="Trouver un resto"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-    </List>
-  )
+  // const list = () => (
+  //   <List>
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <RamenDiningIcon />
+  //         <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <CoPresentIcon />
+  //         <ListItemText
+  //           primary="Nos engagements"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <ContactMailIcon />
+  //         <ListItemText
+  //           primary="Contactez-nous"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <PinDropIcon />
+  //         <ListItemText
+  //           primary="Trouver un resto"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //   </List>
+  // )
   const [valueInput, setvalueInput] = useState('')
   const handleChangeInput = (e) => {
     console.log(e)
