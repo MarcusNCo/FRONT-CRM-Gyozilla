@@ -51,7 +51,6 @@ const theme = createTheme({
         root: {
           backgroundColor: 'white',
           border: '1px solid black',
-          margin: '2px',
           width: '28vw',
           height: '30vh',
           color: '#F8A500',
@@ -174,6 +173,14 @@ const theme = createTheme({
       fontSize: '4rem',
       fontFamily: 'Garamond',
       fontWeight: 'bold',
+      marginBottom: '10px',
+    },
+    h6: {
+      color: '#F8A500',
+      fontSize: '2.5rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+      marginBottom: '10px',
     },
     subTitle: {
       color: '#5F8D85',

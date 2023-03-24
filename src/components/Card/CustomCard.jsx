@@ -4,11 +4,15 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import CustomButton from '../button/CustomButton'
-import { useTheme } from '@mui/material'
+import './CustomCard.css'
+// import { string } from 'yargs'
+// import { useTheme } from '@mui/material'
 
 const CustomCard = ({
+  key,
   title,
   description,
+  image,
   buttonCardText,
   onButtonCardClick,
   width,
@@ -26,8 +30,15 @@ const CustomCard = ({
   styleParagraph,
   variantButton,
 }) => {
+
+  let dbImage = "";
+  if (image !== undefined) {
+    dbImage = require('../../images/products/' + image)
+  }
+
   return (
     <Card
+      id={key}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -36,6 +47,10 @@ const CustomCard = ({
         width: width,
         height: height,
         backgroundColor: backgroundColor,
+        backgroundImage: `url(${dbImage})`,
+        backgroundSize: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'bottom'
       }}
     >
       <CardContent
@@ -43,9 +58,11 @@ const CustomCard = ({
           width: widthContent,
           height: heightContent,
           backgroundColor: backgroundColorContent,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <Typography variant={'h5'}>{title}</Typography>
+        <Typography variant={'h6'}>{title}</Typography>
         <Typography variant={'p'}>{description}</Typography>
       </CardContent>
       <CardActions

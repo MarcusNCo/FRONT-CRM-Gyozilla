@@ -17,6 +17,11 @@
 
 .css-a5rdam-MuiGrid-root>.MuiGrid-item {
     padding-left: 0 !important;
+    padding-top: 0 !important;
+}
+
+.css-5pwu32-MuiTypography-root {
+    margin: 0 !important;
 }
 
 @media (max-width: 599px) {

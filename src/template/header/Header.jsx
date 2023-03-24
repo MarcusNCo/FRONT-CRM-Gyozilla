@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import TextField from '@mui/material/TextField'
+// import TextField from '@mui/material/TextField'
 // import List from './Components/List'
 import './Header.css'
 import Logo from './../../assets/images/gyozillalog.png'
@@ -13,12 +13,12 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import MenuIcon from '@mui/icons-material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import Switch from '@mui/material/Switch'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormGroup from '@mui/material/FormGroup'
+// import Switch from '@mui/material/Switch'
+// import FormControlLabel from '@mui/material/FormControlLabel'
+// import FormGroup from '@mui/material/FormGroup'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
-import RiceBowlIcon from '@mui/icons-material/RiceBowl'
+// import RiceBowlIcon from '@mui/icons-material/RiceBowl'
 import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
 import PinDropIcon from '@mui/icons-material/PinDrop'
@@ -31,10 +31,10 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material'
-import { SafetyDividerOutlined } from '@mui/icons-material'
+// import { SafetyDividerOutlined } from '@mui/icons-material'
 import CustomInput from '../../components/input/CustomInput'
-import { Form } from 'formik'
-import { margin } from '@mui/system'
+// import { Form } from 'formik'
+// import { margin } from '@mui/system'
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -79,15 +79,15 @@ const Header = () => {
   }
   const list = () => (
     <List>
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <RamenDiningIcon />
           <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <CoPresentIcon />
           <ListItemText
             primary="Nos engagements"
@@ -96,8 +96,8 @@ const Header = () => {
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <ContactMailIcon />
           <ListItemText
             primary="Contactez-nous"
@@ -106,8 +106,8 @@ const Header = () => {
         </ListItem>
       </a>
       <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
+      <a href="#">
+        <ListItem onClick={toggleDrawer(false)}>
           <PinDropIcon />
           <ListItemText
             primary="Trouver un resto"

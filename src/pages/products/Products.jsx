@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { getAllProducts } from '../../utils/getAllProducts'
 import CircularProgress from '@mui/material/CircularProgress'
+// import Card from '@mui/material/Card'
+// import CardContent from '@mui/material/CardContent'
+// import Button from '@mui/material/Button'
+// import Typography from '@mui/material/Typography'
 import './Products.css'
 import CustomCard from '../../components/card/CustomCard'
 import ListItemProducts from '../../components/customListItem/CustomListItemProducts'
@@ -89,9 +93,12 @@ const Products = () => {
               <CustomCard
                 key={item.id}
                 description={item.description}
-                title={item.name}
+                image={item.image}
                 buttonCardText="Details"
                 variantButton={'contained'}
+                width="250px"
+                height="250px"
+                title={item.name}
               ></CustomCard>
             )
           })
