@@ -9,7 +9,7 @@ import './CustomCard.css'
 // import { useTheme } from '@mui/material'
 
 const CustomCard = ({
-  key,
+  id,
   title,
   description,
   image,
@@ -32,13 +32,13 @@ const CustomCard = ({
 }) => {
 
   let dbImage = "";
-  if (image !== undefined) {
+  if (image !== undefined){
     dbImage = require('../../images/products/' + image)
   }
 
   return (
     <Card
-      id={key}
+      id={id}
       style={{
         display: 'flex',
         flexDirection: 'column',
