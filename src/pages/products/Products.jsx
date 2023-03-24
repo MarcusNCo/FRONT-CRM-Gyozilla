@@ -7,8 +7,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 // import Typography from '@mui/material/Typography'
 import './Products.css'
 import CustomCard from '../../components/card/CustomCard'
-import ListItemProducts from '../../components/customListItem/CustomListItemProducts'
-import CustomListItemProducts from '../../components/customListItem/CustomListItemProducts'
+import ListItemProducts from '../../components/customlistitem/CustomListItemProducts'
+import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
 
 const Products = () => {
   const [products, setProducts] = useState([])
