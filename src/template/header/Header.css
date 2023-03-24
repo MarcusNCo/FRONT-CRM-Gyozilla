@@ -1,32 +1,18 @@
   /* ------------------------- Mobile CSS ----------------------- */
-
   .headerMobile {
-    /* background-color: aqua;
-    height: 100vh */
+    position: 'relative';
   }
 
-  /* .alignLog{
-    display: flex;
-    justify-content: center;
-  } */
-
-  #mobileLogo{
-    width: '30px';
-    position: relative;
-    top: 60px;
-    /* right: -50%;
-    left: -50%; */
-    align-self: center;
-  }
-
-  a{
+  a {
     text-decoration: none;
     color: #739B94;
   }
-  /* ------------------------------------------------------------- */
+
+  body > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+    width: 50vw !important;
+  }
 
   /* ------------------------- Web CSS --------------------------- */
-
   /* Style the header with a grey background and some padding */
   .headerWeb {
     overflow: hidden;
@@ -99,7 +85,6 @@
     background-color: #739B94;
     color: #f1f1f1;
   }
-  /* ------------------------------------------------------------- */
 
   /* -- Mobile version -- */
   @media screen and (max-width: 992px) {
@@ -111,7 +96,6 @@
       display: none;
     }
   }
-  /* -------------------- */
 
   /* ---- Web version --- */
   @media screen and (min-width: 992px) {
@@ -123,4 +107,3 @@
       display: flex;
     }
   }
-  /* -------------------- */

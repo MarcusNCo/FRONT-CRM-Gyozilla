@@ -122,7 +122,7 @@ const Footer = (props) => {
           xs={12}
           sm={4}
           sx={{
-            '@media (max-width: 600px)': {
+            '@media (max-width: 780px)': {
               display: 'none',
             },
           }}
@@ -196,7 +196,7 @@ const Footer = (props) => {
           sx={{
             margin: '0 !important',
             padding: '0 0 0 5px !important',
-            fontSize: '0.6rem',
+            fontSize: '0.7rem',
           }}
         >
           www.mangerbouger.fr

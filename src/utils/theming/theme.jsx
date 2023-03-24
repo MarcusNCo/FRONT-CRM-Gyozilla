@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material'
-import { green, purple, red } from '@mui/material/colors'
+import { green, red } from '@mui/material/colors'
 import createBreakpoints from '@mui/system/createTheme/createBreakpoints'
 const bp = createBreakpoints({
   values: {
