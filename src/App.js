@@ -17,9 +17,9 @@ import defaultTheme from './utils/theming/theme'
 import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
-import CustomListItem from './components/customListItem/CustomListItem'
-import ListItemProducts from './components/customListItem/CustomListItemProducts'
-import MenuBurger from './components/menu burger/MenuBurger'
+import CustomListItem from './components/customlistitem/CustomListItem'
+import ListItemProducts from './components/customlistitem/CustomListItemProducts'
+import MenuBurger from './components/burger/MenuBurger'
 
 import Login from './pages/log/Login'
 
@@ -86,7 +86,7 @@ function App() {
         {/* <CustomListItem /> */}
         {/* <ListItemProducts /> */}
         {/* <MenuBurger /> */}
-        {/* <Products /> */}
+        <Products />
         {/* <Login /> */}
         <Footer />
       </div>
