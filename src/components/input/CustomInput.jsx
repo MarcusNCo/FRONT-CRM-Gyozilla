@@ -4,12 +4,12 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  TextField,
 } from '@mui/material'
 import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import './CustomInput.css'
-import { ErrorMessage } from 'formik'
 
 const CustomInput = (props) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -47,41 +47,40 @@ const CustomInput = (props) => {
     errors: input.errors,
   }
   return (
-    // <Custominput
-    // variant = 'filled' label = "Email" htmlFor = 'email' id = 'name' type= 'email'  name= 'name' color= "primary" value = {formState.name} onChange = {handleChange}
-    // />
     // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
-    <FormControl variant={inputAttribute.variant}>
-      <InputLabel htmlFor={inputAttribute.htmlFor}>
+    <>
+      {/* <InputLabel variant={inputAttribute.variant} htmlFor={inputAttribute.htmlFor}>
         {inputAttribute.label}
-      </InputLabel>
-      <Input
+      </InputLabel> */}
+      <TextField
         {...inputAttribute}
         type={
           inputAttribute.type !== 'password'
             ? inputAttribute.type
             : showPassword
-            ? 'text'
-            : 'password'
+              ? 'text'
+              : 'password'
         }
-        endAdornment={
-          inputAttribute.secure ? (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ) : (
-            ''
-          )
-        }
+        InputProps={{
+          endAdornment: (
+            inputAttribute.secure ? (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ) : (
+              ''
+            )
+          ),
+        }}
+        errors={inputAttribute.errors ? <small>{inputAttribute.errors}</small> : null}
       />
-      {inputAttribute.errors ? <small>{inputAttribute.errors}</small> : null}
-    </FormControl>
+    </>
   )
 }
 

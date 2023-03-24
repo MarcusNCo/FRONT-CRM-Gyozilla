@@ -1,0 +1,23 @@
+.containedLogin {
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+height: 100vh;
+}
+
+.formLogin {
+    border-radius: 10px;
+    background-color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 30px;
+    width: 30%;
+}
+
+.loginTitle {
+    color: #5F8D85;
+}

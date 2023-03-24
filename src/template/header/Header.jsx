@@ -17,6 +17,7 @@ import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
 import PinDropIcon from '@mui/icons-material/PinDrop'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
+import MenuBurger from '../../components/burger/MenuBurger'
 import {
   IconButton,
   Drawer,
@@ -26,7 +27,11 @@ import {
   Divider,
 } from '@mui/material'
 import CustomInput from '../../components/input/CustomInput'
+<<<<<<< HEAD
 // import { Translate } from '@mui/icons-material'
+=======
+import { Link } from 'react-router-dom'
+>>>>>>> 8f042405dd106315f838f6590bdbd1794a8f2c44
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -123,24 +128,16 @@ const Header = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
             <Toolbar>
-              <div>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={toggleDrawer(true)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Drawer
-                  anchor="left"
-                  open={openDrawer}
-                  onClose={toggleDrawer(false)}
-
-                >
-                  {list()}
-                </Drawer>
-              </div>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <MenuBurger></MenuBurger>
+              </IconButton>{' '}
+              <div></div>
               <Typography
                 variant="h6"
                 component="div"
@@ -153,9 +150,11 @@ const Header = () => {
               </Typography>
               {auth && (
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <ShoppingCartIcon
-                    style={{ color: 'white', marginTop: '12px' }}
-                  />
+                  <a href="#" style={{ marginTop: '30px' }}>
+                    <ShoppingCartIcon
+                      style={{ color: 'white', marginTop: '12px' }}
+                    />
+                  </a>
                   <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -207,15 +206,15 @@ const Header = () => {
           <a id="gyozilla" href="#home">
             <img src={Logo} alt="Logo de Gyozilla" />
           </a>
-          <a className="menu" href="#menuCard">
+          <Link className="menu" to="/products">
             La carte
-          </a>
-          <a className="menu" href="#commitments">
+          </Link>
+          <Link className="menu" to="/nosengagements">
             Nos engagements
-          </a>
-          <a className="menu" href="#contact">
+          </Link>
+          <Link className="menu" to="/contact">
             Contactez-nous
-          </a>
+          </Link>
         </div>
         <div className="containSearch">
           <CustomInput
