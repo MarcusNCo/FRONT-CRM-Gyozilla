@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
 import NosEngagements from './pages/nosengagements/NosEngagements'
 import ContactForm from './pages/contact/ContactForm'
+import Log from './pages/log/Login'
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<Log />} />
+            <Route exact path="/Home" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/nosengagements" element={<NosEngagements />} />
             <Route path="/contact" element={<ContactForm />} />
