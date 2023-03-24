@@ -4,6 +4,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  TextField,
 } from '@mui/material'
 import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility'
@@ -47,11 +48,11 @@ const CustomInput = (props) => {
   }
   return (
     // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
-    <FormControl variant={inputAttribute.variant}>
-      <InputLabel htmlFor={inputAttribute.htmlFor}>
+    <>
+      {/* <InputLabel variant={inputAttribute.variant} htmlFor={inputAttribute.htmlFor}>
         {inputAttribute.label}
-      </InputLabel>
-      <Input
+      </InputLabel> */}
+      <TextField
         {...inputAttribute}
         type={
           inputAttribute.type !== 'password'
@@ -60,24 +61,26 @@ const CustomInput = (props) => {
               ? 'text'
               : 'password'
         }
-        endAdornment={
-          inputAttribute.secure ? (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ) : (
-            ''
-          )
-        }
+        InputProps={{
+          endAdornment: (
+            inputAttribute.secure ? (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ) : (
+              ''
+            )
+          ),
+        }}
+        errors={inputAttribute.errors ? <small>{inputAttribute.errors}</small> : null}
       />
-      {inputAttribute.errors ? <small>{inputAttribute.errors}</small> : null}
-    </FormControl>
+    </>
   )
 }
 

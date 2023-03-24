@@ -3,6 +3,38 @@ import { green, purple, red } from '@mui/material/colors'
 
 const theme = createTheme({
   components: {
+
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          margin: '1rem',
+          width: '90%',
+          background: 'white',
+          '& label.Mui-focused': {
+            color: '#5F8D85',
+          },
+          '& label': {
+            color: 'black',
+            fontFamily: 'Garamond'
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#5F8D85',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'black',
+            },
+            '&:hover fieldset': {
+              borderColor: '#d4af60',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#5F8D85',
+            },
+          },
+        },
+      },
+    },
+
     //        Style des Alert        //
     MuiAlert: {
       styleOverrides: {
@@ -32,6 +64,8 @@ const theme = createTheme({
           backgroundColor: '#EAEAEA',
           color: '#F8A500',
           borderRadius: '1px',
+          width: '20vw',
+          marginTop: '50rem',
         },
       },
     },
@@ -76,21 +110,25 @@ const theme = createTheme({
           color: '#F8A500',
           backgroundColor: '#EAEAEA',
           border: '1px solid #F8A500',
+          marginTop: '3vh',
           '&:hover': {
             color: '#EAEAEA',
             backgroundColor: '#F8A500',
             border: '1px solid #EAEAEA',
+
           },
         },
         outlined: {
           color: '#F8A500',
           backgroundColor: '#EAEAEA',
           border: '1px solid #F8A500',
+          marginTop: '3vh',
         },
         contained: {
           color: '#EAEAEA',
           backgroundColor: '#F8A500',
           border: '1px solid #EAEAEA',
+          marginTop: '3vh',
           '&:hover': {
             color: '#F8A500',
             backgroundColor: '#EAEAEA',
