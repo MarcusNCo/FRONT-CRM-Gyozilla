@@ -124,16 +124,7 @@ const Header = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
             <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <MenuBurger></MenuBurger>
-              </IconButton>{' '}
-              <div></div>
+              <MenuBurger />
               <Typography
                 variant="h6"
                 component="div"
@@ -145,12 +136,17 @@ const Header = () => {
               >
               </Typography>
               {auth && (
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <a href="/" style={{ marginTop: '30px' }}>
-                    <ShoppingCartIcon
-                      style={{ color: 'white', marginTop: '12px' }}
-                    />
-                  </a>
+                <div style={{ display: 'flex' }}>
+                  <IconButton
+                    size="large"
+                    aria-label="shop of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <ShoppingCartIcon />
+                  </IconButton>
                   <IconButton
                     size="large"
                     aria-label="account of current user"

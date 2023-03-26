@@ -24,16 +24,28 @@
     margin: 0 !important;
 }
 
+#root > div.css-1f9qqwj > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button {
+    margin: 0 !important;
+}
+
 @media (max-width: 599px) {
     .css-8io3p6-MuiGrid-root, .css-7fjbqd-MuiGrid-root, .css-peuj4f-MuiTypography-root{
         padding: 15px 0 0 0 !important;
     }
 
     .css-1k6yql2 {
-        justify-content: center !important;
+        justify-content: space-evenly !important;
     }
 
     .css-8io3p6-MuiGrid-root {
         padding: 30px 0 0 0 !important;
+    }
+
+    #root > div.css-1f9qqwj > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button {
+        width: 140px;
+        height: 40px;
+        font-size: 0.8rem;
+        padding: 5px;
+        white-space: nowrap;
     }
 }

@@ -219,7 +219,7 @@ const theme = createTheme({
       fontFamily: 'Garamond',
       fontWeight: 'bold',
       marginBottom: '10px',
-    },
+    },    
     subTitle: {
       color: '#5F8D85',
       fontSize: '2rem',

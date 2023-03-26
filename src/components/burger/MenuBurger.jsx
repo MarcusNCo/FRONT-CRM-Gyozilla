@@ -55,7 +55,6 @@ export default function MenuBurger() {
         size="large"
         edge="start"
         color="inherit"
-        // aria-label=""
         sx={{ mr: 2 }}
         onClick={handleClick}
       >

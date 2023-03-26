@@ -25,6 +25,17 @@
   #gyozilla {
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+
+  #gyozilla img {
+    object-fit: cover;
+    width: 200px;
+    height: 50px;
+  }
+
+  #menu-appbar {
+    width: 800px !important;
   }
 
   /* Style the header links */
