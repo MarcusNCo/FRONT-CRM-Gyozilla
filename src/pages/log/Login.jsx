@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Log.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, ErrorMessage } from 'formik';
@@ -8,9 +8,11 @@ import { login } from '../../utils/login';
 import { LoadingButton } from '@mui/lab';
 import { toast, ToastContainer } from 'react-toastify';
 import CustomInput from '../../components/input/CustomInput';
+import Products from '../products/Products';
 
 
-const Log = () => {
+const Login = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const initialValues = {
     email: '',
@@ -32,7 +34,9 @@ const Log = () => {
         onSubmit={(values, { setSubmitting }) => {
           login(values)
             .then(response => {
-              console.log(response)
+              if (response.statusText === "OK") {
+                setIsLoggedIn(true)
+              }
               toast.success('Vous êtes connecté', {
                 position: "top-right",
                 autoClose: 4000,
@@ -62,7 +66,9 @@ const Log = () => {
         }}
       >
         {({ values, handleChange, errors, touched, isSubmitting }) => {
-          console.log('valeurs', values);
+          if (isLoggedIn) {
+            return <Products />
+          }
           return (
             <Form className='formLogin'>
               <CustomInput
@@ -118,5 +124,5 @@ const Log = () => {
   );
 };
 
-export default Log;
+export default Login;
 

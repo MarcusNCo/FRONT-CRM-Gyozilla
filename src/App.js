@@ -1,95 +1,36 @@
 import './App.css'
-import logo from './images/Sans_titre-1_105_copie.png'
-import Products from './pages/products/Products'
-import CustomButton from './components/button/CustomButton'
-import { useState } from 'react'
-import CustomCard from './components/Card/CustomCard'
 import {
-  Alert,
-  Badge,
   ThemeProvider,
-  useTheme,
-  FormControl,
-  Divider,
 } from '@mui/material'
 import defaultTheme from './utils/theming/theme'
-import MailIcon from '@mui/icons-material/Mail'
-import CustomInput from './components/input/CustomInput'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
-import CustomListItem from './components/CustomListItem/CustomListItem'
-import ListItemProducts from './components/CustomListItem/CustomListItemProducts'
-import MenuBurger from './components/menu burger/MenuBurger'
-
+import { useEffect, useState } from 'react'
+import Products from './pages/products/Products'
 import Login from './pages/log/Login'
+import jwtDecode from 'jwt-decode'
 
 function App() {
-  const [test, setTest] = useState('state initial')
-  const [test2, setTest2] = useState('state initial du bouton card')
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null)
 
-  const handleClick = () => {
-    setTest('changement de state initial')
-  }
-  const handleCardButtonClick = () => {
-    setTest2('changement de state initial du bouton card')
-  }
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodeToken = jwtDecode(token);
+      console.log('user',decodeToken);
+      setUser(decodeToken);
+      setLoggedIn(true);
+    }
+  },[isLoggedIn]);
 
-  const [valueInput, setvalueInput] = useState()
-  const handleChangeInput = (e) => {
-    console.log(e)
-    setvalueInput(e.target.value)
-  }
-  console.log(test, test2)
-  const theme = useTheme()
   return (
     <ThemeProvider theme={defaultTheme}>
+      <div>
       <Header />
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        {/* <Alert severity="warning">waouaauauauauauauauuaua</Alert>
-        <Badge badgeContent={4}>
-          <MailIcon color="action" />
-        </Badge>
-        <Log />
-        <Products />
-        <CustomButton
-          // variant={'annule'}
-          text="coucou"
-          onClick={handleClick}
-          color="red"
-          backgroundColor="blue"
-        />
-        <CustomButton variant="text" text="re coucou" />
-        <CustomCard
-          width="80%"
-          height={'100%'}
-          title="Titre de la card"
-          description="lorem ipsum uudsbifuq fuhsufqsidf uifqGQSD GIUNUI UFIU  U UFUDSGWGFBhfg iugnui ugs"
-          buttonCardText="Details de la Card"
-          onButtonCardClick={handleCardButtonClick}
-          styleTitle={'h5'}
-        ></CustomCard>
-        <Divider />
-        <FormControl>
-          <CustomInput
-            //placeholder="Mot de passe"
-            type="password"
-            secure="true"
-            value={valueInput}
-            label="Mot de passe"
-            htmlFor="toto1"
-            id="toto1"
-            onChange={handleChangeInput}
-          />
-        </FormControl>
-        <CustomListItem />
-        <ListItemProducts />
-        <MenuBurger /> */}
-        <Products />
-        <Login />
-        <Footer />
+      {isLoggedIn ? <Products /> : <Login />}
+      <p>Votre adresse e-mail est : {user && user.username}</p>
+      <Footer />
       </div>
     </ThemeProvider>
   )
