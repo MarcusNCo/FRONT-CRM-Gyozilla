@@ -29,7 +29,8 @@ function App() {
       <div>
       <Header />
       {isLoggedIn ? <Products /> : <Login />}
-      <p>Votre adresse e-mail est : {user && user.username}</p>
+      <p>Votre adresse e-mail est : {user && user.email}</p>
+      <p>Votre nom est : {user && user.lastname}</p>
       <Footer />
       </div>
     </ThemeProvider>

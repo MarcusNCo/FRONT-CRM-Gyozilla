@@ -13,7 +13,6 @@ import Products from '../products/Products';
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const initialValues = {
     email: '',
     password: '',
@@ -34,7 +33,7 @@ const Login = () => {
         onSubmit={(values, { setSubmitting }) => {
           login(values)
             .then(response => {
-              if (response.statusText === "OK") {
+              if (response.data.message === "Authentification réussi") {
                 setIsLoggedIn(true)
               }
               toast.success('Vous êtes connecté', {
