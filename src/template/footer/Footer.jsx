@@ -17,6 +17,7 @@ const Footer = (props) => {
     minHeight: "100px",
     [theme.breakpoints.down("sm")]: {
       minHeight: "400px",
+      padding: '0 16px 0 16px'
     },
     display: "flex",
     flexDirection: "column",
@@ -98,25 +99,16 @@ const Footer = (props) => {
     },
   }));
 
-  const TypographyWrapperLeft = styled(Typography)(({ textAlignment }) => ({
-    textAlign: textAlignment,
-  }));
-
-  const TypographyWrapperRight = styled(Typography)(({ textAlignment }) => ({
-    textAlign: textAlignment,
-  }));
-
-  const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
-  const textAlignmentLeft = isSmallScreen ? 'center' : 'left';
-  const textAlignmentRight = isSmallScreen ? 'center' : 'right';
-
   return (
     <FooterContainer sx={{ marginTop: "20px" }}>
       <Grid container spacing={1}>
         <Grid item xs={12} sm={4} sx={{ display: 'flex', flexDirection: 'column' }} >
-        <TypographyWrapperRight variant="h7" textAlignment={textAlignmentRight}>
+        {/* <TypographyWrapperRight variant="h7" sx={{ textAlign: 'center' }} > */}
+        <Typography variant="h7" align="center" sx={{ display: 'flex', flexDirection: 'column' }} >
+          
           Télécharger l'application sur votre smartphone
-        </TypographyWrapperRight>
+          </Typography>
+        {/* </TypographyWrapperRight> */}
           <SocialIcons>
             <Icon>
               <Facebook />

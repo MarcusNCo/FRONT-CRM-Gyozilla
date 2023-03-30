@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../utils/getAllProducts";
+import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CircularProgress from "@mui/material/CircularProgress";
 // import Card from '@mui/material/Card'
 // import CardContent from '@mui/material/CardContent'
