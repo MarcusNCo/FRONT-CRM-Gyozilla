@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../utils/getAllProducts";
+import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CircularProgress from "@mui/material/CircularProgress";
 // import Card from '@mui/material/Card'
 // import CardContent from '@mui/material/CardContent'
@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import "./Products.css";
 import CustomCard from "../../components/card/CustomCard";
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
+import CustomListItemProducts from "../../components/customListItem/CustomListItemProducts";
 import CustomButton from "../../components/button/CustomButton";
 // import { Fab, IconButton } from "@mui/material";
 import { Fab } from "@mui/material";
