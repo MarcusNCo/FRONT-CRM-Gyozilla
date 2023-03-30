@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import TextField from '@mui/material/TextField'
-// import List from './Components/List'
 import './Header.css'
 import Logo from './../../assets/images/gyozillalog.png'
 import mobileLogo from './../../assets/images/gyozillalogo.png'
@@ -11,30 +9,25 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import MenuIcon from '@mui/icons-material/Menu'
+// import MenuIcon from '@mui/icons-material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import Switch from '@mui/material/Switch'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormGroup from '@mui/material/FormGroup'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
-import RiceBowlIcon from '@mui/icons-material/RiceBowl'
 import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
 import PinDropIcon from '@mui/icons-material/PinDrop'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
+import MenuBurger from '../../components/burger/MenuBurger'
 import {
   IconButton,
-  Drawer,
+  // Drawer,
   List,
   ListItem,
   ListItemText,
   Divider,
 } from '@mui/material'
-import { SafetyDividerOutlined } from '@mui/icons-material'
 import CustomInput from '../../components/input/CustomInput'
-import { Form } from 'formik'
-import { margin } from '@mui/system'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -59,9 +52,8 @@ const Header = () => {
 
     return () => {
       setMobileVersion(false)
-      // setOpenDrawer(false)
     }
-  }, [])
+  }, [openDrawer])
 
   const [auth, setAuth] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -77,47 +69,47 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  const list = () => (
-    <List>
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
-          <RamenDiningIcon />
-          <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
-          <CoPresentIcon />
-          <ListItemText
-            primary="Nos engagements"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
-          <ContactMailIcon />
-          <ListItemText
-            primary="Contactez-nous"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-      <a href="">
-        <ListItem button onClick={toggleDrawer(false)}>
-          <PinDropIcon />
-          <ListItemText
-            primary="Trouver un resto"
-            style={{ marginLeft: '10px' }}
-          />
-        </ListItem>
-      </a>
-      <Divider />
-    </List>
-  )
+  // const list = () => (
+  //   <List>
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <RamenDiningIcon />
+  //         <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <CoPresentIcon />
+  //         <ListItemText
+  //           primary="Nos engagements"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <ContactMailIcon />
+  //         <ListItemText
+  //           primary="Contactez-nous"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //     <a href="/" onClick={null}>
+  //       <ListItem onClick={toggleDrawer(false)}>
+  //         <PinDropIcon />
+  //         <ListItemText
+  //           primary="Trouver un resto"
+  //           style={{ marginLeft: '10px' }}
+  //         />
+  //       </ListItem>
+  //     </a>
+  //     <Divider />
+  //   </List>
+  // )
   const [valueInput, setvalueInput] = useState('')
   const handleChangeInput = (e) => {
     console.log(e)
@@ -126,48 +118,13 @@ const Header = () => {
   return (
     <div>
       {/* // -------------------- Mobile version -------------------------- */}
-      <div className="headerMobile">
+      <div 
+        className="headerMobile"
+      >
         <Box sx={{ flexGrow: 1 }}>
-          {/* <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={auth}
-                  onChange={handleChange}
-                  aria-label="login switch"
-                />
-              }
-              label={auth ? 'Logout' : 'Login'}
-            />
-          </FormGroup> */}
           <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
             <Toolbar>
-              {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton> */}
-              <div>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={toggleDrawer(true)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Drawer
-                  anchor="left"
-                  open={openDrawer}
-                  onClose={toggleDrawer(false)}
-                >
-                  {list()}
-                </Drawer>
-              </div>
+              <MenuBurger />
               <Typography
                 variant="h6"
                 component="div"
@@ -177,23 +134,19 @@ const Header = () => {
                   justifyContent: 'center',
                 }}
               >
-                <img
-                  id="mobileLogo"
-                  src={mobileLogo}
-                  style={{
-                    objectFit: 'cover',
-                    position: 'relative',
-                    width: '25%',
-                  }}
-                />
               </Typography>
               {auth && (
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  {/* <a href="#" style={{ marginTop: '30px' }}> */}
-                  <ShoppingCartIcon
-                    style={{ color: 'white', marginTop: '12px' }}
-                  />
-                  {/* </a> */}
+                <div style={{ display: 'flex' }}>
+                  <IconButton
+                    size="large"
+                    aria-label="shop of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <ShoppingCartIcon />
+                  </IconButton>
                   <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -226,26 +179,34 @@ const Header = () => {
               )}
             </Toolbar>
           </AppBar>
+          <img
+            src={mobileLogo}
+            alt="Logo de Gyozilla"
+            style={{
+              position: 'absolute',
+              width: '80px',
+              left: '50%',
+              top: '10px',
+              transform: 'translate(-50%)'
+            }}
+          />
         </Box>
       </div>
-      {/* // -------------------------------------------------------------- */}
-
       {/* // ----------------------- Web version -------------------------- */}
       <div className="headerWeb">
         <div className="header-left">
           <a id="gyozilla" href="#home">
-            {' '}
-            <img src={Logo} />{' '}
+            <img src={Logo} alt="Logo de Gyozilla" />
           </a>
-          <a className="menu" href="#menuCard">
+          <Link className="menu" to="/products">
             La carte
-          </a>
-          <a className="menu" href="#commitments">
+          </Link>
+          <Link className="menu" to="/nosengagements">
             Nos engagements
-          </a>
-          <a className="menu" href="#contact">
+          </Link>
+          <Link className="menu" to="/contact">
             Contactez-nous
-          </a>
+          </Link>
         </div>
         <div className="containSearch">
           <CustomInput
@@ -256,23 +217,21 @@ const Header = () => {
             onChange={handleChangeInput}
             value={valueInput}
           />
-          {/* <Form /> */}
-          {/* <List /> */}
         </div>
         <div className="header-right">
-          <a className="containIcon" href="#">
+          <a className="containIcon" href="/" onClick={null}>
             <LocationOnIcon
               className="logIcon"
               style={{ fontSize: 35, color: '#739B94' }}
             />
           </a>
-          <a className="containIcon" href="#">
+          <a className="containIcon" href="/" onClick={null}>
             <ShoppingCartIcon
               className="logIcon"
               style={{ fontSize: 35, color: '#739B94' }}
             />
           </a>
-          <a className="containIcon" href="#">
+          <a className="containIcon" href="/" onClick={null}>
             <AccountCircleIcon
               className="logIcon"
               style={{ fontSize: 35, color: '#739B94' }}
@@ -280,7 +239,6 @@ const Header = () => {
           </a>
         </div>
       </div>
-      {/* // -------------------------------------------------------------- */}
     </div>
   )
 }

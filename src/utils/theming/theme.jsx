@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material'
-import { green, purple, red } from '@mui/material/colors'
-
+import { green, red } from '@mui/material/colors'
+import createBreakpoints from '@mui/system/createTheme/createBreakpoints'
+const bp = createBreakpoints({
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    mmd: 1125,
+    lg: 1390,
+    xl: 1536,
+  },
+})
 const theme = createTheme({
   components: {
 
@@ -73,9 +83,8 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#EAEAEA',
+          backgroundColor: 'white',
           border: '1px solid black',
-          margin: '2px',
           width: '28vw',
           height: '30vh',
           color: '#F8A500',
@@ -89,7 +98,58 @@ const theme = createTheme({
     MuiList: {
       styleOverrides: {
         root: {
-          width: '20vw',
+          width: '10vw',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            color: 'white',
+            backgroundColor: '#F8A500',
+          },
+          '&.active': {
+            backgroundColor: '#F8A50050',
+            borderRight: '2px solid #F8A500',
+          },
+        },
+      },
+    },
+    MuiListSubheader: {
+      styleOverrides: {
+        root: {
+          color: '#F8A500',
+          alignSelf: 'center',
+          justifySelf: 'center',
+          fontSize: '2rem',
+          [bp.down('lg')]: {
+            fontSize: '1.8rem',
+            padding: '8px',
+          },
+          [bp.down('mmd')]: {
+            fontSize: '1.5rem',
+            padding: '4px',
+          },
+          [bp.down('md')]: {
+            fontSize: '1rem',
+            padding: '0px',
+          },
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          fontSize: '1rem',
+          [bp.down('lg')]: {
+            fontSize: '0.8rem',
+            padding: '8px',
+          },
+          [bp.down('md')]: {
+            fontSize: '0.5rem',
+            padding: '0px',
+          },
         },
       },
     },
@@ -151,7 +211,15 @@ const theme = createTheme({
       fontSize: '4rem',
       fontFamily: 'Garamond',
       fontWeight: 'bold',
+      marginBottom: '10px',
     },
+    h6: {
+      color: '#F8A500',
+      fontSize: '2.5rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+      marginBottom: '10px',
+    },    
     subTitle: {
       color: '#5F8D85',
       fontSize: '2rem',

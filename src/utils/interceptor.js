@@ -1,23 +1,24 @@
-import axios from 'axios'
-import env from 'react-dotenv'
-
+import axios from "axios";
+import env from "react-dotenv";
 
 // Création d'une instance Axios
 const instance = axios.create({
-    baseURL: env.URL_API+'/',
-    timeout: 5000,
-    headers: {
-        "Content-Type": "application/json",
-    },
+  baseURL: env.URL_API + "/",
+  timeout: 5000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Ajout d'un intercepteur de requête
 instance.interceptors.request.use(
     (config) => {
+        // console.log(config)
+
         // Récupération du token depuis le local storage
         const token = localStorage.getItem("token");
 
-       // Si il y a un token on l'ajoute dans l'en-tête de la requête
+        // Si il y a un token on l'ajoute dans l'en-tête de la requête
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -44,7 +45,7 @@ instance.interceptors.response.use(
         // window.location.href = '/login'; // rediriger vers la page de connexion
       }
       return Promise.reject(error);
-    }
-  );
+  }
+);
 
 export default instance;
