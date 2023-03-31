@@ -7,51 +7,91 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
+import { Divider } from '@mui/material'
 
-const MyCard = styled(Card)({
-  height: '100%',
-})
-
-export default function ListItemProducts({ onClick }) {
+export default function CustomListItemProducts({
+  onClick,
+  selected,
+  setSelected,
+}) {
   const [open, setOpen] = useState(false)
 
-  const handleClick = () => {
+  const handleClick = (e, number) => {
     setOpen(!open)
+    onClick(e, number)
+    setSelected(number)
   }
 
   return (
-    <MyCard>
-      <CardContent sx={{ height: '15%', width: '100%' }}>
+    <Card
+      style={{
+        width: '20vw',
+        height: 'fit-content',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <CardContent>
         <List
-          sx={{ height: '100%', width: '100%' }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
-              La Carte
-            </ListSubheader>
+            <ListSubheader id="nested-list-subheader">La Carte</ListSubheader>
           }
         >
-          <ListItemButton onClick={(e) => onClick(e, 1)}>
+          <ListItemButton
+            selected={selected === 1 ? true : null}
+            className={selected === 1 ? 'active' : null}
+            onClick={(e) => handleClick(e, 1)}
+          >
             <ListItemText primary="Nouveautés" />
           </ListItemButton>
-          <ListItemButton onClick={(e) => onClick(e, 2)}>
+          <Divider />
+          <ListItemButton
+            selected={selected === 2 ? true : null}
+            className={selected === 2 ? 'active' : null}
+            onClick={(e) => handleClick(e, 2)}
+          >
             <ListItemText primary="Les Menus" />
           </ListItemButton>
-          <ListItemButton onClick={(e) => onClick(e, 3)}>
+          <Divider />
+
+          <ListItemButton
+            selected={selected === 3 ? true : null}
+            className={selected === 3 ? 'active' : null}
+            onClick={(e) => handleClick(e, 3)}
+          >
             <ListItemText primary="Entrées" />
           </ListItemButton>
-          <ListItemButton onClick={(e) => onClick(e, 4)}>
+          <Divider />
+
+          <ListItemButton
+            selected={selected === 4 ? true : null}
+            className={selected === 4 ? 'active' : null}
+            onClick={(e) => handleClick(e, 4)}
+          >
             <ListItemText primary="Plats" />
           </ListItemButton>
-          <ListItemButton onClick={(e) => onClick(e, 5)}>
+          <Divider />
+
+          <ListItemButton
+            selected={selected === 5 ? true : null}
+            className={selected === 5 ? 'active' : null}
+            onClick={(e) => handleClick(e, 5)}
+          >
             <ListItemText primary="Desserts" />
           </ListItemButton>
-          <ListItemButton onClick={(e) => onClick(e, 6)}>
+          <Divider />
+
+          <ListItemButton
+            selected={selected === 6 ? true : null}
+            className={selected === 6 ? 'active' : null}
+            onClick={(e) => handleClick(e, 6)}
+          >
             <ListItemText primary="Boissons" />
           </ListItemButton>
         </List>
       </CardContent>
-    </MyCard>
+    </Card>
   )
 }
