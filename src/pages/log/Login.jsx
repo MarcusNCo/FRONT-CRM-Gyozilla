@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './Log.css'
+import './Login.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import CustomForm from '../../components/form/CustomForm';
 import { login } from '../../utils/login';
 import { LoadingButton } from '@mui/lab';
 import { toast, ToastContainer } from 'react-toastify';

@@ -52,7 +52,6 @@ const Products = () => {
       return product.productCategory.id === 4
     }
   })
-
   return (
     <div className="container" style={{ display: 'flex' }}>
       <div>
