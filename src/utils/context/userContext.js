@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 
-export const userContext = createContext({});
+export const UserContext = createContext({});
 
     function UserContextProvider(props) {
     const [user, setUser] = useState({});
@@ -18,9 +18,9 @@ export const userContext = createContext({});
 
 
     return (
-        <userContext.Provider value={{user, setUser, isLogged, setIsLogged}}>
+        <UserContext.Provider value={{user, setUser, isLogged, setIsLogged}}>
         {props.children}
-        </userContext.Provider>
+        </UserContext.Provider>
     );
 }
 

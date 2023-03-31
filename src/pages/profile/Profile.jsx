@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { userContext } from '../../utils/context/userContext';
 import Login from '../log/Login';
+import { userContext } from '../../utils/context/usercontext';
+
 
 
 const Profile = () => {

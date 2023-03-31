@@ -3,7 +3,7 @@ import './Login.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { login } from '../../utils/login';
+import { login } from '../../utils/api-call/login';
 import { LoadingButton } from '@mui/lab';
 import { toast, ToastContainer } from 'react-toastify';
 import CustomInput from '../../components/input/CustomInput';

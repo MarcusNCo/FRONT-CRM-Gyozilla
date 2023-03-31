@@ -6,9 +6,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
 import "./Products.css";
-import CustomCard from "../../components/card/CustomCard";
+import CustomCard from "../../components/Card/CustomCard";
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from "../../components/customListItem/CustomListItemProducts";
+import CustomListItemProducts from "../../components/CustomListItem/CustomListItemProducts"
 import CustomButton from "../../components/button/CustomButton";
 // import { Fab, IconButton } from "@mui/material";
 import { Fab } from "@mui/material";
@@ -68,11 +68,7 @@ const Products = () => {
     } else {
       return null;
     }
-<<<<<<< HEAD
-  })
-=======
   });
->>>>>>> f041f11f73fcc492301218f5f1b3de380e74c4fa
   return (
     <div>
       <div className="container" style={{ display: "flex" }}>
@@ -126,7 +122,7 @@ const Products = () => {
           )}
         </div>
       </div>
-      
+
       {/* bouton retour en version desktop */}
       <CustomButton
         text="Retour"
@@ -135,11 +131,11 @@ const Products = () => {
       ></CustomButton>
 
       {/* bouton retour en version mobile */}
-      <Fab 
+      <Fab
         size="small"
         style={{
-          color:"#FFF", 
-          backgroundColor:"#F8A500",
+          color: "#FFF",
+          backgroundColor: "#F8A500",
           position: "fixed",
           bottom: 16,
           right: 16,
