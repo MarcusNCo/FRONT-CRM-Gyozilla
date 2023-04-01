@@ -1,3 +1,8 @@
 .css-46bh2p-MuiCardContent-root {
     padding: 0 16px 16px 16px !important;
 }
+
+#root > div > div.products > div > div.MuiCardContent-root.css-46bh2p-MuiCardContent-root {
+    width: fit-content;
+    padding: 0 !important;
+}

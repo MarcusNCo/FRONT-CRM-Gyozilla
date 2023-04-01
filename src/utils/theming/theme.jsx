@@ -220,14 +220,20 @@ const theme = createTheme({
       fontFamily: 'Garamond',
       fontWeight: 'bold',
       marginBottom: '10px',
-    },    
+    },
+    hbox: {
+      color: '#F8A500',
+      fontSize: '2.0rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+    },        
     subTitle: {
       color: '#5F8D85',
       fontSize: '2rem',
       fontFamily: 'Garamond',
     },
     p: {
-      color: '#182A27',
+      color: '#EAEAEA',
       fontSize: '1rem',
       fontFamily: 'Garamond',
     },
