@@ -1,4 +1,4 @@
-import { Grid, Typography, IconButton, Link } from "@mui/material";
+import { Grid, Typography, IconButton, Link, useMediaQuery } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -32,11 +32,18 @@ const Footer = (props) => {
     margin: "0",
   });
 
-  const SocialIcons = styled("div")({
+  const SocialIcons = styled("div")(({ theme }) => ({
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "left",
     alignItems: "center",
-  });
+    marginLeft: '40px',
+    marginTop: '10px',
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+      marginLeft: 'unset',
+      marginTop: 'unset',
+    },
+  }));
 
   const Icon = styled(IconButton)({
     margin: "0 10px",
@@ -71,18 +78,24 @@ const Footer = (props) => {
     color: "inherit",
   });
 
-  const AppIcons = styled("div")({
+  const AppIcons = styled("div")(({ theme }) => ({
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "right",
     alignItems: "center",
     margin: "20px 0",
-  });
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+    },
+  }));
 
-  const AppIcon = styled("img")({
-    height: "40px",
-    margin: "0 10px",
+  const AppIcon = styled("img")(({ theme }) => ({
+    height: "45px",
+    margin: "0 5px",
     color: "inherit",
-  });
+    [theme.breakpoints.down("md")]: {
+      height: "35px",
+    },
+  }));
 
   const LinkContainer = styled("div")({
     display: "flex",
@@ -99,122 +112,137 @@ const Footer = (props) => {
     },
   }));
 
+  const TypographyWrapperLeft = styled(Typography)(({ textAlignment }) => ({
+    textAlign: textAlignment,
+  }));
+
+  const TypographyWrapperRight = styled(Typography)(({ textAlignment }) => ({
+    textAlign: textAlignment,
+  }));
+
+  const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
+  const textAlignmentLeft = isSmallScreen ? 'center' : 'left';
+  const textAlignmentRight = isSmallScreen ? 'center' : 'right';
+
   return (
-    <FooterContainer sx={{ marginTop: "20px" }}>
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={4} sx={{ display: 'flex', flexDirection: 'column' }} >
-        {/* <TypographyWrapperRight variant="h7" sx={{ textAlign: 'center' }} > */}
-        <Typography variant="h7" align="center" sx={{ display: 'flex', flexDirection: 'column' }} >
-          
-          Télécharger l'application sur votre smartphone
-          </Typography>
-        {/* </TypographyWrapperRight> */}
-          <SocialIcons>
-            <Icon>
-              <Facebook />
-            </Icon>
-            <Icon>
-              <Instagram />
-            </Icon>
-            <Icon>
-              <Twitter />
-            </Icon>
-          </SocialIcons>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          sx={{
-            "@media (max-width: 780px)": {
-              display: "none",
-            },
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Logo>
-            <LogoImg src={logo} alt="Logo" />
-          </Logo>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h7" align="center" sx={{ display: 'flex', flexDirection: 'column' }} >
-            Télécharger l'application sur votre smartphone
-          </Typography>
-          <AppIcons>
-            <AppIcon src={android} alt="Apple" />
-            <AppIcon src={apple} alt="Android" />
-          </AppIcons>
-        </Grid>
-        <Divider />
-        <Grid item xs={12} sm={6}>
-          <LinkContainer>
-            <Link
-              href="#"
-              underline="none"
-              sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+    <>
+      <footer>
+        <FooterContainer>
+          <Grid container spacing={1} sx={{ justifyContent: 'space-evenly' }}>
+            <Grid item xs={12} sm={4} 
+            sx={{ display: 'flex', flexDirection: 'column' }} >
+              <TypographyWrapperLeft variant="h7" textAlignment={textAlignmentLeft}>
+                Télécharger l'application sur votre smartphone
+              </TypographyWrapperLeft>
+              <SocialIcons>
+                <Icon>
+                  <Facebook />
+                </Icon>
+                <Icon>
+                  <Instagram />
+                </Icon>
+                <Icon>
+                  <Twitter />
+                </Icon>
+              </SocialIcons>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={3}
+              sx={{
+                "@media (max-width: 600px)": {
+                  display: "none",
+                },
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              La carte
-            </Link>
+              <Logo>
+                <LogoImg src={logo} alt="Logo" />
+              </Logo>
+            </Grid>
+            <Grid item xs={12} sm={4}
+            sx={{ display: 'flex', flexDirection: 'column' }} >
+              <TypographyWrapperRight variant="h7" textAlignment={textAlignmentRight}>
+                Télécharger l'application sur votre smartphone
+              </TypographyWrapperRight>
+              <AppIcons>
+                <AppIcon src={android} alt="Apple" />
+                <AppIcon src={apple} alt="Android" />
+              </AppIcons>
+            </Grid>
+            <Divider />
+            <Grid item xs={12} sm={6}>
+              <LinkContainer>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                >
+                  La carte
+                </Link>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                >
+                  Nos engagements
+                </Link>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                >
+                  Actualités
+                </Link>
+              </LinkContainer>
+            </Grid>
+            <Grid item xs={12} sm={6} className="toRight">
+              <LinkContainer className="toRight">
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                >
+                  Recrutement
+                </Link>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  align="center"
+                >
+                  Mentions légales
+                </Link>
+                <CustomButton text="Contactez-nous" variant="contained" height='40px' fontSize='0.8rem' />
+              </LinkContainer>
+            </Grid>
+          </Grid>
+          <BottomText 
+              sx={{
+                fontSize: "0.8rem",
+              }}
+          >
+            GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes
+            par jour.
             <Link
-              href="#"
-              underline="none"
-              sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+              href="https://www.mangerbouger.fr/"
+              target="_blank"
+              rel="noopener"
+              sx={{
+                margin: "0 !important",
+                padding: "0 0 0 5px !important",
+                fontSize: "0.8rem",
+              }}
             >
-              Nos engagements
+              www.mangerbouger.fr
             </Link>
-            <Link
-              href="#"
-              underline="none"
-              sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
-            >
-              Actualités
-            </Link>
-          </LinkContainer>
-        </Grid>
-        <Grid item xs={12} sm={6} className="toRight">
-          <LinkContainer className="toRight">
-            <Link
-              href="#"
-              underline="none"
-              sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
-            >
-              Recrutement
-            </Link>
-            <Link
-              href="#"
-              underline="none"
-              sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
-              align="center"
-            >
-              Mentions légales
-            </Link>
-            <CustomButton text="Contactez-nous" variant="contained" />
-          </LinkContainer>
-        </Grid>
-      </Grid>
-      <BottomText 
-          sx={{
-            fontSize: "0.8rem",
-          }}
-      >
-        GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes
-        par jour.
-        <Link
-          href="https://www.mangerbouger.fr/"
-          target="_blank"
-          rel="noopener"
-          sx={{
-            margin: "0 !important",
-            padding: "0 0 0 5px !important",
-            fontSize: "0.8rem",
-          }}
-        >
-          www.mangerbouger.fr
-        </Link>
-      </BottomText>
-    </FooterContainer>
+          </BottomText>
+        </FooterContainer>
+      </footer>
+    </>
   );
 };
 

@@ -15,17 +15,13 @@
     height: 60px !important;
 }
 
-.css-a5rdam-MuiGrid-root>.MuiGrid-item {
+#root > div.css-1lpds82 > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-3.css-1ls975c-MuiGrid-root {
     padding-left: 0 !important;
     padding-top: 0 !important;
 }
 
-.css-5pwu32-MuiTypography-root {
-    margin: 0 !important;
-}
-
-#root > div.css-r5wsqj > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button, #root > div.css-7h2wgc > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button {
-    margin: 0 !important;
+#root > footer > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button, .css-a5rdam-MuiGrid-root>.MuiGrid-item, .css-5pwu32-MuiTypography-root, #root > div.css-r5wsqj > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button, #root > div.css-7h2wgc > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button, #root > div.css-1lpds82 > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.toRight.css-1b3l6lk-MuiGrid-root > div > button, #root > footer > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-3.css-1ls975c-MuiGrid-root {
+    margin: 0;
 }
 
 @media (max-width: 599px) {

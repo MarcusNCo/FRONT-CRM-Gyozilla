@@ -9,6 +9,7 @@ const CustomButton = ({
   style,
   width,
   height,
+  fontSize,
   startIcon,
   backgroundColor,
 }) => {
@@ -17,7 +18,7 @@ const CustomButton = ({
       onClick={onClick}
       variant={variant}
       startIcon={startIcon}
-      style={{ backgroundColor: backgroundColor, color: color, width: width, height: height }}
+      style={{ backgroundColor: backgroundColor, color: color, width: width, height: height, fontSize: fontSize }}
     >
       {text}
     </Button>

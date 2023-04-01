@@ -20,9 +20,10 @@ const Products = () => {
   const [selectedListItem, setSelectedListItem] = useState(0);
   const [selected, setSelected] = useState(0);
   const categories = [
-    { id: 3, name: "Entrées", description: "Découvrez nos entrées" },
-    { id: 4, name: "Plats", description: "Découvrez nos plats" },
-    { id: 5, name: "Desserts", description: "Découvrez nos desserts" },
+    { id: 3, name: "Entrées", description: "Découvrez nos entrées", image: "entrees.jpg" },
+    { id: 4, name: "Plats", description: "Découvrez nos plats", image: "plats.jpg" },
+    { id: 5, name: "Desserts", description: "Découvrez nos desserts", image: "desserts.jpg" },
+    { id: 6, name: "Boissons", description: "Découvrez nos boissons", image: "boissons.jpg" },
   ];
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const Products = () => {
     }
   });
   return (
-    <div>
+    <>
       <div className="container" style={{ display: "flex" }}>
         <CustomListItemProducts
           selected={selected}
@@ -99,11 +100,12 @@ const Products = () => {
                   onButtonCardClick={() => setSelectedListItem(category.id)}
                   width="250px"
                   height="250px"
+                  image={category.image}
                 ></CustomCard>
               );
             })
           ) : filteredProducts.length === 0 ? (
-            <CircularProgress />
+            <CircularProgress sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} />
           ) : (
             filteredProducts.map((item) => {
               return (
@@ -127,11 +129,13 @@ const Products = () => {
       <CustomButton
         text="Retour"
         height="40px"
+        width="100px"
         startIcon={<KeyboardReturnIcon />}
+        sx={{ padding: '0 20px 0 20px' }}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}
-      <Fab 
+      {/* <Fab 
         size="small"
         style={{
           color:"#FFF", 
@@ -142,8 +146,8 @@ const Products = () => {
         }}
         aria-label="return">
         <KeyboardReturnIcon />
-      </Fab>
-    </div>
+      </Fab> */}
+    </>
   );
 };
 

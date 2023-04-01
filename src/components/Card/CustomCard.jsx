@@ -32,7 +32,7 @@ const CustomCard = ({
 }) => {
   let dbImage = ''
   if (image !== undefined) {
-    dbImage = require('../../images/products/' + image)
+    dbImage = require('../../images/' + image)
   }
 
   return (
@@ -47,9 +47,9 @@ const CustomCard = ({
         height: height,
         backgroundColor: backgroundColor,
         backgroundImage: `url(${dbImage})`,
-        backgroundSize: '100%',
+        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'bottom',
+        backgroundPosition: 'center center',
       }}
     >
       <CardContent

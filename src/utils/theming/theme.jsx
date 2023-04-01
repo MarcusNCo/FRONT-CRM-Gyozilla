@@ -171,6 +171,7 @@ const theme = createTheme({
           backgroundColor: '#EAEAEA',
           border: '1px solid #F8A500',
           marginTop: '3vh',
+          padding: '10px 5px 10px 5px',
           '&:hover': {
             color: '#EAEAEA',
             backgroundColor: '#F8A500',

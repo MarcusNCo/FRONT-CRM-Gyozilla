@@ -116,130 +116,132 @@ const Header = () => {
     setvalueInput(e.target.value)
   }
   return (
-    <div>
-      {/* // -------------------- Mobile version -------------------------- */}
-      <div 
-        className="headerMobile"
-      >
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
-            <Toolbar>
-              <MenuBurger />
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-              </Typography>
-              {auth && (
-                <div style={{ display: 'flex' }}>
-                  <IconButton
-                    size="large"
-                    aria-label="shop of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                  >
-                    <ShoppingCartIcon />
-                  </IconButton>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                  </Menu>
-                </div>
-              )}
-            </Toolbar>
-          </AppBar>
-          <img
-            src={mobileLogo}
-            alt="Logo de Gyozilla"
-            style={{
-              position: 'absolute',
-              width: '80px',
-              left: '50%',
-              top: '10px',
-              transform: 'translate(-50%)'
-            }}
-          />
-        </Box>
-      </div>
-      {/* // ----------------------- Web version -------------------------- */}
-      <div className="headerWeb">
-        <div className="header-left">
-          <a id="gyozilla" href="#home">
-            <img src={Logo} alt="Logo de Gyozilla" />
-          </a>
-          <Link className="menu" to="/products">
-            La carte
-          </Link>
-          <Link className="menu" to="/nosengagements">
-            Nos engagements
-          </Link>
-          <Link className="menu" to="/contact">
-            Contactez-nous
-          </Link>
-        </div>
-        <div className="containSearch">
-          <CustomInput
-            htmlFor="toto"
-            id="toto"
-            variant="standard"
-            label="Que cherchez-vous"
-            onChange={handleChangeInput}
-            value={valueInput}
-          />
-        </div>
-        <div className="header-right">
-          <a className="containIcon" href="/" onClick={null}>
-            <LocationOnIcon
-              className="logIcon"
-              style={{ fontSize: 35, color: '#739B94' }}
+    <>
+      <header>
+        {/* // -------------------- Mobile version -------------------------- */}
+        <div 
+          className="headerMobile"
+        >
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
+              <Toolbar>
+                <MenuBurger />
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                </Typography>
+                {auth && (
+                  <div style={{ display: 'flex' }}>
+                    <IconButton
+                      size="large"
+                      aria-label="shop of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleMenu}
+                      color="inherit"
+                    >
+                      <ShoppingCartIcon />
+                    </IconButton>
+                    <IconButton
+                      size="large"
+                      aria-label="account of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleMenu}
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                    </Menu>
+                  </div>
+                )}
+              </Toolbar>
+            </AppBar>
+            <img
+              src={mobileLogo}
+              alt="Logo de Gyozilla"
+              style={{
+                position: 'absolute',
+                width: '80px',
+                left: '50%',
+                top: '10px',
+                transform: 'translate(-50%)'
+              }}
             />
-          </a>
-          <a className="containIcon" href="/" onClick={null}>
-            <ShoppingCartIcon
-              className="logIcon"
-              style={{ fontSize: 35, color: '#739B94' }}
-            />
-          </a>
-          <a className="containIcon" href="/" onClick={null}>
-            <AccountCircleIcon
-              className="logIcon"
-              style={{ fontSize: 35, color: '#739B94' }}
-            />
-          </a>
+          </Box>
         </div>
-      </div>
-    </div>
+        {/* // ----------------------- Web version -------------------------- */}
+        <div className="headerWeb">
+          <div className="header-left">
+            <a id="gyozilla" href="#home">
+              <img src={Logo} alt="Logo de Gyozilla" />
+            </a>
+            <Link className="menu" to="/products">
+              La carte
+            </Link>
+            <Link className="menu" to="/nosengagements">
+              Nos engagements
+            </Link>
+            <Link className="menu" to="/contact">
+              Contactez-nous
+            </Link>
+          </div>
+          <div className="containSearch">
+            <CustomInput
+              htmlFor="toto"
+              id="toto"
+              variant="standard"
+              label="Que cherchez-vous"
+              onChange={handleChangeInput}
+              value={valueInput}
+            />
+          </div>
+          <div className="header-right">
+            <a className="containIcon" href="/" onClick={null}>
+              <LocationOnIcon
+                className="logIcon"
+                style={{ fontSize: 35, color: '#739B94' }}
+              />
+            </a>
+            <a className="containIcon" href="/" onClick={null}>
+              <ShoppingCartIcon
+                className="logIcon"
+                style={{ fontSize: 35, color: '#739B94' }}
+              />
+            </a>
+            <a className="containIcon" href="/" onClick={null}>
+              <AccountCircleIcon
+                className="logIcon"
+                style={{ fontSize: 35, color: '#739B94' }}
+              />
+            </a>
+          </div>
+        </div>
+      </header>
+    </>
   )
 }
 
