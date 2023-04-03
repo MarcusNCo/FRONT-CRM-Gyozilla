@@ -112,12 +112,12 @@ const Footer = (props) => {
     },
   }));
 
-  const TypographyWrapperLeft = styled(Typography)(({ textAlignment }) => ({
-    textAlign: textAlignment,
+  const TypographyWrapperLeft = styled(Typography)(({ textalignment }) => ({
+    textAlign: textalignment,
   }));
 
-  const TypographyWrapperRight = styled(Typography)(({ textAlignment }) => ({
-    textAlign: textAlignment,
+  const TypographyWrapperRight = styled(Typography)(({ textalignment }) => ({
+    textAlign: textalignment,
   }));
 
   const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
@@ -131,7 +131,7 @@ const Footer = (props) => {
           <Grid container spacing={1} sx={{ justifyContent: 'space-evenly' }}>
             <Grid item xs={12} sm={4} 
             sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperLeft variant="h7" textAlignment={textAlignmentLeft}>
+              <TypographyWrapperLeft variant="h7" textalignment={textAlignmentLeft}>
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperLeft>
               <SocialIcons>
@@ -165,7 +165,7 @@ const Footer = (props) => {
             </Grid>
             <Grid item xs={12} sm={4}
             sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperRight variant="h7" textAlignment={textAlignmentRight}>
+              <TypographyWrapperRight variant="h7" textalignment={textAlignmentRight}>
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperRight>
               <AppIcons>

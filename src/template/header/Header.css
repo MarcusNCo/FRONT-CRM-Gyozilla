@@ -16,10 +16,12 @@
   /* Style the header with a grey background and some padding */
   .headerWeb {
     overflow: hidden;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
     padding: 10px ;
     display: flex;
     justify-content: space-around;
+    /* border-bottom: 1px solid black; */
+    box-shadow: 0 0 .4em black;
   }
   
   #gyozilla {

@@ -71,7 +71,7 @@ const theme = createTheme({
     MuiInput: {
       styleOverrides: {
         root: {
-          backgroundColor: '#EAEAEA',
+          // backgroundColor: '#EAEAEA',
           color: '#F8A500',
           borderRadius: '1px',
           width: '20vw',
@@ -95,13 +95,13 @@ const theme = createTheme({
         },
       },
     },
-    MuiList: {
-      styleOverrides: {
-        root: {
-          width: '10vw',
-        },
-      },
-    },
+    // MuiList: {
+    //   styleOverrides: {
+    //     root: {
+    //       width: '10vw',
+    //     },
+    //   },
+    // },
     MuiListItemButton: {
       styleOverrides: {
         root: {
