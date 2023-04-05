@@ -1,0 +1,26 @@
+.team{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.imgTeam{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.around{
+    max-width: 100%;
+    max-height: 100%;
+    width: 280px;
+}
+
+h2, h4  {
+    color: #F8A500;
+
+}
+
+p{
+    color: #739B94
+}
