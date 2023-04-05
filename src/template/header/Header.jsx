@@ -9,26 +9,11 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-// import MenuIcon from '@mui/icons-material/Menu'
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-// import RamenDiningIcon from '@mui/icons-material/RamenDining'
-// import CoPresentIcon from '@mui/icons-material/CoPresent'
-// import PinDropIcon from '@mui/icons-material/PinDrop'
-// import ContactMailIcon from '@mui/icons-material/ContactMail'
 import MenuBurger from "../../components/burger/MenuBurger";
-import {
-  Avatar,
-  Divider,
-  IconButton,
-  ListItemIcon,
-  // Drawer,
-  // List,
-  // ListItem,
-  // ListItemText,
-  // Divider,
-} from "@mui/material";
+import { Avatar, Divider, IconButton, ListItemIcon } from "@mui/material";
 import CustomInput from "../../components/input/CustomInput";
 import { Link } from "react-router-dom";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
@@ -60,7 +45,6 @@ const Header = () => {
   }, [openDrawer]);
 
   const [auth, setAuth] = useState(true);
-  // const [anchorEl, setAnchorEl] = useState(null);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -70,50 +54,6 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-  // const list = () => (
-  //   <List>
-  //     <a href="/" onClick={null}>
-  //       <ListItem onClick={toggleDrawer(false)}>
-  //         <RamenDiningIcon />
-  //         <ListItemText primary="La carte" style={{ marginLeft: '10px' }} />
-  //       </ListItem>
-  //     </a>
-  //     <Divider />
-  //     <a href="/" onClick={null}>
-  //       <ListItem onClick={toggleDrawer(false)}>
-  //         <CoPresentIcon />
-  //         <ListItemText
-  //           primary="Nos engagements"
-  //           style={{ marginLeft: '10px' }}
-  //         />
-  //       </ListItem>
-  //     </a>
-  //     <Divider />
-  //     <a href="/" onClick={null}>
-  //       <ListItem onClick={toggleDrawer(false)}>
-  //         <ContactMailIcon />
-  //         <ListItemText
-  //           primary="Contactez-nous"
-  //           style={{ marginLeft: '10px' }}
-  //         />
-  //       </ListItem>
-  //     </a>
-  //     <Divider />
-  //     <a href="/" onClick={null}>
-  //       <ListItem onClick={toggleDrawer(false)}>
-  //         <PinDropIcon />
-  //         <ListItemText
-  //           primary="Trouver un resto"
-  //           style={{ marginLeft: '10px' }}
-  //         />
-  //       </ListItem>
-  //     </a>
-  //     <Divider />
-  //   </List>
-  // )
   const [valueInput, setvalueInput] = useState("");
   const handleChangeInput = (e) => {
     console.log(e);
@@ -128,7 +68,6 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   return (
     <>
@@ -170,24 +109,6 @@ const Header = () => {
                     >
                       <AccountCircle />
                     </IconButton>
-                    {/* <Menu
-                      id="menu-appbar"
-                      anchorEl={anchorEl}
-                      anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                    >
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
-                    </Menu> */}
                     <Menu
                       anchorEl={anchorEl}
                       id="account-menu"
@@ -199,7 +120,7 @@ const Header = () => {
                         sx: {
                           overflow: "visible",
                           filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                          mt: 1.5,
+                          mr: 1.5,
                           "& .MuiAvatar-root": {
                             width: 32,
                             height: 32,
@@ -305,12 +226,75 @@ const Header = () => {
                 style={{ fontSize: 35, color: "#739B94" }}
               />
             </a>
-            <a className="containIcon" href="/" onClick={null}>
-              <AccountCircleIcon
-                className="logIcon"
-                style={{ fontSize: 35, color: "#739B94" }}
-              />
-            </a>
+            <AccountCircleIcon
+              className="logIcon"
+              style={{ fontSize: 35, color: "#739B94", margin: "15px" }}
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+            />
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Avatar /> Profile
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Avatar /> My account
+              </MenuItem>
+              <Divider />
+              <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Add another account
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                Settings
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
           </div>
         </div>
       </header>
