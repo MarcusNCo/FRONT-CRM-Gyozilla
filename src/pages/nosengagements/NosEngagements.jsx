@@ -13,6 +13,11 @@ import desserts from '../../images/desserts.jpg'
 const NosEngagements = () => {
   return (
     <Container fluid class="mb-5">
+      <Row>
+        <Col>
+          <h1 class="mt-5 text-center"> Nos engagements</h1>
+        </Col>
+      </Row>
       {/* ------------------------- 1ère partie de la page ------------------------ */}
       <Row>
         <Col>
@@ -48,16 +53,19 @@ const NosEngagements = () => {
               <h4> Une ambiance dépaysante</h4>
               <p>
                 Le but de Gyozilla est de faire voyager chaque client grâce à sa
-                cuisine asiatique. Pour renforcer cette immersion,....{' '}
+                cuisine asiatique. Pour renforcer cette immersion, un décor
+                atypique est disposé dans nos enseignes en + de thèmes musicaux
+                trés appréciés des pays asiatiques qui viendront vous caresser
+                les oreilles.{' '}
               </p>
             </Col>
             <Col>
               <h4> Un personnel attentif à vos besoins et à votre écoute</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                necessitatibus iusto suscipit magnam, dignissimos totam
-                asperiores, vitae odio quasi quidem maiores veniam eum! Ea
-                corrupti consequatur cupiditate ad, saepe quisquam!{' '}
+                Nos cuisiniers connaissent les attentes des clients et donnent
+                le meilleur d'eux-même. Par ailleurs, nos serveurs ont un profil
+                en cohésion avec nos valeurs, vous adresseront toujours le
+                sourire et prendront en compte vos remarques et questions.{' '}
               </p>
             </Col>
           </Row>
@@ -106,7 +114,7 @@ const NosEngagements = () => {
                   alt="quelques plats du restaurant"
                 />
                 <Card.Body>
-                  <Card.Title>Nos plats</Card.Title>
+                  <Card.Title class="titleCard">Nos plats</Card.Title>
                   <Card.Text>
                     Les plats que nous proposons sont variés mais tous préparés
                     avec amour. Du plus doux au plus épicé, il y aura de quoi
@@ -123,7 +131,7 @@ const NosEngagements = () => {
                   alt="quelques boissons du restaurant"
                 />
                 <Card.Body>
-                  <Card.Title>Nos boissons</Card.Title>
+                  <Card.Title class="titleCard">Nos boissons</Card.Title>
                   <Card.Text>
                     Les boissons proviennent directement d'Asie, en partenariat
                     exclusif avec "Chang-Ting". Vous serez étonnés du plaisir
@@ -140,7 +148,7 @@ const NosEngagements = () => {
                   alt="quelques desserts du restaurant"
                 />
                 <Card.Body>
-                  <Card.Title>Nos desserts</Card.Title>
+                  <Card.Title class="titleCard">Nos desserts</Card.Title>
                   <Card.Text>
                     Nos mets les plus délicats ne sont pas uniquement salés. En
                     effet, vous prendrez un plaisir fou en dégustant nos
