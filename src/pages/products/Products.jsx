@@ -6,9 +6,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
 import "./Products.css";
-import CustomCard from "../../components/card/CustomCard";
+import CustomCard from "../../components/Card/CustomCard";
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
+import CustomListItemProducts from "../../components/CustomListItem/CustomListItemProducts";
 import CustomButton from "../../components/button/CustomButton";
 // import { Fab, IconButton } from "@mui/material";
 import { Fab } from "@mui/material";
@@ -20,10 +20,30 @@ const Products = () => {
   const [selectedListItem, setSelectedListItem] = useState(0);
   const [selected, setSelected] = useState(0);
   const categories = [
-    { id: 3, name: "Entrées", description: "Découvrez nos entrées", image: "entrees.jpg" },
-    { id: 4, name: "Plats", description: "Découvrez nos plats", image: "plats.jpg" },
-    { id: 5, name: "Desserts", description: "Découvrez nos desserts", image: "desserts.jpg" },
-    { id: 6, name: "Boissons", description: "Découvrez nos boissons", image: "boissons.jpg" },
+    {
+      id: 3,
+      name: "Entrées",
+      description: "Découvrez nos entrées",
+      image: "entrees.jpg",
+    },
+    {
+      id: 4,
+      name: "Plats",
+      description: "Découvrez nos plats",
+      image: "plats.jpg",
+    },
+    {
+      id: 5,
+      name: "Desserts",
+      description: "Découvrez nos desserts",
+      image: "desserts.jpg",
+    },
+    {
+      id: 6,
+      name: "Boissons",
+      description: "Découvrez nos boissons",
+      image: "boissons.jpg",
+    },
   ];
 
   useEffect(() => {
@@ -105,7 +125,13 @@ const Products = () => {
               );
             })
           ) : filteredProducts.length === 0 ? (
-            <CircularProgress sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} />
+            <CircularProgress
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            />
           ) : (
             filteredProducts.map((item) => {
               return (
@@ -124,22 +150,22 @@ const Products = () => {
           )}
         </div>
       </div>
-      
+
       {/* bouton retour en version desktop */}
       <CustomButton
         text="Retour"
         height="40px"
         width="100px"
         startIcon={<KeyboardReturnIcon />}
-        sx={{ padding: '0 20px 0 20px' }}
+        sx={{ padding: "0 20px 0 20px" }}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}
       {/* <Fab 
         size="small"
         style={{
-          color:"#FFF", 
-          backgroundColor:"#F8A500",
+          color: "#FFF",
+          backgroundColor: "#F8A500",
           position: "fixed",
           bottom: 16,
           right: 16,
