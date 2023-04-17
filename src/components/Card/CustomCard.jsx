@@ -60,9 +60,10 @@ const CustomCard = ({
           backgroundColor: backgroundColorContent,
           display: 'flex',
           flexDirection: 'column',
+          padding: '0 20px 0 0',
         }}
       >
-        <Box sx={{ backgroundColor: 'black', padding: '5px 10px 5px 10px', display: 'flex', flexDirection: 'column', borderRadius: '0 0 5px 0' }}>
+        <Box sx={{ backgroundColor: 'black', padding: '5px 15px 5px 15px', display: 'flex', flexDirection: 'column', borderRadius: '0 0 5px 0', width: 'fit-content' }}>
           <Typography variant={'hbox'}>{title}</Typography>
           <Typography variant={'p'}>{description}</Typography>
         </Box>

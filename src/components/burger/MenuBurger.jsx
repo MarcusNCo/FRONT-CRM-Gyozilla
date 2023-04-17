@@ -14,6 +14,7 @@ import CoPresentIcon from "@mui/icons-material/CoPresent";
 import PinDropIcon from "@mui/icons-material/PinDrop";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { Divider } from "@mui/material";
+import { border } from "@mui/system";
 
 const MyDrawer = styled(Drawer)({
   "& .MuiDrawer-paper": {
@@ -58,24 +59,33 @@ export default function MenuBurger() {
         sx={{ mr: 2 }}
         onClick={handleClick}
       >
-        <MenuIcon />
+        <MenuIcon
+          sx={{
+            width: "32px",
+            height: "32px",
+          }}
+          className="MenuIcon"
+        />
       </IconButton>
       <MyDrawer anchor="left" open={open} onClose={handleClick}>
         <List
           sx={{ width: 240 }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-          // subheader={
-          //   // <ListSubheader component="div" id="nested-list-subheader">
-          //   //   Menu
-          //   // </ListSubheader>
-          // }
         >
-          <ListItemButton className="burgerList" onClick={handleClickLaCarte}>
+          <ListItemButton
+            sx={{
+              color: "#739B94",
+              display: "flex",
+              marginTop: "25px",
+              borderBottom: "1px solid #739B94",
+            }}
+            onClick={handleClickLaCarte}
+          >
             <RamenDiningIcon
               style={{ marginRight: "20px", marginLeft: "20px" }}
             />
-            <ListItemText primary="La carte" class="titleList" />
+            <ListItemText primary="La carte" sx={{ marginLeft: "10px" }} />
           </ListItemButton>
           <Collapse in={openLaCarte} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -101,13 +111,21 @@ export default function MenuBurger() {
           </Collapse>
           <Divider />
           <ListItemButton
-            className="burgerList"
+            sx={{
+              color: "#739B94",
+              display: "flex",
+              marginTop: "25px",
+              borderBottom: "1px solid #739B94",
+            }}
             onClick={handleClickNosEngagements}
           >
             <CoPresentIcon
               style={{ marginRight: "20px", marginLeft: "20px" }}
             />
-            <ListItemText primary="Nos engagements" className="titleList" />
+            <ListItemText
+              primary="Nos engagements"
+              sx={{ marginLeft: "10px" }}
+            />
           </ListItemButton>
           <Collapse in={openNosEngagements} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -124,21 +142,36 @@ export default function MenuBurger() {
           </Collapse>
           <Divider />
           <ListItemButton
-            className="burgerList"
+            sx={{
+              color: "#739B94",
+              display: "flex",
+              marginTop: "25px",
+              borderBottom: "1px solid #739B94",
+            }}
             onClick={handleClickContactezNous}
           >
             <ContactMailIcon
               style={{ marginRight: "20px", marginLeft: "20px" }}
             />
-            <ListItemText primary="Contactez-nous" class="titleList" />
+            <ListItemText
+              primary="Contactez-nous"
+              sx={{ marginLeft: "10px" }}
+            />
           </ListItemButton>
           <Divider />
           <ListItemButton
-            className="burgerList"
+            sx={{
+              color: "#739B94",
+              display: "flex",
+              marginTop: "25px",
+            }}
             onClick={handleClickTrouverUnResto}
           >
             <PinDropIcon style={{ marginRight: "20px", marginLeft: "20px" }} />
-            <ListItemText primary="Trouver un resto" className="titleList" />
+            <ListItemText
+              primary="Trouver un resto"
+              sx={{ marginLeft: "10px" }}
+            />
           </ListItemButton>
         </List>
       </MyDrawer>

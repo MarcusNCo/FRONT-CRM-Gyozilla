@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import Logo from "./../../assets/images/gyozillalog.png";
 import mobileLogo from "./../../assets/images/gyozillalogo.png";
@@ -6,64 +6,34 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+import { Box, useTheme } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuBurger from "../../components/burger/MenuBurger";
-import { Avatar, Divider, IconButton, ListItemIcon } from "@mui/material";
+import { Divider, IconButton } from "@mui/material";
 import CustomInput from "../../components/input/CustomInput";
 import { Link } from "react-router-dom";
-import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { Logout } from "@mui/icons-material";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 const Header = () => {
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [mobileVersion, setMobileVersion] = useState(false);
-  console.log("openDrawer", openDrawer, "mobileversion", mobileVersion);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setOpenDrawer(open);
-    setMobileVersion(true);
-  };
-
-  useEffect(() => {
-    if (openDrawer) {
-      setMobileVersion(true);
-    }
-
-    return () => {
-      setMobileVersion(false);
-    };
-  }, [openDrawer]);
-
   const [auth, setAuth] = useState(true);
-
+  const [valueInput, setvalueInput] = useState("");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const theme = useTheme();
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const [valueInput, setvalueInput] = useState("");
   const handleChangeInput = (e) => {
     console.log(e);
     setvalueInput(e.target.value);
-  };
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -73,7 +43,15 @@ const Header = () => {
     <>
       <header>
         {/* // -------------------- Mobile version -------------------------- */}
-        <div className="headerMobile">
+        <Box
+          sx={{
+            display: "none",
+            "@media (max-width: 992px)": {
+              display: "flex",
+            },
+            position: "relative",
+          }}
+        >
           <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: "#739B94" }}>
               <Toolbar>
@@ -90,86 +68,33 @@ const Header = () => {
                 {auth && (
                   <div style={{ display: "flex" }}>
                     <IconButton
-                      size="large"
                       aria-label="shop of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       onClick={handleMenu}
                       color="inherit"
                     >
-                      <ShoppingCartIcon />
+                      <ShoppingCartIcon
+                        sx={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
                     </IconButton>
                     <IconButton
-                      size="large"
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       onClick={handleMenu}
                       color="inherit"
                     >
-                      <AccountCircle />
+                      <AccountCircle
+                        sx={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
                     </IconButton>
-                    <Menu
-                      anchorEl={anchorEl}
-                      id="account-menu"
-                      open={open}
-                      onClose={handleClose}
-                      onClick={handleClose}
-                      PaperProps={{
-                        elevation: 0,
-                        sx: {
-                          overflow: "visible",
-                          filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                          mr: 1.5,
-                          "& .MuiAvatar-root": {
-                            width: 32,
-                            height: 32,
-                            ml: -0.5,
-                            mr: 1,
-                          },
-                          "&:before": {
-                            content: '""',
-                            display: "block",
-                            position: "absolute",
-                            top: 0,
-                            right: 14,
-                            width: 10,
-                            height: 10,
-                            bgcolor: "background.paper",
-                            transform: "translateY(-50%) rotate(45deg)",
-                            zIndex: 0,
-                          },
-                        },
-                      }}
-                      transformOrigin={{ horizontal: "right", vertical: "top" }}
-                      anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                    >
-                      <MenuItem onClick={handleClose}>
-                        <Avatar /> Profile
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <Avatar /> My account
-                      </MenuItem>
-                      <Divider />
-                      <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                          <PersonAdd fontSize="small" />
-                        </ListItemIcon>
-                        Add another account
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                          <Logout fontSize="small" />
-                        </ListItemIcon>
-                        Logout
-                      </MenuItem>
-                    </Menu>
                   </div>
                 )}
               </Toolbar>
@@ -186,11 +111,22 @@ const Header = () => {
               }}
             />
           </Box>
-        </div>
+        </Box>
         {/* // ----------------------- Web version -------------------------- */}
-        <div className="headerWeb">
+        <Box
+          sx={{
+            display: "flex",
+            "@media (max-width: 992px)": {
+              display: "none",
+            },
+            overflow: "hidden",
+            padding: "10px",
+            justifyContent: "space-around",
+            boxShadow: "0 0 .4em black",
+          }}
+        >
           <div className="header-left">
-            <a id="gyozilla" href="#home">
+            <a id="gyozilla" href="/">
               <img src={Logo} alt="Logo de Gyozilla" />
             </a>
             <Link className="menu" to="/products">
@@ -228,75 +164,84 @@ const Header = () => {
             </a>
             <AccountCircleIcon
               className="logIcon"
-              style={{ fontSize: 35, color: "#739B94", margin: "15px" }}
+              style={{
+                fontSize: 35,
+                color: "#739B94",
+                margin: "15px",
+                cursor: "pointer",
+              }}
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleMenu}
             />
-            <Menu
-              anchorEl={anchorEl}
-              id="account-menu"
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem onClick={handleClose}>
-                <Avatar /> Profile
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Avatar /> My account
-              </MenuItem>
-              <Divider />
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <PersonAdd fontSize="small" />
-                </ListItemIcon>
-                Add another account
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <Settings fontSize="small" />
-                </ListItemIcon>
-                Settings
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
           </div>
-        </div>
+        </Box>
+        {/* // ------------ Menu for desktop and mobile version --------------- */}
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mr: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 13,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+                [theme.breakpoints.down("sm")]: {
+                  right: 19,
+                },
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <MenuItem onClick={handleClose} className="menu-item">
+            <a className="menu-item-a" href="/login">
+              <Logout fontSize="small" />
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{ paddingLeft: "10px" }}
+              >
+                Se connecter
+              </Typography>
+            </a>
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={handleClose} className="menu-item">
+            <a className="menu-item-a" href="/create">
+              <AppRegistrationIcon fontSize="small" />
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{ paddingLeft: "10px" }}
+              >
+                S'inscrire
+              </Typography>
+            </a>
+          </MenuItem>
+        </Menu>
       </header>
     </>
   );
