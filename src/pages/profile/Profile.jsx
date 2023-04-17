@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import Login from '../log/Login';
-import { userContext } from '../../utils/context/usercontext';
+import { UserContext } from '../../utils/context/UserContext';
+
 
 
 
 const Profile = () => {
-    const { user, isLogged } = useContext(userContext);
+    const { user, isLogged } = useContext(UserContext);
 
     return (
         <div>

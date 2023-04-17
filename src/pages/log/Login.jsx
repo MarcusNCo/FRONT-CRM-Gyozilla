@@ -7,7 +7,8 @@ import { login } from '../../utils/api-call/login';
 import { LoadingButton } from '@mui/lab';
 import { toast, ToastContainer } from 'react-toastify';
 import CustomInput from '../../components/input/CustomInput';
-import Products from '../products/Products';
+import Home from '../home/Home';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -65,7 +66,7 @@ const Login = () => {
       >
         {({ values, handleChange, errors, touched, isSubmitting }) => {
           if (isLoggedIn) {
-            return <Products />
+            return <Home />
           }
           return (
             <Form className='formLogin'>
@@ -90,29 +91,8 @@ const Login = () => {
                 secure='true'
               />
               <ErrorMessage name='password' />
-              {/* <CustomForm
-                inputs={[
-                  {
-                    name: 'email',
-                    label: 'Email',
-                    type: 'email',
-                    value: values.email,
-                    onChange: handleChange,
-                    errors: touched.email && errors.email,
-                    variant: 'outlined'
-                  },
-                  {
-                    name: 'password',
-                    label: 'Password',
-                    type: 'password',
-                    secure: 'true',
-                    value: values.password,
-                    onChange: handleChange,
-                    errors: touched.password && errors.password,
-                    variant: 'outlined'
-                  },
-                ]}
-              /> */}
+
+              <Link to="/forgot-password">Mot de passe oublié ?</Link>
               <LoadingButton type='submit' loading={isSubmitting}>Connexion</LoadingButton>
             </Form>
           )

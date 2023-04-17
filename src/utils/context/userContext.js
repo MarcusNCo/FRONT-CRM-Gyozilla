@@ -25,4 +25,3 @@ export const UserContext = createContext({});
 }
 
 export default UserContextProvider;
-

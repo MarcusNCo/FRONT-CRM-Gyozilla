@@ -1,9 +1,6 @@
 import {
-  FormControl,
   IconButton,
-  Input,
   InputAdornment,
-  InputLabel,
   TextField,
 } from '@mui/material'
 import React, { useState } from 'react'
@@ -49,9 +46,6 @@ const CustomInput = (props) => {
   return (
     // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
     <>
-      {/* <InputLabel variant={inputAttribute.variant} htmlFor={inputAttribute.htmlFor}>
-        {inputAttribute.label}
-      </InputLabel> */}
       <TextField
         {...inputAttribute}
         type={
