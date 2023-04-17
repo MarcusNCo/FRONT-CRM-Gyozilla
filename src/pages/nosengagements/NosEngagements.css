@@ -1,0 +1,56 @@
+body{
+    /* background-color: grey; */
+}
+
+.team{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.imgTeam{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.around{
+    max-width: 100%;
+    max-height: 100%;
+    width: 280px;
+}
+
+.titleCard{
+    color: #739B94;
+    font-weight:650;
+}
+
+h4  {
+    color: #739B94;
+}
+
+h1{
+    border: 1px solid #F8A500;
+    background-color:black ;
+    padding: 10px;
+    color: #F8A500
+}
+
+h2{
+    color: #F8A500;
+
+}
+
+p{
+    /* color: #D4AF60; */
+        color: #CDE8E7;
+        font-weight: 550;
+}
+
+/* ------------------------- Media queries ------------------------ */
+
+@media (max-width: 1200px) {
+    .around {
+      display: none;
+    }
+}
