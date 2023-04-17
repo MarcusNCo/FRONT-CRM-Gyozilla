@@ -11,8 +11,6 @@ import ContactForm from './pages/contact/ContactForm'
 import Log from './pages/log/Login'
 
 function App() {
-
-  
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -20,7 +18,7 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Log />} />
-            <Route exact path="/Home" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/nosengagements" element={<NosEngagements />} />
             <Route path="/contact" element={<ContactForm />} />

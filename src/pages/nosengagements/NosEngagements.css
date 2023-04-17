@@ -51,6 +51,6 @@ p{
 
 @media (max-width: 1200px) {
     .around {
-      display: none;
+        display: none;
     }
 }

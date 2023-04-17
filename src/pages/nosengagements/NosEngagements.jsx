@@ -13,11 +13,11 @@ import desserts from '../../images/desserts.jpg'
 const NosEngagements = () => {
   return (
     <Container fluid class="mb-5">
-      <Row>
-        <Col>
+      <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h1 class="mt-5 text-center"> Nos engagements</h1>
-        </Col>
-      </Row>
+        </div>
+      </div>
       {/* ------------------------- 1ère partie de la page ------------------------ */}
       <Row>
         <Col>
