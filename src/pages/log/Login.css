@@ -1,10 +1,10 @@
 .containedLogin {
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-height: 100vh;
-margin: 50px 0 50px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 50px 0 50px 0;
 }
 
 .formLogin {
@@ -16,7 +16,6 @@ margin: 50px 0 50px 0;
     align-items: center;
     border: 1px solid black;
     padding: 30px;
-    /* min-width: 40%; */
     max-width: 100%;
 }
 
@@ -24,7 +23,7 @@ margin: 50px 0 50px 0;
     color: #5F8D85;
 }
 
-@media (min-width: 900px){
+@media (min-width: 900px) {
     .containedLogin {
         margin: 0;
     }
@@ -35,4 +34,8 @@ margin: 50px 0 50px 0;
         width: 300px;
         margin: 0;
     }
+}
+
+.MenuIcon:focus {
+    outline: none !important;
 }

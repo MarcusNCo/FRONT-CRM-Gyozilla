@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { getAllProducts } from '../../utils/api-call/getAllProducts'
 import CircularProgress from '@mui/material/CircularProgress'
-// import Card from '@mui/material/Card'
+import Box from '@mui/material/Box'
 // import CardContent from '@mui/material/CardContent'
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
 import './Products.css'
-import CustomCard from '../../components/Card/CustomCard'
+import CustomCard from '../../components/card/CustomCard'
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from '../../components/CustomListItem/CustomListItemProducts'
+import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
 import CustomButton from '../../components/button/CustomButton'
 // import { Fab, IconButton } from "@mui/material";
-import { Fab } from '@mui/material'
+// import { Fab } from '@mui/material'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
+// import { useHistory } from 'react-router-dom';
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -45,6 +46,12 @@ const Products = () => {
       image: 'boissons.jpg',
     },
   ]
+
+  // function handleClick() {
+  //   const history = useHistory();
+  //   history.goBack();
+  // }
+
 
   useEffect(() => {
     getAllProducts()
@@ -90,21 +97,24 @@ const Products = () => {
       return null
     }
   })
+
   return (
     <>
-      <div className="container" style={{ display: 'flex' }}>
+      <Box style={{ display: 'flex', margin: '0' }}>
         <CustomListItemProducts
           selected={selected}
           onClick={handleListItemClick}
           setSelected={setSelected}
           className="custom-list-item"
         />
-        <div
-          className="products"
+        <Box
           style={{
             flexWrap: 'wrap',
             width: '100vw',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'space-evenly',
+            margin: '0 auto 0 auto',
           }}
         >
           {selectedListItem === null || selectedListItem === 0 ? (
@@ -148,8 +158,8 @@ const Products = () => {
               )
             })
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {/* bouton retour en version desktop */}
       <CustomButton
@@ -158,6 +168,7 @@ const Products = () => {
         width="100px"
         startIcon={<KeyboardReturnIcon />}
         sx={{ padding: '0 20px 0 20px' }}
+        // onClick={handleClick}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}

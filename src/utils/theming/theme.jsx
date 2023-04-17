@@ -64,6 +64,7 @@ const theme = createTheme({
           '&:hover': {
             color: '#F8A500',
           },
+          fontSize: '1.2rem !important',
         },
       },
     },
@@ -141,7 +142,7 @@ const theme = createTheme({
     MuiListItemText: {
       styleOverrides: {
         root: {
-          fontSize: '1rem',
+          fontSize: '1.0rem',
           [bp.down('lg')]: {
             fontSize: '0.8rem',
             padding: '8px',
@@ -223,7 +224,7 @@ const theme = createTheme({
     },
     hbox: {
       color: '#F8A500',
-      fontSize: '2.0rem',
+      fontSize: '1.5rem',
       fontFamily: 'Garamond',
       fontWeight: 'bold',
     },        
@@ -234,7 +235,7 @@ const theme = createTheme({
     },
     p: {
       color: '#EAEAEA',
-      fontSize: '1rem',
+      fontSize: '0.9rem',
       fontFamily: 'Garamond',
     },
     '@font-face': {
