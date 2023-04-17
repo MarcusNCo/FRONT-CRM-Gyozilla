@@ -6,9 +6,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
 import "./Products.css";
-import CustomCard from "../../components/Card/CustomCard";
+import CustomCard from "../../components/card/CustomCard";
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from "../../components/CustomListItem/CustomListItemProducts";
+import CustomListItemProducts from "../../components/customlistitem/CustomListitemProducts";
 import CustomButton from "../../components/button/CustomButton";
 // import { Fab, IconButton } from "@mui/material";
 import { Fab } from "@mui/material";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Log.css";
+import "./Login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,7 @@ import { LoadingButton } from "@mui/lab";
 import { toast, ToastContainer } from "react-toastify";
 import CustomInput from "../../components/input/CustomInput";
 import Products from "../products/Products";
+import logo from "../../images/gyozilla-logo.png";
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

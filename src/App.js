@@ -10,7 +10,7 @@ import NosEngagements from "./pages/nosengagements/NosEngagements";
 import ContactForm from "./pages/contact/ContactForm";
 import Login from "./pages/log/Login";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
-import UserContextProvider from "./utils/context/UserContext";
+import UserContextProvider from "./utils/context/userContext";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 
 function App() {
