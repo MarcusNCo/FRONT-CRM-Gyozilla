@@ -1,53 +1,53 @@
-import * as React from 'react'
-import './MenuBurger.css'
-import { useState } from 'react'
-import { styled } from '@mui/material/styles'
-import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import Collapse from '@mui/material/Collapse'
-import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
-import RamenDiningIcon from '@mui/icons-material/RamenDining'
-import CoPresentIcon from '@mui/icons-material/CoPresent'
-import PinDropIcon from '@mui/icons-material/PinDrop'
-import ContactMailIcon from '@mui/icons-material/ContactMail'
-import { Divider } from '@mui/material'
+import * as React from "react";
+import "./MenuBurger.css";
+import { useState } from "react";
+import { styled } from "@mui/material/styles";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import RamenDiningIcon from "@mui/icons-material/RamenDining";
+import CoPresentIcon from "@mui/icons-material/CoPresent";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import { Divider } from "@mui/material";
 
 const MyDrawer = styled(Drawer)({
-  '& .MuiDrawer-paper': {
-    boxSizing: 'border-box',
+  "& .MuiDrawer-paper": {
+    boxSizing: "border-box",
     width: 240,
   },
-})
+});
 
 export default function MenuBurger() {
-  const [open, setOpen] = useState(false)
-  const [openLaCarte, setOpenLaCarte] = useState(false)
-  const [openNosEngagements, setOpenNosEngagements] = useState(false)
-  const [openContactezNous, setOpenContactezNous] = useState(false)
-  const [openTrouverUnResto, setOpenTrouverUnResto] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openLaCarte, setOpenLaCarte] = useState(false);
+  const [openNosEngagements, setOpenNosEngagements] = useState(false);
+  const [openContactezNous, setOpenContactezNous] = useState(false);
+  const [openTrouverUnResto, setOpenTrouverUnResto] = useState(false);
 
   const handleClick = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const handleClickLaCarte = () => {
-    setOpenLaCarte(!openLaCarte)
-  }
+    setOpenLaCarte(!openLaCarte);
+  };
 
   const handleClickNosEngagements = () => {
-    setOpenNosEngagements(!openNosEngagements)
-  }
+    setOpenNosEngagements(!openNosEngagements);
+  };
 
   const handleClickContactezNous = () => {
-    setOpenContactezNous(!openContactezNous)
-  }
+    setOpenContactezNous(!openContactezNous);
+  };
 
   const handleClickTrouverUnResto = () => {
-    setOpenTrouverUnResto(!openTrouverUnResto)
-  }
+    setOpenTrouverUnResto(!openTrouverUnResto);
+  };
 
   return (
     <React.Fragment>
@@ -71,9 +71,9 @@ export default function MenuBurger() {
           //   // </ListSubheader>
           // }
         >
-          <ListItemButton class="burgerList" onClick={handleClickLaCarte}>
+          <ListItemButton className="burgerList" onClick={handleClickLaCarte}>
             <RamenDiningIcon
-              style={{ marginRight: '20px', marginLeft: '20px' }}
+              style={{ marginRight: "20px", marginLeft: "20px" }}
             />
             <ListItemText primary="La carte" class="titleList" />
           </ListItemButton>
@@ -101,13 +101,13 @@ export default function MenuBurger() {
           </Collapse>
           <Divider />
           <ListItemButton
-            class="burgerList"
+            className="burgerList"
             onClick={handleClickNosEngagements}
           >
             <CoPresentIcon
-              style={{ marginRight: '20px', marginLeft: '20px' }}
+              style={{ marginRight: "20px", marginLeft: "20px" }}
             />
-            <ListItemText primary="Nos engagements" class="titleList" />
+            <ListItemText primary="Nos engagements" className="titleList" />
           </ListItemButton>
           <Collapse in={openNosEngagements} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -123,22 +123,25 @@ export default function MenuBurger() {
             </List>
           </Collapse>
           <Divider />
-          <ListItemButton class="burgerList" onClick={handleClickContactezNous}>
+          <ListItemButton
+            className="burgerList"
+            onClick={handleClickContactezNous}
+          >
             <ContactMailIcon
-              style={{ marginRight: '20px', marginLeft: '20px' }}
+              style={{ marginRight: "20px", marginLeft: "20px" }}
             />
             <ListItemText primary="Contactez-nous" class="titleList" />
           </ListItemButton>
           <Divider />
           <ListItemButton
-            class="burgerList"
+            className="burgerList"
             onClick={handleClickTrouverUnResto}
           >
-            <PinDropIcon style={{ marginRight: '20px', marginLeft: '20px' }} />
-            <ListItemText primary="Trouver un resto" class="titleList" />
+            <PinDropIcon style={{ marginRight: "20px", marginLeft: "20px" }} />
+            <ListItemText primary="Trouver un resto" className="titleList" />
           </ListItemButton>
         </List>
       </MyDrawer>
     </React.Fragment>
-  )
+  );
 }
