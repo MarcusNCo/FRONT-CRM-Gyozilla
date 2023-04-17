@@ -37,6 +37,9 @@ const Login = () => {
           justifyContent: "space-evenly",
           alignItems: "center",
           height: "calc(100vh - 100px)",
+          [theme.breakpoints.down("sm")]: {
+            height: "calc(100vh - 56px)"
+          },
         }}
       >
         <Box

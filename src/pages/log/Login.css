@@ -16,8 +16,8 @@ margin: 50px 0 50px 0;
     align-items: center;
     border: 1px solid black;
     padding: 30px;
-    min-width: 40%;
-    max-width: 70%;
+    /* min-width: 40%; */
+    max-width: 100%;
 }
 
 .loginTitle {
