@@ -161,18 +161,19 @@ const Products = () => {
       ></CustomButton>
 
       {/* bouton retour en version mobile */}
-      {/* <Fab 
+      <Fab
         size="small"
         style={{
-          color:"#FFF", 
-          backgroundColor:"#F8A500",
-          position: "fixed",
+          color: '#FFF',
+          backgroundColor: '#F8A500',
+          position: 'fixed',
           bottom: 16,
           right: 16,
         }}
-        aria-label="return">
+        aria-label="return"
+      >
         <KeyboardReturnIcon />
-      </Fab> */}
+      </Fab>
     </>
   )
 }

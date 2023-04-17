@@ -8,23 +8,35 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
 import NosEngagements from './pages/nosengagements/NosEngagements'
 import ContactForm from './pages/contact/ContactForm'
-import Log from './pages/log/Login'
+import Login from './pages/log/Login'
+import ForgotPassword from './pages/forgot-password/ForgotPassword'
+import UserContextProvider from './utils/context/UserContext'
+import ResetPassword from './pages/reset-password/ResetPassword'
 
 function App() {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
-        <Router>
-          <Header />
-          <Routes>
-            <Route exact path="/" element={<Log />} />
-            <Route exact path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/nosengagements" element={<NosEngagements />} />
-            <Route path="/contact" element={<ContactForm />} />
-          </Routes>
-          <Footer />
-        </Router>
+        <UserContextProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route exact path="/" element={<Log />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route
+                exact
+                path="/forgot-password"
+                element={<ForgotPassword />}
+              />
+              <Route exact path="/reset-password" element={<ResetPassword />} />
+              <Route exact path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/nosengagements" element={<NosEngagements />} />
+              <Route path="/contact" element={<ContactForm />} />
+            </Routes>
+            <Footer />
+          </Router>
+        </UserContextProvider>
       </ThemeProvider>
     </>
   )
