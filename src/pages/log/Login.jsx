@@ -125,29 +125,6 @@ const Login = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  {/* <CustomForm
-                    inputs={[
-                      {
-                        name: 'email',
-                        label: 'Email',
-                        type: 'email',
-                        value: values.email,
-                        onChange: handleChange,
-                        errors: touched.email && errors.email,
-                        variant: 'outlined'
-                      },
-                      {
-                        name: 'password',
-                        label: 'Password',
-                        type: 'password',
-                        secure: 'true',
-                        value: values.password,
-                        onChange: handleChange,
-                        errors: touched.password && errors.password,
-                        variant: 'outlined'
-                      },
-                    ]}
-                  /> */}
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Connexion
                   </LoadingButton>

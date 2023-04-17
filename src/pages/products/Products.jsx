@@ -175,8 +175,8 @@ const Products = () => {
       {/* <Fab 
         size="small"
         style={{
-          color:"#FFF", 
-          backgroundColor:"#F8A500",
+          color: "#FFF",
+          backgroundColor: "#F8A500",
           position: "fixed",
           bottom: 16,
           right: 16,
