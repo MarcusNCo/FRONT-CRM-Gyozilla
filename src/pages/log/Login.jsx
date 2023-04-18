@@ -56,7 +56,7 @@ const Login = () => {
           alt="The house from the offer."
           src={logo}
         />
-        <div className="containedLogin">
+        <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
           <ToastContainer />
           <Formik
@@ -134,7 +134,7 @@ const Login = () => {
               );
             }}
           </Formik>
-        </div>
+        </Box>
       </Box>
     </>
   );
