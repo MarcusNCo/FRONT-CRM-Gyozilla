@@ -13,10 +13,10 @@ const Footer = (props) => {
   const FooterContainer = styled("div")(({ theme }) => ({
     backgroundColor: "#242928",
     color: "#CDE8E7",
-    padding: "16px",
-    minHeight: "100px",
+    padding: "0 16px 16px 16px",
+    minHeight: "80px",
     [theme.breakpoints.down("sm")]: {
-      minHeight: "400px",
+      minHeight: "420px",
       padding: '0 16px 0 16px'
     },
     display: "flex",
@@ -128,10 +128,10 @@ const Footer = (props) => {
     <>
       <footer>
         <FooterContainer>
-          <Grid container spacing={1} sx={{ justifyContent: 'space-evenly' }}>
+          <Grid container spacing={1} sx={{ justifyContent: 'space-evenly', marginTop: '10px' }}>
             <Grid item xs={12} sm={4} 
             sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperLeft variant="h7" textalignment={textAlignmentLeft}>
+              <TypographyWrapperLeft variant="h7w" textalignment={textAlignmentLeft}>
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperLeft>
               <SocialIcons>
@@ -165,7 +165,7 @@ const Footer = (props) => {
             </Grid>
             <Grid item xs={12} sm={4}
             sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperRight variant="h7" textalignment={textAlignmentRight}>
+              <TypographyWrapperRight variant="h7w" textalignment={textAlignmentRight}>
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperRight>
               <AppIcons>
@@ -179,21 +179,21 @@ const Footer = (props) => {
                 <Link
                   href="#"
                   underline="none"
-                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7", fontSize: '1.0rem !important' }}
                 >
                   La carte
                 </Link>
                 <Link
                   href="#"
                   underline="none"
-                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7", fontSize: '1.0rem !important' }}
                 >
                   Nos engagements
                 </Link>
                 <Link
                   href="#"
                   underline="none"
-                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7", fontSize: '1.0rem !important' }}
                 >
                   Actualités
                 </Link>
@@ -204,14 +204,14 @@ const Footer = (props) => {
                 <Link
                   href="#"
                   underline="none"
-                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7", fontSize: '1.0rem !important' }}
                 >
                   Recrutement
                 </Link>
                 <Link
                   href="#"
                   underline="none"
-                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7" }}
+                  sx={{ margin: "0 10px 0 10px", color: "#CDE8E7", fontSize: '1.0rem !important' }}
                   align="center"
                 >
                   Mentions légales
@@ -232,9 +232,10 @@ const Footer = (props) => {
               target="_blank"
               rel="noopener"
               sx={{
-                margin: "0 !important",
+                // margin: "0 !important",
                 padding: "0 0 0 5px !important",
-                fontSize: "0.8rem",
+                fontSize: "0.9rem !important",
+                // marginBottom: '10px !important',
               }}
             >
               www.mangerbouger.fr
