@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
-import Logo from "./../../assets/images/gyozillalog.png";
-import mobileLogo from "./../../assets/images/gyozillalogo.png";
+import Logo from "../../images/gyozillalog.png";
+import mobileLogo from "../../images/gyozillalogo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";

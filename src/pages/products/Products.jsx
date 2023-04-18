@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 // import CardContent from '@mui/material/CardContent'
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
-import "./Products.css";
 import CustomCard from "../../components/card/CustomCard";
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
 import CustomListItemProducts from "../../components/customlistitem/CustomListitemProducts";
@@ -14,6 +13,8 @@ import CustomButton from "../../components/button/CustomButton";
 // import { Fab } from '@mui/material'
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 // import { useHistory } from 'react-router-dom';
+
+import styles from "./Products.module.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -104,7 +105,7 @@ const Products = () => {
           selected={selected}
           onClick={handleListItemClick}
           setSelected={setSelected}
-          className="custom-list-item"
+          className={styles.suppCard}
         />
         <Box
           style={{

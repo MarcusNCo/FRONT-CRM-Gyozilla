@@ -1,35 +1,37 @@
-import * as React from 'react'
-import { useState } from 'react'
-import { styled } from '@mui/material/styles'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import ListSubheader from '@mui/material/ListSubheader'
-import { Divider } from '@mui/material'
+import * as React from "react";
+import { useState } from "react";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import { Divider } from "@mui/material";
 
 export default function CustomListItemProducts({
   onClick,
   selected,
   setSelected,
+  className,
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleClick = (e, number) => {
-    setOpen(!open)
-    onClick(e, number)
-    setSelected(number)
-  }
+    setOpen(!open);
+    onClick(e, number);
+    setSelected(number);
+  };
 
   return (
     <Card
       style={{
-        width: '20vw',
-        height: 'fit-content',
-        display: 'flex',
-        justifyContent: 'center',
+        width: "20vw",
+        height: "fit-content",
+        display: "flex",
+        justifyContent: "center",
       }}
+      className={className}
     >
       <CardContent>
         <List
@@ -41,7 +43,7 @@ export default function CustomListItemProducts({
         >
           <ListItemButton
             selected={selected === 1 ? true : null}
-            className={selected === 1 ? 'active' : null}
+            className={selected === 1 ? "active" : null}
             onClick={(e) => handleClick(e, 1)}
           >
             <ListItemText primary="Nouveautés" />
@@ -49,7 +51,7 @@ export default function CustomListItemProducts({
           <Divider />
           <ListItemButton
             selected={selected === 2 ? true : null}
-            className={selected === 2 ? 'active' : null}
+            className={selected === 2 ? "active" : null}
             onClick={(e) => handleClick(e, 2)}
           >
             <ListItemText primary="Les Menus" />
@@ -58,7 +60,7 @@ export default function CustomListItemProducts({
 
           <ListItemButton
             selected={selected === 3 ? true : null}
-            className={selected === 3 ? 'active' : null}
+            className={selected === 3 ? "active" : null}
             onClick={(e) => handleClick(e, 3)}
           >
             <ListItemText primary="Entrées" />
@@ -67,7 +69,7 @@ export default function CustomListItemProducts({
 
           <ListItemButton
             selected={selected === 4 ? true : null}
-            className={selected === 4 ? 'active' : null}
+            className={selected === 4 ? "active" : null}
             onClick={(e) => handleClick(e, 4)}
           >
             <ListItemText primary="Plats" />
@@ -76,7 +78,7 @@ export default function CustomListItemProducts({
 
           <ListItemButton
             selected={selected === 5 ? true : null}
-            className={selected === 5 ? 'active' : null}
+            className={selected === 5 ? "active" : null}
             onClick={(e) => handleClick(e, 5)}
           >
             <ListItemText primary="Desserts" />
@@ -85,7 +87,7 @@ export default function CustomListItemProducts({
 
           <ListItemButton
             selected={selected === 6 ? true : null}
-            className={selected === 6 ? 'active' : null}
+            className={selected === 6 ? "active" : null}
             onClick={(e) => handleClick(e, 6)}
           >
             <ListItemText primary="Boissons" />
@@ -93,5 +95,5 @@ export default function CustomListItemProducts({
         </List>
       </CardContent>
     </Card>
-  )
+  );
 }

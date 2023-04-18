@@ -1,0 +1,14 @@
+@media screen and (max-width: 992px) {
+  .suppCard {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #root
+    > div.App
+    > div:nth-child(1)
+    > button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.css-2yg36p-MuiButtonBase-root-MuiFab-root {
+    display: none !important;
+  }
+}

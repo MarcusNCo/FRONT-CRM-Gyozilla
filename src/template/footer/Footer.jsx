@@ -1,4 +1,10 @@
-import { Grid, Typography, IconButton, Link, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  IconButton,
+  Link,
+  useMediaQuery,
+} from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -11,13 +17,13 @@ import CustomButton from "../../components/button/CustomButton";
 
 const Footer = (props) => {
   const FooterContainer = styled("div")(({ theme }) => ({
-    backgroundColor: "#242928",
+    backgroundColor: "#38373C",
     color: "#CDE8E7",
     padding: "16px",
     minHeight: "100px",
     [theme.breakpoints.down("sm")]: {
       minHeight: "400px",
-      padding: '0 16px 0 16px'
+      padding: "0 16px 0 16px",
     },
     display: "flex",
     flexDirection: "column",
@@ -36,12 +42,12 @@ const Footer = (props) => {
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
-    marginLeft: '40px',
-    marginTop: '10px',
+    marginLeft: "40px",
+    marginTop: "10px",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
-      marginLeft: 'unset',
-      marginTop: 'unset',
+      marginLeft: "unset",
+      marginTop: "unset",
     },
   }));
 
@@ -120,18 +126,25 @@ const Footer = (props) => {
     textAlign: textalignment,
   }));
 
-  const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down('sm'));
-  const textAlignmentLeft = isSmallScreen ? 'center' : 'left';
-  const textAlignmentRight = isSmallScreen ? 'center' : 'right';
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const textAlignmentLeft = isSmallScreen ? "center" : "left";
+  const textAlignmentRight = isSmallScreen ? "center" : "right";
 
   return (
     <>
       <footer>
         <FooterContainer>
-          <Grid container spacing={1} sx={{ justifyContent: 'space-evenly' }}>
-            <Grid item xs={12} sm={4} 
-            sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperLeft variant="h7" textalignment={textAlignmentLeft}>
+          <Grid container spacing={1} sx={{ justifyContent: "space-evenly" }}>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <TypographyWrapperLeft
+                variant="h7"
+                textalignment={textAlignmentLeft}
+              >
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperLeft>
               <SocialIcons>
@@ -154,18 +167,25 @@ const Footer = (props) => {
                 "@media (max-width: 600px)": {
                   display: "none",
                 },
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Logo>
                 <LogoImg src={logo} alt="Logo" />
               </Logo>
             </Grid>
-            <Grid item xs={12} sm={4}
-            sx={{ display: 'flex', flexDirection: 'column' }} >
-              <TypographyWrapperRight variant="h7" textalignment={textAlignmentRight}>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <TypographyWrapperRight
+                variant="h7"
+                textalignment={textAlignmentRight}
+              >
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperRight>
               <AppIcons>
@@ -216,17 +236,22 @@ const Footer = (props) => {
                 >
                   Mentions légales
                 </Link>
-                <CustomButton text="Contactez-nous" variant="contained" height='40px' fontSize='0.8rem' />
+                <CustomButton
+                  text="Contactez-nous"
+                  variant="contained"
+                  height="40px"
+                  fontSize="0.8rem"
+                />
               </LinkContainer>
             </Grid>
           </Grid>
-          <BottomText 
-              sx={{
-                fontSize: "0.8rem",
-              }}
+          <BottomText
+            sx={{
+              fontSize: "0.8rem",
+            }}
           >
-            GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et légumes
-            par jour.
+            GYOZILLA, 2022. Pour votre santé, mangez au moins cinq fruits et
+            légumes par jour.
             <Link
               href="https://www.mangerbouger.fr/"
               target="_blank"

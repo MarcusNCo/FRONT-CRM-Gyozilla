@@ -4,6 +4,10 @@
   object-fit: cover;
   object-position: center center;
 }
+.backgroundHome {
+  height: calc(100vh - 100px);
+  margin-bottom: 100px;
+}
 
 .logoEcriture {
   width: 40vw;
@@ -16,7 +20,25 @@
   .logoEcriture {
     display: none;
   }
+  .backgroundHome img:first-of-type {
+    object-position: left;
+    height: 50vh;
+    width: 100vw;
+  }
   .backgroundHome {
-    height: calc(100vh);
+    height: 50vh;
+    margin-bottom: 50px;
+  }
+
+  .arrowBottom {
+    width: 50px;
+    position: absolute;
+    bottom: 22rem !important;
+  }
+  .gridContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll !important;
+    white-space: "nowrap";
   }
 }
