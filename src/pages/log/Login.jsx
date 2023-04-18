@@ -10,7 +10,7 @@ import CustomInput from "../../components/input/CustomInput";
 import Products from "../products/Products";
 import logo from "../../images/gyozilla-logo.png";
 import { Box, useTheme } from "@mui/system";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
