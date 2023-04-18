@@ -6,7 +6,7 @@ import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
-// import NosEngagements from './pages/nosengagements/NosEngagements'
+import NosEngagements from './pages/nosengagements/NosEngagements'
 import ContactForm from './pages/contact/ContactForm'
 import CreateUser from './pages/createuser/CreateUser'
 import Profil from './pages/profil/Profil'
@@ -35,7 +35,7 @@ function App() {
               <Route exact path="/reset-password" element={<ResetPassword />} />
               <Route exact path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
-              {/* <Route path="/nosengagements" element={<NosEngagements />} /> */}
+              <Route path="/nosengagements" element={<NosEngagements />} />
               <Route path="/contact" element={<ContactForm />} />
             </Routes>
             <Footer />
