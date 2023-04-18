@@ -39,7 +39,7 @@ const Login = () => {
           alignItems: "center",
           height: "calc(100vh - 100px)",
           [theme.breakpoints.down("sm")]: {
-            height: "calc(100vh - 56px)"
+            height: "calc(100vh - 56px)",
           },
         }}
       >
@@ -50,7 +50,7 @@ const Login = () => {
             width: 300,
             objectFit: "cover",
             [theme.breakpoints.down("sm")]: {
-              display: 'none'
+              display: "none",
             },
           }}
           alt="The house from the offer."
