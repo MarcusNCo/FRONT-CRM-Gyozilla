@@ -15,6 +15,10 @@
     height: 60px !important;
 }
 
+.css-1wjw2l5 {
+    margin-left: 0 !important;
+}
+
 #root > footer > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-3.css-1ls975c-MuiGrid-root, #root > div.css-1lpds82 > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-3.css-1ls975c-MuiGrid-root {
     padding-left: 0 !important;
     padding-top: 0 !important;
@@ -43,5 +47,11 @@
         font-size: 0.8rem;
         padding: 5px;
         white-space: nowrap;
+    }
+}
+
+@media (min-width: 992px) {
+    .css-1wjw2l5 {
+        margin-left: 40px !important;
     }
 }

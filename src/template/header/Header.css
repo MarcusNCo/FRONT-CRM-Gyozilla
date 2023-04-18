@@ -1,29 +1,17 @@
   /* ------------------------- Mobile CSS ----------------------- */
-  .headerMobile {
-    position: 'relative';
-  }
 
   a {
     text-decoration: none;
     color: #739B94;
   }
 
-  body > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
     width: 50vw !important;
   }
 
   /* ------------------------- Web CSS --------------------------- */
   /* Style the header with a grey background and some padding */
-  .headerWeb {
-    overflow: hidden;
-    /* background-color: #f1f1f1; */
-    padding: 10px ;
-    display: flex;
-    justify-content: space-around;
-    /* border-bottom: 1px solid black; */
-    box-shadow: 0 0 .4em black;
-  }
-  
+
   #gyozilla {
     display: flex;
     justify-content: center;
@@ -41,7 +29,7 @@
   }
 
   /* Style the header links */
-  .menu{
+  .menu {
     float: left;
     color: #739B94;
     text-align: center;
@@ -49,18 +37,21 @@
     align-items: center;
     margin-left: 15px;
     padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
+    text-decoration: none !important;
+    font-size: 1.0rem;
     line-height: 25px;
-    border-radius: 4px;
     font-weight: 550;
   }
-  
+
+  .menu:hover {
+    color: #F8A500;
+  }
+
   /* Float the link section to the left */
   .header-left {
     float: left;
     display: flex;
-    justify-content:center ;
+    justify-content: center;
     width: 50%;
   }
 
@@ -69,12 +60,12 @@
     float: right;
     display: flex;
     justify-content: flex-end;
-    align-items: center;   
+    align-items: center;
   }
-  
+
   .containIcon {
     margin: 15px;
-  } 
+  }
 
   .containSearch {
     display: flex;
@@ -84,39 +75,27 @@
     margin: 0px;
     padding: 0px;
   }
-  
+
   .search {
     width: 80%;
   }
 
   ul li {
     font-size: 20px;
+  }
+
+  .menu-item-a {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .menu-item:hover a, .menu-item:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #739B94 !important;
   } 
 
-  /* Change the background color on mouse-over */
-  .menu:hover {
-    background-color: #739B94;
-    color: #f1f1f1;
-  }
-
-  /* -- Mobile version -- */
-  @media screen and (max-width: 992px) {
-    .headerMobile {
-      display: flex;
-    }
-
-    .headerWeb {
-      display: none;
-    }
-  }
-
-  /* ---- Web version --- */
-  @media screen and (min-width: 992px) {
-    .headerMobile {
-      display: none;
-    }
-
-    .headerWeb {
-      display: flex;
-    }
+  body > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper > nav > div {
+    padding-left: 0px !important;
   }
