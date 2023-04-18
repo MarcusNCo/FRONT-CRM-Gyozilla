@@ -1,0 +1,22 @@
+.backgroundHome img:first-of-type {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.logoEcriture {
+  width: 40vw;
+  position: absolute;
+  right: 3vw;
+  bottom: 18vh;
+}
+
+@media (max-width: 992px) {
+  .logoEcriture {
+    display: none;
+  }
+  .backgroundHome {
+    height: calc(100vh);
+  }
+}

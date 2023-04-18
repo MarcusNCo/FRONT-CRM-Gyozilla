@@ -10,6 +10,7 @@ import CustomInput from '../../components/input/CustomInput'
 import Products from '../products/Products'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -55,7 +56,7 @@ const Login = () => {
           alt="The house from the offer."
           src={logo}
         />
-        <div className="containedLogin">
+        <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
           <ToastContainer />
           <Formik
@@ -125,6 +126,7 @@ const Login = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
+                  <Link to="/forgot-password">Mot de passe oublié ?</Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Connexion
                   </LoadingButton>
@@ -132,7 +134,7 @@ const Login = () => {
               )
             }}
           </Formik>
-        </div>
+        </Box>
       </Box>
     </>
   )
