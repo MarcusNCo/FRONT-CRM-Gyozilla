@@ -1,6 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { verifyUser } from '../../utils/api-call/verifyUser';
 import { CircularProgress } from '@mui/material';
 import { toast, ToastContainer } from "react-toastify";
@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 const Verify = () => {
 
     const { token } = useParams()
+    const navigate = useNavigate()
 
     const [isVerified, setIsVerified] = useState(false)
 
@@ -38,16 +39,11 @@ const Verify = () => {
     }, [token]);
 
     if (isVerified) {
-        return (
-            <>
-                <Navigate
-                    to={{
-                        pathname: '/login',
-                        search: 'AccountValid'
-                    }}
-                />
-            </>
-        )
+        navigate("/login", {
+            state: {
+                successMessage: "Votre compte a été vérifié !",
+            }
+        })
     }
 
     return (

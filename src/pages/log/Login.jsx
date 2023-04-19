@@ -9,11 +9,10 @@ import { toast, ToastContainer } from 'react-toastify'
 import CustomInput from '../../components/input/CustomInput'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const initialValues = {
     email: '',
     password: '',
@@ -33,7 +32,7 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer preventDuplicates={false} />
       <Box
         sx={{
           display: 'flex',
@@ -60,7 +59,6 @@ const Login = () => {
         />
         <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
-          <ToastContainer />
           <Formik
             initialValues={initialValues} //transforme en state
             validationSchema={validationSchema}
@@ -79,7 +77,7 @@ const Login = () => {
                   console.error(error.response.data.message);
                   if (error.response.data.message === "L'email n'existe pas") {
                     toast.error(
-                      "L'email n'existe pas.",
+                      "Aucun utilisateur avec cet e-mail n\'a été trouvé.",
                       {
                         position: "top-right",
                         autoClose: 4000,
