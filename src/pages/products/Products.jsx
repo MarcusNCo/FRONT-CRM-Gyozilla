@@ -69,6 +69,7 @@ const Products = () => {
   const handleListItemClick = (event, index) => {
     setSelectedListItem(index);
   };
+
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
   const filteredProducts = products.filter((product) => {
@@ -78,6 +79,8 @@ const Products = () => {
       const today = new Date();
       const yesterday = new Date(today);
       yesterday.setDate(yesterday.getDate() - 1);
+
+      console.log(product.createdAt);
 
       return (
         new Date(product.createdAt) >= yesterday &&
@@ -97,6 +100,10 @@ const Products = () => {
       return null;
     }
   });
+
+  const handleBackClick = () => {
+    window.history.back();
+  };
 
   return (
     <>
@@ -168,7 +175,7 @@ const Products = () => {
         width="100px"
         startIcon={<KeyboardReturnIcon />}
         sx={{ padding: "0 20px 0 20px" }}
-        // onClick={handleClick}
+        onClick={handleBackClick}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}

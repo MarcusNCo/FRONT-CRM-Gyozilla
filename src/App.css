@@ -1,6 +1,5 @@
-/* * {
-  border: 1px solid red
-} */
+/* Remove black border when click on a button with MUI */
+button:focus { outline: none !important;;}
 
 .App {
   text-align: center;

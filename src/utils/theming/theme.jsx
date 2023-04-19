@@ -80,6 +80,23 @@ const theme = createTheme({
         },
       },
     },
+    //        Style des Badges        //
+    MuiBadge: {
+      styleOverrides: {
+        standard: {
+          color: 'white',
+          backgroundColor: '#F8A500'
+        },
+      },
+    },
+    //        Style des icones SVG       //
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          cursor: 'pointer',
+        },
+      },
+    },
     //        Style des cards        //
     MuiCard: {
       styleOverrides: {
@@ -96,13 +113,6 @@ const theme = createTheme({
         },
       },
     },
-    // MuiList: {
-    //   styleOverrides: {
-    //     root: {
-    //       width: '10vw',
-    //     },
-    //   },
-    // },
     MuiListItemButton: {
       styleOverrides: {
         root: {
@@ -227,7 +237,35 @@ const theme = createTheme({
       fontSize: '1.5rem',
       fontFamily: 'Garamond',
       fontWeight: 'bold',
-    },        
+    },
+    hboxb: {
+      color: '#000000',
+      fontSize: '1.5rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+    },
+    h7: {
+      color: '#F8A500',
+      fontSize: '1.2rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+    },
+    h7b: {
+      color: '#000000',
+      fontSize: '1.2rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+    },
+    h7w: {
+      color: '#EAEAEA',
+      fontSize: '1.0rem',
+    },
+    h8b: {
+      color: '#000000',
+      fontSize: '0.9rem',
+      fontFamily: 'Garamond',
+      fontWeight: 'bold',
+    },
     subTitle: {
       color: '#5F8D85',
       fontSize: '2rem',
