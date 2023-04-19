@@ -9,7 +9,7 @@ import Home from "./pages/home/Home";
 // import NosEngagements from './pages/nosengagements/NosEngagements'
 import ContactForm from "./pages/contact/ContactForm";
 import CreateUser from "./pages/createuser/CreateUser";
-import Profil from "./pages/profil/Profil";
+import Profile from "./pages/profile/Profile";
 import Login from "./pages/log/Login";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import UserContextProvider from "./utils/context/UserContext";
@@ -25,7 +25,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
-              <Route exact path="/profil" element={<Profil />} />
+              <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/createuser" element={<CreateUser />} />
               <Route
                 exact

@@ -47,7 +47,7 @@ const Products = () => {
     },
   ];
 
-  // function handleClick() {
+  // function handleBackClick() {
   //   const history = useHistory();
   //   history.goBack();
   // }

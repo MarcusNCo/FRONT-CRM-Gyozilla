@@ -181,7 +181,7 @@ const Header = () => {
             },
             overflow: "hidden",
             padding: "10px",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "0 0 .4em black",
           }}
         >
@@ -189,25 +189,15 @@ const Header = () => {
             <a id="gyozilla" href="/">
               <img src={Logo} alt="Logo de Gyozilla" />
             </a>
-            <Link className="menu" to="/products">
+            <Link className="menu" to="/products" style={{ padding: '0' }}>
               La carte
             </Link>
-            <Link className="menu" to="/nosengagements">
+            <Link className="menu" to="/nosengagements" style={{ padding: '0' }}>
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact">
+            <Link className="menu" to="/contact" style={{ padding: '0' }}>
               Contactez-nous
             </Link>
-          </Box>
-          <Box className="containSearch">
-            <CustomInput
-              htmlFor="toto"
-              id="toto"
-              variant="standard"
-              label="Que cherchez-vous"
-              onChange={handleChangeInput}
-              value={valueInput}
-            />
           </Box>
           <Box className="header-right">
             <a className="containIcon" href="/" onClick={null}>
@@ -256,6 +246,7 @@ const Header = () => {
               overflow: "visible",
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               mr: 1.5,
+              mb: 10,
               "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
