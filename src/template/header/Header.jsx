@@ -20,7 +20,7 @@ import { Logout } from "@mui/icons-material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import Badge from "@mui/material/Badge";
 import Basket from "../../components/basket/Basket";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
@@ -87,7 +87,7 @@ const Header = () => {
     );
   };
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
@@ -181,7 +181,7 @@ const Header = () => {
             },
             overflow: "hidden",
             padding: "10px",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "0 0 .4em black",
           }}
         >
@@ -189,25 +189,19 @@ const Header = () => {
             <a id="gyozilla" href="/">
               <img src={Logo} alt="Logo de Gyozilla" />
             </a>
-            <Link className="menu" to="/products">
+            <Link className="menu" to="/products" style={{ padding: "0" }}>
               La carte
             </Link>
-            <Link className="menu" to="/nosengagements">
+            <Link
+              className="menu"
+              to="/nosengagements"
+              style={{ padding: "0" }}
+            >
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact">
+            <Link className="menu" to="/contact" style={{ padding: "0" }}>
               Contactez-nous
             </Link>
-          </Box>
-          <Box className="containSearch">
-            <CustomInput
-              htmlFor="toto"
-              id="toto"
-              variant="standard"
-              label="Que cherchez-vous"
-              onChange={handleChangeInput}
-              value={valueInput}
-            />
           </Box>
           <Box className="header-right">
             <a className="containIcon" href="/" onClick={null}>
@@ -347,8 +341,14 @@ const Header = () => {
               },
             },
           }}
-          transformOrigin={{ horizontal: isMobile ? "center" : "right", vertical: "top" }}
-          anchorOrigin={{ horizontal: isMobile ? "center" : "right", vertical: "bottom" }}
+          transformOrigin={{
+            horizontal: isMobile ? "center" : "right",
+            vertical: "top",
+          }}
+          anchorOrigin={{
+            horizontal: isMobile ? "center" : "right",
+            vertical: "bottom",
+          }}
         >
           <Basket
             items={cartItems}

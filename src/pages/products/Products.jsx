@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../utils/api-call/getAllProducts";
+
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-// import CardContent from '@mui/material/CardContent'
-// import Button from '@mui/material/Button'
-// import Typography from '@mui/material/Typography'
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import { Fab } from "@mui/material";
+import { useTheme } from "@mui/system";
+
+import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CustomCard from "../../components/card/CustomCard";
-// import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
 import CustomListItemProducts from "../../components/customlistitem/CustomListitemProducts";
 import CustomButton from "../../components/button/CustomButton";
-// import { Fab, IconButton } from "@mui/material";
-// import { Fab } from '@mui/material'
-import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-// import { useHistory } from 'react-router-dom';
 
 import styles from "./Products.module.css";
 
@@ -21,6 +18,9 @@ const Products = () => {
   const [error, setError] = useState(null);
   const [selectedListItem, setSelectedListItem] = useState(0);
   const [selected, setSelected] = useState(0);
+
+  const theme = useTheme();
+
   const categories = [
     {
       id: 3,
@@ -77,13 +77,13 @@ const Products = () => {
       return true;
     } else if (selectedListItem === 1) {
       const today = new Date();
-      const yesterday = new Date(today);
-      yesterday.setDate(yesterday.getDate() - 1);
+      const lastWeek = new Date(today);
+      lastWeek.setDate(lastWeek.getDate() - 7);
 
       console.log(product.createdAt);
 
       return (
-        new Date(product.createdAt) >= yesterday &&
+        new Date(product.createdAt) >= lastWeek &&
         new Date(product.createdAt) <= today
       );
     } else if (selectedListItem === 2) {
@@ -169,28 +169,49 @@ const Products = () => {
       </Box>
 
       {/* bouton retour en version desktop */}
-      <CustomButton
-        text="Retour"
-        height="40px"
-        width="100px"
-        startIcon={<KeyboardReturnIcon />}
-        sx={{ padding: "0 20px 0 20px" }}
-        onClick={handleBackClick}
-      ></CustomButton>
+      <Box
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            display: "none",
+          },
+        }}
+      >
+        <CustomButton
+          text="Retour"
+          height="40px"
+          width="100px"
+          padding="0 20px 0 20px"
+          margin="32px"
+          startIcon={<KeyboardReturnIcon />}
+          onClick={handleBackClick}
+        ></CustomButton>
+      </Box>
 
       {/* bouton retour en version mobile */}
-      {/* <Fab 
-        size="small"
-        style={{
-          color: "#FFF",
-          backgroundColor: "#F8A500",
-          position: "fixed",
-          bottom: 16,
-          right: 16,
+      <Box
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            display: "flex",
+          },
+          [theme.breakpoints.up("sm")]: {
+            display: "none",
+          },
         }}
-        aria-label="return">
-        <KeyboardReturnIcon />
-      </Fab> */}
+      >
+        <Fab
+          size="small"
+          style={{
+            color: "#FFF",
+            backgroundColor: "#F8A500",
+            position: "fixed",
+            bottom: 16,
+            right: 16,
+          }}
+          aria-label="return"
+        >
+          <KeyboardReturnIcon />
+        </Fab>
+      </Box>
     </>
   );
 };
