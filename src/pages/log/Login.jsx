@@ -125,16 +125,6 @@ const Login = () => {
             }}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
-
-              if (isLoggedIn) {
-                return (
-                  <Navigate
-                    to={{
-                      pathname: '/'
-                    }}
-                  />
-                )
-              }
               return (
                 <Form className="formLogin">
                   <CustomInput
