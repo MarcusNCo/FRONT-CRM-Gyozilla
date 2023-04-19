@@ -1,9 +1,8 @@
 import axios from "axios";
-import env from "react-dotenv";
 
 // Création d'une instance Axios
 const instance = axios.create({
-  baseURL: env.URL_API + "/",
+  baseURL: process.env.REACT_APP_URL_API + "/",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
