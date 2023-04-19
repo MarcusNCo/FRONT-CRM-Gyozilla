@@ -14,6 +14,7 @@ export default function CustomListItemProducts({
   selected,
   setSelected,
   className,
+  activeCategory,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -42,16 +43,16 @@ export default function CustomListItemProducts({
           }
         >
           <ListItemButton
-            selected={selected === 1 ? true : null}
-            className={selected === 1 ? "active" : null}
+            selected={selected === 1 || activeCategory === 1}
+            className={selected === 1 || activeCategory === 1 ? "active" : null}
             onClick={(e) => handleClick(e, 1)}
           >
             <ListItemText primary="Nouveautés" />
           </ListItemButton>
           <Divider />
           <ListItemButton
-            selected={selected === 2 ? true : null}
-            className={selected === 2 ? "active" : null}
+            selected={selected === 2 || activeCategory === 2}
+            className={selected === 2 || activeCategory === 2 ? "active" : null}
             onClick={(e) => handleClick(e, 2)}
           >
             <ListItemText primary="Les Menus" />
@@ -59,8 +60,8 @@ export default function CustomListItemProducts({
           <Divider />
 
           <ListItemButton
-            selected={selected === 3 ? true : null}
-            className={selected === 3 ? "active" : null}
+            selected={selected === 3 || activeCategory === 3}
+            className={selected === 3 || activeCategory === 3 ? "active" : null}
             onClick={(e) => handleClick(e, 3)}
           >
             <ListItemText primary="Entrées" />
@@ -68,8 +69,8 @@ export default function CustomListItemProducts({
           <Divider />
 
           <ListItemButton
-            selected={selected === 4 ? true : null}
-            className={selected === 4 ? "active" : null}
+            selected={selected === 4 || activeCategory === 4}
+            className={selected === 4 || activeCategory === 4 ? "active" : null}
             onClick={(e) => handleClick(e, 4)}
           >
             <ListItemText primary="Plats" />
@@ -77,8 +78,8 @@ export default function CustomListItemProducts({
           <Divider />
 
           <ListItemButton
-            selected={selected === 5 ? true : null}
-            className={selected === 5 ? "active" : null}
+            selected={selected === 5 || activeCategory === 5}
+            className={selected === 5 || activeCategory === 5 ? "active" : null}
             onClick={(e) => handleClick(e, 5)}
           >
             <ListItemText primary="Desserts" />
@@ -86,8 +87,8 @@ export default function CustomListItemProducts({
           <Divider />
 
           <ListItemButton
-            selected={selected === 6 ? true : null}
-            className={selected === 6 ? "active" : null}
+            selected={selected === 6 || activeCategory === 6}
+            className={selected === 6 || activeCategory === 6 ? "active" : null}
             onClick={(e) => handleClick(e, 6)}
           >
             <ListItemText primary="Boissons" />

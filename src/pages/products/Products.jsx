@@ -13,15 +13,39 @@ import CustomButton from "../../components/button/CustomButton";
 
 import styles from "./Products.module.css";
 
+import { useNavigate } from "react-router-dom";
+
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedListItem, setSelectedListItem] = useState(0);
+  const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   const theme = useTheme();
 
+  const navigate = useNavigate();
+
+  const TYPE_REPAS = {
+    ENTREES: 1,
+    PLATS: 2,
+    DESSERTS: 3,
+    BOISSONS: 4,
+  };
+
   const categories = [
+    {
+      id: 1,
+      name: "Nouveautés",
+      description: "Découvrez nos nouveautés",
+      image: "badgeHome/badge-nouveautes.png",
+    },
+    {
+      id: 2,
+      name: "Menus",
+      description: "Découvrez nos menus",
+      image: "badgeHome/badge-nouveautes.png",
+    },
     {
       id: 3,
       name: "Entrées",
@@ -48,15 +72,9 @@ const Products = () => {
     },
   ];
 
-  // function handleClick() {
-  //   const history = useHistory();
-  //   history.goBack();
-  // }
-
   useEffect(() => {
     getAllProducts()
       .then((res) => {
-        console.log(res);
         setProducts(res.data);
         setError(null);
       })
@@ -67,43 +85,53 @@ const Products = () => {
   }, []);
 
   const handleListItemClick = (event, index) => {
-    setSelectedListItem(index);
+    setSelectedTypeRepas(index);
+    setActiveCategory(null);
+  };
+
+  const handleBackClick = () => {
+    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
+      navigate(-1);
+      setActiveCategory(null);
+    } else {
+      setSelectedTypeRepas(null);
+      setActiveCategory(null);
+    }
+  };
+
+  const handleCardClick = (category) => {
+    setSelectedTypeRepas(category.id);
+    setActiveCategory(category.id);
   };
 
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
   const filteredProducts = products.filter((product) => {
-    if (selectedListItem === null || selectedListItem === 0) {
+    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
       return true;
-    } else if (selectedListItem === 1) {
+    } else if (selectedTypeRepas === 1) {
       const today = new Date();
       const lastWeek = new Date(today);
       lastWeek.setDate(lastWeek.getDate() - 7);
-
-      console.log(product.createdAt);
 
       return (
         new Date(product.createdAt) >= lastWeek &&
         new Date(product.createdAt) <= today
       );
-    } else if (selectedListItem === 2) {
+    } else if (selectedTypeRepas === 2) {
       return true;
-    } else if (selectedListItem === 3) {
-      return product.productCategory.id === 1;
-    } else if (selectedListItem === 4) {
-      return product.productCategory.id === 2;
-    } else if (selectedListItem === 5) {
-      return product.productCategory.id === 3;
-    } else if (selectedListItem === 6) {
-      return product.productCategory.id === 4;
+    } else if (selectedTypeRepas === 3) {
+      return product.productCategory.id === TYPE_REPAS.ENTREES;
+    } else if (selectedTypeRepas === 4) {
+      return product.productCategory.id === TYPE_REPAS.PLATS;
+    } else if (selectedTypeRepas === 5) {
+      return product.productCategory.id === TYPE_REPAS.DESSERTS;
+    } else if (selectedTypeRepas === 6) {
+      return product.productCategory.id === TYPE_REPAS.BOISSONS;
     } else {
       return null;
     }
   });
-
-  const handleBackClick = () => {
-    window.history.back();
-  };
 
   return (
     <>
@@ -113,6 +141,7 @@ const Products = () => {
           onClick={handleListItemClick}
           setSelected={setSelected}
           className={styles.suppCard}
+          activeCategory={activeCategory}
         />
         <Box
           style={{
@@ -124,7 +153,7 @@ const Products = () => {
             margin: "0 auto 0 auto",
           }}
         >
-          {selectedListItem === null || selectedListItem === 0 ? (
+          {selectedTypeRepas === null || selectedTypeRepas === 0 ? (
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
@@ -134,7 +163,7 @@ const Products = () => {
                   title={category.name}
                   buttonCardText="Voir les produits"
                   variantButton={"contained"}
-                  onButtonCardClick={() => setSelectedListItem(category.id)}
+                  onButtonCardClick={() => handleCardClick(category)}
                   width="250px"
                   height="250px"
                   image={category.image}
@@ -153,6 +182,7 @@ const Products = () => {
             filteredProducts.map((item) => {
               return (
                 <CustomCard
+                  key={item.id}
                   id={item.id}
                   description={item.description}
                   image={item.image}
@@ -200,6 +230,7 @@ const Products = () => {
       >
         <Fab
           size="small"
+          onClick={handleBackClick}
           style={{
             color: "#FFF",
             backgroundColor: "#F8A500",
