@@ -36,11 +36,13 @@ const Home = () => {
       id: 2,
       name: "bons plans",
       image: bonPlans,
+      url: "/products",
     },
     {
       id: 3,
       name: "coin famille",
       image: coinFamille,
+      url: "/products",
     },
   ];
 
