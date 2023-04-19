@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Fab } from "@mui/material";
+import { Badge, Fab } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
@@ -12,6 +12,8 @@ import CustomListItemProducts from "../../components/customlistitem/CustomListit
 import CustomButton from "../../components/button/CustomButton";
 
 import styles from "./Products.module.css";
+
+import nouveautes from "../../images/badge nouveautesFichier 125.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -104,20 +106,22 @@ const Products = () => {
     setActiveCategory(category.id);
   };
 
+  const checkNew = (item) => {
+    const today = new Date();
+    const lastWeek = new Date(today);
+    lastWeek.setDate(lastWeek.getDate() - 7);
+    return (
+      new Date(item.createdAt) >= lastWeek && new Date(item.createdAt) <= today
+    );
+  };
+
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
   const filteredProducts = products.filter((product) => {
     if (selectedTypeRepas === null || selectedTypeRepas === 0) {
       return true;
     } else if (selectedTypeRepas === 1) {
-      const today = new Date();
-      const lastWeek = new Date(today);
-      lastWeek.setDate(lastWeek.getDate() - 7);
-
-      return (
-        new Date(product.createdAt) >= lastWeek &&
-        new Date(product.createdAt) <= today
-      );
+      return checkNew(product);
     } else if (selectedTypeRepas === 2) {
       return true;
     } else if (selectedTypeRepas === 3) {
@@ -148,9 +152,9 @@ const Products = () => {
             flexWrap: "wrap",
             width: "100vw",
             display: "flex",
-            alignItems: "center",
+            // alignItems: "center",
             justifyContent: "space-evenly",
-            margin: "0 auto 0 auto",
+            margin: "30px auto 0 auto",
           }}
         >
           {selectedTypeRepas === null || selectedTypeRepas === 0 ? (
@@ -180,18 +184,42 @@ const Products = () => {
             />
           ) : (
             filteredProducts.map((item) => {
+              const isNew = checkNew(item);
               return (
-                <CustomCard
-                  key={item.id}
-                  id={item.id}
-                  description={item.description}
-                  image={item.image}
-                  buttonCardText="Details"
-                  variantButton={"contained"}
-                  width="250px"
-                  height="250px"
-                  title={item.name}
-                ></CustomCard>
+                <Box key={item.id} style={{ position: "relative" }}>
+                  <CustomCard
+                    id={item.id}
+                    description={item.description}
+                    image={item.image}
+                    buttonCardText="Details"
+                    variantButton={"contained"}
+                    width="250px"
+                    height="250px"
+                    title={item.name}
+                  />
+                  {isNew && (
+                    <Badge
+                      className={styles.badge}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      badgeContent={
+                        <img
+                          src={nouveautes}
+                          alt="Nouveautés"
+                          height={"100px"}
+                          style={{
+                            position: "absolute",
+                            top: "-340px",
+                            right: "-320px",
+                            transformOrigin: "top right",
+                          }}
+                        />
+                      }
+                    ></Badge>
+                  )}
+                </Box>
               );
             })
           )}

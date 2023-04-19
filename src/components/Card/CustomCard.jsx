@@ -1,11 +1,11 @@
-import React from 'react'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Typography from '@mui/material/Typography'
-import CustomButton from '../button/CustomButton'
-import './CustomCard.css'
-import { Box } from '@mui/system'
+import React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import CustomButton from "../button/CustomButton";
+import "./CustomCard.css";
+import { Box } from "@mui/system";
 // import { string } from 'yargs'
 // import { useTheme } from '@mui/material'
 
@@ -30,27 +30,29 @@ const CustomCard = ({
   styleTitle,
   styleParagraph,
   variantButton,
+  zIndex,
 }) => {
-  let dbImage = ''
+  let dbImage = "";
   if (image !== undefined) {
-    dbImage = require('../../images/' + image)
+    dbImage = require("../../images/" + image);
   }
 
   return (
     <Card
       id={id}
       style={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         justifyContent: justifyContentCard,
         alignItems: alignItemsCard,
         width: width,
         height: height,
         backgroundColor: backgroundColor,
         backgroundImage: `url(${dbImage})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        zIndex: zIndex,
       }}
     >
       <CardContent
@@ -58,14 +60,23 @@ const CustomCard = ({
           width: widthContent,
           height: heightContent,
           backgroundColor: backgroundColorContent,
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '0 20px 0 0',
+          display: "flex",
+          flexDirection: "column",
+          padding: "0 20px 0 0",
         }}
       >
-        <Box sx={{ backgroundColor: 'black', padding: '5px 15px 5px 15px', display: 'flex', flexDirection: 'column', borderRadius: '0 0 5px 0', width: 'fit-content' }}>
-          <Typography variant={'hbox'}>{title}</Typography>
-          <Typography variant={'p'}>{description}</Typography>
+        <Box
+          sx={{
+            backgroundColor: "black",
+            padding: "5px 15px 5px 15px",
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: "0 0 5px 0",
+            width: "fit-content",
+          }}
+        >
+          <Typography variant={"hbox"}>{title}</Typography>
+          <Typography variant={"p"}>{description}</Typography>
         </Box>
       </CardContent>
       <CardActions
@@ -82,7 +93,7 @@ const CustomCard = ({
         />
       </CardActions>
     </Card>
-  )
-}
+  );
+};
 
-export default CustomCard
+export default CustomCard;
