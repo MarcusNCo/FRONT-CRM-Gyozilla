@@ -13,10 +13,11 @@ import { Navigate, Link, useLocation } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
 
-    if (location.search == '?AccountValid') {
+    if (location.state && location.state.successMessage && loading) {
       toast.success(
         'Votre compte a été vérifié avec succès.',
         {
@@ -31,10 +32,12 @@ const Login = () => {
         }
       );
     }
-  }, [location])
+    setLoading(false)
+  }, [location, loading])
 
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const initialValues = {
     email: "",
     password: "",
@@ -53,7 +56,7 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer preventDuplicates={false} />
       <Box
         sx={{
           display: "flex",
@@ -80,7 +83,6 @@ const Login = () => {
         />
         <div className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
-          <ToastContainer />
           <Formik
             initialValues={initialValues} //transforme en state
             validationSchema={validationSchema}
@@ -106,7 +108,7 @@ const Login = () => {
                   console.error(error.response.data.message);
                   if (error.response.data.message === "L'email n'existe pas") {
                     toast.error(
-                      "L'email n'existe pas.",
+                      "Aucun utilisateur avec cet e-mail n\'a été trouvé.",
                       {
                         position: "top-right",
                         autoClose: 4000,
