@@ -288,7 +288,7 @@ const Header = () => {
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/create">
+            <a className="menu-item-a" href="/sign-in">
               <AppRegistrationIcon fontSize="small" />
               <Typography
                 variant="body1"

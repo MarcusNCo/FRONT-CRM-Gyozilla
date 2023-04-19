@@ -6,9 +6,11 @@ import { LoadingButton } from '@mui/lab';
 import { toast, ToastContainer } from 'react-toastify';
 import CustomInput from '../../components/input/CustomInput';
 import { resetPassword } from '../../utils/api-call/resetPassword';
+import { Navigate } from 'react-router-dom';
 
 const ResetPassword = () => {
     const [token, setToken] = useState('');
+    const [isReseted, setIsReseted] = useState(false);
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
@@ -36,6 +38,7 @@ const ResetPassword = () => {
                     values.token = token;
                     resetPassword(values)
                         .then(response => {
+                            setIsReseted(true)
                             toast.success('Votre mot de passe a été réinitialisé', {
                                 position: "top-right",
                                 autoClose: 4000,
@@ -65,6 +68,15 @@ const ResetPassword = () => {
                 }}
             >
                 {({ values, handleChange, errors, touched, isSubmitting }) => {
+                    if (isReseted) {
+                        return (
+                            <Navigate
+                                to={{
+                                    pathname: '/login'
+                                }}
+                            />
+                        )
+                    }
                     return (
                         <Form className='formLogin'>
                             <CustomInput
