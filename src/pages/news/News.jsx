@@ -14,6 +14,7 @@ import { Box } from '@mui/system'
 import boissons from '../../images/boissons.jpg'
 import plats from '../../images/plats.jpg'
 import desserts from '../../images/desserts.jpg'
+import actuexample from '../../images/actuexample.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,10 +100,128 @@ const News = () => {
           </Paper>
         </Grid>
         <Grid item>
-          <Paper className={classes.paper}>Block 3</Paper>
+          <Paper className={classes.paper}>
+            <CardMedia
+              class="welcome"
+              component="img"
+              height="140"
+              image={actuexample}
+              alt="une équipe du restaurant"
+            />{' '}
+            <CardMedia />
+          </Paper>
         </Grid>
         <Grid item>
-          <Paper className={classes.paper}>Block 4</Paper>
+          <Paper className={classes.paper}>
+            <Box
+              className="boxStyle"
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}
+            >
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={plats}
+                    alt="quelques plats du restaurant"
+                  />
+                  <h4 class="t4">Nouveautés</h4>
+                  <p class="body1">
+                    Les plats que nous proposons sont variés mais tous préparés
+                    avec amour. Du plus doux au plus épicé, il y aura de quoi
+                    satisfaire chaque personne.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={boissons}
+                    alt="quelques boissons du restaurant"
+                  />
+                  <h4 class="t4">Bons plans !</h4>
+                  <p class="body1">
+                    Les boissons proviennent directement d'Asie, en partenariat
+                    exclusif avec "Chang-Ting". Vous serez étonnés du plaisir
+                    qu'un simple liquide vous procurera.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={desserts}
+                    alt="quelques desserts du restaurant"
+                  />
+                  <h4 class="t4">Coin famille</h4>
+                  <p class="body1">
+                    Nos mets les plus délicats ne sont pas uniquement salés. En
+                    effet, vous prendrez un plaisir fou en dégustant nos
+                    desserts faits maison aussi savoureux les uns que les
+                    autres.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={plats}
+                    alt="quelques plats du restaurant"
+                  />
+                  <h4 class="t4">Nouveautés</h4>
+                  <p class="body1">
+                    Les plats que nous proposons sont variés mais tous préparés
+                    avec amour. Du plus doux au plus épicé, il y aura de quoi
+                    satisfaire chaque personne.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={boissons}
+                    alt="quelques boissons du restaurant"
+                  />
+                  <h4 class="t4">Bons plans !</h4>
+                  <p class="body1">
+                    Les boissons proviennent directement d'Asie, en partenariat
+                    exclusif avec "Chang-Ting". Vous serez étonnés du plaisir
+                    qu'un simple liquide vous procurera.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={desserts}
+                    alt="quelques desserts du restaurant"
+                  />
+                  <h4 class="t4">Coin famille</h4>
+                  <p class="body1">
+                    Nos mets les plus délicats ne sont pas uniquement salés. En
+                    effet, vous prendrez un plaisir fou en dégustant nos
+                    desserts faits maison aussi savoureux les uns que les
+                    autres.
+                  </p>
+                </CardContent>
+              </Card>
+            </Box>
+          </Paper>
         </Grid>
       </Grid>
     </div>

@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { Formik, Form, ErrorMessage } from 'formik'
@@ -8,52 +7,29 @@ import { login } from '../../utils/api-call/login'
 import { LoadingButton } from '@mui/lab'
 import { toast, ToastContainer } from 'react-toastify'
 import CustomInput from '../../components/input/CustomInput'
-import Products from '../products/Products'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
-import { Link } from 'react-router-dom'
-
-const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-=======
-import React, { useEffect, useState } from "react";
-import "./Login.css";
-import "react-toastify/dist/ReactToastify.css";
-import { Formik, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { login } from "../../utils/api-call/login";
-import { LoadingButton } from "@mui/lab";
-import { toast, ToastContainer } from "react-toastify";
-import CustomInput from "../../components/input/CustomInput";
-import logo from "../../images/gyozilla-logo.png";
-import { Box, useTheme } from "@mui/system";
-import { Navigate, Link, useLocation } from "react-router-dom";
+import { Navigate, Link, useLocation } from 'react-router-dom'
 
 const Login = () => {
   const location = useLocation()
 
   useEffect(() => {
-
     if (location.search == '?AccountValid') {
-      toast.success(
-        'Votre compte a été vérifié avec succès.',
-        {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }
-      );
+      toast.success('Votre compte a été vérifié avec succès.', {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      })
     }
   }, [location])
 
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
->>>>>>> 56599071c5bb83739d37486ac89f6a16d5d58b97
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const initialValues = {
     email: '',
     password: '',
@@ -122,11 +98,9 @@ const Login = () => {
                   setSubmitting(false)
                 })
                 .catch((error) => {
-<<<<<<< HEAD
-                  console.error(error)
-                  toast.error(
-                    'Erreur lors de la connexion, veuillez verifier vos informations',
-                    {
+                  console.error(error.response.data.message)
+                  if (error.response.data.message === "L'email n'existe pas") {
+                    toast.error("L'email n'existe pas.", {
                       position: 'top-right',
                       autoClose: 4000,
                       hideProgressBar: false,
@@ -135,74 +109,52 @@ const Login = () => {
                       draggable: true,
                       progress: undefined,
                       theme: 'light',
-                    },
-                  )
-                  setSubmitting(false)
-                })
-=======
-                  console.error(error.response.data.message);
-                  if (error.response.data.message === "L'email n'existe pas") {
+                    })
+                  } else if (
+                    error.response.data.message ===
+                    'Vous devez valider votre compte pour vous connecter'
+                  ) {
                     toast.error(
-                      "L'email n'existe pas.",
+                      'Vous devez valider votre compte pour vous connecter',
                       {
-                        position: "top-right",
+                        position: 'top-right',
                         autoClose: 4000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "light",
-                      }
-                    );
-                  } else if (error.response.data.message === "Vous devez valider votre compte pour vous connecter") {
-                    toast.error(
-                      "Vous devez valider votre compte pour vous connecter",
-                      {
-                        position: "top-right",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      }
-                    );
+                        theme: 'light',
+                      },
+                    )
                   } else {
                     toast.error(
-                      "Erreur lors de la connexion, veuillez verifier vos informations",
+                      'Erreur lors de la connexion, veuillez verifier vos informations',
                       {
-                        position: "top-right",
+                        position: 'top-right',
                         autoClose: 4000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "light",
-                      }
-                    );
+                        theme: 'light',
+                      },
+                    )
                   }
-                  setSubmitting(false);
-                });
->>>>>>> 56599071c5bb83739d37486ac89f6a16d5d58b97
+                  setSubmitting(false)
+                })
             }}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
-
               if (isLoggedIn) {
-<<<<<<< HEAD
-                return <Products />
-=======
                 return (
                   <Navigate
                     to={{
-                      pathname: '/'
+                      pathname: '/',
                     }}
                   />
                 )
->>>>>>> 56599071c5bb83739d37486ac89f6a16d5d58b97
               }
               return (
                 <Form className="formLogin">

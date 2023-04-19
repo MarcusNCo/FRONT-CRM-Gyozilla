@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { getAllProducts } from '../../utils/api-call/getAllProducts'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
-// import CardContent from '@mui/material/CardContent'
-// import Button from '@mui/material/Button'
-// import Typography from '@mui/material/Typography'
+import CardContent from '@mui/material/CardContent'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import './Products.css'
-import CustomCard from '../../components/Card/CustomCard'
-// import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from '../../components/CustomListItem/CustomListItemProducts'
+import CustomCard from '../../components/card/CustomCard'
+import ListItemProducts from '../../components/customlistitem/CustomListItemProducts'
+import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
 import CustomButton from '../../components/button/CustomButton'
 import { Fab, IconButton } from '@mui/material'
-// import { Fab } from '@mui/material'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -167,7 +166,7 @@ const Products = () => {
         width="100px"
         startIcon={<KeyboardReturnIcon />}
         sx={{ padding: '0 20px 0 20px' }}
-      // onClick={handleClick}
+        // onClick={handleClick}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}
