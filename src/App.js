@@ -14,6 +14,7 @@ import Login from './pages/log/Login'
 import ForgotPassword from './pages/forgot-password/ForgotPassword'
 import UserContextProvider from './utils/context/userContext'
 import ResetPassword from './pages/reset-password/ResetPassword'
+import News from './pages/news/News'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/nosengagements" element={<NosEngagements />} />
               <Route path="/contact" element={<ContactForm />} />
+              <Route path="/news" element={<News />} />
             </Routes>
             <Footer />
           </Router>
