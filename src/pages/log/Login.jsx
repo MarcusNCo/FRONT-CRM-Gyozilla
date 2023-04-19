@@ -7,13 +7,11 @@ import { login } from '../../utils/api-call/login'
 import { LoadingButton } from '@mui/lab'
 import { toast, ToastContainer } from 'react-toastify'
 import CustomInput from '../../components/input/CustomInput'
-import Products from '../products/Products'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const initialValues = {
     email: '',
     password: '',
@@ -29,6 +27,7 @@ const Login = () => {
   })
 
   const theme = useTheme()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -66,19 +65,12 @@ const Login = () => {
               login(values)
                 .then((response) => {
                   if (response.data.message === 'Authentification réussi') {
-                    setIsLoggedIn(true)
+                    navigate("/products", {
+                      state: {
+                        successMessage: "Vous êtes connecté !",
+                      }
+                    })
                   }
-                  toast.success('Vous êtes connecté', {
-                    position: 'top-right',
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                  })
-                  setSubmitting(false)
                 })
                 .catch((error) => {
                   console.error(error)
@@ -100,9 +92,6 @@ const Login = () => {
             }}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
-              if (isLoggedIn) {
-                return <Products />
-              }
               return (
                 <Form className="formLogin">
                   <CustomInput

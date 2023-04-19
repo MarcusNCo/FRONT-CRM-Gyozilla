@@ -12,7 +12,7 @@ import CreateUser from './pages/createuser/CreateUser'
 import Profile from './pages/profile/Profile'
 import Login from './pages/log/Login'
 import ForgotPassword from './pages/forgot-password/ForgotPassword'
-import UserContextProvider from './utils/context/userContext'
+import UserContextProvider from './utils/context/UserContext'
 import ResetPassword from './pages/reset-password/ResetPassword'
 
 function App() {
