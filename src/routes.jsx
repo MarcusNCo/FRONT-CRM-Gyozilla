@@ -2,6 +2,7 @@ import Home from './pages/home/Home'
 import Login from './utils/login'
 import Products from './pages/products/Products'
 import { Routes, Route } from 'react-router-dom'
+import Verify from './pages/verify/Verify'
 
 function RoutesConfig() {
   const routes = [
@@ -12,6 +13,10 @@ function RoutesConfig() {
     {
       path: '/products',
       element: <Products />,
+    },
+    {
+      path: '/verify/:token',
+      element: <Verify />,
     },
   ]
 

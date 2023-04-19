@@ -6,9 +6,9 @@ import Box from '@mui/material/Box'
 // import Button from '@mui/material/Button'
 // import Typography from '@mui/material/Typography'
 import './Products.css'
-import CustomCard from '../../components/card/CustomCard'
+import CustomCard from '../../components/Card/CustomCard'
 // import ListItemProducts from "../../components/customlistitem/CustomListItemProducts";
-import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
+import CustomListItemProducts from '../../components/CustomListItem/CustomListItemProducts'
 import CustomButton from '../../components/button/CustomButton'
 import { Fab, IconButton } from '@mui/material'
 // import { Fab } from '@mui/material'
@@ -167,7 +167,7 @@ const Products = () => {
         width="100px"
         startIcon={<KeyboardReturnIcon />}
         sx={{ padding: '0 20px 0 20px' }}
-        // onClick={handleClick}
+      // onClick={handleClick}
       ></CustomButton>
 
       {/* bouton retour en version mobile */}

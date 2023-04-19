@@ -15,6 +15,7 @@ import ForgotPassword from './pages/forgot-password/ForgotPassword'
 import UserContextProvider from './utils/context/userContext'
 import ResetPassword from './pages/reset-password/ResetPassword'
 import News from './pages/news/News'
+import Verify from './pages/verify/Verify'
 
 function App() {
   return (
@@ -27,14 +28,14 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/profil" element={<Profil />} />
-              <Route exact path="/createuser" element={<CreateUser />} />
+              <Route exact path="/sign-in" element={<CreateUser />} />
+              <Route exact path="/verify/:token" element={<Verify />} />
               <Route
                 exact
                 path="/forgot-password"
                 element={<ForgotPassword />}
               />
               <Route exact path="/reset-password" element={<ResetPassword />} />
-              <Route exact path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/nosengagements" element={<NosEngagements />} />
               <Route path="/contact" element={<ContactForm />} />
