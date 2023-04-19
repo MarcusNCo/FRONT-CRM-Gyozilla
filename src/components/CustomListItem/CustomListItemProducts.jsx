@@ -27,17 +27,10 @@ export default function CustomListItemProducts({
   return (
     <Card
       style={{
-<<<<<<< HEAD
-        width: "20vw",
+        maxWidth: "230px",
         height: "fit-content",
         display: "flex",
         justifyContent: "center",
-=======
-        maxWidth: '230px',
-        height: 'fit-content',
-        display: 'flex',
-        justifyContent: 'center',
->>>>>>> 22471dfac70b9614127eb6d32bfb0a04d6de0d88
       }}
       className={className}
     >
