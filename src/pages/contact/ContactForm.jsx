@@ -18,6 +18,7 @@ const ContactForm = () => {
     >
       <CustomForm inputs={[]} />
       {/* <Container className="bodyCont" maxWidth="xl"> */}
+      {/* --------------------------------- Colonne de gauche --------------------------------- */}
       <Box
         id="firstCol"
         sx={{
@@ -60,6 +61,7 @@ const ContactForm = () => {
           ml={8}
           mr={8}
           mt={4}
+          mb={4}
           className="contactText"
         >
           {' '}
@@ -99,9 +101,16 @@ const ContactForm = () => {
             rows={4}
             defaultValue="Default Value"
           />
-          <CustomButton text={'Envoyer'} width={'25%'}></CustomButton>
+          <CustomButton
+            class="custbtn"
+            text={'Envoyer'}
+            width={'25%'}
+          ></CustomButton>
         </Box>
       </Box>
+      {/* ------------------------------------------------------------------------------------- */}
+
+      {/* --------------------------------- Colonne de droite --------------------------------- */}
       <Box
         id="secondCol"
         sx={{
@@ -163,7 +172,7 @@ const ContactForm = () => {
           contact@gyozilla.fr
         </Typography>
       </Box>
-
+      {/* ------------------------------------------------------------------------------------- */}
       {/* </Container> */}
     </Container>
   )

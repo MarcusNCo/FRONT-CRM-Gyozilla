@@ -18,7 +18,13 @@ const CustomButton = ({
       onClick={onClick}
       variant={variant}
       startIcon={startIcon}
-      style={{ backgroundColor: backgroundColor, color: color, width: width, height: height, fontSize: fontSize }}
+      style={{
+        backgroundColor: backgroundColor,
+        color: color,
+        width: width,
+        height: height,
+        fontSize: fontSize,
+      }}
     >
       {text}
     </Button>

@@ -10,10 +10,14 @@ body{
 
 #firstCol{
     background-color: #5F8D85;
+    height:auto;
+    padding-bottom: 30px;
 }
 
 #secondCol{
     background-color: #F8A500 ;
+    height:auto;
+    padding-bottom: 30px;
 }
 
 .contactText{
@@ -23,10 +27,40 @@ body{
 .info{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .sendContent{
-    display: 'flex';
-    flex-direction: 'column';
-    align-items: 'center';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.custbtn{
+    margin-left: 120px;
+}
+
+/* ------------------------- Media queries ------------------------ */
+
+@media (max-width: 1025px) {
+    .bodyCont{
+        flex-direction: column;
+    }
+    
+    #firstCol{
+        width: 100%;
+        height:auto;
+        padding-bottom: 30px;
+        
+    }
+    
+    #secondCol{
+        width: 100%;
+        height:auto;
+        padding-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
