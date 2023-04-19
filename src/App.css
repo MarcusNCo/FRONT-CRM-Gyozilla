@@ -55,4 +55,6 @@ footer {
 
 body {
   margin: 0;
+  padding-right: 0 !important;
+  overflow: auto !important;
 }

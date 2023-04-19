@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab } from "@mui/material";
+import { Badge, Fab, IconButton } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
@@ -15,9 +15,12 @@ import styles from "./Products.module.css";
 
 import nouveautes from "../../images/badge nouveautesFichier 125.png";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
+  console.log("Products component mounted");
+
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
@@ -73,6 +76,24 @@ const Products = () => {
       image: "boissons.jpg",
     },
   ];
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.successMessage) {
+      console.log("ok");
+      toast.success(location.state.successMessage, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      location.state = null;
+    }
+  }, []);
 
   useEffect(() => {
     getAllProducts()
@@ -139,6 +160,7 @@ const Products = () => {
 
   return (
     <>
+      <ToastContainer preventDuplicates={false} />
       <Box style={{ display: "flex", margin: "0" }}>
         <CustomListItemProducts
           selected={selected}

@@ -189,6 +189,7 @@ const Header = () => {
             <a id="gyozilla" href="/">
               <img src={Logo} alt="Logo de Gyozilla" />
             </a>
+<<<<<<< HEAD
             <Link className="menu" to="/products" style={{ padding: "0" }}>
               La carte
             </Link>
@@ -200,6 +201,15 @@ const Header = () => {
               Nos engagements
             </Link>
             <Link className="menu" to="/contact" style={{ padding: "0" }}>
+=======
+            <Link className="menu" to="/products" style={{ padding: '0' }}>
+              La carte
+            </Link>
+            <Link className="menu" to="/nosengagements" style={{ padding: '0' }}>
+              Nos engagements
+            </Link>
+            <Link className="menu" to="/contact" style={{ padding: '0' }}>
+>>>>>>> 22471dfac70b9614127eb6d32bfb0a04d6de0d88
               Contactez-nous
             </Link>
           </Box>
@@ -250,6 +260,7 @@ const Header = () => {
               overflow: "visible",
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               mr: 1.5,
+              mb: 10,
               "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
@@ -291,7 +302,7 @@ const Header = () => {
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/create">
+            <a className="menu-item-a" href="/sign-in">
               <AppRegistrationIcon fontSize="small" />
               <Typography
                 variant="body1"

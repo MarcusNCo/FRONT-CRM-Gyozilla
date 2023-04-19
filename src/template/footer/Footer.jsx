@@ -260,12 +260,25 @@ const Footer = (props) => {
                 >
                   Mentions légales
                 </Link>
-                <CustomButton
+                <Link
+                  href="/contact"
+                  underline="none"
+                  sx={{
+                    margin: "0 10px 0 10px",
+                    color: "#CDE8E7",
+                    fontSize: "1.0rem !important",
+                  }}
+                  align="center"
+                >
+                  Contactez-nous
+                </Link>
+                {/* <CustomButton
                   text="Contactez-nous"
                   variant="contained"
                   height="40px"
                   fontSize="0.8rem"
-                />
+                  onClick={}
+                /> */}
               </LinkContainer>
             </Grid>
           </Grid>
@@ -281,11 +294,10 @@ const Footer = (props) => {
               target="_blank"
               rel="noopener"
               sx={{
-                // margin: "0 !important",
                 padding: "0 0 0 5px !important",
                 fontSize: "0.9rem !important",
-                // marginBottom: '10px !important',
               }}
+              underline="none"
             >
               www.mangerbouger.fr
             </Link>

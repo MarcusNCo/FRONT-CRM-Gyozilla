@@ -42,16 +42,29 @@ const ForgotPassword = () => {
                         })
                         .catch(error => {
                             console.error(error);
-                            toast.error('Erreur lors de l\'envoi, veuillez verifier votre email', {
-                                position: "top-right",
-                                autoClose: 4000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
+                            if (error.response.data.message === "Aucun utilisateur avec cet e-mail n'a été trouvé") {
+                                toast.error('Aucun utilisateur avec cet e-mail n\'a été trouvé', {
+                                    position: "top-right",
+                                    autoClose: 4000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
+                            } else {
+                                toast.error('Erreur lors de l\'envoi, veuillez verifier votre email', {
+                                    position: "top-right",
+                                    autoClose: 4000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
+                            }
                             setSubmitting(false);
                         });
                 }}
