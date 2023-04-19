@@ -1,70 +1,46 @@
-import React, { useEffect, useState } from "react";
-import "./Login.css";
-import "react-toastify/dist/ReactToastify.css";
-import { Formik, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { login } from "../../utils/api-call/login";
-import { LoadingButton } from "@mui/lab";
-import { toast, ToastContainer } from "react-toastify";
-import CustomInput from "../../components/input/CustomInput";
-import logo from "../../images/gyozilla-logo.png";
-import { Box, useTheme } from "@mui/system";
-import { Navigate, Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import './Login.css'
+import 'react-toastify/dist/ReactToastify.css'
+import { Formik, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { login } from '../../utils/api-call/login'
+import { LoadingButton } from '@mui/lab'
+import { toast, ToastContainer } from 'react-toastify'
+import CustomInput from '../../components/input/CustomInput'
+import logo from '../../images/gyozilla-logo.png'
+import { Box, useTheme } from '@mui/system'
+import { Link, useNavigate, } from 'react-router-dom'
+
 
 const Login = () => {
-  const location = useLocation()
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-
-    if (location.state && location.state.successMessage && loading) {
-      toast.success(
-        'Votre compte a été vérifié avec succès.',
-        {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }
-      );
-    }
-    setLoading(false)
-  }, [location, loading])
-
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const initialValues = {
-    email: "",
-    password: "",
-  };
+    email: '',
+    password: '',
+  }
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Email invalide")
+      .email('Email invalide')
       .required("L'email est obligatoire"),
     password: Yup.string()
-      .min(8, "Il faut 8 caractères minimum")
-      .required("Mot de passe obligatoire"),
-  });
+      .min(8, 'Il faut 8 caractères minimum')
+      .required('Mot de passe obligatoire'),
+  })
 
-  const theme = useTheme();
+  const theme = useTheme()
+  const navigate = useNavigate();
 
   return (
     <>
       <ToastContainer preventDuplicates={false} />
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          height: "calc(100vh - 100px)",
-          [theme.breakpoints.down("sm")]: {
-            height: "calc(100vh - 56px)"
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          height: 'calc(100vh - 100px)',
+          [theme.breakpoints.down('sm')]: {
+            height: 'calc(100vh - 56px)',
           },
         }}
       >
@@ -73,15 +49,15 @@ const Login = () => {
           sx={{
             height: 400,
             width: 300,
-            objectFit: "cover",
-            [theme.breakpoints.down("sm")]: {
-              display: 'none'
+            objectFit: 'cover',
+            [theme.breakpoints.down('sm')]: {
+              display: 'none',
             },
           }}
           alt="The house from the offer."
           src={logo}
         />
-        <div className="containedLogin">
+        <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
           <Formik
             initialValues={initialValues} //transforme en state
@@ -89,20 +65,13 @@ const Login = () => {
             onSubmit={(values, { setSubmitting }) => {
               login(values)
                 .then((response) => {
-                  if (response.data.message === "Authentification réussi") {
-                    setIsLoggedIn(true);
+                  if (response.data.message === 'Authentification réussi') {
+                    navigate("/products", {
+                      state: {
+                        successMessage: "Vous êtes connecté !",
+                      }
+                    })
                   }
-                  toast.success("Vous êtes connecté", {
-                    position: "top-right",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
-                  setSubmitting(false);
                 })
                 .catch((error) => {
                   console.error(error.response.data.message);
@@ -154,16 +123,6 @@ const Login = () => {
             }}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
-
-              if (isLoggedIn) {
-                return (
-                  <Navigate
-                    to={{
-                      pathname: '/'
-                    }}
-                  />
-                )
-              }
               return (
                 <Form className="formLogin">
                   <CustomInput
@@ -192,13 +151,13 @@ const Login = () => {
                     Connexion
                   </LoadingButton>
                 </Form>
-              );
+              )
             }}
           </Formik>
-        </div>
+        </Box>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

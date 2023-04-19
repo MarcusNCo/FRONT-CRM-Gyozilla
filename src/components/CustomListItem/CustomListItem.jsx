@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   IconButton,
   Drawer,
@@ -6,7 +6,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@mui/material'
+} from "@mui/material";
 import {
   Menu,
   Home,
@@ -14,23 +14,23 @@ import {
   Contact,
   HomeOutlined,
   InfoOutlined,
-} from '@mui/icons-material'
-import RiceBowlIcon from '@mui/icons-material/RiceBowl'
-import RamenDiningIcon from '@mui/icons-material/RamenDining'
-import CoPresentIcon from '@mui/icons-material/CoPresent'
-import PinDropIcon from '@mui/icons-material/PinDrop'
-import ContactMailIcon from '@mui/icons-material/ContactMail'
+} from "@mui/icons-material";
+import RiceBowlIcon from "@mui/icons-material/RiceBowl";
+import RamenDiningIcon from "@mui/icons-material/RamenDining";
+import CoPresentIcon from "@mui/icons-material/CoPresent";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 const CustomListItem = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleMenu = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <>
@@ -55,7 +55,7 @@ const CustomListItem = () => {
         </ListItem>
       </List>
     </>
-  )
-}
+  );
+};
 
-export default CustomListItem
+export default CustomListItem;

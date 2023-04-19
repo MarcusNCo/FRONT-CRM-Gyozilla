@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import Logo from "./../../assets/images/gyozillalog.png";
 import mobileLogo from "./../../assets/images/gyozillalogo.png";
@@ -18,13 +18,16 @@ import CustomInput from "../../components/input/CustomInput";
 import { Link } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import Badge from "@mui/material/Badge";
+import Basket from "../../components/basket/Basket";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
   const [valueInput, setvalueInput] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
   const theme = useTheme();
+
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -38,6 +41,53 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [basketOpen, setBasketOpen] = useState(false);
+
+  const handleBasketOpen = (e) => {
+    e.preventDefault();
+    setBasketOpen(e.currentTarget);
+  };
+
+  const handleBasketClose = () => {
+    setBasketOpen(false);
+  };
+
+  const [cartItems, setCartItems] = useState([]);
+
+  const addDummyProducts = () => {
+    const dummyProducts = [
+      { id: 1, name: "Nems au poulet", price: 6.0, quantity: 2 },
+      { id: 2, name: "Crevettes sautées", price: 12.0, quantity: 1 },
+      { id: 3, name: "Sunday litchi", price: 3.5, quantity: 1 },
+    ];
+
+    setCartItems(dummyProducts);
+  };
+
+  useEffect(() => {
+    addDummyProducts();
+  }, []);
+
+  const incrementQuantity = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decrementQuantity = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
@@ -66,21 +116,31 @@ const Header = () => {
                   }}
                 ></Typography>
                 {auth && (
-                  <div style={{ display: "flex" }}>
-                    <IconButton
-                      aria-label="shop of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      onClick={handleMenu}
-                      color="inherit"
+                  <Box style={{ display: "flex" }}>
+                    <Badge
+                      badgeContent={4}
+                      variant="standard"
+                      overlap="circular"
+                      sx={{
+                        width: "48px",
+                        height: "48px",
+                        padding: "8px",
+                        marginRight: "8px",
+                      }}
                     >
                       <ShoppingCartIcon
                         sx={{
                           width: "32px",
                           height: "32px",
                         }}
+                        color="inherit"
+                        aria-label="basket of current user"
+                        aria-controls="menu-basket"
+                        aria-haspopup="true"
+                        onClick={handleBasketOpen}
                       />
-                    </IconButton>
+                    </Badge>
+
                     <IconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
@@ -95,7 +155,7 @@ const Header = () => {
                         }}
                       />
                     </IconButton>
-                  </div>
+                  </Box>
                 )}
               </Toolbar>
             </AppBar>
@@ -121,49 +181,45 @@ const Header = () => {
             },
             overflow: "hidden",
             padding: "10px",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "0 0 .4em black",
           }}
         >
-          <div className="header-left">
+          <Box className="header-left">
             <a id="gyozilla" href="/">
               <img src={Logo} alt="Logo de Gyozilla" />
             </a>
-            <Link className="menu" to="/products">
+            <Link className="menu" to="/products" style={{ padding: '0' }}>
               La carte
             </Link>
-            <Link className="menu" to="/nosengagements">
+            <Link className="menu" to="/nosengagements" style={{ padding: '0' }}>
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact">
+            <Link className="menu" to="/contact" style={{ padding: '0' }}>
               Contactez-nous
             </Link>
-          </div>
-          <div className="containSearch">
-            <CustomInput
-              htmlFor="toto"
-              id="toto"
-              variant="standard"
-              label="Que cherchez-vous"
-              onChange={handleChangeInput}
-              value={valueInput}
-            />
-          </div>
-          <div className="header-right">
+          </Box>
+          <Box className="header-right">
             <a className="containIcon" href="/" onClick={null}>
               <LocationOnIcon
                 className="logIcon"
                 style={{ fontSize: 35, color: "#739B94" }}
               />
             </a>
-            <a className="containIcon" href="/" onClick={null}>
+            <Badge badgeContent={4} variant="standard">
               <ShoppingCartIcon
-                className="logIcon"
-                style={{ fontSize: 35, color: "#739B94" }}
+                style={{
+                  fontSize: 35,
+                  color: "#739B94",
+                  cursor: "pointer",
+                }}
+                aria-label="basket of current user"
+                aria-controls="menu-basket"
+                aria-haspopup="true"
+                onClick={handleBasketOpen}
               />
-            </a>
+            </Badge>
             <AccountCircleIcon
-              className="logIcon"
               style={{
                 fontSize: 35,
                 color: "#739B94",
@@ -171,17 +227,17 @@ const Header = () => {
                 cursor: "pointer",
               }}
               aria-label="account of current user"
-              aria-controls="menu-appbar"
+              aria-controls="account-menu"
               aria-haspopup="true"
               onClick={handleMenu}
             />
-          </div>
+          </Box>
         </Box>
-        {/* // ------------ Menu for desktop and mobile version --------------- */}
+        {/* // ------------ Menu utilisateur version desktop et mobile --------------- */}
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
-          open={open}
+          open={Boolean(anchorEl)}
           onClose={handleClose}
           onClick={handleClose}
           PaperProps={{
@@ -190,6 +246,7 @@ const Header = () => {
               overflow: "visible",
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               mr: 1.5,
+              mb: 10,
               "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
@@ -201,11 +258,12 @@ const Header = () => {
                 display: "block",
                 position: "absolute",
                 top: 0,
-                right: 13,
+                right: 12,
                 width: 10,
                 height: 10,
                 bgcolor: "background.paper",
                 transform: "translateY(-50%) rotate(45deg)",
+                filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))",
                 zIndex: 0,
                 [theme.breakpoints.down("sm")]: {
                   right: 19,
@@ -241,6 +299,53 @@ const Header = () => {
               </Typography>
             </a>
           </MenuItem>
+        </Menu>
+        {/* // ------------ Panier version desktop et mobile --------------- */}
+        <Menu
+          anchorEl={basketOpen}
+          id="menu-basket"
+          open={Boolean(basketOpen)}
+          onClose={handleBasketClose}
+          onClick={handleBasketClose}
+          PaperProps={{
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))",
+              mt: 1.5,
+              "& .MuiSvgIcon-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+                color: "#5F8D85",
+              },
+
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 12,
+                width: 12,
+                height: 12,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))",
+                zIndex: 0,
+                [theme.breakpoints.down("sm")]: {
+                  right: 75,
+                },
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: isMobile ? "center" : "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: isMobile ? "center" : "right", vertical: "bottom" }}
+        >
+          <Basket
+            items={cartItems}
+            onIncrement={incrementQuantity}
+            onDecrement={decrementQuantity}
+          />
         </Menu>
       </header>
     </>

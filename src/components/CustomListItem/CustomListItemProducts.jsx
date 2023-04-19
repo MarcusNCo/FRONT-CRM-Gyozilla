@@ -25,7 +25,7 @@ export default function CustomListItemProducts({
   return (
     <Card
       style={{
-        width: '20vw',
+        maxWidth: '230px',
         height: 'fit-content',
         display: 'flex',
         justifyContent: 'center',

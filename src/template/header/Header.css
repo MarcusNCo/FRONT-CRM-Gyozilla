@@ -51,8 +51,8 @@
   .header-left {
     float: left;
     display: flex;
-    justify-content: center;
-    width: 50%;
+    justify-content: space-evenly;
+    width: 60%;
   }
 
   /* Float the link section to the right */
