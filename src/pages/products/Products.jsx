@@ -19,8 +19,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
-  console.log("Products component mounted");
-
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
@@ -142,6 +140,7 @@ const Products = () => {
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
   const filteredProducts = products.filter((product) => {
+    console.log(product);
     if (selectedTypeRepas === null || selectedTypeRepas === 0) {
       return true;
     } else if (selectedTypeRepas === 1) {
@@ -244,8 +243,8 @@ const Products = () => {
                           height={"100px"}
                           style={{
                             position: "absolute",
-                            top: "-340px",
-                            right: "-320px",
+                            top: "-330px",
+                            right: "-310px",
                             transformOrigin: "top right",
                           }}
                         />
