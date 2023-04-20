@@ -227,7 +227,7 @@ const Products = () => {
                     height="250px"
                     title={item.name}
                     onButtonCardClick={() => {
-                      navigate(`/products/${item.id}`);
+                      navigate(`/products/${item.name}`);
                     }}
                   />
                   {isNew && (
