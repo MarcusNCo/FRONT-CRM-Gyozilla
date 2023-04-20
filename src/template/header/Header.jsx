@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Header.css";
 import Logo from "./../../assets/images/gyozillalog.png";
 import mobileLogo from "./../../assets/images/gyozillalogo.png";
@@ -21,12 +21,14 @@ import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import Badge from "@mui/material/Badge";
 import Basket from "../../components/basket/Basket";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { UserContext } from "../../utils/context/UserContext";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
   const [valueInput, setvalueInput] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
+  const { isLogged } = useContext(UserContext)
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -176,6 +178,7 @@ const Header = () => {
         <Box
           sx={{
             display: "flex",
+            zIndex: 1000,
             "@media (max-width: 992px)": {
               display: "none",
             },
@@ -275,30 +278,66 @@ const Header = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/login">
-              <Logout fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                Se connecter
-              </Typography>
-            </a>
+            {
+              isLogged ?
+                <a className="menu-item-a" href="/profile">
+                  <Logout fontSize="small" />
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ paddingLeft: "10px" }}
+                  >
+                    Mon compte
+                  </Typography>
+                </a> :
+                <a className="menu-item-a" href="/login">
+                  <Logout fontSize="small" />
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ paddingLeft: "10px" }}
+                  >
+                    Se connecter
+                  </Typography>
+                </a>
+            }
           </MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/sign-in">
-              <AppRegistrationIcon fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                S'inscrire
-              </Typography>
-            </a>
-          </MenuItem>
+          {isLogged ?
+            <Divider
+              sx={{
+                display: 'none'
+              }} /> :
+            <Divider />
+          }
+          {isLogged ?
+            <MenuItem
+              sx={{
+                display: 'none'
+              }} onClick={handleClose} className="menu-item">
+              <a className="menu-item-a" href="/sign-in">
+                <AppRegistrationIcon fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: "10px" }}
+                >
+                  S'inscrire
+                </Typography>
+              </a>
+            </MenuItem> :
+            <MenuItem onClick={handleClose} className="menu-item">
+              <a className="menu-item-a" href="/sign-in">
+                <AppRegistrationIcon fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: "10px" }}
+                >
+                  S'inscrire
+                </Typography>
+              </a>
+            </MenuItem>
+          }
         </Menu>
         {/* // ------------ Panier version desktop et mobile --------------- */}
         <Menu

@@ -3,8 +3,8 @@ import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import "./Products.css";
-import CustomCard from "../../components/card/CustomCard";
-import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
+import CustomCard from "../../components/Card/CustomCard";
+import CustomListItemProducts from "../../components/CustomListItem/CustomListItemProducts";
 import CustomButton from "../../components/button/CustomButton";
 import { Fab, IconButton } from "@mui/material";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
@@ -119,7 +119,7 @@ const Products = () => {
 
   return (
     <>
-      <ToastContainer preventDuplicates={ false }/>
+      <ToastContainer preventDuplicates={false} />
       <Box style={{ display: "flex", margin: "0" }}>
         <CustomListItemProducts
           selected={selected}
