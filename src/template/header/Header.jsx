@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import Badge from "@mui/material/Badge";
-import Basket from "../../components/basket/Basket";
+import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Header = () => {
@@ -42,15 +42,15 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const [basketOpen, setBasketOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
-  const handleBasketOpen = (e) => {
+  const handleCartOpen = (e) => {
     e.preventDefault();
-    setBasketOpen(e.currentTarget);
+    setCartOpen(e.currentTarget);
   };
 
-  const handleBasketClose = () => {
-    setBasketOpen(false);
+  const handleCartClose = () => {
+    setCartOpen(false);
   };
 
   const [cartItems, setCartItems] = useState([]);
@@ -134,10 +134,10 @@ const Header = () => {
                           height: "32px",
                         }}
                         color="inherit"
-                        aria-label="basket of current user"
-                        aria-controls="menu-basket"
+                        aria-label="cart of current user"
+                        aria-controls="menu-cart"
                         aria-haspopup="true"
-                        onClick={handleBasketOpen}
+                        onClick={handleCartOpen}
                       />
                     </Badge>
 
@@ -217,10 +217,10 @@ const Header = () => {
                   color: "#739B94",
                   cursor: "pointer",
                 }}
-                aria-label="basket of current user"
-                aria-controls="menu-basket"
+                aria-label="cart of current user"
+                aria-controls="menu-cart"
                 aria-haspopup="true"
-                onClick={handleBasketOpen}
+                onClick={handleCartOpen}
               />
             </Badge>
             <AccountCircleIcon
@@ -306,11 +306,11 @@ const Header = () => {
         </Menu>
         {/* // ------------ Panier version desktop et mobile --------------- */}
         <Menu
-          anchorEl={basketOpen}
-          id="menu-basket"
-          open={Boolean(basketOpen)}
-          onClose={handleBasketClose}
-          onClick={handleBasketClose}
+          anchorEl={cartOpen}
+          id="menu-cart"
+          open={Boolean(cartOpen)}
+          onClose={handleCartClose}
+          onClick={handleCartClose}
           PaperProps={{
             sx: {
               overflow: "visible",
@@ -351,7 +351,7 @@ const Header = () => {
             vertical: "bottom",
           }}
         >
-          <Basket
+          <Cart
             items={cartItems}
             onIncrement={incrementQuantity}
             onDecrement={decrementQuantity}

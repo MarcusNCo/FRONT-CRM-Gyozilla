@@ -14,7 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const BasketItem = ({ item, increment, decrement, remove }) => {
+const CartItem = ({ item, increment, decrement, remove }) => {
   return (
     <React.Fragment>
       <Box
@@ -99,4 +99,4 @@ const BasketItem = ({ item, increment, decrement, remove }) => {
   );
 };
 
-export default BasketItem;
+export default CartItem;

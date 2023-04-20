@@ -244,8 +244,8 @@ const Products = () => {
                           height={"100px"}
                           style={{
                             position: "absolute",
-                            top: "-340px",
-                            right: "-320px",
+                            top: "-330px",
+                            right: "-310px",
                             transformOrigin: "top right",
                           }}
                         />

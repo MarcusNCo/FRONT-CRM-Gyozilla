@@ -1,37 +1,37 @@
 import React, { useState } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
-import BasketItem from "./BasketItem";
+import CartItem from "./CartItem";
 
-const Basket = ({ items, onIncrement, onDecrement } ) => {
-  const [basket, setBasket] = useState([]);
+const Cart = ({ items, onIncrement, onDecrement } ) => {
+  const [cart, setCart] = useState([]);
 
-  const addToBasket = (item) => {
-    setBasket([...basket, item]);
+  const addToCart = (item) => {
+    setCart([...cart, item]);
   };
 
   const incrementQuantity = (index) => {
-    const newBasket = [...basket];
-    newBasket[index].quantity += 1;
-    setBasket(newBasket);
+    const newCart = [...cart];
+    newCart[index].quantity += 1;
+    setCart(newCart);
   };
 
   const decrementQuantity = (index) => {
-    const newBasket = [...basket];
-    newBasket[index].quantity -= 1;
-    setBasket(newBasket);
+    const newCart = [...cart];
+    newCart[index].quantity -= 1;
+    setCart(newCart);
   };
 
   const removeItem = (index) => {
-    const newBasket = [...basket];
-    newBasket.splice(index, 1);
-    setBasket(newBasket);
+    const newCart = [...cart];
+    newCart.splice(index, 1);
+    setCart(newCart);
   };
 
-  const clearBasket = () => {
-    setBasket([]);
+  const clearCart = () => {
+    setCart([]);
   };
 
-  const cartTotal = basket.reduce(
+  const cartTotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
@@ -56,9 +56,9 @@ const Basket = ({ items, onIncrement, onDecrement } ) => {
           borderColor: 'black',
         }}
       />
-      {/* {basket.map((item, index) => ( */}
+      {/* {cart.map((item, index) => ( */}
       {items.map((item, index) => (
-        <BasketItem
+        <CartItem
           key={index}
           item={item}
           increment={() => incrementQuantity(index)}
@@ -71,7 +71,7 @@ const Basket = ({ items, onIncrement, onDecrement } ) => {
       <Box sx={{ display:'flex', justifyContent: 'space-evenly' }}>
         <Button 
           variant="contained" 
-          onClick={clearBasket}
+          onClick={clearCart}
           sx={{
               width: '130px',
               height: '30px',
@@ -94,4 +94,4 @@ const Basket = ({ items, onIncrement, onDecrement } ) => {
   );
 };
 
-export default Basket;
+export default Cart;
