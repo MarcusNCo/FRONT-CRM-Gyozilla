@@ -15,7 +15,7 @@ import styles from "./Products.module.css";
 
 import nouveautes from "../../images/badge nouveautesFichier 125.png";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
@@ -189,8 +189,8 @@ const Products = () => {
                   buttonCardText="Voir les produits"
                   variantButton={"contained"}
                   onButtonCardClick={() => handleCardClick(category)}
-                  width="250px"
-                  height="250px"
+                  width="450px"
+                  height="300px"
                   image={category.image}
                 ></CustomCard>
               );
@@ -217,6 +217,9 @@ const Products = () => {
                     width="250px"
                     height="250px"
                     title={item.name}
+                    onButtonCardClick={() => {
+                      navigate(`/products/${item.id}`);
+                    }}
                   />
                   {isNew && (
                     <Badge

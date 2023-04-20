@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import Logo from "../../images/gyozillalog.png";
+import Logo from "../../images/logoHeader.png";
 import mobileLogo from "../../images/gyozillalogo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

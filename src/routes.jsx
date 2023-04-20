@@ -3,6 +3,7 @@ import Login from "./utils/login";
 import Products from "./pages/products/Products";
 import { Routes, Route } from "react-router-dom";
 import Verify from "./pages/verify/Verify";
+import ProductDetails from "./pages/productDetails/ProductDetails";
 
 function RoutesConfig() {
   const routes = [
@@ -13,6 +14,10 @@ function RoutesConfig() {
     {
       path: "/products",
       element: <Products />,
+    },
+    {
+      path: "/products/:id",
+      element: <ProductDetails />,
     },
     {
       path: "/verify/:token",
