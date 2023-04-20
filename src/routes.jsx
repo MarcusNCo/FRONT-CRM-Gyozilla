@@ -3,7 +3,7 @@ import Login from "./utils/login";
 import Products from "./pages/products/Products";
 import { Routes, Route } from "react-router-dom";
 import Verify from "./pages/verify/Verify";
-import ProductDetails from "./pages/productDetails/ProductDetails";
+import ProductDetails from "./pages/productdetails/ProductDetails";
 
 function RoutesConfig() {
   const routes = [

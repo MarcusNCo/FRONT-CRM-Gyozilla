@@ -89,10 +89,15 @@ const Home = () => {
         </IconButton>
       </Box>
       <Container sx={{ marginBottom: "100px" }}>
-        <Grid container className="gridContainer" spacing={5}>
+        <Grid
+          container
+          className="gridContainer"
+          spacing={5}
+          sx={{ justifyContent: "center" }}
+        >
           {cardHomepages.map((cardHomePage) => {
             return (
-              <Grid item lg={4} key={cardHomePage.id}>
+              <Grid item lg={4} md={4} key={cardHomePage.id}>
                 <Link to={cardHomePage.url}>
                   <Paper elevation={5} style={{ borderRadius: "20px" }}>
                     <img
@@ -127,7 +132,7 @@ const Home = () => {
           <img
             src={logoPrez}
             alt="Logo de gyozilla"
-            style={{ width: "60vh" }}
+            style={{ width: "calc(40vw + 5vh)" }}
           />
         </Box>
         <Box className="titlePrez">

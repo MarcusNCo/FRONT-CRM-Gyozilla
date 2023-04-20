@@ -123,6 +123,9 @@ const Products = () => {
   };
 
   const handleCardClick = (category) => {
+    if (category.id == 2) {
+      navigate("/menu");
+    }
     setSelectedTypeRepas(category.id);
     setActiveCategory(category.id);
   };
@@ -161,7 +164,13 @@ const Products = () => {
   return (
     <>
       <ToastContainer preventDuplicates={false} />
-      <Box style={{ display: "flex", margin: "0", minHeight: 'calc(100vh - 71px - 104px)' }}>
+      <Box
+        style={{
+          display: "flex",
+          margin: "0",
+          minHeight: "calc(100vh - 71px - 104px)",
+        }}
+      >
         <CustomListItemProducts
           selected={selected}
           onClick={handleListItemClick}
