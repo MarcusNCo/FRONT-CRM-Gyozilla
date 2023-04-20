@@ -14,7 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuBurger from "../../components/burger/MenuBurger";
 import { Divider, IconButton } from "@mui/material";
-import CustomInput from "../../components/input/CustomInput";
 import { Link } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";

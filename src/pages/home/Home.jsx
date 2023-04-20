@@ -11,17 +11,8 @@ import logoPrez from "../../images/logoHeader.png";
 
 import "./Home.css";
 
-import {
-  Card,
-  CardMedia,
-  Container,
-  Grid,
-  IconButton,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Container, Grid, IconButton, Paper } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import CustomCard from "../../components/card/CustomCard";
 import { Link } from "react-router-dom";
 
 const Home = () => {
