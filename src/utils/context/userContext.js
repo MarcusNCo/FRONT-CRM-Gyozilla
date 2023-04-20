@@ -9,12 +9,12 @@ export const UserContext = createContext({});
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token && !isLogged) {
         const decoded = jwt_decode(token);
         setUser(decoded);
         setIsLogged(true)
         }
-    }, []);
+    }, [isLogged]);
 
 
     return (

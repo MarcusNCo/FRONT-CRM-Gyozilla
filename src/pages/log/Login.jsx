@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { Formik, Form, ErrorMessage } from 'formik'
@@ -10,9 +10,11 @@ import CustomInput from '../../components/input/CustomInput'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
 import { Link, useNavigate, } from 'react-router-dom'
+import { UserContext } from '../../utils/context/UserContext'
 
 
 const Login = () => {
+  const { setIsLogged } = useContext(UserContext)
   const initialValues = {
     email: '',
     password: '',
@@ -66,6 +68,7 @@ const Login = () => {
               login(values)
                 .then((response) => {
                   if (response.data.message === 'Authentification réussi') {
+                    setIsLogged(true)
                     navigate("/products", {
                       state: {
                         successMessage: "Vous êtes connecté !",
