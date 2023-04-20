@@ -15,6 +15,7 @@ import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import UserContextProvider from "./utils/context/UserContext";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 import Verify from "./pages/verify/Verify";
+import ProductDetails from "./pages/productdetails/ProductDetails";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               />
               <Route exact path="/reset-password" element={<ResetPassword />} />
               <Route path="/products" element={<Products />} />
+              <Route exact path="/products/:id" element={<ProductDetails />} />
               <Route path="/nosengagements" element={<NosEngagements />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route exact path="/sign-in" element={<CreateUser />} />
