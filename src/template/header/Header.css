@@ -22,7 +22,7 @@ body
 
 #gyozilla img {
   object-fit: cover;
-  width: 200px;
+  width: auto;
   height: 50px;
 }
 

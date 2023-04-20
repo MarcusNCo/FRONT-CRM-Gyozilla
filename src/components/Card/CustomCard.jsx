@@ -31,6 +31,7 @@ const CustomCard = ({
   styleParagraph,
   variantButton,
   zIndex,
+  backgroundPosition,
 }) => {
   let dbImage = "";
   if (image !== undefined) {
@@ -51,7 +52,7 @@ const CustomCard = ({
         backgroundImage: `url(${dbImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
+        backgroundPosition: backgroundPosition,
         zIndex: zIndex,
       }}
     >

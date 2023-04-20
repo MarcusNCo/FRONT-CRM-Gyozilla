@@ -7,7 +7,7 @@ import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizont
 import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
 import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
 import coinFamille from "../../images/badgeHome/badge-coinFamille.png";
-import logoPrez from "../../images/gyozillalog.png";
+import logoPrez from "../../images/logoHeader.png";
 
 import "./Home.css";
 
@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import CustomCard from "../../components/card/CustomCard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
@@ -92,7 +93,7 @@ const Home = () => {
           {cardHomepages.map((cardHomePage) => {
             return (
               <Grid item lg={4} key={cardHomePage.id}>
-                <a href={cardHomePage.url}>
+                <Link to={cardHomePage.url}>
                   <Paper elevation={5} style={{ borderRadius: "20px" }}>
                     <img
                       src={cardHomePage.image}
@@ -103,7 +104,7 @@ const Home = () => {
                       }}
                     />
                   </Paper>
-                </a>
+                </Link>
               </Grid>
             );
           })}
@@ -122,7 +123,11 @@ const Home = () => {
         }}
       >
         <Box className="logoPrez">
-          <img src={logoPrez} alt="Logo de gyozilla" />
+          <img
+            src={logoPrez}
+            alt="Logo de gyozilla"
+            style={{ width: "60vh" }}
+          />
         </Box>
         <Box className="titlePrez">
           <h3 style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
