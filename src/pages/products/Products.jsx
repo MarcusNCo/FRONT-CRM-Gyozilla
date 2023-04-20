@@ -47,7 +47,7 @@ const Products = () => {
       id: 2,
       name: "Menus",
       description: "Découvrez nos menus",
-      image: "badgeHome/badge-nouveautes.png",
+      image: "nouveautes.jpg",
     },
     {
       id: 3,
@@ -121,7 +121,7 @@ const Products = () => {
   };
 
   const handleCardClick = (category) => {
-    if (category.id == 2) {
+    if (category.id === 2) {
       navigate("/menu");
     }
     setSelectedTypeRepas(category.id);
@@ -197,8 +197,8 @@ const Products = () => {
                   buttonCardText="Voir les produits"
                   variantButton={"contained"}
                   onButtonCardClick={() => handleCardClick(category)}
-                  width="450px"
-                  height="300px"
+                  width="400px"
+                  height="250px"
                   image={category.image}
                 ></CustomCard>
               );

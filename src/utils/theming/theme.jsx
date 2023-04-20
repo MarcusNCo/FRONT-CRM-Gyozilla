@@ -115,6 +115,10 @@ const theme = createTheme({
     MuiListItemButton: {
       styleOverrides: {
         root: {
+          "&:active, &:hover": {
+            backgroundColor: "#F8A50050",
+            color: "#000000",
+          },
           "&:hover": {
             color: "white",
             backgroundColor: "#F8A500",
@@ -122,6 +126,7 @@ const theme = createTheme({
           "&.active": {
             backgroundColor: "#F8A50050",
             borderRight: "2px solid #F8A500",
+            color: "#000000",
           },
         },
       },
@@ -130,6 +135,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "#F8A500",
+          backgroundColor: "#F8A50050",
           alignSelf: "center",
           justifySelf: "center",
           fontSize: "2rem",
