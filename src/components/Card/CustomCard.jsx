@@ -18,6 +18,7 @@ const CustomCard = ({
   onButtonCardClick,
   width,
   height,
+  border,
   backgroundColor,
   backgroundColorContent,
   widthContent,
@@ -53,6 +54,8 @@ const CustomCard = ({
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         zIndex: zIndex,
+        border: "none",
+        boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
       }}
     >
       <CardContent

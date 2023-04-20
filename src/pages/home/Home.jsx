@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import CustomCard from "../../components/card/CustomCard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
@@ -92,7 +93,7 @@ const Home = () => {
           {cardHomepages.map((cardHomePage) => {
             return (
               <Grid item lg={4} key={cardHomePage.id}>
-                <a href={cardHomePage.url}>
+                <Link to={`${cardHomePage.url}`} >
                   <Paper elevation={5} style={{ borderRadius: "20px" }}>
                     <img
                       src={cardHomePage.image}
@@ -101,9 +102,10 @@ const Home = () => {
                         height: "auto",
                         borderRadius: "20px",
                       }}
+                      alt="Cartes du Home"
                     />
                   </Paper>
-                </a>
+                </Link>
               </Grid>
             );
           })}

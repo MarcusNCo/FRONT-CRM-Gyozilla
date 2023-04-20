@@ -31,6 +31,8 @@ export default function CustomListItemProducts({
         height: "fit-content",
         display: "flex",
         justifyContent: "center",
+        border: "none",
+        backgroundColor: "#ffffff",
       }}
       className={className}
     >

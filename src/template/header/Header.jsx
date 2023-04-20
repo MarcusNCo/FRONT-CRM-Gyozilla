@@ -180,15 +180,15 @@ const Header = () => {
               display: "none",
             },
             overflow: "hidden",
-            padding: "10px",
+            // padding: "10px",
             justifyContent: "space-between",
             boxShadow: "0 0 .4em black",
           }}
         >
           <Box className="header-left">
-            <a id="gyozilla" href="/">
+            <Link id="gyozilla" to={"/"}>
               <img src={Logo} alt="Logo de Gyozilla" />
-            </a>
+            </Link>
             <Link className="menu" to="/products" style={{ padding: "0" }}>
               La carte
             </Link>
@@ -204,12 +204,12 @@ const Header = () => {
             </Link>
           </Box>
           <Box className="header-right">
-            <a className="containIcon" href="/" onClick={null}>
+            <Link className="containIcon" to={"/"} onClick={null}>
               <LocationOnIcon
                 className="logIcon"
                 style={{ fontSize: 35, color: "#739B94" }}
               />
-            </a>
+            </Link>
             <Badge badgeContent={4} variant="standard">
               <ShoppingCartIcon
                 style={{
@@ -279,7 +279,7 @@ const Header = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/login">
+            <Link className="menu-item-a" to={"/login"}>
               <Logout fontSize="small" />
               <Typography
                 variant="body1"
@@ -288,11 +288,11 @@ const Header = () => {
               >
                 Se connecter
               </Typography>
-            </a>
+            </Link>
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/sign-in">
+            <Link className="menu-item-a" to={"/sign-in"}>
               <AppRegistrationIcon fontSize="small" />
               <Typography
                 variant="body1"
@@ -301,7 +301,7 @@ const Header = () => {
               >
                 S'inscrire
               </Typography>
-            </a>
+            </Link>
           </MenuItem>
         </Menu>
         {/* // ------------ Panier version desktop et mobile --------------- */}

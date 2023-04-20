@@ -8,7 +8,7 @@ import { useTheme } from "@mui/system";
 
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CustomCard from "../../components/card/CustomCard";
-import CustomListItemProducts from "../../components/customlistitem/CustomListitemProducts";
+import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
 import CustomButton from "../../components/button/CustomButton";
 
 import styles from "./Products.module.css";
@@ -161,7 +161,7 @@ const Products = () => {
   return (
     <>
       <ToastContainer preventDuplicates={false} />
-      <Box style={{ display: "flex", margin: "0" }}>
+      <Box style={{ display: "flex", margin: "0", minHeight: 'calc(100vh - 71px - 104px)' }}>
         <CustomListItemProducts
           selected={selected}
           onClick={handleListItemClick}
@@ -174,7 +174,6 @@ const Products = () => {
             flexWrap: "wrap",
             width: "100vw",
             display: "flex",
-            // alignItems: "center",
             justifyContent: "space-evenly",
             margin: "30px auto 0 auto",
           }}
