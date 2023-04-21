@@ -66,7 +66,7 @@ const ContactForm = () => {
           Si vous avez la moindre question vous pouvez nous la poser directement
           ci-dessous en nous communiquant votre nom et email.
         </Typography>
-        <Box class="info">
+        <Box className="info">
           <CustomInput
             style={{ width: '40%' }}
             placeholder="Nom*"
@@ -90,7 +90,7 @@ const ContactForm = () => {
             required
           ></CustomInput>
         </Box>
-        <Box class="sendContent">
+        <Box className="sendContent">
           <CustomInput
             style={{ width: '80%' }}
             id="outlined-multiline-static"

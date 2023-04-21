@@ -19,15 +19,15 @@ import desserts from '../../images/desserts.jpg'
 const NosEngagements = () => {
   return (
     <Container sx={{ mb: 5, mt: 5 }}>
-      <Typography class="t1" variant="h1" align="center" sx={{ mt: 5, mb: 3 }}>
+      <Typography className="t1" variant="h1" align="center" sx={{ mt: 5, mb: 5 }}>
         Nos engagements
       </Typography>
       {/* ------------------------- 1ère partie de la page ------------------------ */}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <Typography
-            variant="h2"
-            class="t2"
+            variant="h3"
+            className="t2"
             align="center"
             sx={{ mt: 5, mb: 5 }}
           >
@@ -37,80 +37,80 @@ const NosEngagements = () => {
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h4" class="t4">
+          <Typography variant="h4" className="t4">
             Un établissement adapté à tout profil
           </Typography>
-          <Typography variant="body1" class="body1">
+          <Typography variant="h8b" className="body1">
             Que vous veniez seul, en famille, ou pour un dîner romantique, vous
             trouverez forcément une table qui vous correspond. Chez Gyozilla,
-            nous avons pensé à tous les cas de figure.{' '}
+            nous avons pensé à tous les cas de figure.
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h4" class="t4">
+          <Typography variant="h4" className="t4">
             Un service rapide et efficace
           </Typography>
-          <Typography variant="body1" class="body1">
+          <Typography variant="h8b" className="body1">
             Nous estimons que même avec un emploi du temps chargé, vous avez le
             droit de venir vous régaler chez Gyozilla. C'est pourquoi le service
             est organisé de telle sorte que vous puissiez manger même dans un
-            court laps de temps.{' '}
+            court laps de temps.
           </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h4" class="t4">
+          <Typography variant="h4" className="t4">
             Une ambiance dépaysante
           </Typography>
-          <Typography variant="body1" class="body1">
+          <Typography variant="h8b" className="body1">
             Le but de Gyozilla est de faire voyager chaque client grâce à sa
             cuisine asiatique. Pour renforcer cette immersion, un décor atypique
             est disposé dans nos enseignes en + de thèmes musicaux trés
             appréciés des pays asiatiques qui viendront vous caresser les
-            oreilles.{' '}
+            oreilles.
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h4" class="t4">
+          <Typography variant="h4" className="t4">
             Un personnel attentif à vos besoins et à votre écoute
           </Typography>
-          <Typography variant="body1" class="body1">
+          <Typography variant="h8b" className="body1">
             Nos cuisiniers connaissent les attentes des clients et donnent le
             meilleur d'eux-même. Par ailleurs, nos serveurs ont un profil en
             cohésion avec nos valeurs, vous adresseront toujours le sourire et
-            prendront en compte vos remarques et questions.{' '}
+            prendront en compte vos remarques et questions.
           </Typography>
         </Grid>
       </Grid>
       {/* ------------------------------------------------------------------------- */}
       {/* ------------------------- 2ème partie de la page ------------------------ */}
       <Grid container>
-        <Typography variant="h2" class="t2" style={{ alignSelf: 'center' }}>
+        <Typography variant="h3" className="t2" style={{ alignSelf: 'center'}} sx={{ mt: 5, mb: 5 }}>
           Toute notre équipe travaille avec joie pour vous satisfaire
         </Typography>
-        <Grid item xs={12} class="team">
+        <Grid item xs={12} className="team">
           <CardMedia
-            class="around"
+            className="around"
             component="img"
             height="140"
             image={example1}
             alt="une préparation en cuisine"
-          />{' '}
+          />
           <CardMedia
-            class="imgTeam"
+            className="imgTeam"
             component="img"
             height="140"
             image={team}
             alt="une équipe du restaurant"
-          />{' '}
+          />
           <CardMedia
-            class="around"
+            className="around"
             component="img"
             height="140"
             image={example2}
             alt="quelques plats du restaurant soigneusement pris en photo"
-          />{' '}
+          />
         </Grid>
       </Grid>
       {/* ------------------------------------------------------------------------- */}
@@ -118,10 +118,10 @@ const NosEngagements = () => {
       <Grid item xs={12}>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h2" class="t2" align="center">
+            <Typography variant="h3" className="t2" align="center" sx={{ mt: 5, mb: 5 }}>
               La qualité est garantie pour chacun des produits
             </Typography>
-            <Typography class="body1">
+            <Typography variant="h8b" className="body1">
               Nous accordons une grande importance à toutes les étapes de
               préparation de nos produits. Que ce soit les fournisseurs des
               ingrédients, le respect des normes d'hygiène ou encore la façon
@@ -146,12 +146,12 @@ const NosEngagements = () => {
                 image={plats}
                 alt="quelques plats du restaurant"
               />
-              <h4 class="t4">Nos plats</h4>
-              <p class="body1">
+              <h4 className="t4">Nos plats</h4>
+              <Typography variant='h8b' className="body1">
                 Les plats que nous proposons sont variés mais tous préparés avec
                 amour. Du plus doux au plus épicé, il y aura de quoi satisfaire
                 chaque personne.
-              </p>
+              </Typography>
             </CardContent>
           </Card>
           <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
@@ -162,12 +162,12 @@ const NosEngagements = () => {
                 image={boissons}
                 alt="quelques boissons du restaurant"
               />
-              <h4 class="t4">Nos boissons</h4>
-              <p class="body1">
+              <h4 className="t4">Nos boissons</h4>
+              <Typography variant='h8b' className="body1">
                 Les boissons proviennent directement d'Asie, en partenariat
                 exclusif avec "Chang-Ting". Vous serez étonnés du plaisir qu'un
                 simple liquide vous procurera.
-              </p>
+              </Typography>
             </CardContent>
           </Card>
           <Card className="cardStyle" sx={{ minWidth: 375, height: 300 }}>
@@ -178,12 +178,12 @@ const NosEngagements = () => {
                 image={desserts}
                 alt="quelques desserts du restaurant"
               />
-              <h4 class="t4">Nos desserts</h4>
-              <p class="body1">
+              <h4 className="t4">Nos desserts</h4>
+              <Typography variant='h8b' className="body1">
                 Nos mets les plus délicats ne sont pas uniquement salés. En
                 effet, vous prendrez un plaisir fou en dégustant nos desserts
                 faits maison aussi savoureux les uns que les autres.
-              </p>
+              </Typography>
             </CardContent>
           </Card>
         </Box>
