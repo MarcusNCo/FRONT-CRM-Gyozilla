@@ -258,7 +258,16 @@ const Products = () => {
             filteredProducts.map((item) => {
               const isNew = checkNew(item);
               return (
-                <Box key={item.id} style={{ position: "relative" }}>
+                <Box
+                  key={item.id}
+                  style={{ position: "relative" }}
+                  sx={{
+                    ":hover": {
+                      transform: " scale(1.02)",
+                      transition: "all 0.2s ease-in-out",
+                    },
+                  }}
+                >
                   <CustomCard
                     id={item.id}
                     description={item.description}
