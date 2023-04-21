@@ -71,6 +71,7 @@ const CustomCard = ({
         <Box
           sx={{
             backgroundColor: "black",
+            opacity: '0.8',
             padding: "5px 5px 5px 10px",
             display: "flex",
             flexDirection: "column",

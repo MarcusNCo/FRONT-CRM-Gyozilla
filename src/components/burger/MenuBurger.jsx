@@ -15,6 +15,7 @@ import PinDropIcon from "@mui/icons-material/PinDrop";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { Divider } from "@mui/material";
 import { border } from "@mui/system";
+import { Link } from "react-router-dom";
 
 const MyDrawer = styled(Drawer)({
   "& .MuiDrawer-paper": {
@@ -157,6 +158,7 @@ export default function MenuBurger() {
               primary="Contactez-nous"
               sx={{ marginLeft: "10px" }}
             />
+            {/* <Link to="Contactez-nous" style={{ color: "#5F8D85" }} /> */}
           </ListItemButton>
           <Divider />
           <ListItemButton

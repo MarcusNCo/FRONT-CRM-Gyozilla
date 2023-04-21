@@ -281,34 +281,6 @@ const Header = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose} className="menu-item">
-
-
-
-
-            {/* <Link className="menu-item-a" to={"/login"}>
-              <Logout fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                Se connecter
-              </Typography>
-            </Link>
-          </MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose} className="menu-item">
-            <Link className="menu-item-a" to={"/sign-in"}>
-              <AppRegistrationIcon fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                S'inscrire
-              </Typography>
-            </Link> */}
-
             {
               isLogged ?
                 <a className="menu-item-a" href="/profile">
@@ -332,10 +304,6 @@ const Header = () => {
                   </Typography>
                 </a>
             }
-          
-          
-          
-          
           </MenuItem>
           {isLogged ?
             <Divider
