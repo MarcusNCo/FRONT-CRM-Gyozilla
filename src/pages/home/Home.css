@@ -4,6 +4,7 @@
   object-fit: cover;
   object-position: center center;
 }
+
 .backgroundHome {
   height: calc(100vh - 71px);
   margin-bottom: 100px;
@@ -20,11 +21,13 @@
   .logoEcriture {
     display: none;
   }
+
   .backgroundHome img:first-of-type {
     object-position: left;
     height: 50vh;
     width: 100vw;
   }
+
   .backgroundHome {
     height: 50vh;
     margin-bottom: 50px;
@@ -35,10 +38,26 @@
     position: absolute;
     bottom: 22rem !important;
   }
+
   .gridContainer {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll !important;
     white-space: "nowrap";
   }
+}
+
+@keyframes move-up-down {
+  0%,
+  100% {
+    transform: translateY(-20%);
+  }
+
+  50% {
+    transform: translateY(20%);
+  }
+}
+
+.move-up-down {
+  animation: move-up-down 1s ease-in-out infinite;
 }

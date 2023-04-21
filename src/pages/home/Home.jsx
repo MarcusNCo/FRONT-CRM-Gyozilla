@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import backgroundImageHome from "../../images/backgroundHomePage.webp";
 import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
@@ -50,6 +50,11 @@ const Home = () => {
     return () => window.removeEventListener("resize", null);
   }, []);
 
+  const productDetailsRef = useRef(null);
+  const handleArrowClick = () => {
+    productDetailsRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Box className="backgroundHome">
@@ -76,10 +81,12 @@ const Home = () => {
         >
           <KeyboardDoubleArrowDownIcon
             sx={{ color: "#F8A500", height: "4rem", width: "4rem" }}
+            className="move-up-down"
+            onClick={handleArrowClick}
           />
         </IconButton>
       </Box>
-      <Container sx={{ marginBottom: "100px" }}>
+      <Container ref={productDetailsRef} sx={{ marginBottom: "100px" }}>
         <Grid
           container
           className="gridContainer"

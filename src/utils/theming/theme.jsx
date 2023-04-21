@@ -183,15 +183,14 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#F8A500",
-          backgroundColor: "#EAEAEA",
-          border: "1px solid #F8A500",
-          marginTop: "3vh",
-          padding: "10px 5px 10px 5px",
+          color: "#EAEAEA",
+          backgroundColor: "#F8A500",
+          fontSize: '1.0rem',
+          fontWeight: 'bold',
+          // marginTop: "3vh",
           "&:hover": {
             color: "#EAEAEA",
-            backgroundColor: "#F8A500",
-            border: "1px solid #EAEAEA",
+            backgroundColor: "#F8A50099",
           },
         },
         outlined: {
@@ -236,6 +235,13 @@ const theme = createTheme({
       fontWeight: "bold",
       marginBottom: "10px",
     },
+    h6g: {
+      color: "#5F8D85",
+      fontSize: "2.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
     hbox: {
       color: "#F8A500",
       fontSize: "1.5rem",
@@ -259,6 +265,11 @@ const theme = createTheme({
       fontSize: "1.2rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    h7bnw: {
+      color: "#000000",
+      fontSize: "1.2rem",
+      fontFamily: "Garamond",
     },
     h7w: {
       color: "#EAEAEA",

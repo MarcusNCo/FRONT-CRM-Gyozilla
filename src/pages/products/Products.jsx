@@ -160,6 +160,25 @@ const Products = () => {
     }
   });
 
+  const [displayBackButton, setDisplayBackButton] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScrollPosition =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (window.pageYOffset > maxScrollPosition - 200) {
+        setDisplayBackButton(false);
+      } else {
+        setDisplayBackButton(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // const [productInfo, setProductInfo] = useState({});
+  const [productList, setProductList] = useState([]);
+
   return (
     <>
       <ToastContainer preventDuplicates={false} />
@@ -179,26 +198,28 @@ const Products = () => {
             activeCategory={activeCategory}
           />
           {/* bouton retour en version desktop */}
-          <Box
-            sx={{
-              position: "fixed",
-              bottom: "10px",
-              left: "60px",
-              [theme.breakpoints.down("sm")]: {
-                display: "none",
-              },
-            }}
-          >
-            <CustomButton
-              text="Retour"
-              height="40px"
-              width="100px"
-              padding="0 20px 0 20px"
-              margin="32px"
-              startIcon={<KeyboardReturnIcon />}
-              onClick={handleBackClick}
-            ></CustomButton>
-          </Box>
+          {displayBackButton && (
+            <Box
+              sx={{
+                position: "fixed",
+                bottom: "10px",
+                left: "60px",
+                [theme.breakpoints.down("sm")]: {
+                  display: "none",
+                },
+              }}
+            >
+              <CustomButton
+                text="Retour"
+                height="40px"
+                width="100px"
+                padding="0 20px 0 20px"
+                margin="32px"
+                startIcon={<KeyboardReturnIcon />}
+                onClick={handleBackClick}
+              ></CustomButton>
+            </Box>
+          )}
         </Box>
         <Box
           style={{
@@ -250,7 +271,22 @@ const Products = () => {
                     height="300px"
                     title={item.name}
                     onButtonCardClick={() => {
-                      navigate(`/products/${item.name}`);
+                      const newProduct = {
+                        id: item.id,
+                        name: item.name,
+                        description: item.description,
+                        price: item.price,
+                        image: item.image,
+                        category: item.id_product_categories,
+                        menu: item.id_menus,
+                      };
+                      const newProductList = [...productList, newProduct];
+                      setProductList(newProductList);
+                      navigate(`/products/${item.name}`, {
+                        state: {
+                          productList: newProductList,
+                        },
+                      });
                     }}
                     backgroundSize="contain"
                   />
