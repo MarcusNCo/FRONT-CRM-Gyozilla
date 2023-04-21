@@ -33,20 +33,18 @@ const Menu = () => {
   useEffect(() => {
     getAllProductByMenu(selectedTypeMenu)
       .then((res) => {
-        console.log(res);
-        setProductsByMenu(res.data);
+        setProductsByMenu(res.data.data);
         setError(null);
       })
       .catch((error) => {
         setProductsByMenu([]);
         setError(error);
       });
-  }, []);
+  }, [selectedTypeMenu]);
 
   const filteredMenu =
     productsByMenu.length > 0
       ? productsByMenu.filter((productByMenu) => {
-          console.log(productByMenu);
           if (selectMenuOptions === null || selectMenuOptions === 0) {
             return true;
           } else if (selectMenuOptions === 1) {
@@ -70,7 +68,7 @@ const Menu = () => {
   const handleSelectMenu = (e) => {
     setSelectedTypeMenu(e.value);
   };
-
+  console.log(productsByMenu);
   return (
     <>
       <div className="flex justify-content-center mt-5 divSelectMenu">
@@ -84,11 +82,11 @@ const Menu = () => {
         />
       </div>
       <Box>
-        {filteredMenu &&
-          filteredMenu.length > 0 &&
-          filteredMenu.map((item) => {
-            return <Box key={item.id} style={{ position: "relative" }}></Box>;
-          })}
+        {productsByMenu?.length > 0
+          ? productsByMenu.map((item) => {
+              return <Box key={item.id} style={{ position: "relative" }}></Box>;
+            })
+          : "il n'y a pas de produits"}
       </Box>
     </>
   );

@@ -6,6 +6,8 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Badge, Fab, IconButton } from "@mui/material";
 import { useTheme } from "@mui/system";
 
+import { Paginator } from "primereact/paginator";
+
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CustomCard from "../../components/card/CustomCard";
 import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
@@ -24,6 +26,14 @@ const Products = () => {
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [selected, setSelected] = useState(0);
   const [activeCategory, setActiveCategory] = useState(null);
+
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
 
   const theme = useTheme();
 
@@ -163,6 +173,15 @@ const Products = () => {
   return (
     <>
       <ToastContainer preventDuplicates={false} />
+      {!(selectedTypeRepas === null || selectedTypeRepas === 0) && (
+        <Paginator
+          first={first}
+          rows={rows}
+          totalRecords={products.length}
+          rowsPerPageOptions={[10, 20, 30]}
+          onPageChange={onPageChange}
+        />
+      )}
       <Box
         style={{
           display: "flex",
@@ -177,6 +196,7 @@ const Products = () => {
           className={styles.suppCard}
           activeCategory={activeCategory}
         />
+
         <Box
           style={{
             flexWrap: "wrap",
@@ -212,48 +232,50 @@ const Products = () => {
               }}
             />
           ) : (
-            filteredProducts.map((item) => {
-              const isNew = checkNew(item);
-              return (
-                <Box key={item.id} style={{ position: "relative" }}>
-                  <CustomCard
-                    id={item.id}
-                    description={item.description}
-                    image={item.image}
-                    buttonCardText="Details"
-                    variantButton={"contained"}
-                    width="250px"
-                    height="250px"
-                    title={item.name}
-                    onButtonCardClick={() => {
-                      navigate(`/products/${item.name}`);
-                    }}
-                  />
-                  {isNew && (
-                    <Badge
-                      className={styles.badge}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
+            <>
+              {filteredProducts.map((item) => {
+                const isNew = checkNew(item);
+                return (
+                  <Box key={item.id} style={{ position: "relative" }}>
+                    <CustomCard
+                      id={item.id}
+                      description={item.description}
+                      image={item.image}
+                      buttonCardText="Details"
+                      variantButton={"contained"}
+                      width="400px"
+                      height="250px"
+                      title={item.name}
+                      onButtonCardClick={() => {
+                        navigate(`/products/${item.name}`);
                       }}
-                      badgeContent={
-                        <img
-                          src={nouveautes}
-                          alt="Nouveautés"
-                          height={"100px"}
-                          style={{
-                            position: "absolute",
-                            top: "-330px",
-                            right: "-310px",
-                            transformOrigin: "top right",
-                          }}
-                        />
-                      }
-                    ></Badge>
-                  )}
-                </Box>
-              );
-            })
+                    />
+                    {isNew && (
+                      <Badge
+                        className={styles.badge}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        badgeContent={
+                          <img
+                            src={nouveautes}
+                            alt="Nouveautés"
+                            height={"100px"}
+                            style={{
+                              position: "absolute",
+                              top: "-330px",
+                              right: "-310px",
+                              transformOrigin: "top right",
+                            }}
+                          />
+                        }
+                      ></Badge>
+                    )}
+                  </Box>
+                );
+              })}
+            </>
           )}
         </Box>
       </Box>
