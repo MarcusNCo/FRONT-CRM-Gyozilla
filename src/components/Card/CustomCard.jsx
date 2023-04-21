@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import CustomButton from "../button/CustomButton";
 import "./CustomCard.css";
 import { Box } from "@mui/system";
+import CardMedia from "@mui/material/CardMedia";
 // import { string } from 'yargs'
 // import { useTheme } from '@mui/material'
 
@@ -21,6 +22,7 @@ const CustomCard = ({
   border,
   backgroundColor,
   backgroundColorContent,
+  backgroundSize,
   widthContent,
   heightContent,
   heightActions,
@@ -41,6 +43,7 @@ const CustomCard = ({
   return (
     <Card
       id={id}
+      onClick={onButtonCardClick}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -49,13 +52,11 @@ const CustomCard = ({
         width: width,
         height: height,
         backgroundColor: backgroundColor,
-        backgroundImage: `url(${dbImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
         zIndex: zIndex,
         border: "none",
-        boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+        cursor: "pointer",
+        boxShadow:
+          "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
       }}
     >
       <CardContent
@@ -63,39 +64,37 @@ const CustomCard = ({
           width: widthContent,
           height: heightContent,
           backgroundColor: backgroundColorContent,
-          display: "flex",
-          flexDirection: "column",
           padding: "0",
         }}
       >
         <Box
           sx={{
-            backgroundColor: "black",
-            opacity: '0.8',
+            backgroundColor: "#5F8D85",
+            opacity: "0.8",
             padding: "5px 5px 5px 10px",
             display: "flex",
             flexDirection: "column",
             borderRadius: "5px 5px 0 0",
             width: "100%",
+            height: "fit-content",
           }}
         >
-          <Typography variant={"h7"}>{title}</Typography>
-          <Typography variant={"p"}>{description}</Typography>
+          <Typography variant={"h7b"}>{title}</Typography>
         </Box>
       </CardContent>
-      <CardActions
-        style={{
-          width: widthActions,
-          height: heightActions,
-          backgroundColor: backgroundColorActions,
+      <CardContent
+        sx={{
+          flexGrow: 1,
+          width: "100%",
+          padding: "0",
+          paddingBottom: "0 !important",
+          backgroundImage: `url(${dbImage})`,
+          backgroundSize: backgroundSize,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
         }}
       >
-        <CustomButton
-          onClick={onButtonCardClick}
-          variant={variantButton}
-          text={buttonCardText}
-        />
-      </CardActions>
+      </CardContent>
     </Card>
   );
 };

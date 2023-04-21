@@ -170,13 +170,36 @@ const Products = () => {
           minHeight: "calc(100vh - 71px - 104px)",
         }}
       >
-        <CustomListItemProducts
-          selected={selected}
-          onClick={handleListItemClick}
-          setSelected={setSelected}
-          className={styles.suppCard}
-          activeCategory={activeCategory}
-        />
+        <Box>
+          <CustomListItemProducts
+            selected={selected}
+            onClick={handleListItemClick}
+            setSelected={setSelected}
+            className={styles.suppCard}
+            activeCategory={activeCategory}
+          />
+          {/* bouton retour en version desktop */}
+          <Box
+            sx={{
+              position: "fixed",
+              bottom: "10px",
+              left: "60px",
+              [theme.breakpoints.down("sm")]: {
+                display: "none",
+              },
+            }}
+          >
+            <CustomButton
+              text="Retour"
+              height="40px"
+              width="100px"
+              padding="0 20px 0 20px"
+              margin="32px"
+              startIcon={<KeyboardReturnIcon />}
+              onClick={handleBackClick}
+            ></CustomButton>
+          </Box>
+        </Box>
         <Box
           style={{
             flexWrap: "wrap",
@@ -200,6 +223,7 @@ const Products = () => {
                   width="400px"
                   height="250px"
                   image={category.image}
+                  backgroundSize="100% auto"
                 ></CustomCard>
               );
             })
@@ -222,12 +246,13 @@ const Products = () => {
                     image={item.image}
                     buttonCardText="Details"
                     variantButton={"contained"}
-                    width="250px"
-                    height="250px"
+                    width="300px"
+                    height="300px"
                     title={item.name}
                     onButtonCardClick={() => {
                       navigate(`/products/${item.name}`);
                     }}
+                    backgroundSize="contain"
                   />
                   {isNew && (
                     <Badge
@@ -243,8 +268,8 @@ const Products = () => {
                           height={"100px"}
                           style={{
                             position: "absolute",
-                            top: "-330px",
-                            right: "-310px",
+                            top: "-380px",
+                            right: "-360px",
                             transformOrigin: "top right",
                           }}
                         />
@@ -256,25 +281,6 @@ const Products = () => {
             })
           )}
         </Box>
-      </Box>
-
-      {/* bouton retour en version desktop */}
-      <Box
-        sx={{
-          [theme.breakpoints.down("sm")]: {
-            display: "none",
-          },
-        }}
-      >
-        <CustomButton
-          text="Retour"
-          height="40px"
-          width="100px"
-          padding="0 20px 0 20px"
-          margin="32px"
-          startIcon={<KeyboardReturnIcon />}
-          onClick={handleBackClick}
-        ></CustomButton>
       </Box>
 
       {/* bouton retour en version mobile */}
