@@ -156,7 +156,7 @@ const Products = () => {
     } else if (selectedTypeRepas === 1) {
       return checkNew(product);
     } else if (selectedTypeRepas === 2) {
-      return true;
+      navigate("../menu");
     } else if (selectedTypeRepas === 3) {
       return product.productCategory.id === TYPE_REPAS.ENTREES;
     } else if (selectedTypeRepas === 4) {
@@ -265,7 +265,7 @@ const Products = () => {
                             style={{
                               position: "absolute",
                               top: "-330px",
-                              right: "-310px",
+                              right: "-470px",
                               transformOrigin: "top right",
                             }}
                           />

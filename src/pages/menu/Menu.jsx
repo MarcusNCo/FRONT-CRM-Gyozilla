@@ -5,7 +5,8 @@ import { getAllProductByMenu } from "../../utils/api-call/getAllProductByMenu";
 import { Box, useTheme } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomCard from "../../components/card/CustomCard";
-import { Card } from "@mui/material";
+import { Card, Checkbox } from "@mui/material";
+import { CheckBox } from "@mui/icons-material";
 
 const Menu = () => {
   const [value, setValue] = useState(null);
@@ -84,7 +85,20 @@ const Menu = () => {
       <Box>
         {productsByMenu?.length > 0
           ? productsByMenu.map((item) => {
-              return <Box key={item.id} style={{ position: "relative" }}></Box>;
+              return (
+                <Box key={item.id} style={{ position: "relative" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CustomCard />
+                    <Checkbox />
+                  </div>
+                </Box>
+              );
             })
           : "il n'y a pas de produits"}
       </Box>
