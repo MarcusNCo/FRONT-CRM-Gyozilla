@@ -125,7 +125,7 @@ const theme = createTheme({
           },
           "&.active": {
             backgroundColor: "#F8A50050",
-            borderRight: "2px solid #F8A500",
+            borderRight: "5px solid #F8A500",
             color: "#000000",
           },
         },

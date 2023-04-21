@@ -32,7 +32,6 @@ const CustomCard = ({
   styleParagraph,
   variantButton,
   zIndex,
-  backgroundPosition,
 }) => {
   let dbImage = "";
   if (image !== undefined) {
@@ -53,7 +52,7 @@ const CustomCard = ({
         backgroundImage: `url(${dbImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: backgroundPosition,
+        backgroundPosition: "center center",
         zIndex: zIndex,
         border: "none",
         boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
@@ -66,20 +65,20 @@ const CustomCard = ({
           backgroundColor: backgroundColorContent,
           display: "flex",
           flexDirection: "column",
-          padding: "0 20px 0 0",
+          padding: "0",
         }}
       >
         <Box
           sx={{
             backgroundColor: "black",
-            padding: "5px 15px 5px 15px",
+            padding: "5px 5px 5px 10px",
             display: "flex",
             flexDirection: "column",
-            borderRadius: "0 0 5px 0",
-            width: "fit-content",
+            borderRadius: "5px 5px 0 0",
+            width: "100%",
           }}
         >
-          <Typography variant={"hbox"}>{title}</Typography>
+          <Typography variant={"h7"}>{title}</Typography>
           <Typography variant={"p"}>{description}</Typography>
         </Box>
       </CardContent>

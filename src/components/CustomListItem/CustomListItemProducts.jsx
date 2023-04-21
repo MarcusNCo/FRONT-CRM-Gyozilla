@@ -44,11 +44,6 @@ export default function CustomListItemProducts({
           subheader={
             <ListSubheader 
             id="nested-list-subheader"
-            sx={{
-              // backgroundColor: "##F8A50050",
-              // color: "#000000",
-              // borderBottom: "1px solid #000000",
-            }}
             >La Carte</ListSubheader>
           }
         >
