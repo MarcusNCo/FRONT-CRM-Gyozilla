@@ -222,7 +222,7 @@ const Footer = (props) => {
             <Grid item xs={12} sm={6} className="toRight">
               <LinkContainer className="toRight">
                 <Link
-                  href="#"
+                  href="/recruiting"
                   underline="none"
                   sx={{ margin: '0 10px 0 10px', color: '#CDE8E7' }}
                 >
