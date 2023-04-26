@@ -22,6 +22,7 @@ import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
 
+
 const Header = () => {
   const [auth, setAuth] = useState(true);
   const [valueInput, setvalueInput] = useState("");

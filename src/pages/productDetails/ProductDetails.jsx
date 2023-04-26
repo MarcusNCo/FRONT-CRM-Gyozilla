@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import CustomCard from "../../components/card/CustomCard";
 import { Button, Chip, Divider, TextField, Typography } from "@mui/material";
 
+
 const ProductDetails = () => {
   const location = useLocation();
   const [quantity, setQuantity] = useState(1);
@@ -39,7 +40,8 @@ const ProductDetails = () => {
   }, [quantity, productInfo.price]);
 
   const addToCart = () => {
-    // Ajouter le produit au panier
+    const product = { id: productInfo.id, name: productInfo.name, price: productInfo.price, quantity };
+    addToCart(product);
   };
 
   return (
@@ -51,6 +53,9 @@ const ProductDetails = () => {
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
+          "@media (max-width: 900px)": {
+            flexDirection: "column",
+          },
         }}
       >
         {productInfo.image && (
@@ -68,8 +73,7 @@ const ProductDetails = () => {
         )}
         <Box
           sx={{
-            minWidth: "40%",
-            maxWidth: "500px",
+            width: "400px",
             height: "400px",
             display: "flex",
             flexDirection: "column",
@@ -87,12 +91,9 @@ const ProductDetails = () => {
               display: "flex",
               flexDirection: "column",
               height: "fit-content",
-              // border: '1px solid black'
             }}
           >
-            {/* <Typography variant="h7b">Description du produit</Typography> */}
-
-            <Typography sx={{ width: '200px', fontSize: '1.2rem', backgroundColor: '#5F8D85', borderRadius: '0 5px 5px 0', paddingLeft: '10px', marginBottom: '10px' }}>Description du produit</Typography>
+            <Typography sx={{ width: '200px', fontSize: '1.2rem', backgroundColor: '#5F8D85', borderRadius: '5px 0', paddingLeft: '10px', marginBottom: '10px' }}>Description du produit</Typography>
           
             <Typography variant="h7bnw">{productInfo.description}</Typography>
             <Typography variant="h7bnw">
@@ -131,7 +132,7 @@ const ProductDetails = () => {
                 
               }}
             >
-              <Typography sx={{ textAlign: "center" }} variant="h7b">
+              <Typography sx={{ textAlign: "center", display: 'flex', alignItems: 'center' }} variant="h7b">
                 Total: {total}€
               </Typography>
               <Button

@@ -203,7 +203,7 @@ const Products = () => {
               sx={{
                 position: "fixed",
                 bottom: "10px",
-                left: "60px",
+                left: "50px",
                 [theme.breakpoints.down("sm")]: {
                   display: "none",
                 },
@@ -212,7 +212,7 @@ const Products = () => {
               <CustomButton
                 text="Retour"
                 height="40px"
-                width="100px"
+                width="120px"
                 padding="0 20px 0 20px"
                 margin="32px"
                 startIcon={<KeyboardReturnIcon />}

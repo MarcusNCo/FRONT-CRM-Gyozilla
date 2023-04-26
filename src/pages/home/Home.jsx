@@ -77,6 +77,11 @@ const Home = () => {
             bottom: "0.5rem",
             transform: "translate(-50%)",
             width: "150px",
+            "@media (max-width: 600px)": {
+              marginTop: "0",
+              bottom: "5%",
+              transform: "translate(-50%, -5%)",
+            },
           }}
         >
           <KeyboardDoubleArrowDownIcon
