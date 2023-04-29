@@ -55,39 +55,57 @@ const Header = () => {
     setCartOpen(false);
   };
 
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
-  const addDummyProducts = () => {
-    const dummyProducts = [
-      { id: 1, name: "Nems au poulet", price: 6.0, quantity: 2 },
-      { id: 2, name: "Crevettes sautées", price: 12.0, quantity: 1 },
-      { id: 3, name: "Sunday litchi", price: 3.5, quantity: 1 },
-    ];
+  // const incrementQuantity = (id) => {
+  //   setCartItems(
+  //     cartItems.map((item) =>
+  //       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+  //     )
+  //   );
+  // };
 
-    setCartItems(dummyProducts);
-  };
+  // const decrementQuantity = (id) => {
+  //   setCartItems(
+  //     cartItems.map((item) =>
+  //       item.id === id && item.quantity > 1
+  //         ? { ...item, quantity: item.quantity - 1 }
+  //         : item
+  //     )
+  //   );
+  // };
 
-  useEffect(() => {
-    addDummyProducts();
-  }, []);
+
+  const cart = JSON.parse(window.localStorage.getItem('cart')) || {};
+  // const cartItems = Object.values(cart);
+  const [cartItems, setCartItems] = useState(Object.values(cart));
 
   const incrementQuantity = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+    const updatedCart = {
+      ...cart,
+      [id]: {
+        ...cart[id],
+        quantity: cart[id].quantity + 1,
+      },
+    };
+  
+    window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCartItems(Object.values(updatedCart));
   };
 
-  const decrementQuantity = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  const decrementQuantity  = (id) => {
+    const updatedCart = {
+      ...cart,
+      [id]: {
+        ...cart[id],
+        quantity: cart[id].quantity - 1,
+      },
+    };
+  
+    window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCartItems(Object.values(updatedCart));
   };
+
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -120,7 +138,7 @@ const Header = () => {
                 {auth && (
                   <Box style={{ display: "flex" }}>
                     <Badge
-                      badgeContent={4}
+                      badgeContent={cartItems.length}
                       variant="standard"
                       overlap="circular"
                       sx={{
@@ -213,7 +231,7 @@ const Header = () => {
                 style={{ fontSize: 35, color: "#739B94" }}
               />
             </Link>
-            <Badge badgeContent={4} variant="standard">
+            <Badge badgeContent={cartItems.length} variant="standard">
               <ShoppingCartIcon
                 style={{
                   fontSize: 35,

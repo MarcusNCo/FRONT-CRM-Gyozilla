@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab, IconButton } from "@mui/material";
+import { Badge, Fab, IconButton, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
@@ -186,7 +186,7 @@ const Products = () => {
         style={{
           display: "flex",
           margin: "0",
-          minHeight: "calc(100vh - 71px - 104px)",
+          minHeight: "calc(100vh - 71px)",
         }}
       >
         <Box>
@@ -249,13 +249,26 @@ const Products = () => {
               );
             })
           ) : filteredProducts.length === 0 ? (
-            <CircularProgress
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            />
+            // <CircularProgress
+            //   sx={{
+            //     display: "flex",
+            //     flexDirection: "column",
+            //     alignItems: "center",
+            //   }}
+            // />
+            <Typography 
+            variant="hboxb" 
+            color="initial"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              // alignItems: "center",
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+            >
+              Il n'y a pas de nouveautés pour le moment !<br />Mais cela va vite arriver ;)
+              </Typography>
           ) : (
             filteredProducts.map((item) => {
               const isNew = checkNew(item);

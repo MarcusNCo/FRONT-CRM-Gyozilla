@@ -41,7 +41,15 @@ const ProductDetails = () => {
 
   const addToCart = () => {
     const product = { id: productInfo.id, name: productInfo.name, price: productInfo.price, quantity };
-    addToCart(product);
+    const cart = JSON.parse(window.localStorage.getItem('cart')) || {};
+  
+    if (cart[product.id]) {
+      cart[product.id].quantity += quantity;
+    } else {
+      cart[product.id] = product;
+    }
+  
+    window.localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   return (

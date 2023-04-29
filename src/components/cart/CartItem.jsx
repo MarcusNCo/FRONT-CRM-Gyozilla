@@ -8,7 +8,21 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const CartItem = ({ item, increment, decrement, remove }) => {
+const CartItem = ({ item, increment, decrement, remove, updateQuantity  }) => {
+
+  const handleIncrement = (event) => {
+    event.preventDefault();
+    increment();
+    updateQuantity(item.id, item.quantity + 1);
+  };
+
+  const handleDecrement = (event) => {
+    event.preventDefault();
+    decrement();
+    updateQuantity(item.id, item.quantity - 1);
+  };
+
+
   return (
     <React.Fragment>
       <Box
@@ -32,7 +46,7 @@ const CartItem = ({ item, increment, decrement, remove }) => {
         >
           <Typography variant="h7b">{item.name}</Typography>
   
-          <Typography variant="h8b">Prix: {item.price.toFixed(2)} €</Typography>
+          <Typography variant="h8b">Prix: {item.price} €</Typography>
           <Typography variant="h8b">Quantité: {item.quantity}</Typography>
         </Box>
         <Box
@@ -44,7 +58,7 @@ const CartItem = ({ item, increment, decrement, remove }) => {
           }}
         >
           <AddIcon
-            onClick={increment}
+            onClick={handleIncrement}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
@@ -56,7 +70,7 @@ const CartItem = ({ item, increment, decrement, remove }) => {
             }}
           />
           <RemoveIcon
-            onClick={decrement}
+            onClick={handleDecrement}
             disabled={item.quantity === 1}
             sx={{
               border: "1px solid #5F8D85",
@@ -69,7 +83,7 @@ const CartItem = ({ item, increment, decrement, remove }) => {
             }}
           />
           <DeleteIcon
-            onClick={remove}
+            // onClick={handleRemove}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
