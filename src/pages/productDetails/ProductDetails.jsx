@@ -1,9 +1,11 @@
-import { Box, borderRadius } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import CustomCard from "../../components/card/CustomCard";
-import { Button, Chip, Divider, TextField, Typography } from "@mui/material";
-
+import { Box } from "@mui/system";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button, Divider, Typography } from "@mui/material";
+import CustomButton from "../../components/button/CustomButton";
+import { useTheme } from "@mui/system";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import CartContext from "../../utils/context/CartContext";
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -18,12 +20,10 @@ const ProductDetails = () => {
     menu: "",
   });
   const [total, setTotal] = useState(productInfo.price);
-
-  useEffect(() => {
-    if (location.state && location.state.productList) {
-      setProductInfo(location.state.productList[0]);
-    }
-  }, []);
+  const theme = useTheme();
+  const { updateCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
+  const [displayBackButton, setDisplayBackButton] = useState(true);
 
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
@@ -35,22 +35,51 @@ const ProductDetails = () => {
     }
   };
 
-  useEffect(() => {
-    setTotal(quantity * productInfo.price);
-  }, [quantity, productInfo.price]);
-
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   const addToCart = () => {
-    const product = { id: productInfo.id, name: productInfo.name, price: productInfo.price, quantity };
-    const cart = JSON.parse(window.localStorage.getItem('cart')) || {};
-  
+    const product = {
+      id: productInfo.id,
+      name: productInfo.name,
+      price: productInfo.price,
+      quantity,
+    };
+    const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+
     if (cart[product.id]) {
       cart[product.id].quantity += quantity;
     } else {
       cart[product.id] = product;
     }
-  
-    window.localStorage.setItem('cart', JSON.stringify(cart));
+
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartItems();
   };
+
+  useEffect(() => {
+    if (location.state && location.state.productList) {
+      setProductInfo(location.state.productList[0]);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    setTotal(quantity * productInfo.price);
+  }, [quantity, productInfo.price]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScrollPosition =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (window.pageYOffset > maxScrollPosition - 200) {
+        setDisplayBackButton(false);
+      } else {
+        setDisplayBackButton(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -71,8 +100,8 @@ const ProductDetails = () => {
             component="img"
             sx={{
               height: "fit-content",
-              maxWidth: '400px',
-              maxHeight: '400px',
+              maxWidth: "400px",
+              maxHeight: "400px",
               objectFit: "cover",
             }}
             alt={`Image du produit "${productInfo.name}"`}
@@ -101,25 +130,34 @@ const ProductDetails = () => {
               height: "fit-content",
             }}
           >
-            <Typography sx={{ width: '200px', fontSize: '1.2rem', backgroundColor: '#5F8D85', borderRadius: '5px 0', paddingLeft: '10px', marginBottom: '10px' }}>Description du produit</Typography>
-          
+            <Typography
+              sx={{
+                width: "200px",
+                fontSize: "1.2rem",
+                backgroundColor: "#5F8D85",
+                borderRadius: "5px 0",
+                paddingLeft: "10px",
+                marginBottom: "10px",
+              }}
+            >
+              Description du produit
+            </Typography>
+
             <Typography variant="h7bnw">{productInfo.description}</Typography>
             <Typography variant="h7bnw">
               Prix à l'unité : {productInfo.price}€
             </Typography>
-
           </Box>
-          <Divider sx={{ borderBottom: 1, borderColor: "#00000050" }}/>
+          <Divider sx={{ borderBottom: 1, borderColor: "#00000050" }} />
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              height: '100px',
-              justifySelf: 'end',
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "100px",
+              justifySelf: "end",
             }}
           >
-
             <Box
               sx={{
                 display: "flex",
@@ -133,14 +171,20 @@ const ProductDetails = () => {
               </Typography>
               <Button onClick={incrementQuantity}>+</Button>
             </Box>
-            <Box 
+            <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'space-evenly',
-                
+                display: "flex",
+                justifyContent: "space-evenly",
               }}
             >
-              <Typography sx={{ textAlign: "center", display: 'flex', alignItems: 'center' }} variant="h7b">
+              <Typography
+                sx={{
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                variant="h7b"
+              >
                 Total: {total}€
               </Typography>
               <Button
@@ -153,6 +197,29 @@ const ProductDetails = () => {
           </Box>
         </Box>
       </Box>
+      {/* bouton retour en version desktop */}
+      {displayBackButton && (
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: "10px",
+            left: "50px",
+            [theme.breakpoints.down("sm")]: {
+              display: "none",
+            },
+          }}
+        >
+          <CustomButton
+            text="Retour"
+            height="40px"
+            width="120px"
+            padding="0 20px 0 20px"
+            margin="32px"
+            startIcon={<KeyboardReturnIcon />}
+            onClick={handleBackClick}
+          ></CustomButton>
+        </Box>
+      )}
     </>
   );
 };

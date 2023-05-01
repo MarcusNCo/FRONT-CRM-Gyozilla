@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 import Logo from "../../images/logoHeader.png";
 import mobileLogo from "../../images/gyozillalogo.png";
@@ -21,30 +21,25 @@ import Badge from "@mui/material/Badge";
 import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
-
+import CartContext from "../../utils/context/CartContext";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
-  const [valueInput, setvalueInput] = useState("");
+  const [cartOpen, setCartOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const { isLogged } = useContext(UserContext)
+  const { isLogged } = useContext(UserContext);
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { cartItems } = useContext(CartContext);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleChangeInput = (e) => {
-    console.log(e);
-    setvalueInput(e.target.value);
-  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const [cartOpen, setCartOpen] = useState(false);
 
   const handleCartOpen = (e) => {
     e.preventDefault();
@@ -54,60 +49,6 @@ const Header = () => {
   const handleCartClose = () => {
     setCartOpen(false);
   };
-
-  // const [cartItems, setCartItems] = useState([]);
-
-  // const incrementQuantity = (id) => {
-  //   setCartItems(
-  //     cartItems.map((item) =>
-  //       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-  //     )
-  //   );
-  // };
-
-  // const decrementQuantity = (id) => {
-  //   setCartItems(
-  //     cartItems.map((item) =>
-  //       item.id === id && item.quantity > 1
-  //         ? { ...item, quantity: item.quantity - 1 }
-  //         : item
-  //     )
-  //   );
-  // };
-
-
-  const cart = JSON.parse(window.localStorage.getItem('cart')) || {};
-  // const cartItems = Object.values(cart);
-  const [cartItems, setCartItems] = useState(Object.values(cart));
-
-  const incrementQuantity = (id) => {
-    const updatedCart = {
-      ...cart,
-      [id]: {
-        ...cart[id],
-        quantity: cart[id].quantity + 1,
-      },
-    };
-  
-    window.localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCartItems(Object.values(updatedCart));
-  };
-
-  const decrementQuantity  = (id) => {
-    const updatedCart = {
-      ...cart,
-      [id]: {
-        ...cart[id],
-        quantity: cart[id].quantity - 1,
-      },
-    };
-  
-    window.localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCartItems(Object.values(updatedCart));
-  };
-
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
@@ -201,7 +142,6 @@ const Header = () => {
               display: "none",
             },
             overflow: "hidden",
-            // padding: "10px",
             justifyContent: "space-between",
             boxShadow: "0 0 .4em black",
           }}
@@ -300,42 +240,47 @@ const Header = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose} className="menu-item">
-            {
-              isLogged ?
-                <a className="menu-item-a" href="/profile">
-                  <Logout fontSize="small" />
-                  <Typography
-                    variant="body1"
-                    color="initial"
-                    sx={{ paddingLeft: "10px" }}
-                  >
-                    Mon compte
-                  </Typography>
-                </a> :
-                <a className="menu-item-a" href="/login">
-                  <Logout fontSize="small" />
-                  <Typography
-                    variant="body1"
-                    color="initial"
-                    sx={{ paddingLeft: "10px" }}
-                  >
-                    Se connecter
-                  </Typography>
-                </a>
-            }
+            {isLogged ? (
+              <a className="menu-item-a" href="/profile">
+                <Logout fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: "10px" }}
+                >
+                  Mon compte
+                </Typography>
+              </a>
+            ) : (
+              <a className="menu-item-a" href="/login">
+                <Logout fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: "10px" }}
+                >
+                  Se connecter
+                </Typography>
+              </a>
+            )}
           </MenuItem>
-          {isLogged ?
+          {isLogged ? (
             <Divider
               sx={{
-                display: 'none'
-              }} /> :
+                display: "none",
+              }}
+            />
+          ) : (
             <Divider />
-          }
-          {isLogged ?
+          )}
+          {isLogged ? (
             <MenuItem
               sx={{
-                display: 'none'
-              }} onClick={handleClose} className="menu-item">
+                display: "none",
+              }}
+              onClick={handleClose}
+              className="menu-item"
+            >
               <a className="menu-item-a" href="/sign-in">
                 <AppRegistrationIcon fontSize="small" />
                 <Typography
@@ -346,7 +291,8 @@ const Header = () => {
                   S'inscrire
                 </Typography>
               </a>
-            </MenuItem> :
+            </MenuItem>
+          ) : (
             <MenuItem onClick={handleClose} className="menu-item">
               <a className="menu-item-a" href="/sign-in">
                 <AppRegistrationIcon fontSize="small" />
@@ -359,14 +305,14 @@ const Header = () => {
                 </Typography>
               </a>
             </MenuItem>
-          }
+          )}
         </Menu>
         {/* // ------------ Panier version desktop et mobile --------------- */}
         <Menu
           anchorEl={cartOpen}
           id="menu-cart"
           open={Boolean(cartOpen)}
-          onClose={handleCartClose}
+          // onClose={handleCartClose}
           onClick={handleCartClose}
           PaperProps={{
             sx: {
@@ -391,7 +337,6 @@ const Header = () => {
                 height: 12,
                 bgcolor: "background.paper",
                 transform: "translateY(-50%) rotate(45deg)",
-                filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))",
                 zIndex: 0,
                 [theme.breakpoints.down("sm")]: {
                   right: 75,
@@ -408,11 +353,9 @@ const Header = () => {
             vertical: "bottom",
           }}
         >
-          <Cart
-            items={cartItems}
-            onIncrement={incrementQuantity}
-            onDecrement={decrementQuantity}
-          />
+          <ClickAwayListener onClickAway={handleCartClose}>
+            <Cart />
+          </ClickAwayListener>
         </Menu>
       </header>
     </>
