@@ -11,7 +11,7 @@ import ResetPassword from "./pages/reset-password/ResetPassword";
 import NosEngagements from "./pages/nosengagements/NosEngagements";
 import ContactForm from "./pages/contact/ContactForm";
 import Menu from "./pages/menu/Menu";
-import Order from "./pages/profile/Order";
+import Order from "./pages/order/Order";
 
 function RoutesConfig() {
   const routes = [
