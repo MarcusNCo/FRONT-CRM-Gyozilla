@@ -51,7 +51,7 @@ const Profile = () => {
                                 '&:hover': {
                                     textDecoration: 'none'
                                 },
-                                backgroundColor: index === selectedMenuItemIndex ? 'rgba(255, 255, 255, 0.1)' : 'transparent', // Ajouter un style personnalisé pour l'élément sélectionné
+                                backgroundColor: index === selectedMenuItemIndex ? 'rgb(248, 165, 0.4)' : 'transparent', // Ajouter un style personnalisé pour l'élément sélectionné
                             }}
                             key={index}
                             onClick={() => handleMenuItemClick(index)}
