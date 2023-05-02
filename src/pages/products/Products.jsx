@@ -122,7 +122,8 @@ const Products = () => {
 
   const handleCardClick = (category) => {
     if (category.id === 2) {
-      navigate("/menu");
+      navigate('/menu');
+      console.log("coucou")
     }
     setSelectedTypeRepas(category.id);
     setActiveCategory(category.id);
