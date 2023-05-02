@@ -22,11 +22,10 @@ import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
-import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
-  const [cartOpen, setCartOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
   const { isLogged } = useContext(UserContext);
@@ -45,9 +44,10 @@ const Header = () => {
     e.preventDefault();
     setCartOpen(e.currentTarget);
   };
-
-  const handleCartClose = () => {
-    setCartOpen(false);
+  
+  const handleCartClose = (e) => {
+    e.preventDefault();
+    setCartOpen(null);
   };
 
   return (
@@ -96,7 +96,7 @@ const Header = () => {
                         }}
                         color="inherit"
                         aria-label="cart of current user"
-                        aria-controls="menu-cart"
+                        aria-controls={null}
                         aria-haspopup="true"
                         onClick={handleCartOpen}
                       />
@@ -179,7 +179,7 @@ const Header = () => {
                   cursor: "pointer",
                 }}
                 aria-label="cart of current user"
-                aria-controls="menu-cart"
+                aria-controls={null}
                 aria-haspopup="true"
                 onClick={handleCartOpen}
               />
@@ -310,10 +310,9 @@ const Header = () => {
         {/* // ------------ Panier version desktop et mobile --------------- */}
         <Menu
           anchorEl={cartOpen}
+          onClick={handleCartClose}
           id="menu-cart"
           open={Boolean(cartOpen)}
-          // onClose={handleCartClose}
-          onClick={handleCartClose}
           PaperProps={{
             sx: {
               overflow: "visible",
@@ -353,9 +352,7 @@ const Header = () => {
             vertical: "bottom",
           }}
         >
-          <ClickAwayListener onClickAway={handleCartClose}>
-            <Cart />
-          </ClickAwayListener>
+          <Cart />
         </Menu>
       </header>
     </>

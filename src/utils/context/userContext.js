@@ -6,6 +6,9 @@ export const UserContext = createContext({});
 
 const cartReducer = (state, action) => {
   const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+
+  console.log(action.type)
+
   switch (action.type) {
     case "INCREMENT":
       if (cart[action.payload]) {
@@ -28,9 +31,9 @@ const cartReducer = (state, action) => {
       window.localStorage.setItem("cart", JSON.stringify(cart));
       return Object.values(cart);
 
-    case "CLEARALL":
-      window.localStorage.removeItem("cart");
-      return Object.values(cart);
+    case "CLEAR":
+      window.localStorage.setItem("cart", JSON.stringify({}));
+      return [];
 
     case "INIT":
       return action.payload;
@@ -64,6 +67,7 @@ function UserContextProvider(props) {
   }, []);
 
   const updateCartItems = () => {
+    console.log("ok")
     dispatch({ type: "UPDATE" });
   };
 

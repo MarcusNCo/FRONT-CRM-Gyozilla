@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CartContext from "../../utils/context/CartContext";
+import { UserContext } from "../../utils/context/UserContext";
 
 const CartItem = ({ item }) => {
   const { dispatch } = useContext(CartContext);
@@ -57,7 +58,6 @@ const CartItem = ({ item }) => {
           }}
         >
           <AddIcon
-            // onClick={() => incrementCartItem(item.id)}
             onClick={(event) => handleIncrement(event)}
             sx={{
               border: "1px solid #5F8D85",
@@ -70,7 +70,6 @@ const CartItem = ({ item }) => {
             }}
           />
           <RemoveIcon
-            // onClick={() => decrementCartItem(item.id)}
             onClick={(event) => handleDecrement(event)}
             disabled={item.quantity === 1}
             sx={{
@@ -84,7 +83,6 @@ const CartItem = ({ item }) => {
             }}
           />
           <DeleteIcon
-            // onClick={() => removeCartItem(item.id)}
             onClick={(event) => handleRemove(event)}
             sx={{
               border: "1px solid #5F8D85",

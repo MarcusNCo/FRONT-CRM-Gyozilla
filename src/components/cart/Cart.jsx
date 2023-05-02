@@ -4,17 +4,15 @@ import CartItem from "./CartItem";
 import CartContext from "../../utils/context/CartContext";
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, dispatch } = useContext(CartContext);
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  const { dispatch } = useContext(CartContext);
-
   const removeCart = (event) => {
     event.stopPropagation();
-    dispatch({ type: "CLEARALL", payload: cartItems });
+    dispatch({ type: "CLEAR" });
   };
 
   return (
@@ -36,8 +34,8 @@ const Cart = () => {
           borderColor: "black",
         }}
       />
-      {cartItems.map((item, index) => (
-        <CartItem key={index} item={item} />
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} />
       ))}
       <Typography variant="h7b" sx={{ textAlign: "center", marginTop: "12px" }}>
         Total: {totalPrice} €

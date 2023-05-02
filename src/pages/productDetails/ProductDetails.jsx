@@ -38,6 +38,7 @@ const ProductDetails = () => {
   const handleBackClick = () => {
     navigate(-1);
   };
+  
   const addToCart = () => {
     const product = {
       id: productInfo.id,
