@@ -67,7 +67,6 @@ function UserContextProvider(props) {
   }, []);
 
   const updateCartItems = () => {
-    console.log("ok")
     dispatch({ type: "UPDATE" });
   };
 
