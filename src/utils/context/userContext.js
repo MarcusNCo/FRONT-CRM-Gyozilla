@@ -15,6 +15,7 @@ const cartReducer = (state, action) => {
         cart[action.payload].quantity += 1;
       }
       window.localStorage.setItem("cart", JSON.stringify(cart));
+      action.type = "UPDATE";
       return Object.values(cart);
 
     case "DECREMENT":
@@ -22,6 +23,7 @@ const cartReducer = (state, action) => {
         cart[action.payload].quantity -= 1;
       }
       window.localStorage.setItem("cart", JSON.stringify(cart));
+      action.type = "UPDATE";
       return Object.values(cart);
 
     case "REMOVE":
