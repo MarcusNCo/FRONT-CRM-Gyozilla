@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuBurger from "../../components/burger/MenuBurger";
 import { Divider, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import Badge from "@mui/material/Badge";
@@ -31,6 +31,7 @@ const Header = () => {
   const { isLogged } = useContext(UserContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { cartItems } = useContext(CartContext);
+  const location = useLocation();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,7 +45,7 @@ const Header = () => {
     e.preventDefault();
     setCartOpen(e.currentTarget);
   };
-  
+
   const handleCartClose = (e) => {
     e.preventDefault();
     setCartOpen(null);
@@ -78,30 +79,31 @@ const Header = () => {
                 ></Typography>
                 {auth && (
                   <Box style={{ display: "flex" }}>
-                    <Badge
-                      badgeContent={cartItems.length}
-                      variant="standard"
-                      overlap="circular"
-                      sx={{
-                        width: "48px",
-                        height: "48px",
-                        padding: "8px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <ShoppingCartIcon
+                    {location.pathname !== "/order" && (
+                      <Badge
+                        badgeContent={cartItems.length}
+                        variant="standard"
+                        overlap="circular"
                         sx={{
-                          width: "32px",
-                          height: "32px",
+                          width: "48px",
+                          height: "48px",
+                          padding: "8px",
+                          marginRight: "8px",
                         }}
-                        color="inherit"
-                        aria-label="cart of current user"
-                        aria-controls={null}
-                        aria-haspopup="true"
-                        onClick={handleCartOpen}
-                      />
-                    </Badge>
-
+                      >
+                        <ShoppingCartIcon
+                          sx={{
+                            width: "32px",
+                            height: "32px",
+                          }}
+                          color="inherit"
+                          aria-label="cart of current user"
+                          aria-controls={null}
+                          aria-haspopup="true"
+                          onClick={handleCartOpen}
+                        />
+                      </Badge>
+                    )}
                     <IconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
@@ -171,19 +173,21 @@ const Header = () => {
                 style={{ fontSize: 35, color: "#739B94" }}
               />
             </Link>
-            <Badge badgeContent={cartItems.length} variant="standard">
-              <ShoppingCartIcon
-                style={{
-                  fontSize: 35,
-                  color: "#739B94",
-                  cursor: "pointer",
-                }}
-                aria-label="cart of current user"
-                aria-controls={null}
-                aria-haspopup="true"
-                onClick={handleCartOpen}
-              />
-            </Badge>
+            {location.pathname !== "/order" && (
+              <Badge badgeContent={cartItems.length} variant="standard">
+                <ShoppingCartIcon
+                  style={{
+                    fontSize: 35,
+                    color: "#739B94",
+                    cursor: "pointer",
+                  }}
+                  aria-label="cart of current user"
+                  aria-controls={null}
+                  aria-haspopup="true"
+                  onClick={handleCartOpen}
+                />
+              </Badge>
+            )}
             <AccountCircleIcon
               style={{
                 fontSize: 35,

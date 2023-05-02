@@ -7,8 +7,6 @@ export const UserContext = createContext({});
 const cartReducer = (state, action) => {
   const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
 
-  console.log(action.type)
-
   switch (action.type) {
     case "INCREMENT":
       if (cart[action.payload]) {

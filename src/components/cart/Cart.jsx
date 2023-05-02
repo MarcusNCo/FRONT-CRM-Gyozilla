@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
 import CartItem from "./CartItem";
 import CartContext from "../../utils/context/CartContext";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, dispatch } = useContext(CartContext);
@@ -9,6 +10,7 @@ const Cart = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const navigate = useNavigate();
 
   const removeCart = (event) => {
     event.stopPropagation();
@@ -53,7 +55,7 @@ const Cart = () => {
         </Button>
         <Button
           variant="contained"
-          onClick={() => console.log("Commande confirmée")}
+          onClick={() => navigate('/order')}
           sx={{
             width: "120px",
             height: "30px",
