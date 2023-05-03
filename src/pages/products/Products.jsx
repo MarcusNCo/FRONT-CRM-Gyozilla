@@ -6,6 +6,8 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Badge, Fab, IconButton, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 
+import { Paginator } from "primereact/paginator";
+
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CustomCard from "../../components/card/CustomCard";
 import CustomListItemProducts from "../../components/customlistitem/CustomListItemProducts";
@@ -24,6 +26,14 @@ const Products = () => {
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [selected, setSelected] = useState(0);
   const [activeCategory, setActiveCategory] = useState(null);
+
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
 
   const theme = useTheme();
 
@@ -147,7 +157,7 @@ const Products = () => {
     } else if (selectedTypeRepas === 1) {
       return checkNew(product);
     } else if (selectedTypeRepas === 2) {
-      return true;
+      navigate("../menu");
     } else if (selectedTypeRepas === 3) {
       return product.productCategory.id === TYPE_REPAS.ENTREES;
     } else if (selectedTypeRepas === 4) {
@@ -183,6 +193,15 @@ const Products = () => {
   return (
     <>
       <ToastContainer preventDuplicates={false} />
+      {!(selectedTypeRepas === null || selectedTypeRepas === 0) && (
+        <Paginator
+          first={first}
+          rows={rows}
+          totalRecords={products.length}
+          rowsPerPageOptions={[10, 20, 30]}
+          onPageChange={onPageChange}
+        />
+      )}
       <Box
         style={{
           display: "flex",
@@ -274,7 +293,16 @@ const Products = () => {
             filteredProducts.map((item) => {
               const isNew = checkNew(item);
               return (
-                <Box key={item.id} style={{ position: "relative" }}>
+                <Box
+                  key={item.id}
+                  style={{ position: "relative" }}
+                  sx={{
+                    ":hover": {
+                      transform: " scale(1.02)",
+                      transition: "all 0.2s ease-in-out",
+                    },
+                  }}
+                >
                   <CustomCard
                     id={item.id}
                     description={item.description}
