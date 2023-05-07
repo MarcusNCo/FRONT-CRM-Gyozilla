@@ -9,6 +9,8 @@ import { Box, useTheme } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomCard from "../../components/card/CustomCard";
 import { Card, Checkbox, Typography } from "@mui/material";
+import CustomButton from "../../components/button/CustomButton";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
 const Menu = () => {
   const [value, setValue] = useState(null);
@@ -16,6 +18,25 @@ const Menu = () => {
   const [error, setError] = useState(null);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(1);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [displayBackButton, setDisplayBackButton] = useState(true);
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScrollPosition =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (window.pageYOffset > maxScrollPosition - 200) {
+        setDisplayBackButton(false);
+      } else {
+        setDisplayBackButton(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const TYPE_MENU = {
     MENU_ENFANTS: 1,
@@ -278,6 +299,31 @@ const Menu = () => {
           "il n'y a pas de produits"
         )}
       </Box>
+
+      {/* bouton retour en version desktop */}
+      {displayBackButton && (
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: "10px",
+            left: "50px",
+            [theme.breakpoints.down("sm")]: {
+              display: "none",
+            },
+          }}
+        >
+          <CustomButton
+            text="Retour"
+            height="40px"
+            width="120px"
+            padding="0 20px 0 20px"
+            margin="32px"
+            startIcon={<KeyboardReturnIcon />}
+            onClick={handleBackClick}
+          ></CustomButton>
+        </Box>
+      )}
+
     </>
   );
 };

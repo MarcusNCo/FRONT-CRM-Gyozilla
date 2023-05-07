@@ -12,6 +12,7 @@ import NosEngagements from "./pages/nosengagements/NosEngagements";
 import ContactForm from "./pages/contact/ContactForm";
 import Menu from "./pages/menu/Menu";
 import Order from "./pages/order/Order";
+import Find from "./pages/find/Find";
 
 function RoutesConfig() {
   const routes = [
@@ -70,6 +71,10 @@ function RoutesConfig() {
     {
       path: "/order",
       element: <Order />,
+    },
+    {
+      path: "/find",
+      element: <Find />,
     },
   ];
 

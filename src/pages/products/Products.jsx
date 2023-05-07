@@ -23,21 +23,23 @@ import { ToastContainer, toast } from "react-toastify";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [selected, setSelected] = useState(0);
-  const [activeCategory, setActiveCategory] = useState(null);
-
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
+  const location = useLocation();
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
+  const [displayBackButton, setDisplayBackButton] = useState(true);
+  const [productList, setProductList] = useState([]);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+
+  const theme = useTheme();
+  const navigate = useNavigate();
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
   };
-
-  const theme = useTheme();
-
-  const navigate = useNavigate();
 
   const TYPE_REPAS = {
     ENTREES: 1,
@@ -84,11 +86,63 @@ const Products = () => {
       image: "boissons.jpg",
     },
   ];
-  const location = useLocation();
+
+  const handleListItemClick = (event, index) => {
+    setSelectedTypeRepas(index);
+    setActiveCategory(null);
+  };
+
+  const handleBackClick = () => {
+    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
+      navigate(-1);
+      setActiveCategory(null);
+    } else {
+      setSelectedTypeRepas(null);
+      setActiveCategory(null);
+    }
+  };
+
+  const handleCardClick = (category) => {
+    if (category.id === 2) {
+      navigate("/menu");
+    }
+    setSelectedTypeRepas(category.id);
+    setActiveCategory(category.id);
+  };
+
+  const checkNew = (item) => {
+    const today = new Date();
+    const lastWeek = new Date(today);
+    lastWeek.setDate(lastWeek.getDate() - 7);
+    return (
+      new Date(item.createdAt) >= lastWeek && new Date(item.createdAt) <= today
+    );
+  };
+
+  //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
+  // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
+  const filteredProducts = products.filter((product) => {
+    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
+      return true;
+    } else if (selectedTypeRepas === 1) {
+      return checkNew(product);
+    } else if (selectedTypeRepas === 2) {
+      navigate("../menu");
+    } else if (selectedTypeRepas === 3) {
+      return product.productCategory.id === TYPE_REPAS.ENTREES;
+    } else if (selectedTypeRepas === 4) {
+      return product.productCategory.id === TYPE_REPAS.PLATS;
+    } else if (selectedTypeRepas === 5) {
+      return product.productCategory.id === TYPE_REPAS.DESSERTS;
+    } else if (selectedTypeRepas === 6) {
+      return product.productCategory.id === TYPE_REPAS.BOISSONS;
+    } else {
+      return null;
+    }
+  });
 
   useEffect(() => {
     if (location.state && location.state.successMessage) {
-      console.log("ok");
       toast.success(location.state.successMessage, {
         position: "top-right",
         autoClose: 4000,
@@ -115,62 +169,13 @@ const Products = () => {
       });
   }, []);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedTypeRepas(index);
-    setActiveCategory(null);
-  };
+  useEffect(() => {
+    const initialTypeRepas = location.state?.typeRepas || 0;
+    const initialTypeRepasBdd = location.state?.typeRepas - 2 || 0;
 
-  const handleBackClick = () => {
-    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
-      navigate(-1);
-      setActiveCategory(null);
-    } else {
-      setSelectedTypeRepas(null);
-      setActiveCategory(null);
-    }
-  };
-
-  const handleCardClick = (category) => {
-    if (category.id === 2) {
-      navigate('/menu');
-    }
-    setSelectedTypeRepas(category.id);
-    setActiveCategory(category.id);
-  };
-
-  const checkNew = (item) => {
-    const today = new Date();
-    const lastWeek = new Date(today);
-    lastWeek.setDate(lastWeek.getDate() - 7);
-    return (
-      new Date(item.createdAt) >= lastWeek && new Date(item.createdAt) <= today
-    );
-  };
-
-  //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
-  // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
-  const filteredProducts = products.filter((product) => {
-    console.log(product);
-    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
-      return true;
-    } else if (selectedTypeRepas === 1) {
-      return checkNew(product);
-    } else if (selectedTypeRepas === 2) {
-      navigate("../menu");
-    } else if (selectedTypeRepas === 3) {
-      return product.productCategory.id === TYPE_REPAS.ENTREES;
-    } else if (selectedTypeRepas === 4) {
-      return product.productCategory.id === TYPE_REPAS.PLATS;
-    } else if (selectedTypeRepas === 5) {
-      return product.productCategory.id === TYPE_REPAS.DESSERTS;
-    } else if (selectedTypeRepas === 6) {
-      return product.productCategory.id === TYPE_REPAS.BOISSONS;
-    } else {
-      return null;
-    }
-  });
-
-  const [displayBackButton, setDisplayBackButton] = useState(true);
+    setSelectedTypeRepas(initialTypeRepas);
+    setActiveCategory(initialTypeRepasBdd);
+  }, [location.state]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -186,8 +191,9 @@ const Products = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // const [productInfo, setProductInfo] = useState({});
-  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    setDisplayedProducts(filteredProducts.slice(first, first + rows));
+  }, [filteredProducts, first, rows]);
 
   return (
     <>
@@ -196,8 +202,8 @@ const Products = () => {
         <Paginator
           first={first}
           rows={rows}
-          totalRecords={products.length}
-          rowsPerPageOptions={[10, 20, 30]}
+          totalRecords={filteredProducts.length}
+          rowsPerPageOptions={[6, 12, 24]}
           onPageChange={onPageChange}
         />
       )}
@@ -267,7 +273,7 @@ const Products = () => {
                 ></CustomCard>
               );
             })
-          ) : filteredProducts.length === 0 ? (
+          ) : displayedProducts.length === 0 ? (
             // <CircularProgress
             //   sx={{
             //     display: "flex",
@@ -275,21 +281,21 @@ const Products = () => {
             //     alignItems: "center",
             //   }}
             // />
-            <Typography 
-            variant="hboxb" 
-            color="initial"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              // alignItems: "center",
-              justifyContent: 'center',
-              textAlign: 'center',
-            }}
+            <Typography
+              variant="hboxb"
+              color="initial"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
             >
-              Il n'y a pas de nouveautés pour le moment !<br />Mais cela va vite arriver ;)
-              </Typography>
+              Il n'y a pas de nouveautés pour le moment !<br />
+              Mais cela va vite arriver ;)
+            </Typography>
           ) : (
-            filteredProducts.map((item) => {
+            displayedProducts.map((item) => {
               const isNew = checkNew(item);
               return (
                 <Box

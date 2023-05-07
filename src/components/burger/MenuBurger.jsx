@@ -13,9 +13,10 @@ import RamenDiningIcon from "@mui/icons-material/RamenDining";
 import CoPresentIcon from "@mui/icons-material/CoPresent";
 import PinDropIcon from "@mui/icons-material/PinDrop";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-import { Divider } from "@mui/material";
-import { border } from "@mui/system";
+import { Divider, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const MyDrawer = styled(Drawer)({
   "& .MuiDrawer-paper": {
@@ -24,12 +25,10 @@ const MyDrawer = styled(Drawer)({
   },
 });
 
-export default function MenuBurger() {
+export default function MenuBurger({ onCloseMenu }) {
   const [open, setOpen] = useState(false);
   const [openLaCarte, setOpenLaCarte] = useState(false);
-  const [openNosEngagements, setOpenNosEngagements] = useState(false);
-  const [openContactezNous, setOpenContactezNous] = useState(false);
-  const [openTrouverUnResto, setOpenTrouverUnResto] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setOpen(!open);
@@ -39,16 +38,16 @@ export default function MenuBurger() {
     setOpenLaCarte(!openLaCarte);
   };
 
-  const handleClickNosEngagements = () => {
-    setOpenNosEngagements(!openNosEngagements);
+  const handleLinkClick = () => {
+    if (typeof onCloseMenu === "function") {
+      onCloseMenu();
+    }
+    setOpen(false);
   };
 
-  const handleClickContactezNous = () => {
-    setOpenContactezNous(!openContactezNous);
-  };
-
-  const handleClickTrouverUnResto = () => {
-    setOpenTrouverUnResto(!openTrouverUnResto);
+  const handleTypeRepasClick = (typeRepas) => {
+    handleLinkClick();
+    navigate("/products", { state: { typeRepas } });
   };
 
   return (
@@ -78,7 +77,8 @@ export default function MenuBurger() {
             sx={{
               color: "#739B94",
               display: "flex",
-              marginTop: "25px",
+              marginTop: "15px",
+              padding: "20px 0 10px 0",
               borderBottom: "1px solid #739B94",
             }}
             onClick={handleClickLaCarte}
@@ -90,91 +90,103 @@ export default function MenuBurger() {
           </ListItemButton>
           <Collapse in={openLaCarte} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Nouveautés" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Entrées" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Plats" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Menus" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Boissons" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Desserts" />
-              </ListItemButton>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(1)}
+              >
+                <Typography variant="h9b">Nouveautés</Typography>
+              </Box>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(2)}
+              >
+                <Typography variant="h9b">Menus</Typography>
+              </Box>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(3)}
+              >
+                <Typography variant="h9b">Entrées</Typography>
+              </Box>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(4)}
+              >
+                <Typography variant="h9b">Plats</Typography>
+              </Box>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(5)}
+              >
+                <Typography variant="h9b">Desserts</Typography>
+              </Box>
+              <Box
+                className="link-hover"
+                onClick={() => handleTypeRepasClick(6)}
+              >
+                <Typography variant="h9b">Boissons</Typography>
+              </Box>
             </List>
           </Collapse>
           <Divider />
-          <ListItemButton
-            sx={{
-              color: "#739B94",
-              display: "flex",
-              marginTop: "25px",
-              borderBottom: "1px solid #739B94",
-            }}
-            onClick={handleClickNosEngagements}
+          <Link
+            to="/nosengagements"
+            className="link-container"
+            onClick={handleLinkClick}
           >
-            <CoPresentIcon
-              style={{ marginRight: "20px", marginLeft: "20px" }}
-            />
-            <ListItemText
-              primary="Nos engagements"
-              sx={{ marginLeft: "10px" }}
-            />
-          </ListItemButton>
-          <Collapse in={openNosEngagements} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Accueil" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="Les équipes" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary="La qualité" />
-              </ListItemButton>
-            </List>
-          </Collapse>
+            <Box
+              className="link-hover"
+              sx={{
+                display: "flex",
+                color: "#739B94",
+                borderBottom: "1px solid #739B94",
+                padding: "20px 0 5px 0",
+              }}
+            >
+              <CoPresentIcon
+                style={{ marginRight: "20px", marginLeft: "20px" }}
+              />
+              <Typography variant="h9g">Nos engagements</Typography>
+            </Box>
+          </Link>
           <Divider />
-          <ListItemButton
-            sx={{
-              color: "#739B94",
-              display: "flex",
-              marginTop: "25px",
-              borderBottom: "1px solid #739B94",
-            }}
-            onClick={handleClickContactezNous}
+          <Link
+            to="/contact"
+            className="link-container"
+            onClick={handleLinkClick}
           >
-            <ContactMailIcon
-              style={{ marginRight: "20px", marginLeft: "20px" }}
-            />
-            <ListItemText
-              primary="Contactez-nous"
-              sx={{ marginLeft: "10px" }}
-            />
-            {/* <Link to="Contactez-nous" style={{ color: "#5F8D85" }} /> */}
-          </ListItemButton>
+            <Box
+              className="link-hover"
+              sx={{
+                display: "flex",
+                color: "#739B94",
+                borderBottom: "1px solid #739B94",
+                padding: "20px 0 5px 0",
+              }}
+            >
+              <ContactMailIcon
+                style={{ marginRight: "20px", marginLeft: "20px" }}
+              />
+              <Typography variant="h9g">Contactez-nous</Typography>
+            </Box>
+          </Link>
           <Divider />
-          <ListItemButton
-            sx={{
-              color: "#739B94",
-              display: "flex",
-              marginTop: "25px",
-            }}
-            onClick={handleClickTrouverUnResto}
-          >
-            <PinDropIcon style={{ marginRight: "20px", marginLeft: "20px" }} />
-            <ListItemText
-              primary="Trouver un resto"
-              sx={{ marginLeft: "10px" }}
-            />
-          </ListItemButton>
+          <Link to="/find" className="link-container" onClick={handleLinkClick}>
+            <Box
+              className="link-hover"
+              sx={{
+                display: "flex",
+                color: "#739B94",
+                borderBottom: "1px solid #739B94",
+                padding: "20px 0 5px 0",
+              }}
+            >
+              <PinDropIcon
+                style={{ marginRight: "20px", marginLeft: "20px" }}
+              />
+              <Typography variant="h9g">Trouver un resto</Typography>
+            </Box>
+          </Link>
         </List>
       </MyDrawer>
     </React.Fragment>

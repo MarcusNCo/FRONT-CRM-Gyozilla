@@ -1,3 +1,12 @@
-body > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper > nav > div > div > span {
-    font-size: 1.1rem !important;
+.link-hover {
+    padding: 16px 0 16px 30px; 
+}
+
+.link-hover:hover {
+    background-color: #F8A500;
+    color: white;
+}
+
+.link-hover:hover span {
+    color: white;
 }

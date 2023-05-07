@@ -36,7 +36,7 @@ const Header = () => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -49,6 +49,10 @@ const Header = () => {
   const handleCartClose = (e) => {
     e.preventDefault();
     setCartOpen(null);
+  };
+
+  const closeMenu = () => {
+    // Ferme le menu ici
   };
 
   return (
@@ -67,7 +71,7 @@ const Header = () => {
           <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: "#739B94" }}>
               <Toolbar>
-                <MenuBurger />
+                <MenuBurger closeDrawer={closeMenu} />
                 <Typography
                   variant="h6"
                   component="div"
