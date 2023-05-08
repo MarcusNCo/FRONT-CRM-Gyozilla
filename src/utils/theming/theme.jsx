@@ -185,8 +185,8 @@ const theme = createTheme({
         root: {
           color: "#EAEAEA",
           backgroundColor: "#F8A500",
-          fontSize: '1.0rem',
-          fontWeight: 'bold',
+          fontSize: "1.0rem",
+          fontWeight: "bold",
           // marginTop: "3vh",
           "&:hover": {
             color: "#EAEAEA",
@@ -265,6 +265,13 @@ const theme = createTheme({
       fontSize: "1.2rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    h7g: {
+      color: "#5F8D85",
+      fontSize: "2.0rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
     },
     h7bnw: {
       color: "#000000",

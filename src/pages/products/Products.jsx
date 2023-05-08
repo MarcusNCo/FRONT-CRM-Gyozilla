@@ -203,7 +203,7 @@ const Products = () => {
           first={first}
           rows={rows}
           totalRecords={filteredProducts.length}
-          rowsPerPageOptions={[6, 12, 24]}
+          rowsPerPageOptions={[10, 20, 30]}
           onPageChange={onPageChange}
         />
       )}

@@ -7,7 +7,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { Divider } from "@mui/material";
-import { borderBottom } from "@mui/system";
 
 export default function CustomListItemProducts({
   onClick,
