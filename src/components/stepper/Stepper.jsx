@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import {
   Box,
   Typography,
@@ -17,6 +17,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import "./Stepper.css";
+import { useNavigate } from "react-router-dom";
+import { createOrder, createOrderLine } from "../../utils/api-call/order";
+import { UserContext } from "../../utils/context/UserContext";
 
 const steps = [
   "Confirmer la commande",
@@ -25,21 +28,42 @@ const steps = [
 ];
 
 export default function HorizontalLinearStepper() {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
+  const { user, isLogged } = useContext(UserContext);
+  const [cartItems, setCartItems] = useState([]);
+  const [deliveryType, setDeliveryType] = useState("");
+  const token = window.localStorage.getItem("token");
+
+  const saveOrder = async () => {
+    try {
+      const totalPrice = getTotal();
+      const orderResponse = await createOrder(user.id, 1, totalPrice, 1, token);
+      const orderId = orderResponse.data.id;
+      const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+  
+      for (const productId in cart) {
+        const product = cart[productId];
+        await createOrderLine(orderId, product.id, product.quantity, token);
+      }
+      window.localStorage.setItem("cart", JSON.stringify({}));
+    } catch (error) {
+      console.error("Erreur lors de l'enregistrement de la commande :", error);
+    }
+  };
 
   const handleNext = () => {
+    if (activeStep === steps.length - 1) {
+      if (isLogged) {
+        saveOrder();
+      }
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const cartData = localStorage.getItem("cart");
@@ -57,18 +81,16 @@ export default function HorizontalLinearStepper() {
     return dbImage;
   };
 
-  const getTotal = () => {
+  const handleDeliveryTypeChange = (event) => {
+    setDeliveryType(event.target.value);
+  };
+
+  const getTotal = useCallback(() => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
-  };
-
-  const [deliveryType, setDeliveryType] = useState("");
-
-  const handleDeliveryTypeChange = (event) => {
-    setDeliveryType(event.target.value);
-  };
+  }, [cartItems]);
 
   const renderStepContent = (step) => {
     switch (step) {
@@ -266,7 +288,7 @@ export default function HorizontalLinearStepper() {
                 {cartItems.map((item) => (
                   <ListItem key={item.id}>
                     <ListItemText
-                      sx={{ color: 'black' }}
+                      sx={{ color: "black" }}
                       primary={`${item.name} - Quantité: ${item.quantity} - Prix: ${item.price}€`}
                     />
                   </ListItem>
@@ -320,14 +342,18 @@ export default function HorizontalLinearStepper() {
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
+              onClick={
+                activeStep === 0 ? () => navigate("/products") : handleBack
+              }
               sx={{ mr: 1 }}
             >
               Retour
             </Button>
             <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleNext}>
+            <Button
+              onClick={handleNext}
+              disabled={activeStep === 1 && deliveryType === ""}
+            >
               {activeStep === steps.length - 1 ? "Valider" : "Continuer"}
             </Button>
           </Box>

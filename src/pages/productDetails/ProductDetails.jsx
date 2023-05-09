@@ -6,6 +6,8 @@ import CustomButton from "../../components/button/CustomButton";
 import { useTheme } from "@mui/system";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import CartContext from "../../utils/context/CartContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -38,7 +40,7 @@ const ProductDetails = () => {
   const handleBackClick = () => {
     navigate(-1);
   };
-  
+
   const addToCart = () => {
     const product = {
       id: productInfo.id,
@@ -57,6 +59,22 @@ const ProductDetails = () => {
 
     window.localStorage.setItem("cart", JSON.stringify(cart));
     updateCartItems();
+
+    toast.success(
+      `${quantity} ${productInfo.name} ${
+        quantity === 1 ? "a bien été ajouté" : "ont bien été ajoutés"
+      } au panier`,
+      {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
   };
 
   useEffect(() => {
@@ -222,6 +240,7 @@ const ProductDetails = () => {
           ></CustomButton>
         </Box>
       )}
+      <ToastContainer position="top-right" />
     </>
   );
 };
