@@ -38,13 +38,28 @@ export default function HorizontalLinearStepper() {
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
-      const orderResponse = await createOrder(user.id, 1, totalPrice, 1, token);
+      const token = window.localStorage.getItem("token");
+
+      const orderValues = {
+        id_customers: user.id,
+        id_franchises: 1,
+        total_price: totalPrice,
+        id_status: 1,
+      };
+
+      const orderResponse = await createOrder(orderValues, token);
       const orderId = orderResponse.data.id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
-  
+
       for (const productId in cart) {
         const product = cart[productId];
-        await createOrderLine(orderId, product.id, product.quantity, token);
+        const orderLineValues = {
+          id_orders: orderId,
+          id_products: product.id,
+          quantity: product.quantity,
+        };
+
+        await createOrderLine(orderLineValues, token);
       }
       window.localStorage.setItem("cart", JSON.stringify({}));
     } catch (error) {
