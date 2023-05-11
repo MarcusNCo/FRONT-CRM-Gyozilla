@@ -171,7 +171,7 @@ const Header = () => {
             </Link>
           </Box>
           <Box className="header-right">
-            <Link className="containIcon" to={"/"} onClick={null}>
+            <Link className="containIcon" to={"/find"} onClick={null}>
               <LocationOnIcon
                 className="logIcon"
                 style={{ fontSize: 35, color: "#739B94" }}

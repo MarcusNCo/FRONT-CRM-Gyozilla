@@ -33,7 +33,6 @@ export default function HorizontalLinearStepper() {
   const { user, isLogged } = useContext(UserContext);
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
-  const token = window.localStorage.getItem("token");
   const { dispatch } = useContext(CartContext);
 
 
