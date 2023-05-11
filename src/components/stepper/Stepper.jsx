@@ -11,7 +11,6 @@ import {
   FormControlLabel,
   Radio,
   FormControl,
-  FormLabel,
   List,
   ListItem,
   ListItemText,
@@ -20,6 +19,7 @@ import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
 import { createOrder, createOrderLine } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
+import CartContext from "../../utils/context/CartContext";
 
 const steps = [
   "Confirmer la commande",
@@ -34,21 +34,25 @@ export default function HorizontalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const token = window.localStorage.getItem("token");
+  const { dispatch } = useContext(CartContext);
+
 
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
       const token = window.localStorage.getItem("token");
+      const date = new Date().toISOString().split('T')[0];
 
       const orderValues = {
-        id_customers: user.id,
-        id_franchises: 1,
+        date_order: date,
         total_price: totalPrice,
         id_status: 1,
+        id_franchises: 1,
+        id_customers: user.id,
       };
 
       const orderResponse = await createOrder(orderValues, token);
-      const orderId = orderResponse.data.id;
+      const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
 
       for (const productId in cart) {
@@ -58,10 +62,9 @@ export default function HorizontalLinearStepper() {
           id_products: product.id,
           quantity: product.quantity,
         };
-
         await createOrderLine(orderLineValues, token);
       }
-      window.localStorage.setItem("cart", JSON.stringify({}));
+      dispatch({ type: "CLEAR" });
     } catch (error) {
       console.error("Erreur lors de l'enregistrement de la commande :", error);
     }
@@ -112,7 +115,7 @@ export default function HorizontalLinearStepper() {
       // CONFIRMATION DE LA COMMANDE
       case 0:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
             <Box
               sx={{
                 marginTop: "20px",
@@ -201,7 +204,7 @@ export default function HorizontalLinearStepper() {
       // CHOIX DU TYPE DE LA COMMANDE
       case 1:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
             <Box
               sx={{
                 marginTop: "20px",
@@ -230,7 +233,6 @@ export default function HorizontalLinearStepper() {
               <Box>
                 <FormControl component="fieldset">
                   <RadioGroup
-                    column
                     aria-label="delivery-type"
                     name="delivery-type"
                     value={deliveryType}
@@ -263,7 +265,7 @@ export default function HorizontalLinearStepper() {
       // FINALISATION DE LA COMMANDE
       case 2:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
             <Box
               sx={{
                 marginTop: "20px",
@@ -325,7 +327,7 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: "80%", margin: "20px auto 20px auto" }}>
+    <Box sx={{ minHeight: "calc(100vh - 71px)", width: "80%", margin: "20px auto 20px auto" }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};

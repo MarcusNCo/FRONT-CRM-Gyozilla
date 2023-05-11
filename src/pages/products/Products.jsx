@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -121,25 +121,38 @@ const Products = () => {
 
   //Dans BDD => product.productCategory.id 1:Entrees 2:Plats 3:Desserts 4:Boissons 5:Nouveautes
   // ListItem 1:Nouveautes 2:Les Menus 3:Entrees 4:Plats 5:Desserts 6:Boissons
-  const filteredProducts = products.filter((product) => {
-    if (selectedTypeRepas === null || selectedTypeRepas === 0) {
-      return true;
-    } else if (selectedTypeRepas === 1) {
-      return checkNew(product);
-    } else if (selectedTypeRepas === 2) {
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      if (selectedTypeRepas === null || selectedTypeRepas === 0) {
+        return true;
+      } else if (selectedTypeRepas === 1) {
+        return checkNew(product);
+      } else if (selectedTypeRepas === 3) {
+        return product.productCategory.id === TYPE_REPAS.ENTREES;
+      } else if (selectedTypeRepas === 4) {
+        return product.productCategory.id === TYPE_REPAS.PLATS;
+      } else if (selectedTypeRepas === 5) {
+        return product.productCategory.id === TYPE_REPAS.DESSERTS;
+      } else if (selectedTypeRepas === 6) {
+        return product.productCategory.id === TYPE_REPAS.BOISSONS;
+      } else {
+        return null;
+      }
+    });
+  }, [
+    selectedTypeRepas,
+    products,
+    TYPE_REPAS.ENTREES,
+    TYPE_REPAS.PLATS,
+    TYPE_REPAS.DESSERTS,
+    TYPE_REPAS.BOISSONS,
+  ]);
+
+  useEffect(() => {
+    if (selectedTypeRepas === 2) {
       navigate("../menu");
-    } else if (selectedTypeRepas === 3) {
-      return product.productCategory.id === TYPE_REPAS.ENTREES;
-    } else if (selectedTypeRepas === 4) {
-      return product.productCategory.id === TYPE_REPAS.PLATS;
-    } else if (selectedTypeRepas === 5) {
-      return product.productCategory.id === TYPE_REPAS.DESSERTS;
-    } else if (selectedTypeRepas === 6) {
-      return product.productCategory.id === TYPE_REPAS.BOISSONS;
-    } else {
-      return null;
     }
-  });
+  }, [selectedTypeRepas, navigate]);
 
   useEffect(() => {
     if (location.state && location.state.successMessage) {
