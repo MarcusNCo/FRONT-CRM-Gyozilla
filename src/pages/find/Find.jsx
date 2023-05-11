@@ -18,7 +18,7 @@ const Find = () => {
   return (
     <>
     <Box sx={{ width:"100%", minHeight:"calc(100vh - 71px)", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", }}>
-      <Typography variant="h7b" color="initial" sx={{ marginBottom:"60px" }}>Positions des restaurants Gyozilla</Typography>
+      <Typography variant="hboxb" color="initial" sx={{ marginBottom:"60px" }}>Positions des restaurants Gyozilla</Typography>
       <MapContainer center={position} zoom={13} style={{ height: "60vh", width: "60%" }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
