@@ -242,6 +242,13 @@ const theme = createTheme({
       fontWeight: "bold",
       marginBottom: "10px",
     },
+    h6b: {
+      color: "#000",
+      fontSize: "2.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
     hbox: {
       color: "#F8A500",
       fontSize: "1.5rem",

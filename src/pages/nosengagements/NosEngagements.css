@@ -45,19 +45,26 @@ body{
 }
 
 .body1{
-    /* color: #D4AF60; */
     color: #CDE8E7;
     font-weight: 550;
 }
 
+.css-480o17-MuiGrid-root>.MuiGrid-item {
+    padding-left: 0 !important;
+}
+
 /* ------------------------- Media queries ------------------------ */
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
     .around {
         display: none;
     }
     .team{
+        flex-direction: column !important;
         justify-content: center;
+    }
+    .team img{
+        margin-bottom: 10px;
     }
     .boxStyle{
         flex-direction: column;

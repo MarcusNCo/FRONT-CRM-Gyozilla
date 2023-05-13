@@ -1,39 +1,31 @@
-import React from 'react'
-import CustomForm from '../../components/form/CustomForm'
-import { Typography, Box, Container } from '@mui/material'
-import './ContactForm.css'
-import CustomInput from '../../components/input/CustomInput'
-import CustomButton from '../../components/button/CustomButton'
-import { display, height, margin, width } from '@mui/system'
-import TextField from '@mui/system'
+import React from "react";
+import CustomForm from "../../components/form/CustomForm";
+import { Typography, Box, Container } from "@mui/material";
+import "./ContactForm.css";
+import CustomInput from "../../components/input/CustomInput";
+import CustomButton from "../../components/button/CustomButton";
+import { display, height, margin, width } from "@mui/system";
+import TextField from "@mui/system";
 
 const ContactForm = () => {
   return (
     <Container
       sx={{
-        display: 'flex',
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
       }}
       className="bodyCont"
       maxWidth="xl"
     >
       <CustomForm inputs={[]} />
-      {/* <Container className="bodyCont" maxWidth="xl"> */}
       <Box
         id="firstCol"
         sx={{
-          width: '50%',
-          height: 800,
-          backgroundColor: 'amber',
-          // '&:hover': {
-          //   backgroundColor: 'primary.main',
-          //   opacity: [0.9, 0.8, 0.7],
-          // },
+          width: { xs: "100%", md: "50%" },
+          height: { xs: 400, md: 800 },
+          backgroundColor: "amber",
         }}
       >
-        {/* <Typography variant="h1" color="white" ml={8} className="contactText">
-          {' '}
-          Gyozilla
-        </Typography> */}
         <Typography
           variant="h3"
           color="white"
@@ -41,7 +33,7 @@ const ContactForm = () => {
           mt={3}
           className="contactText"
         >
-          {' '}
+          {" "}
           Des questions?
         </Typography>
         <Typography
@@ -51,7 +43,7 @@ const ContactForm = () => {
           mt={1}
           className="contactText"
         >
-          {' '}
+          {" "}
           Une remarque?
         </Typography>
         <Typography
@@ -62,13 +54,13 @@ const ContactForm = () => {
           mt={4}
           className="contactText"
         >
-          {' '}
+          {" "}
           Si vous avez la moindre question vous pouvez nous la poser directement
           ci-dessous en nous communiquant votre nom et email.
         </Typography>
         <Box className="info">
           <CustomInput
-            style={{ width: '40%' }}
+            style={{ width: "40%" }}
             placeholder="Nom*"
             type="name"
             name="name"
@@ -79,7 +71,7 @@ const ContactForm = () => {
             required
           ></CustomInput>
           <CustomInput
-            style={{ width: '40%' }}
+            style={{ width: "40%" }}
             placeholder="Email*"
             type="email"
             name="email"
@@ -92,26 +84,22 @@ const ContactForm = () => {
         </Box>
         <Box className="sendContent">
           <CustomInput
-            style={{ width: '80%' }}
+            style={{ width: "80%" }}
             id="outlined-multiline-static"
             label="Votre message"
             multiline="true"
             rows={4}
             defaultValue="Default Value"
           />
-          <CustomButton text={'Envoyer'} width={'25%'}></CustomButton>
         </Box>
+        <CustomButton text={"Envoyer"} width={"25%"} margin={"0 0 0 30px"}></CustomButton>
       </Box>
       <Box
         id="secondCol"
         sx={{
-          width: '50%',
-          height: 800,
-          backgroundColor: 'teal',
-          // '&:hover': {
-          //   backgroundColor: 'primary.main',
-          //   opacity: [0.9, 0.8, 0.7],
-          // },
+          width: { xs: "100%", md: "50%" },
+          height: { xs: 400, md: 800 },
+          backgroundColor: "teal",
         }}
       >
         <Typography
@@ -121,7 +109,7 @@ const ContactForm = () => {
           mt={3}
           className="contactText"
         >
-          {' '}
+          {" "}
           Gyozilla
         </Typography>
         <Typography
@@ -163,10 +151,8 @@ const ContactForm = () => {
           contact@gyozilla.fr
         </Typography>
       </Box>
-
-      {/* </Container> */}
     </Container>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;
