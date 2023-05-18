@@ -2,10 +2,14 @@ import React, { useContext } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
 import CartItem from "./CartItem";
 import CartContext from "../../utils/context/CartContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../utils/context/UserContext";
 
 const Cart = () => {
   const { cartItems, dispatch } = useContext(CartContext);
+  const { isLogged, shouldRedirectToOrder, setShouldRedirectToOrder } =
+    useContext(UserContext);
+
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -55,7 +59,14 @@ const Cart = () => {
         </Button>
         <Button
           variant="contained"
-          onClick={() => navigate('/order')}
+          onClick={() => {
+            if (isLogged) {
+              navigate("/order");
+            } else {
+              setShouldRedirectToOrder(true);
+              navigate("/login");
+            }
+          }}
           sx={{
             width: "120px",
             height: "30px",

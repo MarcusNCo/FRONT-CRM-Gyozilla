@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import './Find.css'
 import { getAllFranchises } from "../../utils/api-call/franchise";
 import haversine from "haversine";
 
@@ -28,7 +28,6 @@ const Find = () => {
   const [error, setError] = useState(null);
   const [searching, setSearching] = useState(false);
   const [mapCenter, setMapCenter] = useState([49.8929565, 2.2953686]);
-  const theme = useTheme();
   const mapRef = useRef();
 
   const MapContainerStyled = styled(MapContainer)(({ theme }) => ({
@@ -170,7 +169,7 @@ useEffect(() => {
           onClick={startSearch}
           sx={{ marginBottom: "30px" }}
         >
-          Trouver
+          Ma position
         </Button>
         <MapContainerStyled
           center={mapCenter}

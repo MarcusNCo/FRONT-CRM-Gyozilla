@@ -5,6 +5,7 @@ import mobileLogo from "../../images/gyozillalogo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import AppBar from "@mui/material/AppBar";
 import { Box, useTheme } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,6 +23,7 @@ import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
@@ -32,11 +34,12 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { cartItems } = useContext(CartContext);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -53,6 +56,11 @@ const Header = () => {
 
   const closeMenu = () => {
     // Ferme le menu ici
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate(-1);
   };
 
   return (
@@ -281,22 +289,17 @@ const Header = () => {
           ) : (
             <Divider />
           )}
+
           {isLogged ? (
-            <MenuItem
-              sx={{
-                display: "none",
-              }}
-              onClick={handleClose}
-              className="menu-item"
-            >
-              <a className="menu-item-a" href="/sign-in">
-                <AppRegistrationIcon fontSize="small" />
+            <MenuItem onClick={handleLogout} className="menu-item">
+              <a className="menu-item-a" href="/login">
+                <PowerSettingsNewIcon fontSize="small" />
                 <Typography
                   variant="body1"
                   color="initial"
                   sx={{ paddingLeft: "10px" }}
                 >
-                  S'inscrire
+                  Se déconnecter
                 </Typography>
               </a>
             </MenuItem>

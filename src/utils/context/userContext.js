@@ -49,6 +49,7 @@ const cartReducer = (state, action) => {
 function UserContextProvider(props) {
   const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
+  const [shouldRedirectToOrder, setShouldRedirectToOrder] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -71,7 +72,7 @@ function UserContextProvider(props) {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
+    <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged, shouldRedirectToOrder, setShouldRedirectToOrder }}>
       <CartContext.Provider
         value={{
           cartItems,
