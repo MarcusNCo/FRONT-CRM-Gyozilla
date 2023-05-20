@@ -35,12 +35,27 @@ export default function HorizontalLinearStepper() {
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
 
-
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
       const token = window.localStorage.getItem("token");
-      const date = new Date().toISOString().split('T')[0];
+      const date = new Date().toISOString().split("T")[0];
+
+      let ordertype = 0;
+      switch (deliveryType) {
+        case "Click & Collect":
+          ordertype = 1;
+          break;
+        case "Livraison à domicile":
+          ordertype = 2;
+          break;
+        case "Consommation sur place":
+          ordertype = 3;
+          break;
+        default:
+          ordertype = 1;
+          break;
+      }
 
       const orderValues = {
         date_order: date,
@@ -48,6 +63,7 @@ export default function HorizontalLinearStepper() {
         id_status: 1,
         id_franchises: 1,
         id_customers: user.id,
+        id_order_types: ordertype,
       };
 
       const orderResponse = await createOrder(orderValues, token);
@@ -114,7 +130,13 @@ export default function HorizontalLinearStepper() {
       // CONFIRMATION DE LA COMMANDE
       case 0:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "20px",
+            }}
+          >
             <Box
               sx={{
                 marginTop: "20px",
@@ -203,7 +225,13 @@ export default function HorizontalLinearStepper() {
       // CHOIX DU TYPE DE LA COMMANDE
       case 1:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "20px",
+            }}
+          >
             <Box
               sx={{
                 marginTop: "20px",
@@ -264,7 +292,13 @@ export default function HorizontalLinearStepper() {
       // FINALISATION DE LA COMMANDE
       case 2:
         return (
-          <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "20px",
+            }}
+          >
             <Box
               sx={{
                 marginTop: "20px",
@@ -326,7 +360,13 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ minHeight: "calc(100vh - 71px)", width: "80%", margin: "20px auto 20px auto" }}>
+    <Box
+      sx={{
+        minHeight: "calc(100vh - 71px)",
+        width: "80%",
+        margin: "20px auto 20px auto",
+      }}
+    >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};

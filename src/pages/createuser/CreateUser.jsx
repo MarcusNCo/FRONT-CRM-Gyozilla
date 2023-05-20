@@ -42,7 +42,7 @@ const CreateUser = () => {
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
-          height: "calc(100vh - 100px)",
+          height: "calc(100vh - 71px)",
           [theme.breakpoints.down("sm")]: {
             height: "calc(100vh - 56px)"
           },
