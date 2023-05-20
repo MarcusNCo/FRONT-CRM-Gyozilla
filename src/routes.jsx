@@ -9,10 +9,10 @@ import Profile from "./pages/profile/Profile";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 import NosEngagements from "./pages/nosengagements/NosEngagements";
-import ContactForm from "./pages/contact/ContactForm";
 import Menu from "./pages/menu/Menu";
 import Order from "./pages/order/Order";
 import Find from "./pages/find/Find";
+import Contact from "./pages/contact/Contact";
 
 function RoutesConfig() {
   const routes = [
@@ -58,7 +58,7 @@ function RoutesConfig() {
     },
     {
       path: "/contact",
-      element: <ContactForm />,
+      element: <Contact />,
     },
     {
       path: "/sign-in",

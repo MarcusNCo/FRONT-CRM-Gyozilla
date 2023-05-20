@@ -255,6 +255,11 @@ const theme = createTheme({
       fontFamily: "Garamond",
       fontWeight: "bold",
     },
+    hboxnb: {
+      color: "#000",
+      fontSize: "1.5rem",
+      fontFamily: "Garamond",
+    },
     hboxb: {
       color: "#000000",
       fontSize: "1.5rem",
