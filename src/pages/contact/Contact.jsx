@@ -1,15 +1,12 @@
-import { Box, TextField, createTheme, ThemeProvider } from "@mui/material";
+import { Box, TextField, ThemeProvider, useTheme } from "@mui/material";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import CustomButton from "../../components/button/CustomButton";
-
-const theme = createTheme({
-  typography: {
-    fontSize: 14,
-  },
-});
+import logo from "../../images/gyozilla-logo.png";
 
 const Contact = () => {
+  const theme = useTheme();
+
   return (
     <>
       <Box
@@ -25,15 +22,33 @@ const Contact = () => {
         <Box
           sx={{ display: "flex", flexDirection: "column", textAlign: "center" }}
         >
-          <Typography variant="hboxnb" color="initial">
-            Une question ?
+          <Typography
+            variant="hboxnb"
+            color="initial"
+            sx={{ paddingBottom: "10px" }}
+          >
+            Une question ? Une remarque ?
           </Typography>
-          <Typography variant="hboxnb" color="initial">
-            Une remarque ?
-          </Typography>
-          <Typography variant="hboxnb" color="initial">
+          <Typography
+            variant="hboxnb"
+            color="initial"
+            sx={{ paddingBottom: "10px" }}
+          >
             Joignez-nous tous types de demande via le formulaire ci-dessous.
           </Typography>
+          <Box
+            component="img"
+            sx={{
+              height: 100,
+              width: 100,
+              margin: "0 auto 0 auto",
+              "@media (max-width:700px)": {
+                display: "none",
+              },
+            }}
+            alt="Logo de Gyozilla"
+            src={logo}
+          />
         </Box>
         <Box
           sx={{
@@ -65,6 +80,7 @@ const Contact = () => {
               multiline
               rows={4}
               variant="outlined"
+              sx={{ margin: "0 auto 0 auto" }}
             />
           </ThemeProvider>
         </Box>
