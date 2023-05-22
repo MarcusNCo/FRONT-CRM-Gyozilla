@@ -14,6 +14,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  useTheme
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +36,7 @@ export default function HorizontalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
+  const theme = useTheme();
 
   const saveOrder = async () => {
     try {
@@ -372,6 +374,9 @@ export default function HorizontalLinearStepper() {
     <Box
       sx={{
         minHeight: "calc(100vh - 71px)",
+        "@media (max-width:700px)": {
+          minHeight: "calc(100vh - 56px)",
+        },
         width: "80%",
         margin: "20px auto 20px auto",
       }}

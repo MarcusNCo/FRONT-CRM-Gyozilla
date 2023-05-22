@@ -1,4 +1,4 @@
-import { Box } from "@mui/system";
+import { Box, useTheme } from "@mui/material";
 import { getAllHiring } from "../../utils/api-call/hiring";
 import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
@@ -10,14 +10,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 const Recrutement = () => {
   const [hiring, setHiring] = useState([]);
   const [error, setError] = useState(null);
+  const theme = useTheme();
 
   useEffect(() => {
     getAllHiring()
       .then((res) => {
         setHiring(res.data);
         setError(null);
-
-        console.log(hiring);
       })
       .catch((error) => {
         setHiring([]);
@@ -27,7 +26,12 @@ const Recrutement = () => {
 
   return (
     <>
-      <Box sx={{ minHeight: "calc(100vh - 71px)" }}>
+      <Box sx={{ 
+        minHeight: "calc(100vh - 71px)",
+        "@media (max-width:700px)": {
+          minHeight: "calc(100vh - 56px)",
+        },
+        }}>
         <Box sx={{ marginTop: "50px", textAlign: "center" }}>
           <Typography variant="hboxg">
             Postes à pourvoir
@@ -55,6 +59,11 @@ const Recrutement = () => {
                       margin: "50px 0 50px 0",
                       boxShadow:
                         "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                      "@media (max-width:700px)": {
+                        width: "80%",
+                        height: "fit-content",
+                        paddingBottom: '60px',
+                      },
                     }}
                   >
                     <Box

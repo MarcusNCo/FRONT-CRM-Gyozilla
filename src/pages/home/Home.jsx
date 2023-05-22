@@ -70,6 +70,7 @@ const Home = () => {
           className="arrowBottom"
           aria-label="Flèche vers le bas"
           color="inherit"
+          onClick={handleArrowClick}
           sx={{
             marginTop: "16px",
             position: "absolute",
@@ -87,7 +88,6 @@ const Home = () => {
           <KeyboardDoubleArrowDownIcon
             sx={{ color: "#F8A500", height: "4rem", width: "4rem" }}
             className="move-up-down"
-            onClick={handleArrowClick}
           />
         </IconButton>
       </Box>

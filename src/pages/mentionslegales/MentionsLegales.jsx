@@ -1,11 +1,16 @@
-import { Box } from "@mui/system";
+import { Box, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 const MentionsLegales = () => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
-        height: "calc(100vh - 71px)",
+        minHeight: "calc(100vh - 71px)",
+        "@media (max-width:700px)": {
+          minHeight: "calc(100vh - 56px)",
+        },
         margin: "2rem",
         padding: "1rem",
       }}

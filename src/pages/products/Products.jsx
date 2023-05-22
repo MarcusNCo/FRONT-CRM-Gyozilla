@@ -218,13 +218,20 @@ const Products = () => {
           totalRecords={filteredProducts.length}
           rowsPerPageOptions={[10, 20, 30]}
           onPageChange={onPageChange}
+          style={{
+            marginTop: "50px",
+            color: "#5F8D85"
+          }}
         />
       )}
       <Box
-        style={{
+        sx={{
           display: "flex",
           margin: "0",
           minHeight: "calc(100vh - 71px)",
+          "@media (max-width:700px)": {
+            minHeight: "calc(100vh - 56px)",
+          },
         }}
       >
         <Box>
