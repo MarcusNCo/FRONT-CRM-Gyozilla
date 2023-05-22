@@ -266,6 +266,12 @@ const theme = createTheme({
       fontFamily: "Garamond",
       fontWeight: "bold",
     },
+    hboxg: {
+      color: "#5F8D85",
+      fontSize: "1.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+    },
     h7: {
       color: "#F8A500",
       fontSize: "1.2rem",
@@ -313,6 +319,11 @@ const theme = createTheme({
       fontFamily: "Garamond",
       marginBottom: "10px",
       paddingLeft: "10px",
+    },
+    h9bwpm: {
+      color: "#000",
+      fontSize: "1.1rem",
+      fontFamily: "Garamond",
     },
     subTitle: {
       color: "#5F8D85",

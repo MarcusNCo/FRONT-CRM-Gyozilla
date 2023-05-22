@@ -39,7 +39,7 @@ const Contact = () => {
           <Box
             component="img"
             sx={{
-              height: 100,
+              height: 120,
               width: 100,
               margin: "0 auto 0 auto",
               "@media (max-width:700px)": {

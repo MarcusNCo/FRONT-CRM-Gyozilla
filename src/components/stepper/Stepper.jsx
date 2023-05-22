@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { createOrder, createOrderLine } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
+import CustomButton from "../button/CustomButton";
 
 const steps = [
   "Confirmer la commande",
@@ -124,6 +125,14 @@ export default function HorizontalLinearStepper() {
       0
     );
   }, [cartItems]);
+
+  const handleBackClick = () => {
+    navigate("/profile", {
+      state: {
+        profile: 2,
+      },
+    });
+  };
 
   const renderStepContent = (step) => {
     switch (step) {
@@ -389,6 +398,14 @@ export default function HorizontalLinearStepper() {
                 Merci d'avoir passé commande chez nous !<br />
                 Retrouvez vos informations de la commande sur votre compte.
               </Typography>
+              <CustomButton
+                text="Accéder au compte"
+                height="40px"
+                width="220px"
+                padding="0 20px 0 20px"
+                margin="32px"
+                onClick={handleBackClick}
+              ></CustomButton>
             </Box>
           </Box>
         </React.Fragment>

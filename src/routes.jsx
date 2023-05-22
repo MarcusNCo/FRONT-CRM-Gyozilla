@@ -13,6 +13,8 @@ import Menu from "./pages/menu/Menu";
 import Order from "./pages/order/Order";
 import Find from "./pages/find/Find";
 import Contact from "./pages/contact/Contact";
+import MentionsLegales from "./pages/mentionslegales/MentionsLegales";
+import Recrutement from "./pages/recrutement/Recrutement";
 
 function RoutesConfig() {
   const routes = [
@@ -75,6 +77,14 @@ function RoutesConfig() {
     {
       path: "/find",
       element: <Find />,
+    },
+    {
+      path: "/mentionslegales",
+      element: <MentionsLegales />,
+    },
+    {
+      path: "/recrutement",
+      element: <Recrutement />,
     },
   ];
 

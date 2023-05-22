@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab, IconButton, Typography } from "@mui/material";
+import { Badge, Fab, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { Paginator } from "primereact/paginator";
@@ -17,7 +17,7 @@ import styles from "./Products.module.css";
 
 import nouveautes from "../../images/badge nouveautesFichier 125.png";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
@@ -150,7 +150,7 @@ const Products = () => {
 
   useEffect(() => {
     if (selectedTypeRepas === 2) {
-      navigate("../menu");
+      navigate("/menu");
     }
   }, [selectedTypeRepas, navigate]);
 

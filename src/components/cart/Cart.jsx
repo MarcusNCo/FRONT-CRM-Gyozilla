@@ -53,12 +53,14 @@ const Cart = () => {
           sx={{
             width: "180px",
             height: "30px",
+            marginRight: "10px",
           }}
         >
           Vider le panier
         </Button>
         <Button
           variant="contained"
+          disabled={!cartItems.length}
           onClick={() => {
             if (isLogged) {
               navigate("/order");

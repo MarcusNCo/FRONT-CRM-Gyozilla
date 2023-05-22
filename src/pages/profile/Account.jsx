@@ -136,7 +136,7 @@ const Account = () => {
                                     />
                                     <ErrorMessage name="email" />
                                     <Link to="/forgot-password">Changer son mot de passe</Link>
-                                    <LoadingButton type="submit" loading={isSubmitting}>
+                                    <LoadingButton type="submit" loading={isSubmitting} sx={{ marginTop: "20px" }}>
                                         Enregistrer
                                     </LoadingButton>
                                 </Form>
