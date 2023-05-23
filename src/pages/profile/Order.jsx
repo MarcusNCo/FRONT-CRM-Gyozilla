@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
-import { CircularProgress, Divider, Typography } from "@mui/material";
+import { CircularProgress, Divider, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -9,6 +9,7 @@ import { fr } from "date-fns/locale";
 const Order = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const theme = useTheme();
   const { user } = useContext(UserContext);
   const id = user.id;
 
@@ -47,6 +48,9 @@ const Order = () => {
           display: "flex",
           flexWrap: "wrap",
           marginLeft: "30px",
+          [theme.breakpoints.down("sm")]: {
+            marginLeft: "0",
+          },
         }}
       >
         {orders.map((item) => (
@@ -60,6 +64,9 @@ const Order = () => {
               padding: "0 0 10px 0",
               display: "flex",
               flexDirection: "column",
+              [theme.breakpoints.down("sm")]: {
+                width: "100%"
+              },
             }}
           >
             <Typography

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   Box,
+  Button,
   List,
   ListItem,
   ListItemButton,
@@ -25,6 +26,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [displayBackButton, setDisplayBackButton] = useState(true);
   const profileTab = location.state?.profile;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleMenuItemClick = (index) => {
     setSelectedMenuItemIndex(index);
@@ -72,11 +74,40 @@ const Profile = () => {
 
   return (
     <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "#739b94",
+          padding: "40px 8px 12px 8px",
+          [theme.breakpoints.up("sm")]: {
+            display: "none",
+          },
+        }}
+      >
+        {menuItems.map((item, index) => (
+          <CustomButton
+            key={index}
+            onClick={() => {
+              handleMenuItemClick(index);
+              setMobileMenuOpen(false);
+            }}
+            variant="contained"
+            margin="6px"
+            text={item.text}
+          />
+        ))}
+      </Box>
       <div className="account">
         <Box
           sx={{
             width: "20%",
             minHeight: "calc(100vh - 71px)",
+            [theme.breakpoints.down("sm")]: {
+              minHeight: "calc(100vh - 56px)",
+              display: "none",
+            },
             backgroundColor: "#739b94",
             zIndex: 0,
           }}
@@ -93,7 +124,7 @@ const Profile = () => {
                   backgroundColor:
                     index === selectedMenuItemIndex
                       ? "rgb(248, 165, 0.4)"
-                      : "transparent", // Ajouter un style personnalisé pour l'élément sélectionné
+                      : "transparent",
                 }}
                 key={index}
                 onClick={() => handleMenuItemClick(index)}
@@ -128,8 +159,15 @@ const Profile = () => {
         </Box>
         <Box
           sx={{
-            width: "80%",
-            minHeight: "calc(100vh - 71px)",
+            width: "100%",
+            [theme.breakpoints.up("md")]: {
+              width: "80%",
+              minHeight: "calc(100vh - 71px)",
+            },
+            [theme.breakpoints.down("sm")]: {
+              marginTop: "0",
+              minHeight: "calc(100vh - 56px - 134px)",
+            },
           }}
         >
           {menuItems[selectedMenuItemIndex].content}

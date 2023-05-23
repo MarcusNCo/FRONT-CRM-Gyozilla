@@ -6,6 +6,7 @@ import {
   CardMedia,
   Stepper,
   Step,
+  StepContent,
   StepLabel,
   RadioGroup,
   FormControlLabel,
@@ -14,7 +15,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
@@ -22,14 +23,21 @@ import { createOrder, createOrderLine } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 import CustomButton from "../button/CustomButton";
+import Paper from "@mui/material/Paper";
 
 const steps = [
-  "Confirmer la commande",
-  "Choix du type de commande",
-  "Finalisation de la commande",
+  {
+    label: "Confirmer la commande",
+  },
+  {
+    label: "Choix du type de commande",
+  },
+  {
+    label: "Finalisation de la commande",
+  },
 ];
 
-export default function HorizontalLinearStepper() {
+export default function VerticalLinearStepper() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const { user, isLogged } = useContext(UserContext);
@@ -73,14 +81,27 @@ export default function HorizontalLinearStepper() {
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
 
-      for (const productId in cart) {
-        const product = cart[productId];
-        const orderLineValues = {
-          id_orders: orderId,
-          id_products: product.id,
-          quantity: product.quantity,
-        };
-        await createOrderLine(orderLineValues, token);
+      for (const itemId in cart) {
+        const item = cart[itemId];
+      
+        if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
+          for (const product of item.products) {
+            console.log(product)
+            const orderLineValues = {
+              id_orders: orderId,
+              id_products: product.id,
+              quantity: product.quantity,
+            };
+            await createOrderLine(orderLineValues, token);
+          }
+        } else { // Si l'article n'est pas un menu
+          const orderLineValues = {
+            id_orders: orderId,
+            id_products: item.id,
+            quantity: item.quantity,
+          };
+          await createOrderLine(orderLineValues, token);
+        }
       }
       dispatch({ type: "CLEAR" });
     } catch (error) {
@@ -150,12 +171,11 @@ export default function HorizontalLinearStepper() {
           >
             <Box
               sx={{
-                marginTop: "20px",
                 marginBottom: "20px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "50%",
+                width: "100%",
                 textAlign: "center",
                 height: "auto",
                 backgroundColor: "#5F8D8550",
@@ -190,9 +210,9 @@ export default function HorizontalLinearStepper() {
                     image={getImage(item.image)}
                     alt={item.name}
                     sx={{
-                      height: "140px",
-                      width: "140px",
-                      marginLeft: "50px",
+                      height: "100px",
+                      width: "100px",
+                      marginLeft: "20px",
                       borderRadius: "10px",
                     }}
                   />
@@ -202,10 +222,10 @@ export default function HorizontalLinearStepper() {
                       flexDirection: "column",
                       textAlign: "left",
                       flexGrow: "1",
-                      marginLeft: "50px",
+                      marginLeft: "20px",
                     }}
                   >
-                    <Typography variant="h7g" color="initial">
+                    <Typography variant="hboxb" color="initial">
                       {item.name}
                     </Typography>
 
@@ -216,6 +236,27 @@ export default function HorizontalLinearStepper() {
                     <Typography variant="body1" color="initial">
                       Quantité: {item.quantity}
                     </Typography>
+
+                    {item.products && item.products.length > 0 && (
+                      <Typography variant="body1" color="initial">
+                        Produits du menu:
+                        <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
+                          {item.products.map((product) => (
+                            <ListItem sx={{  
+                              fontFamily: "Garamond",
+                              fontWeight: "400",
+                              fontSize: "1rem",
+                              lineHeight: "1.5",
+                              paddingLeft: "0",
+                              paddingBottom: "0",
+                              paddingRight: "0",
+                            }} 
+                            key={product.id}>- {product.name}</ListItem>
+                          ))}
+                        </List>
+                      </Typography>
+                    )}
+
                   </Box>
                 </Box>
               ))}
@@ -250,7 +291,7 @@ export default function HorizontalLinearStepper() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "50%",
+                width: "100%",
                 textAlign: "center",
                 height: "auto",
                 backgroundColor: "#5F8D8550",
@@ -317,7 +358,7 @@ export default function HorizontalLinearStepper() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "50%",
+                width: "100%",
                 textAlign: "center",
                 height: "auto",
                 backgroundColor: "#5F8D8550",
@@ -325,7 +366,7 @@ export default function HorizontalLinearStepper() {
               }}
             >
               <Typography
-                variant="h7g"
+                variant="hboxg"
                 sx={{
                   width: "100%",
                   borderBottom: "2px solid #5F8D85",
@@ -335,11 +376,11 @@ export default function HorizontalLinearStepper() {
               >
                 Récapitulatif de la commande
               </Typography>
-              <Typography variant="h7b" color="initial">
+              <Typography variant="h7w" color="initial">
                 Type de commande: {deliveryType}
               </Typography>
               <Typography
-                variant="h7b"
+                variant="h7w"
                 color="initial"
                 sx={{ marginTop: "20px", marginBottom: "10px" }}
               >
@@ -377,65 +418,61 @@ export default function HorizontalLinearStepper() {
         "@media (max-width:700px)": {
           minHeight: "calc(100vh - 56px)",
         },
-        width: "80%",
-        margin: "20px auto 20px auto",
+        width: "90%",
+        margin: "50px auto 20px auto",
       }}
     >
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            {/* Dernière box de remerciement pour la commande */}
-            <Box sx={{ flex: "1 1 auto", textAlign: "center" }}>
-              <Typography
-                sx={{ mt: 2, mb: 1, color: "black", fontSize: "1.2rem" }}
-              >
-                Merci d'avoir passé commande chez nous !<br />
-                Retrouvez vos informations de la commande sur votre compte.
-              </Typography>
-              <CustomButton
-                text="Accéder au compte"
-                height="40px"
-                width="220px"
-                padding="0 20px 0 20px"
-                margin="32px"
-                onClick={handleBackClick}
-              ></CustomButton>
-            </Box>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          {renderStepContent(activeStep)}
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              onClick={
-                activeStep === 0 ? () => navigate("/products") : handleBack
+      <Stepper activeStep={activeStep} orientation="vertical">
+        {steps.map((step, index) => (
+          <Step key={step.label}>
+            <StepLabel
+              optional={
+                index === steps.length - 1 ? (
+                  <Typography variant="caption">Dernière étape</Typography>
+                ) : null
               }
-              sx={{ mr: 1 }}
             >
-              Retour
-            </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button
-              onClick={handleNext}
-              disabled={activeStep === 1 && deliveryType === ""}
-            >
-              {activeStep === steps.length - 1 ? "Valider" : "Continuer"}
-            </Button>
-          </Box>
-        </React.Fragment>
+              {step.label}
+            </StepLabel>
+            <StepContent>
+              {renderStepContent(index)}
+              <Box sx={{ mb: 2 }}>
+                <div>
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 1, mr: 1 }}
+                  >
+                    {index === steps.length - 1 ? "Valider" : "Continuer"}
+                  </Button>
+                  <Button
+                    disabled={index === 0}
+                    onClick={handleBack}
+                    sx={{ mt: 1, mr: 1 }}
+                  >
+                    Retour
+                  </Button>
+                </div>
+              </Box>
+            </StepContent>
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length && (
+        <Paper square elevation={0} sx={{ p: 3 }}>
+          <Typography sx={{ mt: 2, mb: 1, color: "black", fontSize: "1.2rem", textAlign: "center" }}>
+            Merci d'avoir passé commande chez nous !<br />
+            Retrouvez vos informations de la commande sur votre compte.
+          </Typography>
+          <CustomButton
+            text="Accéder au compte"
+            height="40px"
+            width="220px"
+            padding="0 20px 0 20px"
+            margin="32px"
+            onClick={handleBackClick}
+          ></CustomButton>
+        </Paper>
       )}
     </Box>
   );

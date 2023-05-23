@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../utils/context/UserContext";
-import { Box } from "@mui/system";
+import { Box, useTheme } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import coins from "../../images/coins.png";
 
 const Fidelity = () => {
   const { user, isLogged } = useContext(UserContext);
+  const theme = useTheme();
+
   return (
     <>
       <Box
@@ -14,6 +16,10 @@ const Fidelity = () => {
           justifyContent: "center",
           alignItems: "center",
           height: "calc(100vh - 71px)",
+          [theme.breakpoints.down("sm")]: {
+            minHeight: "unset",
+            height: "fit-content",
+          },
         }}
       >
         <Box
@@ -21,6 +27,10 @@ const Fidelity = () => {
             minWidth: "60%",
             maxWidth: "600px",
             height: "400px",
+            [theme.breakpoints.down("sm")]: {
+              borderRadius: "0",
+              height: "500px",
+            },
             boxShadow:
               "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
             borderRadius: "16px",
@@ -33,6 +43,9 @@ const Fidelity = () => {
               height: "50px",
               backgroundColor: "#F8A500",
               borderRadius: "16px 16px 0 0",
+              [theme.breakpoints.down("sm")]: {
+                borderRadius: "0",
+              },
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -81,7 +94,16 @@ const Fidelity = () => {
           </Box>
 
           <Box
-            sx={{ height: "120px", display: "flex", flexDirection: "column" }}
+            sx={{ 
+              height: "120px", 
+              display: "flex", 
+              flexDirection: "column",
+              [theme.breakpoints.down("sm")]: {
+                padding: "0 12px 0 12px",
+                height: "fit-content",
+              },
+            
+            }}
           >
             <Typography variant="body1" color="initial">
               50
