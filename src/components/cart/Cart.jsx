@@ -1,90 +1,75 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
 import CartItem from "./CartItem";
+import CartContext from "../../utils/context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../utils/context/UserContext";
 
-const Cart = ({ items, onIncrement, onDecrement } ) => {
-  const [cart, setCart] = useState([]);
+const Cart = () => {
+  const { cartItems, dispatch } = useContext(CartContext);
+  const { isLogged, shouldRedirectToOrder, setShouldRedirectToOrder } =
+    useContext(UserContext);
 
-  const addToCart = (item) => {
-    setCart([...cart, item]);
-  };
-
-  const incrementQuantity = (index) => {
-    const newCart = [...cart];
-    newCart[index].quantity += 1;
-    setCart(newCart);
-  };
-
-  const decrementQuantity = (index) => {
-    const newCart = [...cart];
-    newCart[index].quantity -= 1;
-    setCart(newCart);
-  };
-
-  const removeItem = (index) => {
-    const newCart = [...cart];
-    newCart.splice(index, 1);
-    setCart(newCart);
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
-  const cartTotal = cart.reduce(
+  const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const navigate = useNavigate();
 
-  const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
-
+  const removeCart = (event) => {
+    event.stopPropagation();
+    dispatch({ type: "CLEAR" });
+  };
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '0 10px 10px 10px',
+        display: "flex",
+        flexDirection: "column",
+        padding: "0 10px 10px 10px",
       }}
     >
-      <Typography variant="hboxb" sx={{ textAlign: 'center' }} >Panier</Typography>
-      <Divider 
+      <Typography variant="hboxb" sx={{ textAlign: "center" }}>
+        Panier
+      </Typography>
+      <Divider
         sx={{
-          marginTop: '6px',
-          borderWidth: '1px',
-          opacity: '0.2',
-          borderColor: 'black',
+          marginTop: "6px",
+          borderWidth: "1px",
+          opacity: "0.2",
+          borderColor: "black",
         }}
       />
-      {/* {cart.map((item, index) => ( */}
-      {items.map((item, index) => (
-        <CartItem
-          key={index}
-          item={item}
-          increment={() => incrementQuantity(index)}
-          decrement={() => decrementQuantity(index)}
-          remove={() => removeItem(index)}
-        />
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} />
       ))}
-      {/* <Typography variant="h7b">Total: {cartTotal.toFixed(2)} €</Typography> */}
-      <Typography variant="h7b" sx={{ textAlign: 'center', marginTop: '12px' }} >Total: {totalPrice.toFixed(2)} €</Typography>
-      <Box sx={{ display:'flex', justifyContent: 'space-evenly' }}>
-        <Button 
-          variant="contained" 
-          onClick={clearCart}
+      <Typography variant="h7b" sx={{ textAlign: "center", marginTop: "12px" }}>
+        Total: {totalPrice} €
+      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+        <Button
+          variant="contained"
+          onClick={(event) => removeCart(event)}
           sx={{
-              width: '130px',
-              height: '30px',
+            width: "180px",
+            height: "30px",
           }}
         >
           Vider le panier
         </Button>
         <Button
           variant="contained"
-          onClick={() => console.log("Commande confirmée")}
+          onClick={() => {
+            if (isLogged) {
+              navigate("/order");
+            } else {
+              setShouldRedirectToOrder(true);
+              navigate("/login");
+            }
+          }}
           sx={{
-              width: '100px',
-              height: '30px',
+            width: "120px",
+            height: "30px",
           }}
         >
           Confirmer

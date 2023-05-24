@@ -42,6 +42,7 @@ const CustomInput = (props) => {
     htmlFor: input.htmlFor,
     variant: input.variant,
     errors: input.errors,
+    rows: input.rows,
   }
   return (
     // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !

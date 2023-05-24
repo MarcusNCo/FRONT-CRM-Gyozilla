@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Header.css'
 import Logo from '../../images/logoHeader.png'
 import mobileLogo from '../../images/gyozillalogo.png'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
 import AppBar from '@mui/material/AppBar'
 import { Box, useTheme } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
@@ -14,81 +15,53 @@ import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import MenuBurger from '../../components/burger/MenuBurger'
 import { Divider, IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Logout } from '@mui/icons-material'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import Badge from '@mui/material/Badge'
 import Cart from '../../components/cart/Cart'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { UserContext } from '../../utils/context/userContext'
+import { UserContext } from '../../utils/context/UserContext'
+import CartContext from '../../utils/context/CartContext'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const [auth, setAuth] = useState(true)
-  const [valueInput, setvalueInput] = useState('')
+  const [cartOpen, setCartOpen] = useState(null)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const theme = useTheme()
   const { isLogged } = useContext(UserContext)
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const { cartItems } = useContext(CartContext)
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked)
-  }
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  const handleChangeInput = (e) => {
-    console.log(e)
-    setvalueInput(e.target.value)
-  }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
-
-  const [cartOpen, setCartOpen] = useState(false)
 
   const handleCartOpen = (e) => {
     e.preventDefault()
     setCartOpen(e.currentTarget)
   }
 
-  const handleCartClose = () => {
-    setCartOpen(false)
+  const handleCartClose = (e) => {
+    e.preventDefault()
+    setCartOpen(null)
   }
 
-  const [cartItems, setCartItems] = useState([])
-
-  const addDummyProducts = () => {
-    const dummyProducts = [
-      { id: 1, name: 'Nems au poulet', price: 6.0, quantity: 2 },
-      { id: 2, name: 'Crevettes sautées', price: 12.0, quantity: 1 },
-      { id: 3, name: 'Sunday litchi', price: 3.5, quantity: 1 },
-    ]
-
-    setCartItems(dummyProducts)
+  const closeMenu = () => {
+    // Ferme le menu ici
   }
 
-  useEffect(() => {
-    addDummyProducts()
-  }, [])
-
-  const incrementQuantity = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
-    )
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate(-1)
   }
-
-  const decrementQuantity = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item,
-      ),
-    )
-  }
-
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <>
@@ -106,7 +79,7 @@ const Header = () => {
           <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
               <Toolbar>
-                <MenuBurger />
+                <MenuBurger closeDrawer={closeMenu} />
                 <Typography
                   variant="h6"
                   component="div"
@@ -118,30 +91,31 @@ const Header = () => {
                 ></Typography>
                 {auth && (
                   <Box style={{ display: 'flex' }}>
-                    <Badge
-                      badgeContent={4}
-                      variant="standard"
-                      overlap="circular"
-                      sx={{
-                        width: '48px',
-                        height: '48px',
-                        padding: '8px',
-                        marginRight: '8px',
-                      }}
-                    >
-                      <ShoppingCartIcon
+                    {location.pathname !== '/order' && (
+                      <Badge
+                        badgeContent={cartItems.length}
+                        variant="standard"
+                        overlap="circular"
                         sx={{
-                          width: '32px',
-                          height: '32px',
+                          width: '48px',
+                          height: '48px',
+                          padding: '8px',
+                          marginRight: '8px',
                         }}
-                        color="inherit"
-                        aria-label="cart of current user"
-                        aria-controls="menu-cart"
-                        aria-haspopup="true"
-                        onClick={handleCartOpen}
-                      />
-                    </Badge>
-
+                      >
+                        <ShoppingCartIcon
+                          sx={{
+                            width: '32px',
+                            height: '32px',
+                          }}
+                          color="inherit"
+                          aria-label="cart of current user"
+                          aria-controls={null}
+                          aria-haspopup="true"
+                          onClick={handleCartOpen}
+                        />
+                      </Badge>
+                    )}
                     <IconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
@@ -182,7 +156,6 @@ const Header = () => {
               display: 'none',
             },
             overflow: 'hidden',
-            // padding: "10px",
             justifyContent: 'space-between',
             boxShadow: '0 0 .4em black',
           }}
@@ -206,25 +179,27 @@ const Header = () => {
             </Link>
           </Box>
           <Box className="header-right">
-            <Link className="containIcon" to={'/'} onClick={null}>
+            <Link className="containIcon" to={'/find'} onClick={null}>
               <LocationOnIcon
                 className="logIcon"
                 style={{ fontSize: 35, color: '#739B94' }}
               />
             </Link>
-            <Badge badgeContent={4} variant="standard">
-              <ShoppingCartIcon
-                style={{
-                  fontSize: 35,
-                  color: '#739B94',
-                  cursor: 'pointer',
-                }}
-                aria-label="cart of current user"
-                aria-controls="menu-cart"
-                aria-haspopup="true"
-                onClick={handleCartOpen}
-              />
-            </Badge>
+            {location.pathname !== '/order' && (
+              <Badge badgeContent={cartItems.length} variant="standard">
+                <ShoppingCartIcon
+                  style={{
+                    fontSize: 35,
+                    color: '#739B94',
+                    cursor: 'pointer',
+                  }}
+                  aria-label="cart of current user"
+                  aria-controls={null}
+                  aria-haspopup="true"
+                  onClick={handleCartOpen}
+                />
+              </Badge>
+            )}
             <AccountCircleIcon
               style={{
                 fontSize: 35,
@@ -314,22 +289,17 @@ const Header = () => {
           ) : (
             <Divider />
           )}
+
           {isLogged ? (
-            <MenuItem
-              sx={{
-                display: 'none',
-              }}
-              onClick={handleClose}
-              className="menu-item"
-            >
-              <a className="menu-item-a" href="/sign-in">
-                <AppRegistrationIcon fontSize="small" />
+            <MenuItem onClick={handleLogout} className="menu-item">
+              <a className="menu-item-a" href="/login">
+                <PowerSettingsNewIcon fontSize="small" />
                 <Typography
                   variant="body1"
                   color="initial"
                   sx={{ paddingLeft: '10px' }}
                 >
-                  S'inscrire
+                  Se déconnecter
                 </Typography>
               </a>
             </MenuItem>
@@ -351,10 +321,9 @@ const Header = () => {
         {/* // ------------ Panier version desktop et mobile --------------- */}
         <Menu
           anchorEl={cartOpen}
+          onClick={handleCartClose}
           id="menu-cart"
           open={Boolean(cartOpen)}
-          onClose={handleCartClose}
-          onClick={handleCartClose}
           PaperProps={{
             sx: {
               overflow: 'visible',
@@ -378,7 +347,6 @@ const Header = () => {
                 height: 12,
                 bgcolor: 'background.paper',
                 transform: 'translateY(-50%) rotate(45deg)',
-                filter: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))',
                 zIndex: 0,
                 [theme.breakpoints.down('sm')]: {
                   right: 75,
@@ -395,11 +363,7 @@ const Header = () => {
             vertical: 'bottom',
           }}
         >
-          <Cart
-            items={cartItems}
-            onIncrement={incrementQuantity}
-            onDecrement={decrementQuantity}
-          />
+          <Cart />
         </Menu>
       </header>
     </>

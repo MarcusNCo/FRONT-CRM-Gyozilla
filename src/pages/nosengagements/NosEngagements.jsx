@@ -19,7 +19,7 @@ import desserts from '../../images/desserts.jpg'
 const NosEngagements = () => {
   return (
     <Container sx={{ mb: 5, mt: 5 }}>
-      <Typography className="t1" variant="h1" align="center" sx={{ mt: 5, mb: 5 }}>
+      <Typography className="t1" variant="h6" align="center" sx={{ mt: 5, mb: 5 }}>
         Nos engagements
       </Typography>
       {/* ------------------------- 1ère partie de la page ------------------------ */}
@@ -58,7 +58,7 @@ const NosEngagements = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} sx={{ marginTop: "20px" }}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h4" className="t4">
             Une ambiance dépaysante
@@ -86,7 +86,7 @@ const NosEngagements = () => {
       {/* ------------------------------------------------------------------------- */}
       {/* ------------------------- 2ème partie de la page ------------------------ */}
       <Grid container>
-        <Typography variant="h3" className="t2" style={{ alignSelf: 'center'}} sx={{ mt: 5, mb: 5 }}>
+        <Typography variant="h6b" className="t2" style={{ marginLeft: 'auto', marginRight: 'auto' }} sx={{ mt: 5, mb: 5 }}>
           Toute notre équipe travaille avec joie pour vous satisfaire
         </Typography>
         <Grid item xs={12} className="team">

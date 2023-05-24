@@ -42,7 +42,7 @@ const CreateUser = () => {
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
-          height: "calc(100vh - 100px)",
+          height: "calc(100vh - 71px)",
           [theme.breakpoints.down("sm")]: {
             height: "calc(100vh - 56px)"
           },
@@ -162,7 +162,7 @@ const CreateUser = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  <Link to="/login">Déjà inscrit ?</Link>
+                  <Link style={{ paddingBottom:"20px" }} to="/login">Déjà inscrit ?</Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Inscription
                   </LoadingButton>

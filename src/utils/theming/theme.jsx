@@ -183,15 +183,14 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#F8A500",
-          backgroundColor: "#EAEAEA",
-          border: "1px solid #F8A500",
-          marginTop: "3vh",
-          padding: "10px 5px 10px 5px",
+          color: "#EAEAEA",
+          backgroundColor: "#F8A500",
+          fontSize: "1.0rem",
+          fontWeight: "bold",
+          // marginTop: "3vh",
           "&:hover": {
             color: "#EAEAEA",
-            backgroundColor: "#F8A500",
-            border: "1px solid #EAEAEA",
+            backgroundColor: "#F8A50099",
           },
         },
         outlined: {
@@ -236,11 +235,30 @@ const theme = createTheme({
       fontWeight: "bold",
       marginBottom: "10px",
     },
+    h6g: {
+      color: "#5F8D85",
+      fontSize: "2.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
+    h6b: {
+      color: "#000",
+      fontSize: "2.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
     hbox: {
       color: "#F8A500",
       fontSize: "1.5rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    hboxnb: {
+      color: "#000",
+      fontSize: "1.5rem",
+      fontFamily: "Garamond",
     },
     hboxb: {
       color: "#000000",
@@ -260,6 +278,18 @@ const theme = createTheme({
       fontFamily: "Garamond",
       fontWeight: "bold",
     },
+    h7g: {
+      color: "#5F8D85",
+      fontSize: "2.0rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
+    h7bnw: {
+      color: "#000000",
+      fontSize: "1.2rem",
+      fontFamily: "Garamond",
+    },
     h7w: {
       color: "#EAEAEA",
       fontSize: "1.0rem",
@@ -269,6 +299,20 @@ const theme = createTheme({
       fontSize: "0.9rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    h9g: {
+      color: "#5F8D85",
+      fontSize: "1.1rem",
+      fontFamily: "Garamond",
+      marginBottom: "10px",
+      paddingLeft: "10px",
+    },
+    h9b: {
+      color: "#000",
+      fontSize: "1.1rem",
+      fontFamily: "Garamond",
+      marginBottom: "10px",
+      paddingLeft: "10px",
     },
     subTitle: {
       color: "#5F8D85",

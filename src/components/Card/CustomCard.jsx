@@ -56,7 +56,7 @@ const CustomCard = ({
         border: "none",
         cursor: "pointer",
         boxShadow:
-          "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+          "rgba(0, 0, 0, 0.55) 15px 10px 20px 2px, rgba(0, 0, 0, 0.25) 5px 5px 20px 2px",
       }}
     >
       <CardContent
@@ -67,20 +67,22 @@ const CustomCard = ({
           padding: "0",
         }}
       >
-        <Box
-          sx={{
-            backgroundColor: "#5F8D85",
-            opacity: "0.8",
-            padding: "5px 5px 5px 10px",
-            display: "flex",
-            flexDirection: "column",
-            borderRadius: "5px 5px 0 0",
-            width: "100%",
-            height: "fit-content",
-          }}
-        >
-          <Typography variant={"h7b"}>{title}</Typography>
-        </Box>
+        {title && (
+          <Box
+            sx={{
+              backgroundColor: "#5F8D85",
+              opacity: "0.8",
+              padding: "5px 5px 5px 10px",
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: "5px 5px 0 0",
+              width: "100%",
+              height: "fit-content",
+            }}
+          >
+            <Typography variant={"h7b"}>{title}</Typography>
+          </Box>
+        )}
       </CardContent>
       <CardContent
         sx={{
@@ -93,8 +95,7 @@ const CustomCard = ({
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
         }}
-      >
-      </CardContent>
+      ></CardContent>
     </Card>
   );
 };

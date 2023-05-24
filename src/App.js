@@ -2,53 +2,23 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import './App.css'
-import Products from './pages/products/Products'
 import { ThemeProvider } from '@mui/material'
 import defaultTheme from './utils/theming/theme'
 import Footer from './template/footer/Footer'
 import Header from './template/header/Header'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/home/Home'
-import NosEngagements from './pages/nosengagements/NosEngagements'
-import ContactForm from './pages/contact/ContactForm'
-import CreateUser from './pages/createuser/CreateUser'
-import Profile from './pages/profile/Profile'
-import Login from './pages/log/Login'
-import ForgotPassword from './pages/forgot-password/ForgotPassword'
-import UserContextProvider from './utils/context/userContext'
-import ResetPassword from './pages/reset-password/ResetPassword'
-import Verify from './pages/verify/Verify'
-import ProductDetails from './pages/productDetails/ProductDetails'
-import Menu from './pages/menu/Menu'
+import { BrowserRouter as Router } from 'react-router-dom'
+import UserContextProvider from './utils/context/UserContext'
+import RoutesConfig from './routes'
+import React from 'react'
 
-function App() {
+const App = () => {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
         <UserContextProvider>
           <Router>
             <Header />
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/profil" element={<Profil />} />
-              <Route exact path="/sign-in" element={<CreateUser />} />
-              <Route exact path="/verify/:token" element={<Verify />} />
-              <Route
-                exact
-                path="/forgot-password"
-                element={<ForgotPassword />}
-              />
-              <Route exact path="/reset-password" element={<ResetPassword />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetails />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/nosengagements" element={<NosEngagements />} />
-              <Route path="/contact" element={<ContactForm />} />
-              <Route path="/news" element={<News />} />
-              <Route exact path="/sign-in" element={<CreateUser />} />
-              <Route exact path="/verify/:token" element={<Verify />} />
-            </Routes>
+            <RoutesConfig />
             <Footer />
           </Router>
         </UserContextProvider>

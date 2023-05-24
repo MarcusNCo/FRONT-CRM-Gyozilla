@@ -1,14 +1,29 @@
-import React from "react";
-import {
-  Typography,
-  Box,
-  Divider,
-} from "@mui/material";
+import React, { useContext } from "react";
+import { Typography, Box, Divider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CartContext from "../../utils/context/CartContext";
+import { UserContext } from "../../utils/context/UserContext";
 
-const CartItem = ({ item, increment, decrement, remove }) => {
+const CartItem = ({ item }) => {
+  const { dispatch } = useContext(CartContext);
+
+  const handleIncrement = (event) => {
+    event.stopPropagation();
+    dispatch({ type: "INCREMENT", payload: item.id });
+  };
+
+  const handleDecrement = (event) => {
+    event.stopPropagation();
+    dispatch({ type: "DECREMENT", payload: item.id });
+  };
+
+  const handleRemove = (event) => {
+    event.stopPropagation();
+    dispatch({ type: "REMOVE", payload: item.id });
+  };
+
   return (
     <React.Fragment>
       <Box
@@ -16,10 +31,9 @@ const CartItem = ({ item, increment, decrement, remove }) => {
           width: "300px",
           height: "fit-content",
           border: "0",
-          // filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.48))",
           margin: "0px 8px 0px 8px",
           display: "flex",
-          justifyContent: 'space-evenly',
+          justifyContent: "space-evenly",
         }}
       >
         <Box
@@ -31,62 +45,62 @@ const CartItem = ({ item, increment, decrement, remove }) => {
           }}
         >
           <Typography variant="h7b">{item.name}</Typography>
-  
-          <Typography variant="h8b">Prix: {item.price.toFixed(2)} €</Typography>
+
+          <Typography variant="h8b">Prix: {item.price} €</Typography>
           <Typography variant="h8b">Quantité: {item.quantity}</Typography>
         </Box>
         <Box
           sx={{
-            display: 'flex',
+            display: "flex",
             justifyContent: "space-evenly",
-            alignItems: 'center',
-            width: '40%',
+            alignItems: "center",
+            width: "40%",
           }}
         >
           <AddIcon
-            onClick={increment}
+            onClick={(event) => handleIncrement(event)}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
               padding: "5px",
-              '&:hover': {
-                color: 'white',
-                backgroundColor: '#5F8D85',
+              "&:hover": {
+                color: "white",
+                backgroundColor: "#5F8D85",
               },
             }}
           />
           <RemoveIcon
-            onClick={decrement}
+            onClick={(event) => handleDecrement(event)}
             disabled={item.quantity === 1}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
               padding: "5px",
-              '&:hover': {
-                color: 'white',
-                backgroundColor: '#5F8D85',
+              "&:hover": {
+                color: "white",
+                backgroundColor: "#5F8D85",
               },
             }}
           />
           <DeleteIcon
-            onClick={remove}
+            onClick={(event) => handleRemove(event)}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
               padding: "5px",
-              '&:hover': {
-                color: 'white',
-                backgroundColor: '#5F8D85',
+              "&:hover": {
+                color: "white",
+                backgroundColor: "#5F8D85",
               },
             }}
           />
         </Box>
       </Box>
-      <Divider 
+      <Divider
         sx={{
-          borderWidth: '1px',
-          opacity: '0.2',
-          borderColor: 'black',
+          borderWidth: "1px",
+          opacity: "0.2",
+          borderColor: "black",
         }}
       />
     </React.Fragment>
