@@ -275,7 +275,7 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories === 1
+                    (menu) => menu.id_product_categories === 1
                   ),
                   "Entrées"
                 )}
@@ -307,7 +307,7 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories === 2
+                    (menu) => menu.id_product_categories === 2
                   ),
                   "Plats"
                 )}
@@ -339,7 +339,7 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories === 3
+                    (menu) => menu.id_product_categories === 3
                   ),
                   "Desserts"
                 )}
@@ -371,7 +371,7 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories === 4
+                    (menu) => menu.id_product_categories === 4
                   ),
                   "Boissons"
                 )}

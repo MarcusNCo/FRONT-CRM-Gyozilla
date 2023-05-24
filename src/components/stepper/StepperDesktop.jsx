@@ -75,14 +75,16 @@ export default function HorizontalLinearStepper() {
 
       for (const itemId in cart) {
         const item = cart[itemId];
-      
+
+        console.log(itemId)
+
         if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
           for (const product of item.products) {
-            console.log(product)
             const orderLineValues = {
               id_orders: orderId,
               id_products: product.id,
               quantity: product.quantity,
+              menu_reference: Number(String(itemId).slice(4)),
             };
             await createOrderLine(orderLineValues, token);
           }
@@ -168,7 +170,7 @@ export default function HorizontalLinearStepper() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "50%",
+                width: "600px",
                 textAlign: "center",
                 height: "auto",
                 backgroundColor: "#5F8D8550",
@@ -231,7 +233,7 @@ export default function HorizontalLinearStepper() {
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
-                      <Typography variant="body1" color="initial">
+                      <Typography variant="body1" color="initial" component="div">
                         Produits du menu:
                         <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
                           {item.products.map((product) => (

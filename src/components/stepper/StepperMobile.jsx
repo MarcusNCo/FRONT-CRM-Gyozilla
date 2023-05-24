@@ -91,6 +91,7 @@ export default function VerticalLinearStepper() {
               id_orders: orderId,
               id_products: product.id,
               quantity: product.quantity,
+              menu_reference: itemId,
             };
             await createOrderLine(orderLineValues, token);
           }
@@ -238,7 +239,7 @@ export default function VerticalLinearStepper() {
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
-                      <Typography variant="body1" color="initial">
+                      <Typography variant="body1" color="initial" component="div">
                         Produits du menu:
                         <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
                           {item.products.map((product) => (
