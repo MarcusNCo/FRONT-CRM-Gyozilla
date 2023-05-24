@@ -12,6 +12,8 @@ const CustomButton = ({
   fontSize,
   startIcon,
   backgroundColor,
+  margin,
+  padding,
 }) => {
   return (
     <Button
@@ -24,6 +26,8 @@ const CustomButton = ({
         width: width,
         height: height,
         fontSize: fontSize,
+        margin: margin,
+        padding: padding,
       }}
     >
       {text}

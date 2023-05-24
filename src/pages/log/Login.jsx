@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { Formik, Form, ErrorMessage } from 'formik'
@@ -9,27 +9,11 @@ import { toast, ToastContainer } from 'react-toastify'
 import CustomInput from '../../components/input/CustomInput'
 import logo from '../../images/gyozilla-logo.png'
 import { Box, useTheme } from '@mui/system'
-import { Navigate, Link, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserContext } from '../../utils/context/userContext'
 
 const Login = () => {
-  const location = useLocation()
-
-  useEffect(() => {
-    if (location.search == '?AccountValid') {
-      toast.success('Votre compte a été vérifié avec succès.', {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      })
-    }
-  }, [location])
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { setIsLogged } = useContext(UserContext)
   const initialValues = {
     email: '',
     password: '',
@@ -45,10 +29,11 @@ const Login = () => {
   })
 
   const theme = useTheme()
+  const navigate = useNavigate()
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer preventDuplicates={false} />
       <Box
         sx={{
           display: 'flex',
@@ -75,7 +60,6 @@ const Login = () => {
         />
         <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
-          <ToastContainer />
           <Formik
             initialValues={initialValues} //transforme en state
             validationSchema={validationSchema}
@@ -83,39 +67,19 @@ const Login = () => {
               login(values)
                 .then((response) => {
                   if (response.data.message === 'Authentification réussi') {
-                    setIsLoggedIn(true)
+                    setIsLogged(true)
+                    navigate('/products', {
+                      state: {
+                        successMessage: 'Vous êtes connecté !',
+                      },
+                    })
                   }
-                  toast.success('Vous êtes connecté', {
-                    position: 'top-right',
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                  })
-                  setSubmitting(false)
                 })
                 .catch((error) => {
                   console.error(error.response.data.message)
                   if (error.response.data.message === "L'email n'existe pas") {
-                    toast.error("L'email n'existe pas.", {
-                      position: 'top-right',
-                      autoClose: 4000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: 'light',
-                    })
-                  } else if (
-                    error.response.data.message ===
-                    'Vous devez valider votre compte pour vous connecter'
-                  ) {
                     toast.error(
-                      'Vous devez valider votre compte pour vous connecter',
+                      "Aucun utilisateur avec cet e-mail n'a été trouvé.",
                       {
                         position: 'top-right',
                         autoClose: 4000,
@@ -147,15 +111,6 @@ const Login = () => {
             }}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
-              if (isLoggedIn) {
-                return (
-                  <Navigate
-                    to={{
-                      pathname: '/',
-                    }}
-                  />
-                )
-              }
               return (
                 <Form className="formLogin">
                   <CustomInput

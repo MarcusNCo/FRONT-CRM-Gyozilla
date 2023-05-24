@@ -1,24 +1,29 @@
-import Home from './pages/home/Home'
-import Login from './utils/login'
-import Products from './pages/products/Products'
-import { Routes, Route } from 'react-router-dom'
-import Verify from './pages/verify/Verify'
+import Home from "./pages/home/Home";
+import Login from "./utils/login";
+import Products from "./pages/products/Products";
+import { Routes, Route } from "react-router-dom";
+import Verify from "./pages/verify/Verify";
+import ProductDetails from "./pages/productdetails/ProductDetails";
 
 function RoutesConfig() {
   const routes = [
     {
-      path: '/',
+      path: "/",
       element: <Home />,
     },
     {
-      path: '/products',
+      path: "/products",
       element: <Products />,
     },
     {
-      path: '/verify/:token',
+      path: "/products/:id",
+      element: <ProductDetails />,
+    },
+    {
+      path: "/verify/:token",
       element: <Verify />,
     },
-  ]
+  ];
 
   return (
     <Routes>
@@ -26,7 +31,7 @@ function RoutesConfig() {
         <Route key={index} path={route.path} element={route.element} />
       ))}
     </Routes>
-  )
+  );
 }
 
-export default RoutesConfig
+export default RoutesConfig;

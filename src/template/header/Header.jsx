@@ -1,43 +1,94 @@
-import React, { useState } from "react";
-import "./Header.css";
-import Logo from "./../../assets/images/gyozillalog.png";
-import mobileLogo from "./../../assets/images/gyozillalogo.png";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import AppBar from "@mui/material/AppBar";
-import { Box, useTheme } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuBurger from "../../components/burger/MenuBurger";
-import { Divider, IconButton } from "@mui/material";
-import CustomInput from "../../components/input/CustomInput";
-import { Link } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
-import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import React, { useContext, useEffect, useState } from 'react'
+import './Header.css'
+import Logo from '../../images/logoHeader.png'
+import mobileLogo from '../../images/gyozillalogo.png'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import AppBar from '@mui/material/AppBar'
+import { Box, useTheme } from '@mui/material'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import MenuItem from '@mui/material/MenuItem'
+import Menu from '@mui/material/Menu'
+import MenuBurger from '../../components/burger/MenuBurger'
+import { Divider, IconButton } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { Logout } from '@mui/icons-material'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
+import Badge from '@mui/material/Badge'
+import Cart from '../../components/cart/Cart'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { UserContext } from '../../utils/context/userContext'
 
 const Header = () => {
-  const [auth, setAuth] = useState(true);
-  const [valueInput, setvalueInput] = useState("");
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const theme = useTheme();
+  const [auth, setAuth] = useState(true)
+  const [valueInput, setvalueInput] = useState('')
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const theme = useTheme()
+  const { isLogged } = useContext(UserContext)
+
   const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+    setAuth(event.target.checked)
+  }
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const handleChangeInput = (e) => {
-    console.log(e);
-    setvalueInput(e.target.value);
-  };
+    console.log(e)
+    setvalueInput(e.target.value)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
+
+  const [cartOpen, setCartOpen] = useState(false)
+
+  const handleCartOpen = (e) => {
+    e.preventDefault()
+    setCartOpen(e.currentTarget)
+  }
+
+  const handleCartClose = () => {
+    setCartOpen(false)
+  }
+
+  const [cartItems, setCartItems] = useState([])
+
+  const addDummyProducts = () => {
+    const dummyProducts = [
+      { id: 1, name: 'Nems au poulet', price: 6.0, quantity: 2 },
+      { id: 2, name: 'Crevettes sautées', price: 12.0, quantity: 1 },
+      { id: 3, name: 'Sunday litchi', price: 3.5, quantity: 1 },
+    ]
+
+    setCartItems(dummyProducts)
+  }
+
+  useEffect(() => {
+    addDummyProducts()
+  }, [])
+
+  const incrementQuantity = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    )
+  }
+
+  const decrementQuantity = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item,
+      ),
+    )
+  }
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <>
@@ -45,15 +96,15 @@ const Header = () => {
         {/* // -------------------- Mobile version -------------------------- */}
         <Box
           sx={{
-            display: "none",
-            "@media (max-width: 992px)": {
-              display: "flex",
+            display: 'none',
+            '@media (max-width: 992px)': {
+              display: 'flex',
             },
-            position: "relative",
+            position: 'relative',
           }}
         >
           <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ backgroundColor: "#739B94" }}>
+            <AppBar position="static" sx={{ backgroundColor: '#739B94' }}>
               <Toolbar>
                 <MenuBurger />
                 <Typography
@@ -61,26 +112,36 @@ const Header = () => {
                   component="div"
                   sx={{
                     flexGrow: 1,
-                    display: "flex",
-                    justifyContent: "center",
+                    display: 'flex',
+                    justifyContent: 'center',
                   }}
                 ></Typography>
                 {auth && (
-                  <div style={{ display: "flex" }}>
-                    <IconButton
-                      aria-label="shop of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      onClick={handleMenu}
-                      color="inherit"
+                  <Box style={{ display: 'flex' }}>
+                    <Badge
+                      badgeContent={4}
+                      variant="standard"
+                      overlap="circular"
+                      sx={{
+                        width: '48px',
+                        height: '48px',
+                        padding: '8px',
+                        marginRight: '8px',
+                      }}
                     >
                       <ShoppingCartIcon
                         sx={{
-                          width: "32px",
-                          height: "32px",
+                          width: '32px',
+                          height: '32px',
                         }}
+                        color="inherit"
+                        aria-label="cart of current user"
+                        aria-controls="menu-cart"
+                        aria-haspopup="true"
+                        onClick={handleCartOpen}
                       />
-                    </IconButton>
+                    </Badge>
+
                     <IconButton
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
@@ -90,12 +151,12 @@ const Header = () => {
                     >
                       <AccountCircle
                         sx={{
-                          width: "32px",
-                          height: "32px",
+                          width: '32px',
+                          height: '32px',
                         }}
                       />
                     </IconButton>
-                  </div>
+                  </Box>
                 )}
               </Toolbar>
             </AppBar>
@@ -103,11 +164,11 @@ const Header = () => {
               src={mobileLogo}
               alt="Logo de Gyozilla"
               style={{
-                position: "absolute",
-                width: "80px",
-                left: "50%",
-                top: "10px",
-                transform: "translate(-50%)",
+                position: 'absolute',
+                width: '80px',
+                left: '50%',
+                top: '10px',
+                transform: 'translate(-50%)',
               }}
             />
           </Box>
@@ -115,136 +176,234 @@ const Header = () => {
         {/* // ----------------------- Web version -------------------------- */}
         <Box
           sx={{
-            display: "flex",
-            "@media (max-width: 992px)": {
-              display: "none",
+            display: 'flex',
+            zIndex: 1000,
+            '@media (max-width: 992px)': {
+              display: 'none',
             },
-            overflow: "hidden",
-            padding: "10px",
-            justifyContent: "space-around",
-            boxShadow: "0 0 .4em black",
+            overflow: 'hidden',
+            // padding: "10px",
+            justifyContent: 'space-between',
+            boxShadow: '0 0 .4em black',
           }}
         >
-          <div className="header-left">
-            <a id="gyozilla" href="/">
+          <Box className="header-left">
+            <Link id="gyozilla" to={'/'}>
               <img src={Logo} alt="Logo de Gyozilla" />
-            </a>
-            <Link className="menu" to="/products">
+            </Link>
+            <Link className="menu" to="/products" style={{ padding: '0' }}>
               La carte
             </Link>
-            <Link className="menu" to="/nosengagements">
+            <Link
+              className="menu"
+              to="/nosengagements"
+              style={{ padding: '0' }}
+            >
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact">
+            <Link className="menu" to="/contact" style={{ padding: '0' }}>
               Contactez-nous
             </Link>
-          </div>
-          <div className="containSearch">
-            <CustomInput
-              htmlFor="toto"
-              id="toto"
-              variant="standard"
-              label="Que cherchez-vous"
-              onChange={handleChangeInput}
-              value={valueInput}
-            />
-          </div>
-          <div className="header-right">
-            <a className="containIcon" href="/" onClick={null}>
+          </Box>
+          <Box className="header-right">
+            <Link className="containIcon" to={'/'} onClick={null}>
               <LocationOnIcon
                 className="logIcon"
-                style={{ fontSize: 35, color: "#739B94" }}
+                style={{ fontSize: 35, color: '#739B94' }}
               />
-            </a>
-            <a className="containIcon" href="/" onClick={null}>
+            </Link>
+            <Badge badgeContent={4} variant="standard">
               <ShoppingCartIcon
-                className="logIcon"
-                style={{ fontSize: 35, color: "#739B94" }}
+                style={{
+                  fontSize: 35,
+                  color: '#739B94',
+                  cursor: 'pointer',
+                }}
+                aria-label="cart of current user"
+                aria-controls="menu-cart"
+                aria-haspopup="true"
+                onClick={handleCartOpen}
               />
-            </a>
+            </Badge>
             <AccountCircleIcon
-              className="logIcon"
               style={{
                 fontSize: 35,
-                color: "#739B94",
-                margin: "15px",
-                cursor: "pointer",
+                color: '#739B94',
+                margin: '15px',
+                cursor: 'pointer',
               }}
               aria-label="account of current user"
-              aria-controls="menu-appbar"
+              aria-controls="account-menu"
               aria-haspopup="true"
               onClick={handleMenu}
             />
-          </div>
+          </Box>
         </Box>
-        {/* // ------------ Menu for desktop and mobile version --------------- */}
+        {/* // ------------ Menu utilisateur version desktop et mobile --------------- */}
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
-          open={open}
+          open={Boolean(anchorEl)}
           onClose={handleClose}
           onClick={handleClose}
           PaperProps={{
             elevation: 0,
             sx: {
-              overflow: "visible",
-              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
               mr: 1.5,
-              "& .MuiAvatar-root": {
+              mb: 10,
+              '& .MuiAvatar-root': {
                 width: 32,
                 height: 32,
                 ml: -0.5,
                 mr: 1,
               },
-              "&:before": {
+              '&:before': {
                 content: '""',
-                display: "block",
-                position: "absolute",
+                display: 'block',
+                position: 'absolute',
                 top: 0,
-                right: 13,
+                right: 12,
                 width: 10,
                 height: 10,
-                bgcolor: "background.paper",
-                transform: "translateY(-50%) rotate(45deg)",
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                filter: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))',
                 zIndex: 0,
-                [theme.breakpoints.down("sm")]: {
+                [theme.breakpoints.down('sm')]: {
                   right: 19,
                 },
               },
             },
           }}
-          transformOrigin={{ horizontal: "right", vertical: "top" }}
-          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/login">
-              <Logout fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                Se connecter
-              </Typography>
-            </a>
+            {isLogged ? (
+              <a className="menu-item-a" href="/profile">
+                <Logout fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: '10px' }}
+                >
+                  Mon compte
+                </Typography>
+              </a>
+            ) : (
+              <a className="menu-item-a" href="/login">
+                <Logout fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: '10px' }}
+                >
+                  Se connecter
+                </Typography>
+              </a>
+            )}
           </MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose} className="menu-item">
-            <a className="menu-item-a" href="/sign-in">
-              <AppRegistrationIcon fontSize="small" />
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ paddingLeft: "10px" }}
-              >
-                S'inscrire
-              </Typography>
-            </a>
-          </MenuItem>
+          {isLogged ? (
+            <Divider
+              sx={{
+                display: 'none',
+              }}
+            />
+          ) : (
+            <Divider />
+          )}
+          {isLogged ? (
+            <MenuItem
+              sx={{
+                display: 'none',
+              }}
+              onClick={handleClose}
+              className="menu-item"
+            >
+              <a className="menu-item-a" href="/sign-in">
+                <AppRegistrationIcon fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: '10px' }}
+                >
+                  S'inscrire
+                </Typography>
+              </a>
+            </MenuItem>
+          ) : (
+            <MenuItem onClick={handleClose} className="menu-item">
+              <a className="menu-item-a" href="/sign-in">
+                <AppRegistrationIcon fontSize="small" />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ paddingLeft: '10px' }}
+                >
+                  S'inscrire
+                </Typography>
+              </a>
+            </MenuItem>
+          )}
+        </Menu>
+        {/* // ------------ Panier version desktop et mobile --------------- */}
+        <Menu
+          anchorEl={cartOpen}
+          id="menu-cart"
+          open={Boolean(cartOpen)}
+          onClose={handleCartClose}
+          onClick={handleCartClose}
+          PaperProps={{
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))',
+              mt: 1.5,
+              '& .MuiSvgIcon-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+                color: '#5F8D85',
+              },
+
+              '&:before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 12,
+                width: 12,
+                height: 12,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                filter: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))',
+                zIndex: 0,
+                [theme.breakpoints.down('sm')]: {
+                  right: 75,
+                },
+              },
+            },
+          }}
+          transformOrigin={{
+            horizontal: isMobile ? 'center' : 'right',
+            vertical: 'top',
+          }}
+          anchorOrigin={{
+            horizontal: isMobile ? 'center' : 'right',
+            vertical: 'bottom',
+          }}
+        >
+          <Cart
+            items={cartItems}
+            onIncrement={incrementQuantity}
+            onDecrement={decrementQuantity}
+          />
         </Menu>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

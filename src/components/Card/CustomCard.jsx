@@ -1,11 +1,12 @@
-import React from 'react'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Typography from '@mui/material/Typography'
-import CustomButton from '../button/CustomButton'
-import './CustomCard.css'
-import { Box } from '@mui/system'
+import React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import CustomButton from "../button/CustomButton";
+import "./CustomCard.css";
+import { Box } from "@mui/system";
+import CardMedia from "@mui/material/CardMedia";
 // import { string } from 'yargs'
 // import { useTheme } from '@mui/material'
 
@@ -18,8 +19,10 @@ const CustomCard = ({
   onButtonCardClick,
   width,
   height,
+  border,
   backgroundColor,
   backgroundColorContent,
+  backgroundSize,
   widthContent,
   heightContent,
   heightActions,
@@ -30,27 +33,30 @@ const CustomCard = ({
   styleTitle,
   styleParagraph,
   variantButton,
+  zIndex,
 }) => {
-  let dbImage = ''
+  let dbImage = "";
   if (image !== undefined) {
-    dbImage = require('../../images/' + image)
+    dbImage = require("../../images/" + image);
   }
 
   return (
     <Card
       id={id}
+      onClick={onButtonCardClick}
       style={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         justifyContent: justifyContentCard,
         alignItems: alignItemsCard,
         width: width,
         height: height,
         backgroundColor: backgroundColor,
-        backgroundImage: `url(${dbImage})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        zIndex: zIndex,
+        border: "none",
+        cursor: "pointer",
+        boxShadow:
+          "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
       }}
     >
       <CardContent
@@ -58,31 +64,39 @@ const CustomCard = ({
           width: widthContent,
           height: heightContent,
           backgroundColor: backgroundColorContent,
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '0 20px 0 0',
+          padding: "0",
         }}
       >
-        <Box sx={{ backgroundColor: 'black', padding: '5px 15px 5px 15px', display: 'flex', flexDirection: 'column', borderRadius: '0 0 5px 0', width: 'fit-content' }}>
-          <Typography variant={'hbox'}>{title}</Typography>
-          <Typography variant={'p'}>{description}</Typography>
+        <Box
+          sx={{
+            backgroundColor: "#5F8D85",
+            opacity: "0.8",
+            padding: "5px 5px 5px 10px",
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: "5px 5px 0 0",
+            width: "100%",
+            height: "fit-content",
+          }}
+        >
+          <Typography variant={"h7b"}>{title}</Typography>
         </Box>
       </CardContent>
-      <CardActions
-        style={{
-          width: widthActions,
-          height: heightActions,
-          backgroundColor: backgroundColorActions,
+      <CardContent
+        sx={{
+          flexGrow: 1,
+          width: "100%",
+          padding: "0",
+          paddingBottom: "0 !important",
+          backgroundImage: `url(${dbImage})`,
+          backgroundSize: backgroundSize,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
         }}
       >
-        <CustomButton
-          onClick={onButtonCardClick}
-          variant={variantButton}
-          text={buttonCardText}
-        />
-      </CardActions>
+      </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default CustomCard
+export default CustomCard;

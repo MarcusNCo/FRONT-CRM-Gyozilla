@@ -1,101 +1,108 @@
-  /* ------------------------- Mobile CSS ----------------------- */
+/* ------------------------- Mobile CSS ----------------------- */
 
-  a {
-    text-decoration: none;
-    color: #739B94;
-  }
+a {
+  text-decoration: none;
+  color: #739b94;
+}
 
-  body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-    width: 50vw !important;
-  }
+body
+  > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root
+  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  width: 50vw !important;
+}
 
-  /* ------------------------- Web CSS --------------------------- */
-  /* Style the header with a grey background and some padding */
+/* ------------------------- Web CSS --------------------------- */
+/* Style the header with a grey background and some padding */
 
-  #gyozilla {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+#gyozilla {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  #gyozilla img {
-    object-fit: cover;
-    width: 200px;
-    height: 50px;
-  }
+#gyozilla img {
+  object-fit: cover;
+  width: auto;
+  height: 50px;
+}
 
-  #menu-appbar {
-    width: 800px !important;
-  }
+#menu-appbar {
+  width: 800px !important;
+}
 
-  /* Style the header links */
-  .menu {
-    float: left;
-    color: #739B94;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-    padding: 12px;
-    text-decoration: none !important;
-    font-size: 1.0rem;
-    line-height: 25px;
-    font-weight: 550;
-  }
+/* Style the header links */
+.menu {
+  float: left;
+  color: #739b94;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  padding: 12px;
+  text-decoration: none !important;
+  font-size: 1rem;
+  line-height: 25px;
+  font-weight: 550;
+}
 
-  .menu:hover {
-    color: #F8A500;
-  }
+.menu:hover {
+  color: #f8a500;
+}
 
-  /* Float the link section to the left */
-  .header-left {
-    float: left;
-    display: flex;
-    justify-content: center;
-    width: 50%;
-  }
+/* Float the link section to the left */
+.header-left {
+  float: left;
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+}
 
-  /* Float the link section to the right */
-  .header-right {
-    float: right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
+/* Float the link section to the right */
+.header-right {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  .containIcon {
-    margin: 15px;
-  }
+.containIcon {
+  margin: 15px;
+}
 
-  .containSearch {
-    display: flex;
-    width: 25%;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
-    padding: 0px;
-  }
+.containSearch {
+  display: flex;
+  width: 25%;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
 
-  .search {
-    width: 80%;
-  }
+.search {
+  width: 80%;
+}
 
-  ul li {
-    font-size: 20px;
-  }
+ul li {
+  font-size: 20px;
+}
 
-  .menu-item-a {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+.menu-item-a {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
-  .menu-item:hover a, .menu-item:hover {
-    text-decoration: none;
-    color: white;
-    background-color: #739B94 !important;
-  } 
+.menu-item:hover a,
+.menu-item:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #739b94 !important;
+}
 
-  body > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper > nav > div {
-    padding-left: 0px !important;
-  }
+body
+  > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root
+  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper
+  > nav
+  > div {
+  padding-left: 0px !important;
+}
