@@ -7,6 +7,13 @@
   margin: 50px 0 50px 0;
 }
 
+.containedLoginUser {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .formLogin {
   border-radius: 10px;
   background-color: #e5e5e5;

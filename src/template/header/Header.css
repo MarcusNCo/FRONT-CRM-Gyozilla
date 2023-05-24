@@ -5,9 +5,7 @@ a {
   color: #739b94;
 }
 
-body
-  > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root
-  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1u2w381-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
   width: 50vw !important;
 }
 
@@ -99,10 +97,6 @@ ul li {
   background-color: #739b94 !important;
 }
 
-body
-  > div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root
-  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper
-  > nav
-  > div {
+body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper>nav>div {
   padding-left: 0px !important;
 }

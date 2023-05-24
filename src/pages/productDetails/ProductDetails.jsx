@@ -112,6 +112,7 @@ const ProductDetails = () => {
           alignItems: "center",
           "@media (max-width: 900px)": {
             flexDirection: "column",
+            minHeight: "calc(100vh - 56px)",
           },
         }}
       >
@@ -122,6 +123,10 @@ const ProductDetails = () => {
               height: "fit-content",
               maxWidth: "400px",
               maxHeight: "400px",
+              "@media (max-width: 900px)": {
+                width: "80%",
+                height: "fit-content",
+              },
               objectFit: "cover",
             }}
             alt={`Image du produit "${productInfo.name}"`}
@@ -132,6 +137,9 @@ const ProductDetails = () => {
           sx={{
             width: "400px",
             height: "400px",
+            "@media (max-width: 900px)": {
+              width: "100%",
+            },
             display: "flex",
             flexDirection: "column",
             alignItems: "space-evenly",

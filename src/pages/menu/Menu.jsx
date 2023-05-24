@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SelectButton } from "primereact/selectbutton";
 
 import { Divider } from "primereact/divider";
@@ -6,19 +6,24 @@ import { Divider } from "primereact/divider";
 import "./Menu.css";
 import { getAllProductByMenu } from "../../utils/api-call/getAllProductByMenu";
 import { Box, useTheme } from "@mui/system";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomCard from "../../components/card/CustomCard";
-import { Card, Checkbox, Typography } from "@mui/material";
+import { Radio, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import { ToastContainer, toast } from "react-toastify";
+import CartContext from "../../utils/context/CartContext";
 
 const Menu = () => {
-  const [value, setValue] = useState(null);
   const [productsByMenu, setProductsByMenu] = useState([]);
   const [error, setError] = useState(null);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(1);
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedStarter, setSelectedStarter] = useState(null);
+  const [selectedMain, setSelectedMain] = useState(null);
+  const [selectedDessert, setSelectedDessert] = useState(null);
+  const [selectedDrink, setSelectedDrink] = useState(null);
   const [displayBackButton, setDisplayBackButton] = useState(true);
+  const { updateCartItems } = useContext(CartContext);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -38,23 +43,23 @@ const Menu = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const TYPE_MENU = {
-    MENU_ENFANTS: 1,
-    MENU_PETIT_PRIX: 2,
-    MENU_DECOUVERTE: 3,
-    MENU_GOURMAND: 4,
+  const MENU_PRICES = {
+    MENU_ENFANT: 8,
+    MENU_PETIT_PRIX: 12,
+    MENU_DECOUVERTE: 18,
+    MENU_GOURMAND: 25,
   };
 
-  const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
 
   const selectMenuOptions = [
-    { id: 1, label: "Menu Enfant", value: 1, image: "Menu-Enfants" },
-    { id: 2, label: "Menu Petit Prix", value: 2, image: "Menu-Petits-Prix" },
+    { id: 1, label: "Menu Enfant", value: 1, image: "Menu-Enfant" },
+    { id: 2, label: "Menu Petit Prix", value: 2, image: "Menu-Petit-Prix" },
     { id: 3, label: "Menu Decouverte", value: 3, image: "Menu-Decouverte" },
     { id: 4, label: "Menu Gourmand", value: 4, image: "Menu-Gourmand" },
   ];
+
   useEffect(() => {
     getAllProductByMenu(selectedTypeMenu)
       .then((res) => {
@@ -67,25 +72,6 @@ const Menu = () => {
       });
   }, [selectedTypeMenu]);
 
-  const filteredMenu =
-    productsByMenu.length > 0
-      ? productsByMenu.filter((productByMenu) => {
-          if (selectMenuOptions === null || selectMenuOptions === 0) {
-            return true;
-          } else if (selectMenuOptions === 1) {
-            return productByMenu.productMenu.id === TYPE_MENU.MENU_ENFANTS;
-          } else if (selectMenuOptions === 2) {
-            return productByMenu.productMenu.id === TYPE_MENU.MENU_PETIT_PRIX;
-          } else if (selectMenuOptions === 3) {
-            return productByMenu.productMenu.id === TYPE_MENU.MENU_DECOUVERTE;
-          } else if (selectMenuOptions === 4) {
-            return productByMenu.productMenu.id === TYPE_MENU.MENU_GOURMAND;
-          } else {
-            return null;
-          }
-        })
-      : null;
-
   const labelTemplate = (option) => {
     return <p>{option.label}</p>;
   };
@@ -94,15 +80,30 @@ const Menu = () => {
     setSelectedTypeMenu(e.value);
   };
 
-  const handleSelectedProducts = () => {
-    const selected = productsByMenu.filter((product) =>
-      selectedProducts.includes(product.id)
-    );
-    console.log(selected);
-  };
+  const displayCard = (items, category) => {
+    let setSelected;
+    if (category === "Entrées") {
+      setSelected = setSelectedStarter;
+    } else if (category === "Plats") {
+      setSelected = setSelectedMain;
+    } else if (category === "Desserts") {
+      setSelected = setSelectedDessert;
+    } else if (category === "Boissons") {
+      setSelected = setSelectedDrink;
+    }
 
-  const displayCard = (item) => {
-    return item.map((item) => {
+    return items.map((item) => {
+      let selectedItem;
+      if (category === "Entrées") {
+        selectedItem = selectedStarter;
+      } else if (category === "Plats") {
+        selectedItem = selectedMain;
+      } else if (category === "Desserts") {
+        selectedItem = selectedDessert;
+      } else if (category === "Boissons") {
+        selectedItem = selectedDrink;
+      }
+
       return (
         <Box key={item.id} style={{ position: "relative" }}>
           <div
@@ -123,24 +124,94 @@ const Menu = () => {
               title={item.name}
               backgroundSize="contain"
             />
-            <Checkbox
-              sx={{ color: "#CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}
-              checked={selectedProducts.includes(item.id)}
+            <Radio
+              sx={{ color: "##CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}
+              checked={selectedItem === item.id}
               onChange={(e) => {
-                if (e.target.checked) {
-                  // add product id to selectedProducts array
-                  setSelectedProducts([...selectedProducts, item.id]);
-                } else {
-                  // remove product id from selectedProducts array
-                  setSelectedProducts(
-                    selectedProducts.filter((id) => id !== item.id)
-                  );
-                }
+                setSelected(item.id);
               }}
             />
           </div>
         </Box>
       );
+    });
+  };
+
+  const addToLocalStorage = () => {
+    const foundStarter = productsByMenu.find(
+      (product) => product.id === selectedStarter
+    );
+    const foundMain = productsByMenu.find(
+      (product) => product.id === selectedMain
+    );
+    const foundDessert = productsByMenu.find(
+      (product) => product.id === selectedDessert
+    );
+    const foundDrink = productsByMenu.find(
+      (product) => product.id === selectedDrink
+    );
+
+    if (!foundStarter || !foundMain || !foundDessert || !foundDrink) {
+      toast.error("Veuillez sélectionner un produit de chaque type.", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
+    const menuName = selectMenuOptions.find(
+      (option) => option.id === selectedTypeMenu
+    )?.label;
+
+    console.log(
+      selectMenuOptions.find((option) => option.id === selectedTypeMenu)
+    );
+
+    const menuImage = selectMenuOptions.find(
+      (option) => option.id === selectedTypeMenu
+    )?.image;
+
+    const menuPrice = MENU_PRICES[menuName.replace(" ", "_").toUpperCase()];
+    const menu_id = Date.now();
+
+    const menu = {
+      id: menu_id,
+      name: menuName,
+      image: menuImage + ".jpg",
+      price: `${menuPrice}`,
+      quantity: 1,
+
+      products: [foundStarter, foundMain, foundDessert, foundDrink]
+        .filter(Boolean)
+        .map((product) => ({ ...product, quantity: 1 })),
+    };
+
+    const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+
+    if (cart[menu_id]) {
+      cart[menu_id].produits.forEach((product) => (product.quantity += 1));
+    } else {
+      cart[menu_id] = menu;
+    }
+
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartItems();
+
+    toast.success(`Le ${menuName} a bien été ajouté au panier.`, {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   };
 
@@ -152,6 +223,11 @@ const Menu = () => {
           fontSize: "2rem",
           color: "black",
           alignSelf: "center",
+          [theme.breakpoints.down("md")]: {
+            marginTop: "50px",
+            textAlign: "center",
+            fontSize: "1.6rem",
+          },
         }}
       >
         Selectionne ton type de menu et choisis ton entrée, plat, dessert et
@@ -196,8 +272,9 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories == 1
-                  )
+                    (menu) => menu.id_product_categories === 1
+                  ),
+                  "Entrées"
                 )}
               </Box>
             </Box>
@@ -227,8 +304,9 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories == 2
-                  )
+                    (menu) => menu.id_product_categories === 2
+                  ),
+                  "Plats"
                 )}
               </Box>
             </Box>
@@ -258,8 +336,9 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories == 3
-                  )
+                    (menu) => menu.id_product_categories === 3
+                  ),
+                  "Desserts"
                 )}
               </Box>
             </Box>
@@ -289,8 +368,9 @@ const Menu = () => {
               >
                 {displayCard(
                   productsByMenu.filter(
-                    (productMenu) => productMenu.id_product_categories == 4
-                  )
+                    (menu) => menu.id_product_categories === 4
+                  ),
+                  "Boissons"
                 )}
               </Box>
             </Box>
@@ -298,6 +378,16 @@ const Menu = () => {
         ) : (
           "il n'y a pas de produits"
         )}
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <CustomButton
+          text="Valider"
+          height="40px"
+          width="120px"
+          padding="0 20px 0 20px"
+          margin="32px"
+          onClick={addToLocalStorage}
+        ></CustomButton>
       </Box>
 
       {/* bouton retour en version desktop */}
@@ -307,7 +397,7 @@ const Menu = () => {
             position: "fixed",
             bottom: "10px",
             left: "50px",
-            [theme.breakpoints.down("sm")]: {
+            [theme.breakpoints.down("md")]: {
               display: "none",
             },
           }}
@@ -323,6 +413,8 @@ const Menu = () => {
           ></CustomButton>
         </Box>
       )}
+
+      <ToastContainer position="top-right" />
     </>
   );
 };

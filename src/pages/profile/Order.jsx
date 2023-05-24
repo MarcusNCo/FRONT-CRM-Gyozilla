@@ -1,29 +1,167 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../utils/context/UserContext'
-import { getAllOrdersByCustomer } from '../../utils/api-call/getAllOrdersByCustomer'
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../utils/context/UserContext";
+import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
+import { CircularProgress, Divider, Typography, useTheme } from "@mui/material";
+import { Box } from "@mui/system";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 
 const Order = () => {
-    const [orders, setOrders] = useState([])
-    const { user } = useContext(UserContext)
-    const id = user.id
-    useEffect(() => {
-        getAllOrdersByCustomer(id)
-            .then((response) => {
-                setOrders(response.data.data)
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
-            })
-    }, [id])
-    console.log(orders);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const theme = useTheme();
+  const { user } = useContext(UserContext);
+  const id = user.id;
+
+  useEffect(() => {
+    getAllOrdersByCustomer(id)
+      .then((response) => {
+        const ordersWithGroupedProducts = response.data.data.map((order) => {
+          const groupedProducts = {};
+          order.order_lines.forEach((lineItem) => {
+            const menuReference =
+              lineItem.menu_reference !== null
+                ? lineItem.products.menu.id
+                : "noMenu";
+            if (!groupedProducts[menuReference]) {
+              groupedProducts[menuReference] = {
+                menu:
+                  lineItem.menu_reference !== null
+                    ? lineItem.products.menu.name
+                    : "noMenu",
+                price:
+                  lineItem.menu_reference !== null
+                    ? lineItem.products.menu.price
+                    : lineItem.products.price,
+                products: [],
+              };
+            }
+            groupedProducts[menuReference].products.push({
+              name: lineItem.products.name,
+              quantity: lineItem.quantity,
+              price: lineItem.products.price,
+            });
+          });
+          return { ...order, groupedProducts };
+        });
+        setOrders(ordersWithGroupedProducts);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
     return (
-        <div>
-            {orders.map((item) => (
-                <p key={item.id}>{item.total_price}</p>
-            ))}
+      <>
+        <CircularProgress
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        />
+      </>
+    );
+  }
 
-        </div>
-    )
-}
+  return (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          marginLeft: "30px",
+          [theme.breakpoints.down("sm")]: {
+            marginLeft: "0",
+          },
+        }}
+      >
+        {orders.map((order) => (
+          <Box
+            sx={{
+              width: "fit-content",
+              margin: "50px 20px 50px 20px",
+              borderRadius: "0 0 20px 0",
+              boxShadow:
+                "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+              padding: "0 0 10px 0",
+              display: "flex",
+              flexDirection: "column",
+              [theme.breakpoints.down("sm")]: {
+                width: "100%",
+              },
+            }}
+          >
+            <Typography
+              variant="h9bwpm"
+              color="initial"
+              sx={{
+                backgroundColor: "#5F8D8580",
+                paddingLeft: "10px",
+                marginBottom: "10px",
+                padding: "5px 10px 5px 10px",
+                textAlign: "center",
+              }}
+            >
+              Votre commande du{" "}
+              {format(new Date(order.date_order), "dd/MM/yyyy ", {
+                locale: fr,
+              })}
+              ({order.order_status.name})
+            </Typography>
+            {Object.values(order.groupedProducts).map((group) =>
+              group.menu !== "noMenu" ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "0 10px 0 10px",
+                  }}
+                >
+                  <Typography variant="h9bwpm" color="initial">
+                    Menu : {group.menu} à {group.price}€
+                  </Typography>
+                  {group.products.map((product) => (
+                    <Typography variant="h9bwpm" color="initial">
+                      - {product.name}
+                    </Typography>
+                  ))}
+                </Box>
+              ) : (
+                group.products.map((product) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "0 10px 0 10px",
+                    }}
+                  >
+                    <Typography variant="h9bwpm" color="initial">
+                      {product.quantity} {product.name} à {product.price}€
+                    </Typography>
+                  </Box>
+                ))
+              )
+            )}
 
-export default Order
+            <Divider sx={{ borderColor: "#00000030", paddingTop: "10px" }} />
+            <Typography
+              variant="h9bwpm"
+              color="initial"
+              sx={{ padding: "10px 10px 0 10px" }}
+            >
+              {order.order_type.name}, pour un total de {order.total_price}€
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    </>
+  );
+};
+
+// };
+
+export default Order;
