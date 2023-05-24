@@ -130,7 +130,7 @@ const ProductDetails = () => {
               objectFit: "cover",
             }}
             alt={`Image du produit "${productInfo.name}"`}
-            src={require("../../images/" + productInfo.image)}
+            src={"https://api-gyozilla.onrender.com/" + productInfo.image}
           />
         )}
         <Box
