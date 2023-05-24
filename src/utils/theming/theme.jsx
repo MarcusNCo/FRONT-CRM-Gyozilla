@@ -300,6 +300,10 @@ const theme = createTheme({
       color: "#EAEAEA",
       fontSize: "1.0rem",
     },
+    h7bb: {
+      color: "#000000",
+      fontSize: "1.0rem",
+    },
     h8b: {
       color: "#000000",
       fontSize: "0.9rem",

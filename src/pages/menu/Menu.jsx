@@ -169,10 +169,6 @@ const Menu = () => {
       (option) => option.id === selectedTypeMenu
     )?.label;
 
-      console.log(selectMenuOptions.find(
-        (option) => option.id === selectedTypeMenu
-      ))
-
     const menuImage = selectMenuOptions.find(
       (option) => option.id === selectedTypeMenu
     )?.image;

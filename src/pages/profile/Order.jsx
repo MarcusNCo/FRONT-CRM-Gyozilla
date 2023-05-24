@@ -79,8 +79,9 @@ const Order = () => {
           },
         }}
       >
-        {orders.map((order) => (
+        {orders.map((order, orderIndex) => (
           <Box
+            key={`order-${orderIndex}`}
             sx={{
               width: "fit-content",
               margin: "50px 20px 50px 20px",
@@ -112,9 +113,10 @@ const Order = () => {
               })}
               ({order.order_status.name})
             </Typography>
-            {Object.values(order.groupedProducts).map((group) =>
+            {Object.values(order.groupedProducts).map((group, groupIndex) =>
               group.menu !== "noMenu" ? (
                 <Box
+                  key={`group-${groupIndex}`}
                   sx={{
                     display: "flex",
                     flexDirection: "column",
@@ -122,17 +124,22 @@ const Order = () => {
                   }}
                 >
                   <Typography variant="h9bwpm" color="initial">
-                    Menu : {group.menu} à {group.price}€
+                    {group.menu} à {group.price}€
                   </Typography>
-                  {group.products.map((product) => (
-                    <Typography variant="h9bwpm" color="initial">
+                  {group.products.map((product, productIndex) => (
+                    <Typography
+                      variant="h9bwpm"
+                      color="initial"
+                      key={`product-${groupIndex}-${productIndex}`}
+                    >
                       - {product.name}
                     </Typography>
                   ))}
                 </Box>
               ) : (
-                group.products.map((product) => (
+                group.products.map((product, productIndex) => (
                   <Box
+                    key={`product-${productIndex}`}
                     sx={{
                       display: "flex",
                       flexDirection: "column",
@@ -161,7 +168,5 @@ const Order = () => {
     </>
   );
 };
-
-// };
 
 export default Order;

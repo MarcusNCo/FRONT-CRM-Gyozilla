@@ -46,7 +46,6 @@ const Recrutement = () => {
         >
           {hiring.length > 0 ? (
             hiring.map((item) => {
-              console.log(item);
               return (
                 <>
                   <Box

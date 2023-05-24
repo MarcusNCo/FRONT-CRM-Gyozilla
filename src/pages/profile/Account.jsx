@@ -47,7 +47,6 @@ const Account = () => {
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
               const id = user.id;
-              console.log(id);
               updateCustomer(values, id)
                 .then((response) => {
                   if (

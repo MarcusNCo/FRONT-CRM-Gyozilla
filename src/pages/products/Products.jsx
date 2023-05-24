@@ -53,37 +53,37 @@ const Products = () => {
       id: 1,
       name: "Nouveautés",
       description: "Découvrez nos nouveautés",
-      image: "badgeHome/badge-nouveautes.png",
+      image: "image/badge-nouveautes.png",
     },
     {
       id: 2,
       name: "Menus",
       description: "Découvrez nos menus",
-      image: "nouveautes.jpg",
+      image: "image/nouveautes.jpg",
     },
     {
       id: 3,
       name: "Entrées",
       description: "Découvrez nos entrées",
-      image: "entrees.jpg",
+      image: "image/entrees.jpg",
     },
     {
       id: 4,
       name: "Plats",
       description: "Découvrez nos plats",
-      image: "plats.jpg",
+      image: "image/plats.jpg",
     },
     {
       id: 5,
       name: "Desserts",
       description: "Découvrez nos desserts",
-      image: "desserts.jpg",
+      image: "image/desserts.jpg",
     },
     {
       id: 6,
       name: "Boissons",
       description: "Découvrez nos boissons",
-      image: "boissons.jpg",
+      image: "image/boissons.jpg",
     },
   ];
 

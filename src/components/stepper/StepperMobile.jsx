@@ -86,7 +86,6 @@ export default function VerticalLinearStepper() {
       
         if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
           for (const product of item.products) {
-            console.log(product)
             const orderLineValues = {
               id_orders: orderId,
               id_products: product.id,
@@ -134,7 +133,7 @@ export default function VerticalLinearStepper() {
   const getImage = (image) => {
     let dbImage;
     if (image !== undefined) {
-      dbImage = require("../../images/" + image);
+      dbImage = "https://api-gyozilla.onrender.com/" + image;
     }
     return dbImage;
   };
