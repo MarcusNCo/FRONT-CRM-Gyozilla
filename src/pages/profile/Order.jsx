@@ -13,7 +13,6 @@ const Order = () => {
   const id = user.id;
 
   useEffect(() => {
-    console.log(id);
     getAllOrdersByCustomer(id)
       .then((response) => {
         setOrders(response.data.data);
