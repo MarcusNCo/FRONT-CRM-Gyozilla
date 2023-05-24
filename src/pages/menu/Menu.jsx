@@ -124,7 +124,7 @@ const Menu = () => {
               backgroundSize="contain"
             />
             <Checkbox
-              sx={{ color: "##CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}
+              sx={{ color: "#CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}
               checked={selectedProducts.includes(item.id)}
               onChange={(e) => {
                 if (e.target.checked) {
@@ -323,7 +323,6 @@ const Menu = () => {
           ></CustomButton>
         </Box>
       )}
-
     </>
   );
 };
