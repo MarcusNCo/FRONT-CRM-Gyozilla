@@ -1,0 +1,7 @@
+.zoomEffect {
+    transition: transform 0.5s ease-in-out;
+}
+
+.zoomEffect:hover {
+    transform: scale(1.03);
+}

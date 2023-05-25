@@ -48,6 +48,7 @@
 }
 
 @keyframes move-up-down {
+
   0%,
   100% {
     transform: translateY(-20%);
@@ -60,4 +61,12 @@
 
 .move-up-down {
   animation: move-up-down 1s ease-in-out infinite;
+}
+
+.zoomEffect {
+  transition: transform 0.5s ease-in-out;
+}
+
+.zoomEffect:hover {
+  transform: scale(1.03);
 }

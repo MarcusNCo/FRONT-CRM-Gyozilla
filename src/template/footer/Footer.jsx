@@ -223,7 +223,7 @@ const Footer = (props) => {
                   Nos engagements
                 </Link>
                 <Link
-                  href="#"
+                  href="/news"
                   underline="none"
                   sx={{
                     margin: "0 10px 0 10px",

@@ -15,6 +15,7 @@ import Find from "./pages/find/Find";
 import Contact from "./pages/contact/Contact";
 import LegalNotices from "./pages/legalnotices/LegalNotices";
 import Recrutement from "./pages/recrutement/Recrutement";
+import News from "./pages/news/News";
 
 function RoutesConfig() {
   const routes = [
@@ -85,6 +86,14 @@ function RoutesConfig() {
     {
       path: "/recrutement",
       element: <Recrutement />,
+    },
+    {
+      path: "/news",
+      element: <News />,
+    },
+    {
+      path: "/news/:id",
+      element: <News />,
     },
   ];
 

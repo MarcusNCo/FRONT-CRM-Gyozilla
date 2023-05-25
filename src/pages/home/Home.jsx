@@ -116,7 +116,13 @@ const Home = () => {
         >
           {cardHomepages.map((cardHomePage) => {
             return (
-              <Grid item lg={4} md={4} key={cardHomePage.id}>
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={cardHomePage.id}
+                className={"zoomEffect"}
+              >
                 <Link to={cardHomePage.url}>
                   <Paper elevation={5} style={{ borderRadius: "20px" }}>
                     <img
@@ -179,34 +185,42 @@ const Home = () => {
         >
           {allNews.map((news) => {
             return (
-              <Grid item lg={4} md={4} key={news.id}>
-                {/* <Link to={news.url}> */}
-                  <Paper elevation={5} style={{ borderRadius: "20px", width: "334px", 
-                        height: "fit-content", }}>
+              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
+                <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
+                  <Paper
+                    elevation={5}
+                    style={{
+                      borderRadius: "20px",
+                      width: "334px",
+                      height: "fit-content",
+                    }}
+                  >
                     <img
                       src={`https://api-gyozilla.onrender.com/${news.image}`}
                       style={{
-                        width: "334px", 
+                        width: "334px",
                         height: "234px",
                         borderRadius: "20px 20px 0 0",
                       }}
                       alt="Actualités"
                     />
-                    <Box sx={{ 
-                      padding: "10px 10px 10px 10px", 
-                      textAlign: "center" 
-                      }} >
-                      <Typography variant="h7bb" color="initial">{news.name}</Typography>
+                    <Box
+                      sx={{
+                        padding: "10px 10px 10px 10px",
+                        textAlign: "center",
+                      }}
+                    >
+                      <Typography variant="h7bb" color="initial">
+                        {news.name}{" "}
+                      </Typography>
                     </Box>
                   </Paper>
-                {/* </Link> */}
+                </Link>
               </Grid>
             );
           })}
         </Grid>
       </Container>
-
-
     </>
   );
 };
