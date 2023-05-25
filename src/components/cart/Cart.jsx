@@ -7,7 +7,7 @@ import { UserContext } from "../../utils/context/UserContext";
 
 const Cart = () => {
   const { cartItems, dispatch } = useContext(CartContext);
-  const { isLogged, shouldRedirectToOrder, setShouldRedirectToOrder } =
+  const { isLogged, setShouldRedirectToOrder } =
     useContext(UserContext);
 
   const totalPrice = cartItems.reduce(

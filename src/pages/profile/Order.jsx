@@ -18,20 +18,18 @@ const Order = () => {
       .then((response) => {
         const ordersWithGroupedProducts = response.data.data.map((order) => {
           const groupedProducts = {};
-          console.log(order.order_lines)
+          console.log(order.order_lines);
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
 
             if (!groupedProducts[menuReference]) {
               groupedProducts[menuReference] = {
-                menu:
-                  lineItem.products.menu
-                    ? lineItem.products.menu.name
-                    : "noMenu",
-                price:
-                  lineItem.products.menu
-                    ? lineItem.products.menu.price
-                    : lineItem.products.price,
+                menu: lineItem.products.menu
+                  ? lineItem.products.menu.name
+                  : "noMenu",
+                price: lineItem.products.menu
+                  ? lineItem.products.menu.price
+                  : lineItem.products.price,
                 products: [],
               };
             }
@@ -43,7 +41,7 @@ const Order = () => {
           });
           return { ...order, groupedProducts };
         });
-        console.log(ordersWithGroupedProducts)
+        console.log(ordersWithGroupedProducts);
         setOrders(ordersWithGroupedProducts);
         setLoading(false);
       })
@@ -52,8 +50,6 @@ const Order = () => {
         setLoading(false);
       });
   }, [id]);
-
-
 
   if (loading) {
     return (

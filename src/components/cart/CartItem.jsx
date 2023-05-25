@@ -4,7 +4,6 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CartContext from "../../utils/context/CartContext";
-import { UserContext } from "../../utils/context/UserContext";
 
 const CartItem = ({ item }) => {
   const { dispatch } = useContext(CartContext);

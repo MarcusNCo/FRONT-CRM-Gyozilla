@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab, Typography } from "@mui/material";
+import { Badge, Fab } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { Paginator } from "primereact/paginator";
@@ -220,7 +220,7 @@ const Products = () => {
           onPageChange={onPageChange}
           style={{
             marginTop: "50px",
-            color: "#5F8D85"
+            color: "#5F8D85",
           }}
         />
       )}
@@ -294,26 +294,15 @@ const Products = () => {
               );
             })
           ) : displayedProducts.length === 0 ? (
-            // <CircularProgress
-            //   sx={{
-            //     display: "flex",
-            //     flexDirection: "column",
-            //     alignItems: "center",
-            //   }}
-            // />
-            <Typography
-              variant="hboxb"
-              color="initial"
+            <Box
               sx={{
-                display: "flex",
-                flexDirection: "column",
+                display: "center",
                 justifyContent: "center",
-                textAlign: "center",
+                alignItems: "center",
               }}
             >
-              Il n'y a pas de nouveautés pour le moment !<br />
-              Mais cela va vite arriver ;)
-            </Typography>
+              <CircularProgress color="success" />
+            </Box>
           ) : (
             displayedProducts.map((item) => {
               const isNew = checkNew(item);

@@ -1,14 +1,9 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-import CustomButton from "../button/CustomButton";
 import "./CustomCard.css";
 import { Box } from "@mui/system";
-import CardMedia from "@mui/material/CardMedia";
-// import { string } from 'yargs'
-// import { useTheme } from '@mui/material'
 
 const CustomCard = ({
   id,

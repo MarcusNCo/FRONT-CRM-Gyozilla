@@ -14,10 +14,6 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 const CustomListItem = () => {
   const [open, setOpen] = useState(false);
 
-  const handleMenu = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };

@@ -13,7 +13,6 @@ import logo from "../../images/gyozilla-ecriture.png";
 import android from "../../images/appstore-300x101.png";
 import apple from "../../images/Play_Store.png";
 import "./Footer.css";
-import CustomButton from "../../components/button/CustomButton";
 
 const Footer = (props) => {
   const FooterContainer = styled("div")(({ theme }) => ({
@@ -223,7 +222,7 @@ const Footer = (props) => {
                   Nos engagements
                 </Link>
                 <Link
-                  href="#"
+                  href="/news"
                   underline="none"
                   sx={{
                     margin: "0 10px 0 10px",

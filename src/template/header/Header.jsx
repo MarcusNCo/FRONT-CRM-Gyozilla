@@ -5,7 +5,7 @@ import mobileLogo from "../../images/gyozillalogo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import AppBar from "@mui/material/AppBar";
 import { Box, useTheme } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,7 +23,7 @@ import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
@@ -59,8 +59,12 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     navigate(-1);
+  };
+
+  const returnHome = () => {
+    navigate("/");
   };
 
   return (
@@ -134,16 +138,18 @@ const Header = () => {
                 )}
               </Toolbar>
             </AppBar>
-            <img
-              src={mobileLogo}
-              alt="Logo de Gyozilla"
-              style={{
-                position: "absolute",
+            <Box
+              component="img"
+              sx={{
                 width: "80px",
+                position: "absolute",
                 left: "50%",
                 top: "10px",
                 transform: "translate(-50%)",
               }}
+              alt="Logo de Gyozilla"
+              src={mobileLogo}
+              onClick={returnHome}
             />
           </Box>
         </Box>

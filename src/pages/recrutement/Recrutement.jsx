@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { getAllHiring } from "../../utils/api-call/hiring";
 import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
@@ -10,7 +10,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 const Recrutement = () => {
   const [hiring, setHiring] = useState([]);
   const [error, setError] = useState(null);
-  const theme = useTheme();
 
   useEffect(() => {
     getAllHiring()
