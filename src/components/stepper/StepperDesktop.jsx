@@ -75,9 +75,6 @@ export default function HorizontalLinearStepper() {
 
       for (const itemId in cart) {
         const item = cart[itemId];
-
-        console.log(itemId)
-
         if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
           for (const product of item.products) {
             const orderLineValues = {
@@ -127,7 +124,7 @@ export default function HorizontalLinearStepper() {
   const getImage = (image) => {
     let dbImage;
     if (image !== undefined) {
-      dbImage = require("../../images/" + image);
+      dbImage = "https://api-gyozilla.onrender.com/" + image;
     }
     return dbImage;
   };

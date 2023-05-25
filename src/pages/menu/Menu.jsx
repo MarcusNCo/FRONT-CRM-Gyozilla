@@ -169,10 +169,6 @@ const Menu = () => {
       (option) => option.id === selectedTypeMenu
     )?.label;
 
-    console.log(
-      selectMenuOptions.find((option) => option.id === selectedTypeMenu)
-    );
-
     const menuImage = selectMenuOptions.find(
       (option) => option.id === selectedTypeMenu
     )?.image;
@@ -183,7 +179,7 @@ const Menu = () => {
     const menu = {
       id: menu_id,
       name: menuName,
-      image: menuImage + ".jpg",
+      image: "menu/" + menuImage + ".jpg",
       price: `${menuPrice}`,
       quantity: 1,
 

@@ -1,5 +1,5 @@
 import { React } from 'react'
-import './NosEngagements.css'
+import './Commitments.css'
 import {
   Container,
   Grid,
@@ -16,7 +16,7 @@ import boissons from '../../images/boissons.jpg'
 import plats from '../../images/plats.jpg'
 import desserts from '../../images/desserts.jpg'
 
-const NosEngagements = () => {
+const Commitments = () => {
   return (
     <Container sx={{ mb: 5, mt: 5 }}>
       <Typography className="t1" variant="h6" align="center" sx={{ mt: 5, mb: 5 }}>
@@ -192,4 +192,4 @@ const NosEngagements = () => {
   )
 }
 
-export default NosEngagements
+export default Commitments

@@ -8,12 +8,12 @@ import CreateUser from "./pages/createuser/CreateUser";
 import Profile from "./pages/profile/Profile";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import ResetPassword from "./pages/reset-password/ResetPassword";
-import NosEngagements from "./pages/nosengagements/NosEngagements";
+import Commitments from "./pages/commitments/Commitments";
 import Menu from "./pages/menu/Menu";
 import Order from "./pages/order/Order";
 import Find from "./pages/find/Find";
 import Contact from "./pages/contact/Contact";
-import MentionsLegales from "./pages/mentionslegales/MentionsLegales";
+import LegalNotices from "./pages/legalnotices/LegalNotices";
 import Recrutement from "./pages/recrutement/Recrutement";
 
 function RoutesConfig() {
@@ -56,7 +56,7 @@ function RoutesConfig() {
     },
     {
       path: "/nosengagements",
-      element: <NosEngagements />,
+      element: <Commitments />,
     },
     {
       path: "/contact",
@@ -80,7 +80,7 @@ function RoutesConfig() {
     },
     {
       path: "/mentionslegales",
-      element: <MentionsLegales />,
+      element: <LegalNotices />,
     },
     {
       path: "/recrutement",

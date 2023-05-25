@@ -11,12 +11,16 @@ import logoPrez from "../../images/logoHeader.png";
 
 import "./Home.css";
 
-import { Container, Grid, IconButton, Paper } from "@mui/material";
+import { Container, Grid, IconButton, Paper, Typography } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { Link } from "react-router-dom";
 
+import { getLastThreeNews } from "../../utils/api-call/news";
+
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
+  const [allNews, setAllNews] = useState([]);
+  const [error, setError] = useState(null);
   const cardHomepages = [
     {
       id: 1,
@@ -37,6 +41,18 @@ const Home = () => {
       url: "/products",
     },
   ];
+
+  useEffect(() => {
+    getLastThreeNews()
+      .then((res) => {
+        setAllNews(res.data);
+        setError(null);
+      })
+      .catch((error) => {
+        setAllNews([]);
+        setError(error);
+      });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -153,6 +169,44 @@ const Home = () => {
           </p>
         </Box>
       </Box>
+
+      <Container sx={{ marginBottom: "100px" }}>
+        <Grid
+          container
+          className="gridContainer"
+          spacing={5}
+          sx={{ justifyContent: "center" }}
+        >
+          {allNews.map((news) => {
+            return (
+              <Grid item lg={4} md={4} key={news.id}>
+                {/* <Link to={news.url}> */}
+                  <Paper elevation={5} style={{ borderRadius: "20px", width: "334px", 
+                        height: "fit-content", }}>
+                    <img
+                      src={`https://api-gyozilla.onrender.com/${news.image}`}
+                      style={{
+                        width: "334px", 
+                        height: "234px",
+                        borderRadius: "20px 20px 0 0",
+                      }}
+                      alt="Actualités"
+                    />
+                    <Box sx={{ 
+                      padding: "10px 10px 10px 10px", 
+                      textAlign: "center" 
+                      }} >
+                      <Typography variant="h7bb" color="initial">{news.name}</Typography>
+                    </Box>
+                  </Paper>
+                {/* </Link> */}
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+
+
     </>
   );
 };

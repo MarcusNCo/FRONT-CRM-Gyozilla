@@ -37,7 +37,7 @@ const CustomCard = ({
 }) => {
   let dbImage = "";
   if (image !== undefined) {
-    dbImage = require("../../images/" + image);
+    dbImage = "https://api-gyozilla.onrender.com/" + image;
   }
 
   return (

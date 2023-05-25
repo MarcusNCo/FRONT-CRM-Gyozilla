@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-const MentionsLegales = () => {
+const LegalNotices = () => {
   const theme = useTheme();
 
   return (
@@ -64,4 +64,4 @@ const MentionsLegales = () => {
   );
 };
 
-export default MentionsLegales;
+export default LegalNotices;
