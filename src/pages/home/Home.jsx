@@ -182,7 +182,7 @@ const Home = () => {
         </Box>
       </Box>
 
-      <Container sx={{ marginBottom: "100px" }}>
+      <Container sx={{ marginBottom: "50px" }}>
         <Grid
           container
           className="gridContainer"
@@ -191,29 +191,36 @@ const Home = () => {
         >
           {allNews.map((news) => {
             return (
-              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"} sx={{  }}>
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={news.id}
+                className={"zoomEffect"}
+              >
                 <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
                   <Paper
                     elevation={5}
                     style={{
                       borderRadius: "20px",
-                      width: "334px",
                       height: "fit-content",
                     }}
                   >
                     <img
                       src={`https://api-gyozilla.onrender.com/${news.image}`}
                       style={{
-                        width: "334px",
-                        height: "234px",
+                        width: "100%",
+                        height: "250px",
+                        objectFit: "cover",
                         borderRadius: "20px 20px 0 0",
                       }}
                       alt="Actualités"
                     />
                     <Box
                       sx={{
-                        padding: "10px 10px 10px 10px",
+                        padding: "10px",
                         textAlign: "center",
+                        height: "75px",
                       }}
                     >
                       <Typography variant="h7bb" color="initial">

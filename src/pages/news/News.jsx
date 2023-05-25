@@ -18,7 +18,6 @@ import "./News.css";
 const News = () => {
   const { id } = useParams();
   const [news, setNews] = useState(null);
-  const [displayBackButton, setDisplayBackButton] = useState(true);
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -39,20 +38,6 @@ const News = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const maxScrollPosition =
-        document.documentElement.scrollHeight - window.innerHeight;
-      if (window.pageYOffset > maxScrollPosition - 200) {
-        setDisplayBackButton(false);
-      } else {
-        setDisplayBackButton(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   if (!news) {
     return (
       <>
@@ -67,7 +52,7 @@ const News = () => {
             alignItems: "center",
           }}
         >
-          <CircularProgress color="success"/>
+          <CircularProgress color="success" />
         </Box>
       </>
     );
@@ -113,28 +98,26 @@ const News = () => {
           </Box>
         </Box>
         {/* bouton retour en version desktop */}
-        {displayBackButton && (
-          <Box
-            sx={{
-              position: "fixed",
-              top: "57px",
-              left: "10px",
-              [theme.breakpoints.down("sm")]: {
-                display: "none",
-              },
-            }}
-          >
-            <CustomButton
-              text="Retour"
-              height="40px"
-              width="120px"
-              padding="0 20px 0 20px"
-              margin="32px"
-              startIcon={<KeyboardReturnIcon />}
-              onClick={handleBackClick}
-            ></CustomButton>
-          </Box>
-        )}
+        <Box
+          sx={{
+            position: "fixed",
+            top: "57px",
+            left: "10px",
+            [theme.breakpoints.down("sm")]: {
+              display: "none",
+            },
+          }}
+        >
+          <CustomButton
+            text="Retour"
+            height="40px"
+            width="120px"
+            padding="0 20px 0 20px"
+            margin="32px"
+            startIcon={<KeyboardReturnIcon />}
+            onClick={handleBackClick}
+          ></CustomButton>
+        </Box>
       </>
     );
   } else {
