@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getAllNews, getNew } from "../../utils/api-call/news";
-import { Box, Grid, Paper, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/button/CustomButton";
@@ -48,10 +55,6 @@ const News = () => {
   }, []);
 
   if (!news) {
-    return <>Loading...</>;
-  }
-
-  if (id) {
     return (
       <>
         <Box
@@ -60,7 +63,28 @@ const News = () => {
             "@media (max-width:700px)": {
               minHeight: "calc(100vh - 56px)",
             },
+            display: "center",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress color="success"/>
+        </Box>
+      </>
+    );
+  }
+
+  if (id) {
+    return (
+      <>
+        <Box
+          sx={{
+            minHeight: "calc(100vh - 71px)",
             padding: "20px 50px 20px 50px",
+            "@media (max-width:700px)": {
+              minHeight: "calc(100vh - 56px)",
+              padding: "50px 20px 20px 20px",
+            },
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -77,6 +101,10 @@ const News = () => {
               objectFit: "cover",
               borderRadius: "10px",
               marginBottom: "50px",
+              "@media (max-width:700px)": {
+                width: "100%",
+                height: "fit-content",
+              },
             }}
             alt="Photographie d'article"
             src={`https://api-gyozilla.onrender.com/${news.image}`}
@@ -129,6 +157,8 @@ const News = () => {
             },
             padding: "50px",
             justifyContent: "center",
+            width: "unset",
+            marginLeft: "unset",
           }}
         >
           {newsArray.map((item) => (

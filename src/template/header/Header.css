@@ -100,3 +100,7 @@ ul li {
 body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper>nav>div {
   padding-left: 0px !important;
 }
+
+body>div.MuiDrawer-root.MuiDrawer-modal.MuiModal-root.css-1mj4luj-MuiModal-root-MuiDrawer-root>div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper>nav>a>div {
+  padding-left: 0px !important;
+}

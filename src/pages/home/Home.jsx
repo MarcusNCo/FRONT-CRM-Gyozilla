@@ -13,14 +13,16 @@ import "./Home.css";
 
 import { Container, Grid, IconButton, Paper, Typography } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { getLastThreeNews } from "../../utils/api-call/news";
+import CustomButton from "../../components/button/CustomButton";
 
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
   const [allNews, setAllNews] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const cardHomepages = [
     {
       id: 1,
@@ -69,6 +71,10 @@ const Home = () => {
   const productDetailsRef = useRef(null);
   const handleArrowClick = () => {
     productDetailsRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const newsNavigation = () => {
+    navigate("/news");
   };
 
   return (
@@ -185,7 +191,7 @@ const Home = () => {
         >
           {allNews.map((news) => {
             return (
-              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
+              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"} sx={{  }}>
                 <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
                   <Paper
                     elevation={5}
@@ -220,6 +226,16 @@ const Home = () => {
             );
           })}
         </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CustomButton
+            text="Voir les actualités"
+            height="40px"
+            width="fit-content"
+            padding="0 20px 0 20px"
+            margin="32px"
+            onClick={newsNavigation}
+          ></CustomButton>
+        </Box>
       </Container>
     </>
   );
