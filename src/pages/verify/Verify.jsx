@@ -1,6 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { verifyUser } from '../../utils/api-call/verifyUser';
 import { CircularProgress } from '@mui/material';
 import { toast, ToastContainer } from "react-toastify";

@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/button/CustomButton";
 
 import "./News.css";
-import { display } from "@mui/system";
 
 const News = () => {
   const { id } = useParams();

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab, Typography } from "@mui/material";
+import { Badge, Fab } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { Paginator } from "primereact/paginator";
