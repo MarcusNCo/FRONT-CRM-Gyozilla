@@ -1,29 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./Header.css";
 import Logo from "../../images/logoHeader.png";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import mobileLogo from "../../images/gyozillalogo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AppBar from "@mui/material/AppBar";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, Divider, IconButton, Fab } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuBurger from "../../components/burger/MenuBurger";
-import { Divider, IconButton } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
-import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Logout from "@mui/icons-material/Logout";
 import Badge from "@mui/material/Badge";
 import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
@@ -35,6 +34,7 @@ const Header = () => {
   const { cartItems } = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -67,6 +67,28 @@ const Header = () => {
     navigate("/");
   };
 
+  const checkScrollTop = useCallback(() => {
+    if (!showScrollButton && window.pageYOffset * 7 > window.innerHeight) {
+      setShowScrollButton(true);
+    } else if (
+      showScrollButton &&
+      window.pageYOffset * 7 <= window.innerHeight
+    ) {
+      setShowScrollButton(false);
+    }
+  }, [showScrollButton]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, [checkScrollTop]);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <header>
@@ -74,7 +96,7 @@ const Header = () => {
         <Box
           sx={{
             display: "none",
-            "@media (max-width: 992px)": {
+            "@media (max-width: 700px)": {
               display: "flex",
             },
             position: "relative",
@@ -158,7 +180,7 @@ const Header = () => {
           sx={{
             display: "flex",
             zIndex: 1000,
-            "@media (max-width: 992px)": {
+            "@media (max-width: 700px)": {
               display: "none",
             },
             overflow: "hidden",
@@ -372,6 +394,34 @@ const Header = () => {
           <Cart />
         </Menu>
       </header>
+
+      {showScrollButton && (
+        <Box
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              display: "flex",
+            },
+            [theme.breakpoints.up("sm")]: {
+              display: "none",
+            },
+          }}
+        >
+          <Fab
+            size="small"
+            onClick={scrollTop}
+            style={{
+              color: "#FFF",
+              backgroundColor: "#F8A50099",
+              position: "fixed",
+              bottom: 16,
+              right: 16,
+            }}
+            aria-label="return"
+          >
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </Box>
+      )}
     </>
   );
 };

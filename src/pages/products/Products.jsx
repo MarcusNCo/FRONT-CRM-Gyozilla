@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Fab } from "@mui/material";
+import { Badge } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { Paginator } from "primereact/paginator";
@@ -373,33 +373,6 @@ const Products = () => {
             })
           )}
         </Box>
-      </Box>
-
-      {/* bouton retour en version mobile */}
-      <Box
-        sx={{
-          [theme.breakpoints.down("sm")]: {
-            display: "flex",
-          },
-          [theme.breakpoints.up("sm")]: {
-            display: "none",
-          },
-        }}
-      >
-        <Fab
-          size="small"
-          onClick={handleBackClick}
-          style={{
-            color: "#FFF",
-            backgroundColor: "#F8A500",
-            position: "fixed",
-            bottom: 16,
-            right: 16,
-          }}
-          aria-label="return"
-        >
-          <KeyboardReturnIcon />
-        </Fab>
       </Box>
     </>
   );
