@@ -15,8 +15,8 @@
 .logoEcriture {
   width: 40vw;
   position: absolute;
-  right: 3vw;
-  bottom: 18vh;
+  right: 18vw;
+  bottom: 25vh;
   background-color: transparent;
   border-radius: 0;
 }
@@ -26,8 +26,8 @@
     width: 20rem;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 40%;
+    transform: translate(-50%, -40%);
   }
 
   .backgroundHome {

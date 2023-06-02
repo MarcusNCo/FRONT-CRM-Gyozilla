@@ -1,8 +1,10 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useRef, useState } from "react";
 
-import backgroundImageHome from "../../images/backgroundHomePage.webp";
-import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
+// import backgroundImageHome from "../../images/backgroundHomePage.webp";
+import backgroundImageHome from "../../images/gyozilla_restaurant.webp";
+// import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
+import backgroundImageHomeMobile from "../../images/gyozilla_restaurant _mobile.webp";
 import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
 import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
 import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
@@ -82,7 +84,7 @@ const Home = () => {
       <Box className="backgroundHome">
         {/* Image background */}
 
-        <img src={src} alt="backgroundImageHome" />
+        <img src={src} alt="backgroundImageHome" style={{ objectFit: "cover", objectPosition: "67% center" }} />
 
         {/* Logo */}
         <img src={logo} alt="Logo" className="logoEcriture" />
