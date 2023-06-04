@@ -218,6 +218,20 @@ const theme = createTheme({
       },
     },
   },
+  //        Style de la pagination        //
+  MuiPaginationItem: {
+    styleOverrides: {
+      page: {
+        '&&.Mui-selected': {
+          backgroundColor: '#5F8D85',
+          color: 'white',
+        },
+        '&&.Mui-selected:hover': {
+          backgroundColor: '#5F8D85',
+        },
+      },
+    },
+  },
   //        Style des typographies        //
   typography: {
     fontFamily: "Garamond",

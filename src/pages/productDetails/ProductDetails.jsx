@@ -232,7 +232,7 @@ const ProductDetails = () => {
             position: "fixed",
             bottom: "10px",
             left: "50px",
-            [theme.breakpoints.down("sm")]: {
+            "@media (max-width:700px)": {
               display: "none",
             },
           }}
