@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge } from "@mui/material";
+import { Badge, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 
 import { Paginator } from "primereact/paginator";
@@ -32,6 +32,7 @@ const Products = () => {
   const [displayBackButton, setDisplayBackButton] = useState(true);
   const [productList, setProductList] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const theme = useTheme();
   const navigate = useNavigate();
@@ -126,6 +127,10 @@ const Products = () => {
       if (selectedTypeRepas === null || selectedTypeRepas === 0) {
         return true;
       } else if (selectedTypeRepas === 1) {
+        const newProduct = checkNew(product)
+        if (!newProduct) {
+          setLoading(false)
+        }
         return checkNew(product);
       } else if (selectedTypeRepas === 3) {
         return product.productCategory.id === TYPE_REPAS.ENTREES;
@@ -147,6 +152,15 @@ const Products = () => {
     TYPE_REPAS.DESSERTS,
     TYPE_REPAS.BOISSONS,
   ]);
+
+  useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+          setError("Il n'y a aucune nouveauté pour le moment.");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (selectedTypeRepas === 2) {
@@ -228,7 +242,7 @@ const Products = () => {
         sx={{
           display: "flex",
           margin: "0",
-          minHeight: "calc(100vh - 71px)",
+          minHeight: "calc(100vh - 71px - 118px)",
           "@media (max-width:700px)": {
             minHeight: "calc(100vh - 56px)",
           },
@@ -295,14 +309,20 @@ const Products = () => {
             })
           ) : displayedProducts.length === 0 ? (
             <Box
-              sx={{
-                display: "center",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            sx={{
+              display: "center",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {loading ? (
               <CircularProgress color="success" />
-            </Box>
+            ) : selectedTypeRepas === 1 && !loading && error? (
+              <Typography variant="hboxb">{error}</Typography>
+            ) : (
+              <CircularProgress color="success" />
+            )}
+          </Box>
           ) : (
             displayedProducts.map((item) => {
               const isNew = checkNew(item);
