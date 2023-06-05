@@ -237,7 +237,10 @@ const Products = () => {
         sx={{
           display: "flex",
           margin: "0",
-          minHeight: "calc(100vh - 71px - 87px)",
+          minHeight:
+            selectedTypeRepas !== null && selectedTypeRepas !== 0
+              ? "calc(100vh - 71px - 87px)"
+              : "calc(100vh - 71px)",
           "@media (max-width:700px)": {
             minHeight: "calc(100vh - 56px)",
           },
