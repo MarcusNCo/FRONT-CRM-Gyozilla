@@ -1,7 +1,3 @@
-body{
-    /* background-color: red; */
-}
-
 .team{
     width: 100%;
     height: auto;
@@ -29,16 +25,7 @@ body{
     color: #739B94;
 }
 
-.t1{
-    border: 1px solid #F8A500;
-    background-color:black ;
-    padding: 10px;
-    color: #F8A500;
-    text-align: center;
-}
-
 .t2{
-    color: #F8A500;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;

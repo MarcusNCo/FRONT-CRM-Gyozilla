@@ -26,7 +26,6 @@ const Products = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [displayBackButton, setDisplayBackButton] = useState(true);
-  const [productList, setProductList] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const rows = 10;
@@ -178,7 +177,7 @@ const Products = () => {
       });
       location.state = null;
     }
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     getAllProducts()
@@ -291,18 +290,20 @@ const Products = () => {
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
-                <CustomCard
-                  key={category.id}
-                  description={category.description}
-                  title={category.name}
-                  buttonCardText="Voir les produits"
-                  variantButton={"contained"}
-                  onButtonCardClick={() => handleCardClick(category)}
-                  width="400px"
-                  height="250px"
-                  image={category.image}
-                  backgroundSize="100% auto"
-                ></CustomCard>
+                <>
+                  <CustomCard
+                    key={category.id}
+                    description={category.description}
+                    title={category.name}
+                    buttonCardText="Voir les produits"
+                    variantButton={"contained"}
+                    onButtonCardClick={() => handleCardClick(category)}
+                    width="400px"
+                    height="250px"
+                    image={category.image}
+                    backgroundSize="100% auto"
+                  ></CustomCard>
+                </>
               );
             })
           ) : displayedProducts.length === 0 ? (
@@ -326,7 +327,7 @@ const Products = () => {
               const isNew = checkNew(item);
               return (
                 <Box
-                  key={item.id}
+                  key={item.name + item.id}
                   style={{ position: "relative" }}
                   sx={{
                     ":hover": {
@@ -337,31 +338,18 @@ const Products = () => {
                 >
                   <CustomCard
                     id={item.id}
+                    name={item.name}
                     description={item.description}
                     image={item.image}
+                    price={item.price}
                     buttonCardText="Details"
                     variantButton={"contained"}
                     width="300px"
                     height="300px"
                     title={item.name}
-                    onButtonCardClick={() => {
-                      const newProduct = {
-                        id: item.id,
-                        name: item.name,
-                        description: item.description,
-                        price: item.price,
-                        image: item.image,
-                        category: item.id_product_categories,
-                        menu: item.id_menus,
-                      };
-                      const newProductList = [...productList, newProduct];
-                      setProductList(newProductList);
-                      navigate(`/products/${item.name}`, {
-                        state: {
-                          productList: newProductList,
-                        },
-                      });
-                    }}
+                    isProduct={true}
+                    id_product_categories={item.id_product_categories}
+                    id_menus={item.id_menus}
                     backgroundSize="contain"
                   />
                   {isNew && (

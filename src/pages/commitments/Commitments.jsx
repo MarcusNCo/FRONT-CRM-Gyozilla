@@ -19,10 +19,6 @@ import desserts from '../../images/desserts.jpg'
 const Commitments = () => {
   return (
     <Container sx={{ mb: 5, mt: 5 }}>
-      <Typography className="t1" variant="h6" align="center" sx={{ mt: 5, mb: 5 }}>
-        Nos engagements
-      </Typography>
-      {/* ------------------------- 1ère partie de la page ------------------------ */}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <Typography
@@ -36,7 +32,7 @@ const Commitments = () => {
         </Grid>
       </Grid>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} sx={{ padding:"10px" }}>
           <Typography variant="h4" className="t4">
             Un établissement adapté à tout profil
           </Typography>
@@ -46,7 +42,7 @@ const Commitments = () => {
             nous avons pensé à tous les cas de figure.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} sx={{ padding:"10px" }}>
           <Typography variant="h4" className="t4">
             Un service rapide et efficace
           </Typography>
@@ -59,7 +55,7 @@ const Commitments = () => {
         </Grid>
       </Grid>
       <Grid container spacing={4} sx={{ marginTop: "20px" }}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} sx={{ padding:"10px" }}>
           <Typography variant="h4" className="t4">
             Une ambiance dépaysante
           </Typography>
@@ -71,7 +67,7 @@ const Commitments = () => {
             oreilles.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} sx={{ padding:"10px" }}>
           <Typography variant="h4" className="t4">
             Un personnel attentif à vos besoins et à votre écoute
           </Typography>
