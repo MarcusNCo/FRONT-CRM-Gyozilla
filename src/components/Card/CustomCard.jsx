@@ -21,6 +21,7 @@ const CustomCard = ({
   id_product_categories,
   id_menus,
   buttonCardText,
+  onButtonCardClick,
   width,
   height,
   border,
@@ -100,6 +101,11 @@ const CustomCard = ({
     <>
       <Card
         id={id}
+        onClick={() => {
+          if (!isProduct) {
+            onButtonCardClick();
+          }
+        }}
         className="card-product"
         style={{
           display: "flex",

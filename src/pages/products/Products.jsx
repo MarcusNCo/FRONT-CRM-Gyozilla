@@ -292,7 +292,6 @@ const Products = () => {
               return (
                 <>
                   <CustomCard
-                    key={category.id}
                     description={category.description}
                     title={category.name}
                     buttonCardText="Voir les produits"
@@ -302,6 +301,7 @@ const Products = () => {
                     height="250px"
                     image={category.image}
                     backgroundSize="100% auto"
+                    isProduct={false}
                   ></CustomCard>
                 </>
               );
@@ -327,7 +327,6 @@ const Products = () => {
               const isNew = checkNew(item);
               return (
                 <Box
-                  key={item.name + item.id}
                   style={{ position: "relative" }}
                   sx={{
                     ":hover": {
@@ -337,7 +336,6 @@ const Products = () => {
                   }}
                 >
                   <CustomCard
-                    id={item.id}
                     name={item.name}
                     description={item.description}
                     image={item.image}
