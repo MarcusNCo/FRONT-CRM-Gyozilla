@@ -31,15 +31,6 @@
     margin-bottom: 15px;
 }
 
-.body1{
-    color: #CDE8E7;
-    font-weight: 550;
-}
-
-.css-480o17-MuiGrid-root>.MuiGrid-item {
-    padding-left: 0 !important;
-}
-
 /* ------------------------- Media queries ------------------------ */
 
 @media (max-width: 900px) {
@@ -49,6 +40,7 @@
     .team{
         flex-direction: column !important;
         justify-content: center;
+        text-align: center;
     }
     .team img{
         margin-bottom: 10px;

@@ -165,7 +165,6 @@ const Products = () => {
   }, [selectedTypeRepas, navigate]);
 
   useEffect(() => {
-    console.log(location.state)
     if (location.state && location.state.successMessage) {
       toast.success(location.state.successMessage, {
         position: "top-right",
