@@ -189,49 +189,47 @@ const Home = () => {
           spacing={5}
           sx={{ justifyContent: "center" }}
         >
-          {allNews.map((news) => {
-            return (
-              <Grid
-                item
-                lg={4}
-                md={4}
-                key={news.id}
-                className={"zoomEffect"}
-              >
-                <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
-                  <Paper
-                    elevation={5}
-                    style={{
-                      borderRadius: "20px",
-                      height: "fit-content",
-                    }}
+          {Array.isArray(allNews) &&
+            allNews.map((news) => {
+              return (
+                <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
+                  <Link
+                    to={`news/${news.id}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    <img
-                      src={`https://api-gyozilla.onrender.com/${news.image}`}
+                    <Paper
+                      elevation={5}
                       style={{
-                        width: "100%",
-                        height: "250px",
-                        objectFit: "cover",
-                        borderRadius: "20px 20px 0 0",
-                      }}
-                      alt="Actualités"
-                    />
-                    <Box
-                      sx={{
-                        padding: "10px",
-                        textAlign: "center",
-                        height: "75px",
+                        borderRadius: "20px",
+                        height: "fit-content",
                       }}
                     >
-                      <Typography variant="h7bb" color="initial">
-                        {news.name}{" "}
-                      </Typography>
-                    </Box>
-                  </Paper>
-                </Link>
-              </Grid>
-            );
-          })}
+                      <img
+                        src={`https://api-gyozilla.onrender.com/${news.image}`}
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          objectFit: "cover",
+                          borderRadius: "20px 20px 0 0",
+                        }}
+                        alt="Actualités"
+                      />
+                      <Box
+                        sx={{
+                          padding: "10px",
+                          textAlign: "center",
+                          height: "75px",
+                        }}
+                      >
+                        <Typography variant="h7bb" color="initial">
+                          {news.name}{" "}
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </Link>
+                </Grid>
+              );
+            })}
         </Grid>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CustomButton
