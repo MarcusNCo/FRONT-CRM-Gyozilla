@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
-import { useTheme } from "@mui/system";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import CartContext from "../../utils/context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +21,6 @@ const ProductDetails = () => {
     menu: "",
   });
   const [total, setTotal] = useState(productInfo.price);
-  const theme = useTheme();
   const { updateCartItems } = useContext(CartContext);
   const navigate = useNavigate();
   const [displayBackButton, setDisplayBackButton] = useState(true);
@@ -170,7 +168,6 @@ const ProductDetails = () => {
             >
               Description du produit
             </Typography>
-
             <Typography variant="h7bnw">{productInfo.description}</Typography>
             <Typography variant="h7bnw">
               Prix à l'unité : {productInfo.price}€
@@ -232,7 +229,7 @@ const ProductDetails = () => {
             position: "fixed",
             bottom: "10px",
             left: "50px",
-            [theme.breakpoints.down("sm")]: {
+            "@media (max-width:700px)": {
               display: "none",
             },
           }}

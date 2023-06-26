@@ -1,4 +1,4 @@
-.badge > span {
+.badge>span {
   background-color: transparent !important;
 }
 
@@ -9,10 +9,7 @@
 }
 
 @media screen and (min-width: 700px) {
-  #root
-    > div.App
-    > div:nth-child(1)
-    > button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.css-2yg36p-MuiButtonBase-root-MuiFab-root {
+  #root>div.App>div:nth-child(1)>button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.MuiFab-root.MuiFab-circular.MuiFab-sizeSmall.MuiFab-default.css-2yg36p-MuiButtonBase-root-MuiFab-root {
     display: none !important;
   }
 }

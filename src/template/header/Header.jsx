@@ -396,31 +396,21 @@ const Header = () => {
       </header>
 
       {showScrollButton && (
-        <Box
-          sx={{
-            [theme.breakpoints.down("sm")]: {
-              display: "flex",
-            },
-            [theme.breakpoints.up("sm")]: {
-              display: "none",
-            },
+        <Fab
+          size="small"
+          onClick={scrollTop}
+          style={{
+            color: "#000",
+            backgroundColor: "#F8A500",
+            opacity: "0.8",
+            position: "fixed",
+            bottom: 16,
+            right: 16,
           }}
+          aria-label="return"
         >
-          <Fab
-            size="small"
-            onClick={scrollTop}
-            style={{
-              color: "#FFF",
-              backgroundColor: "#F8A50099",
-              position: "fixed",
-              bottom: 16,
-              right: 16,
-            }}
-            aria-label="return"
-          >
-            <KeyboardArrowUpIcon />
-          </Fab>
-        </Box>
+          <KeyboardArrowUpIcon />
+        </Fab>
       )}
     </>
   );

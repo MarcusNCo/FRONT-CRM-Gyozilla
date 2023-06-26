@@ -3,10 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge } from "@mui/material";
-import { useTheme } from "@mui/system";
-
-import { Paginator } from "primereact/paginator";
+import { Badge, Typography, Pagination } from "@mui/material";
 
 import { getAllProducts } from "../../utils/api-call/getAllProducts";
 import CustomCard from "../../components/card/CustomCard";
@@ -25,20 +22,18 @@ const Products = () => {
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(0);
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(10);
   const location = useLocation();
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
   const [displayBackButton, setDisplayBackButton] = useState(true);
-  const [productList, setProductList] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const rows = 10;
 
-  const theme = useTheme();
   const navigate = useNavigate();
 
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRows(event.rows);
+  const handlePageChange = (event, page) => {
+    setFirst((page - 1) * rows);
   };
 
   const TYPE_REPAS = {
@@ -126,6 +121,10 @@ const Products = () => {
       if (selectedTypeRepas === null || selectedTypeRepas === 0) {
         return true;
       } else if (selectedTypeRepas === 1) {
+        const newProduct = checkNew(product);
+        if (!newProduct) {
+          setLoading(false);
+        }
         return checkNew(product);
       } else if (selectedTypeRepas === 3) {
         return product.productCategory.id === TYPE_REPAS.ENTREES;
@@ -149,6 +148,17 @@ const Products = () => {
   ]);
 
   useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+        setError("Il n'y a aucune nouveauté pour le moment.");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    setFirst(0);
+
     if (selectedTypeRepas === 2) {
       navigate("/menu");
     }
@@ -164,11 +174,10 @@ const Products = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
       });
-      location.state = null;
+      location.state.successMessage = null;
     }
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     getAllProducts()
@@ -212,15 +221,14 @@ const Products = () => {
     <>
       <ToastContainer preventDuplicates={false} />
       {!(selectedTypeRepas === null || selectedTypeRepas === 0) && (
-        <Paginator
-          first={first}
-          rows={rows}
-          totalRecords={filteredProducts.length}
-          rowsPerPageOptions={[10, 20, 30]}
-          onPageChange={onPageChange}
+        <Pagination
+          count={Math.max(1, Math.ceil(filteredProducts.length / rows))}
+          page={first / rows + 1}
+          onChange={handlePageChange}
+          size="large"
           style={{
             marginTop: "50px",
-            color: "#5F8D85",
+            margin: "50px auto 0 auto",
           }}
         />
       )}
@@ -228,7 +236,10 @@ const Products = () => {
         sx={{
           display: "flex",
           margin: "0",
-          minHeight: "calc(100vh - 71px)",
+          minHeight:
+            selectedTypeRepas !== null && selectedTypeRepas !== 0
+              ? "calc(100vh - 71px - 87px)"
+              : "calc(100vh - 71px)",
           "@media (max-width:700px)": {
             minHeight: "calc(100vh - 56px)",
           },
@@ -249,7 +260,7 @@ const Products = () => {
                 position: "fixed",
                 bottom: "10px",
                 left: "50px",
-                [theme.breakpoints.down("sm")]: {
+                "@media (max-width:700px)": {
                   display: "none",
                 },
               }}
@@ -279,18 +290,20 @@ const Products = () => {
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
-                <CustomCard
-                  key={category.id}
-                  description={category.description}
-                  title={category.name}
-                  buttonCardText="Voir les produits"
-                  variantButton={"contained"}
-                  onButtonCardClick={() => handleCardClick(category)}
-                  width="400px"
-                  height="250px"
-                  image={category.image}
-                  backgroundSize="100% auto"
-                ></CustomCard>
+                <>
+                  <CustomCard
+                    description={category.description}
+                    title={category.name}
+                    buttonCardText="Voir les produits"
+                    variantButton={"contained"}
+                    onButtonCardClick={() => handleCardClick(category)}
+                    width="400px"
+                    height="250px"
+                    image={category.image}
+                    backgroundSize="100% auto"
+                    isProduct={false}
+                  ></CustomCard>
+                </>
               );
             })
           ) : displayedProducts.length === 0 ? (
@@ -301,14 +314,19 @@ const Products = () => {
                 alignItems: "center",
               }}
             >
-              <CircularProgress color="success" />
+              {loading ? (
+                <CircularProgress color="success" />
+              ) : selectedTypeRepas === 1 && !loading && error ? (
+                <Typography variant="hboxb">{error}</Typography>
+              ) : (
+                <CircularProgress color="success" />
+              )}
             </Box>
           ) : (
             displayedProducts.map((item) => {
               const isNew = checkNew(item);
               return (
                 <Box
-                  key={item.id}
                   style={{ position: "relative" }}
                   sx={{
                     ":hover": {
@@ -318,32 +336,18 @@ const Products = () => {
                   }}
                 >
                   <CustomCard
-                    id={item.id}
+                    name={item.name}
                     description={item.description}
                     image={item.image}
+                    price={item.price}
                     buttonCardText="Details"
                     variantButton={"contained"}
                     width="300px"
                     height="300px"
                     title={item.name}
-                    onButtonCardClick={() => {
-                      const newProduct = {
-                        id: item.id,
-                        name: item.name,
-                        description: item.description,
-                        price: item.price,
-                        image: item.image,
-                        category: item.id_product_categories,
-                        menu: item.id_menus,
-                      };
-                      const newProductList = [...productList, newProduct];
-                      setProductList(newProductList);
-                      navigate(`/products/${item.name}`, {
-                        state: {
-                          productList: newProductList,
-                        },
-                      });
-                    }}
+                    isProduct={true}
+                    id_product_categories={item.id_product_categories}
+                    id_menus={item.id_menus}
                     backgroundSize="contain"
                   />
                   {isNew && (

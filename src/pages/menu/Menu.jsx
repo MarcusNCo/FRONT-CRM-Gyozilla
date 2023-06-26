@@ -393,7 +393,7 @@ const Menu = () => {
             position: "fixed",
             bottom: "10px",
             left: "50px",
-            [theme.breakpoints.down("md")]: {
+            "@media (max-width:700px)": {
               display: "none",
             },
           }}

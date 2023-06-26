@@ -178,7 +178,7 @@ const Profile = () => {
             position: "fixed",
             bottom: "10px",
             left: "25px",
-            [theme.breakpoints.down("sm")]: {
+            "@media (max-width:700px)": {
               display: "none",
             },
           }}
