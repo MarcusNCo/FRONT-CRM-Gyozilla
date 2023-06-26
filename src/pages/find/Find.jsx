@@ -7,7 +7,7 @@ import haversine from "haversine";
 
 import logo from "../../images/gyozilla-logo.png";
 import marker from "../../images/marker.png";
-import { Box, useTheme, styled } from "@mui/system";
+import { Box, styled } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
@@ -106,8 +106,7 @@ const Find = () => {
 
   const getDistance = (position1, position2) => {
     if (!position2.geography) {
-      console.error("Geography is null for franchise", position2);
-      return Infinity;
+      return 0;
     }
 
     const start = {

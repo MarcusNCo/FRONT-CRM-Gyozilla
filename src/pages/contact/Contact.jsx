@@ -11,7 +11,10 @@ const Contact = () => {
     <>
       <Box
         sx={{
-          height: "calc(100vh - 71px)",
+          minHeight: "calc(100vh - 71px)",
+          "@media (max-width:700px)": {
+            minHeight: "calc(100vh - 56px)",
+          },
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -39,7 +42,7 @@ const Contact = () => {
           <Box
             component="img"
             sx={{
-              height: 100,
+              height: 120,
               width: 100,
               margin: "0 auto 0 auto",
               "@media (max-width:700px)": {
@@ -69,6 +72,9 @@ const Contact = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 marginBottom: "50px",
+                "@media (max-width:700px)": {
+                  flexDirection: "column",
+                },
               }}
             >
               <TextField id="outlined-basic" label="Nom" variant="outlined" />

@@ -14,12 +14,14 @@ import {
   List,
   ListItem,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
 import { createOrder, createOrderLine } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
+import CustomButton from "../button/CustomButton";
 
 const steps = [
   "Confirmer la commande",
@@ -34,6 +36,7 @@ export default function HorizontalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
+  const theme = useTheme();
 
   const saveOrder = async () => {
     try {
@@ -70,14 +73,26 @@ export default function HorizontalLinearStepper() {
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
 
-      for (const productId in cart) {
-        const product = cart[productId];
-        const orderLineValues = {
-          id_orders: orderId,
-          id_products: product.id,
-          quantity: product.quantity,
-        };
-        await createOrderLine(orderLineValues, token);
+      for (const itemId in cart) {
+        const item = cart[itemId];
+        if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
+          for (const product of item.products) {
+            const orderLineValues = {
+              id_orders: orderId,
+              id_products: product.id,
+              quantity: product.quantity,
+              menu_reference: Number(String(itemId).slice(4)),
+            };
+            await createOrderLine(orderLineValues, token);
+          }
+        } else { // Si l'article n'est pas un menu
+          const orderLineValues = {
+            id_orders: orderId,
+            id_products: item.id,
+            quantity: item.quantity,
+          };
+          await createOrderLine(orderLineValues, token);
+        }
       }
       dispatch({ type: "CLEAR" });
     } catch (error) {
@@ -109,7 +124,7 @@ export default function HorizontalLinearStepper() {
   const getImage = (image) => {
     let dbImage;
     if (image !== undefined) {
-      dbImage = require("../../images/" + image);
+      dbImage = "https://api-gyozilla.onrender.com/" + image;
     }
     return dbImage;
   };
@@ -124,6 +139,14 @@ export default function HorizontalLinearStepper() {
       0
     );
   }, [cartItems]);
+
+  const handleBackClick = () => {
+    navigate("/profile", {
+      state: {
+        profile: 2,
+      },
+    });
+  };
 
   const renderStepContent = (step) => {
     switch (step) {
@@ -144,7 +167,7 @@ export default function HorizontalLinearStepper() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "50%",
+                width: "600px",
                 textAlign: "center",
                 height: "auto",
                 backgroundColor: "#5F8D8550",
@@ -205,9 +228,29 @@ export default function HorizontalLinearStepper() {
                     <Typography variant="body1" color="initial">
                       Quantité: {item.quantity}
                     </Typography>
+
+                    {item.products && item.products.length > 0 && (
+                      <Typography variant="body1" color="initial" component="div">
+                        Produits du menu:
+                        <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
+                          {item.products.map((product) => (
+                            <ListItem sx={{  
+                              fontFamily: "Garamond",
+                              fontWeight: "400",
+                              fontSize: "1rem",
+                              lineHeight: "1.5",
+                              paddingLeft: "0",
+                              paddingBottom: "0",
+                            }} 
+                            key={product.id}>- {product.name}</ListItem>
+                          ))}
+                        </List>
+                      </Typography>
+                    )}
                   </Box>
                 </Box>
               ))}
+
               <Typography
                 variant="hbox"
                 color="#5F8D85"
@@ -363,6 +406,9 @@ export default function HorizontalLinearStepper() {
     <Box
       sx={{
         minHeight: "calc(100vh - 71px)",
+        "@media (max-width:700px)": {
+          minHeight: "calc(100vh - 56px)",
+        },
         width: "80%",
         margin: "20px auto 20px auto",
       }}
@@ -389,6 +435,14 @@ export default function HorizontalLinearStepper() {
                 Merci d'avoir passé commande chez nous !<br />
                 Retrouvez vos informations de la commande sur votre compte.
               </Typography>
+              <CustomButton
+                text="Accéder au compte"
+                height="40px"
+                width="220px"
+                padding="0 20px 0 20px"
+                margin="32px"
+                onClick={handleBackClick}
+              ></CustomButton>
             </Box>
           </Box>
         </React.Fragment>

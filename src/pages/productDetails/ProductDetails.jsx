@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
-import { useTheme } from "@mui/system";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import CartContext from "../../utils/context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +21,6 @@ const ProductDetails = () => {
     menu: "",
   });
   const [total, setTotal] = useState(productInfo.price);
-  const theme = useTheme();
   const { updateCartItems } = useContext(CartContext);
   const navigate = useNavigate();
   const [displayBackButton, setDisplayBackButton] = useState(true);
@@ -112,6 +110,7 @@ const ProductDetails = () => {
           alignItems: "center",
           "@media (max-width: 900px)": {
             flexDirection: "column",
+            minHeight: "calc(100vh - 56px)",
           },
         }}
       >
@@ -122,16 +121,23 @@ const ProductDetails = () => {
               height: "fit-content",
               maxWidth: "400px",
               maxHeight: "400px",
+              "@media (max-width: 900px)": {
+                width: "80%",
+                height: "fit-content",
+              },
               objectFit: "cover",
             }}
             alt={`Image du produit "${productInfo.name}"`}
-            src={require("../../images/" + productInfo.image)}
+            src={"https://api-gyozilla.onrender.com/" + productInfo.image}
           />
         )}
         <Box
           sx={{
             width: "400px",
             height: "400px",
+            "@media (max-width: 900px)": {
+              width: "100%",
+            },
             display: "flex",
             flexDirection: "column",
             alignItems: "space-evenly",
@@ -162,7 +168,6 @@ const ProductDetails = () => {
             >
               Description du produit
             </Typography>
-
             <Typography variant="h7bnw">{productInfo.description}</Typography>
             <Typography variant="h7bnw">
               Prix à l'unité : {productInfo.price}€
@@ -224,7 +229,7 @@ const ProductDetails = () => {
             position: "fixed",
             bottom: "10px",
             left: "50px",
-            [theme.breakpoints.down("sm")]: {
+            "@media (max-width:700px)": {
               display: "none",
             },
           }}

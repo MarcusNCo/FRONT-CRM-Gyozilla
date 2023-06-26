@@ -1,5 +1,5 @@
 import "./CreateUser.css"
-import React, { useState } from "react";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";

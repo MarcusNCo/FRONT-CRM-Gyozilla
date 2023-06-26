@@ -1,8 +1,4 @@
-#root
-  > div
-  > div.products
-  > div
-  > div.MuiCardContent-root.css-46bh2p-MuiCardContent-root {
+#root>div>div.products>div>div.MuiCardContent-root.css-46bh2p-MuiCardContent-root {
   width: fit-content;
   padding: 0 !important;
 }
@@ -19,4 +15,13 @@
 
 .custom-card-container:hover {
   transform: translateY(-10px);
+}
+
+.displayBox {
+  transition: all 0.3s ease-in-out;
+}
+
+.card-product:hover .displayBox {
+  transform: translateY(-50px);
+  bottom: "50px";
 }

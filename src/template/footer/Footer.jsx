@@ -13,7 +13,6 @@ import logo from "../../images/gyozilla-ecriture.png";
 import android from "../../images/appstore-300x101.png";
 import apple from "../../images/Play_Store.png";
 import "./Footer.css";
-import CustomButton from "../../components/button/CustomButton";
 
 const Footer = (props) => {
   const FooterContainer = styled("div")(({ theme }) => ({
@@ -238,7 +237,11 @@ const Footer = (props) => {
             <Grid item xs={12} sm={6} className="toRight">
               <LinkContainer className="toRight">
                 <Link
+<<<<<<< HEAD
                   href="/recruiting"
+=======
+                  href="/recrutement"
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                   underline="none"
                   sx={{
                     margin: "0 10px 0 10px",
@@ -249,7 +252,7 @@ const Footer = (props) => {
                   Recrutement
                 </Link>
                 <Link
-                  href="#"
+                  href="/mentionslegales"
                   underline="none"
                   sx={{
                     margin: "0 10px 0 10px",

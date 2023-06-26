@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 
+<<<<<<< HEAD
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
@@ -7,6 +8,12 @@ import { Badge, Fab, IconButton, Typography } from '@mui/material'
 import { useTheme } from '@mui/system'
 
 import { Paginator } from 'primereact/paginator'
+=======
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import { Badge, Typography, Pagination } from "@mui/material";
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 
 import { getAllProducts } from '../../utils/api-call/getAllProducts'
 import CustomCard from '../../components/card/CustomCard'
@@ -17,6 +24,7 @@ import styles from './Products.module.css'
 
 import nouveautes from '../../images/badge nouveautesFichier 125.png'
 
+<<<<<<< HEAD
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 
@@ -40,6 +48,29 @@ const Products = () => {
     setFirst(event.first)
     setRows(event.rows)
   }
+=======
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [selected, setSelected] = useState(0);
+  const [first, setFirst] = useState(0);
+  const location = useLocation();
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
+  const [displayBackButton, setDisplayBackButton] = useState(true);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const rows = 10;
+
+  const navigate = useNavigate();
+
+  const handlePageChange = (event, page) => {
+    setFirst((page - 1) * rows);
+  };
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 
   const TYPE_REPAS = {
     ENTREES: 1,
@@ -51,6 +82,7 @@ const Products = () => {
   const categories = [
     {
       id: 1,
+<<<<<<< HEAD
       name: 'Nouveautés',
       description: 'Découvrez nos nouveautés',
       image: 'badgeHome/badge-nouveautes.png',
@@ -84,6 +116,41 @@ const Products = () => {
       name: 'Boissons',
       description: 'Découvrez nos boissons',
       image: 'boissons.jpg',
+=======
+      name: "Nouveautés",
+      description: "Découvrez nos nouveautés",
+      image: "image/badge-nouveautes.png",
+    },
+    {
+      id: 2,
+      name: "Menus",
+      description: "Découvrez nos menus",
+      image: "image/nouveautes.jpg",
+    },
+    {
+      id: 3,
+      name: "Entrées",
+      description: "Découvrez nos entrées",
+      image: "image/entrees.jpg",
+    },
+    {
+      id: 4,
+      name: "Plats",
+      description: "Découvrez nos plats",
+      image: "image/plats.jpg",
+    },
+    {
+      id: 5,
+      name: "Desserts",
+      description: "Découvrez nos desserts",
+      image: "image/desserts.jpg",
+    },
+    {
+      id: 6,
+      name: "Boissons",
+      description: "Découvrez nos boissons",
+      image: "image/boissons.jpg",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
     },
   ]
 
@@ -126,7 +193,15 @@ const Products = () => {
       if (selectedTypeRepas === null || selectedTypeRepas === 0) {
         return true
       } else if (selectedTypeRepas === 1) {
+<<<<<<< HEAD
         return checkNew(product)
+=======
+        const newProduct = checkNew(product);
+        if (!newProduct) {
+          setLoading(false);
+        }
+        return checkNew(product);
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
       } else if (selectedTypeRepas === 3) {
         return product.productCategory.id === TYPE_REPAS.ENTREES
       } else if (selectedTypeRepas === 4) {
@@ -149,8 +224,23 @@ const Products = () => {
   ])
 
   useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+        setError("Il n'y a aucune nouveauté pour le moment.");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    setFirst(0);
+
     if (selectedTypeRepas === 2) {
+<<<<<<< HEAD
       navigate('../menu')
+=======
+      navigate("/menu");
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
     }
   }, [selectedTypeRepas, navigate])
 
@@ -164,11 +254,18 @@ const Products = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+<<<<<<< HEAD
         theme: 'light',
       })
       location.state = null
     }
   }, [])
+=======
+      });
+      location.state.successMessage = null;
+    }
+  }, [location]);
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 
   useEffect(() => {
     getAllProducts()
@@ -212,19 +309,35 @@ const Products = () => {
     <>
       <ToastContainer preventDuplicates={false} />
       {!(selectedTypeRepas === null || selectedTypeRepas === 0) && (
-        <Paginator
-          first={first}
-          rows={rows}
-          totalRecords={filteredProducts.length}
-          rowsPerPageOptions={[10, 20, 30]}
-          onPageChange={onPageChange}
+        <Pagination
+          count={Math.max(1, Math.ceil(filteredProducts.length / rows))}
+          page={first / rows + 1}
+          onChange={handlePageChange}
+          size="large"
+          style={{
+            marginTop: "50px",
+            margin: "50px auto 0 auto",
+          }}
         />
       )}
       <Box
+<<<<<<< HEAD
         style={{
           display: 'flex',
           margin: '0',
           minHeight: 'calc(100vh - 71px)',
+=======
+        sx={{
+          display: "flex",
+          margin: "0",
+          minHeight:
+            selectedTypeRepas !== null && selectedTypeRepas !== 0
+              ? "calc(100vh - 71px - 87px)"
+              : "calc(100vh - 71px)",
+          "@media (max-width:700px)": {
+            minHeight: "calc(100vh - 56px)",
+          },
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
         }}
       >
         <Box>
@@ -239,11 +352,19 @@ const Products = () => {
           {displayBackButton && (
             <Box
               sx={{
+<<<<<<< HEAD
                 position: 'fixed',
                 bottom: '10px',
                 left: '50px',
                 [theme.breakpoints.down('sm')]: {
                   display: 'none',
+=======
+                position: "fixed",
+                bottom: "10px",
+                left: "50px",
+                "@media (max-width:700px)": {
+                  display: "none",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                 },
               }}
             >
@@ -272,6 +393,7 @@ const Products = () => {
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
+<<<<<<< HEAD
                 <CustomCard
                   key={category.id}
                   description={category.description}
@@ -285,35 +407,58 @@ const Products = () => {
                   backgroundSize="100% auto"
                 ></CustomCard>
               )
+=======
+                <>
+                  <CustomCard
+                    description={category.description}
+                    title={category.name}
+                    buttonCardText="Voir les produits"
+                    variantButton={"contained"}
+                    onButtonCardClick={() => handleCardClick(category)}
+                    width="400px"
+                    height="250px"
+                    image={category.image}
+                    backgroundSize="100% auto"
+                    isProduct={false}
+                  ></CustomCard>
+                </>
+              );
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
             })
           ) : displayedProducts.length === 0 ? (
-            // <CircularProgress
-            //   sx={{
-            //     display: "flex",
-            //     flexDirection: "column",
-            //     alignItems: "center",
-            //   }}
-            // />
-            <Typography
-              variant="hboxb"
-              color="initial"
+            <Box
               sx={{
+<<<<<<< HEAD
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 textAlign: 'center',
+=======
+                display: "center",
+                justifyContent: "center",
+                alignItems: "center",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
               }}
             >
-              Il n'y a pas de nouveautés pour le moment !<br />
-              Mais cela va vite arriver ;)
-            </Typography>
+              {loading ? (
+                <CircularProgress color="success" />
+              ) : selectedTypeRepas === 1 && !loading && error ? (
+                <Typography variant="hboxb">{error}</Typography>
+              ) : (
+                <CircularProgress color="success" />
+              )}
+            </Box>
           ) : (
             displayedProducts.map((item) => {
               const isNew = checkNew(item)
               return (
                 <Box
+<<<<<<< HEAD
                   key={item.id}
                   style={{ position: 'relative' }}
+=======
+                  style={{ position: "relative" }}
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                   sx={{
                     ':hover': {
                       transform: ' scale(1.02)',
@@ -322,14 +467,16 @@ const Products = () => {
                   }}
                 >
                   <CustomCard
-                    id={item.id}
+                    name={item.name}
                     description={item.description}
                     image={item.image}
+                    price={item.price}
                     buttonCardText="Details"
                     variantButton={'contained'}
                     width="300px"
                     height="300px"
                     title={item.name}
+<<<<<<< HEAD
                     onButtonCardClick={() => {
                       const newProduct = {
                         id: item.id,
@@ -348,6 +495,11 @@ const Products = () => {
                         },
                       })
                     }}
+=======
+                    isProduct={true}
+                    id_product_categories={item.id_product_categories}
+                    id_menus={item.id_menus}
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                     backgroundSize="contain"
                   />
                   {isNew && (
@@ -378,6 +530,7 @@ const Products = () => {
           )}
         </Box>
       </Box>
+<<<<<<< HEAD
 
       {/* bouton retour en version mobile */}
       <Box
@@ -405,6 +558,8 @@ const Products = () => {
           <KeyboardReturnIcon />
         </Fab>
       </Box>
+=======
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
     </>
   )
 }

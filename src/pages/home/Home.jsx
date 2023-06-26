@@ -8,6 +8,7 @@ import bonPlans from '../../images/badgeHome/badge-bonPlans.png'
 import coinFamille from '../../images/badgeHome/badge-coinFamille.png'
 import logoPrez from '../../images/logoHeader.png'
 
+<<<<<<< HEAD
 import './Home.css'
 
 import { Container, Grid, IconButton, Paper } from '@mui/material'
@@ -16,6 +17,32 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome)
+=======
+// import backgroundImageHome from "../../images/backgroundHomePage.webp";
+import backgroundImageHome from "../../images/gyozilla_restaurant.webp";
+// import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
+import backgroundImageHomeMobile from "../../images/gyozilla_restaurant _mobile.webp";
+import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
+import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
+import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
+import coinFamille from "../../images/badgeHome/badge-coinFamille.png";
+import logoPrez from "../../images/logoHeader.png";
+
+import "./Home.css";
+
+import { Container, Grid, IconButton, Paper, Typography } from "@mui/material";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import { Link, useNavigate } from "react-router-dom";
+
+import { getLastThreeNews } from "../../utils/api-call/news";
+import CustomButton from "../../components/button/CustomButton";
+
+const Home = () => {
+  const [src, setSrc] = useState(backgroundImageHome);
+  const [allNews, setAllNews] = useState([]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
   const cardHomepages = [
     {
       id: 1,
@@ -38,8 +65,25 @@ const Home = () => {
   ]
 
   useEffect(() => {
+<<<<<<< HEAD
     const handleResize = () => {
       const width = window.innerWidth
+=======
+    getLastThreeNews()
+      .then((res) => {
+        setAllNews(res.data);
+        setError(null);
+      })
+      .catch((error) => {
+        setAllNews([]);
+        setError(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const width = window.innerWidth;
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
       if (width <= 992) {
         setSrc(backgroundImageHomeMobile)
       } else {
@@ -59,11 +103,20 @@ const Home = () => {
     productDetailsRef.current.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const newsNavigation = () => {
+    navigate("/news");
+  };
+
   return (
     <>
       <Box className="backgroundHome">
         {/* Image background */}
+<<<<<<< HEAD
         <img src={src} alt="backgroundImageHome" />
+=======
+
+        <img src={src} alt="backgroundImageHome" style={{ objectFit: "cover", objectPosition: "67% center" }} />
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 
         {/* Logo */}
         <img src={logo} alt="Logo" className="logoEcriture" />
@@ -73,6 +126,7 @@ const Home = () => {
           className="arrowBottom"
           aria-label="Flèche vers le bas"
           color="inherit"
+          onClick={handleArrowClick}
           sx={{
             marginTop: '16px',
             position: 'absolute',
@@ -103,7 +157,13 @@ const Home = () => {
         >
           {cardHomepages.map((cardHomePage) => {
             return (
-              <Grid item lg={4} md={4} key={cardHomePage.id}>
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={cardHomePage.id}
+                className={"zoomEffect"}
+              >
                 <Link to={cardHomePage.url}>
                   <Paper elevation={5} style={{ borderRadius: '20px' }}>
                     <img
@@ -155,6 +215,69 @@ const Home = () => {
           </p>
         </Box>
       </Box>
+
+      <Container sx={{ marginBottom: "50px" }}>
+        <Grid
+          container
+          className="gridContainer"
+          spacing={5}
+          sx={{ justifyContent: "center" }}
+        >
+          {allNews.map((news) => {
+            return (
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={news.id}
+                className={"zoomEffect"}
+              >
+                <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
+                  <Paper
+                    elevation={5}
+                    style={{
+                      borderRadius: "20px",
+                      height: "fit-content",
+                    }}
+                  >
+                    <img
+                      src={`https://api-gyozilla.onrender.com/${news.image}`}
+                      style={{
+                        width: "100%",
+                        height: "250px",
+                        objectFit: "cover",
+                        borderRadius: "20px 20px 0 0",
+                      }}
+                      alt="Actualités"
+                    />
+                    <Box
+                      sx={{
+                        padding: "10px",
+                        textAlign: "center",
+                        height: "75px",
+                      }}
+                    >
+                      <Typography variant="h7bb" color="initial">
+                        {news.name}{" "}
+                      </Typography>
+                    </Box>
+                  </Paper>
+                </Link>
+              </Grid>
+            );
+          })}
+        </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CustomButton
+            text="Voir les actualités"
+            height="40px"
+            width="fit-content"
+            padding="0 20px 0 20px"
+            margin="32px"
+            onClick={newsNavigation}
+          ></CustomButton>
+        </Box>
+      </Container>
     </>
   )
 }

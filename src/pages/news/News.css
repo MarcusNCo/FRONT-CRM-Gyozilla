@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     /* background-color: #F8A500 ; */
     color: black;
@@ -44,4 +45,12 @@ body{
     .welcome{
         height: 200px;
     }
+=======
+.zoomEffect {
+    transition: transform 0.5s ease-in-out;
+}
+
+.zoomEffect:hover {
+    transform: scale(1.03);
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 }

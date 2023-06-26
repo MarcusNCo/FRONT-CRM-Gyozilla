@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext, useState } from 'react'
 import './Header.css'
 import Logo from '../../images/logoHeader.png'
@@ -35,6 +36,45 @@ const Header = () => {
   const { cartItems } = useContext(CartContext)
   const location = useLocation()
   const navigate = useNavigate()
+=======
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import "./Header.css";
+import Logo from "../../images/logoHeader.png";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import mobileLogo from "../../images/gyozillalogo.png";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import AppBar from "@mui/material/AppBar";
+import { Box, useTheme, Divider, IconButton, Fab } from "@mui/material";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuBurger from "../../components/burger/MenuBurger";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Logout from "@mui/icons-material/Logout";
+import Badge from "@mui/material/Badge";
+import Cart from "../../components/cart/Cart";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { UserContext } from "../../utils/context/UserContext";
+import CartContext from "../../utils/context/CartContext";
+
+const Header = () => {
+  const [auth, setAuth] = useState(true);
+  const [cartOpen, setCartOpen] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const theme = useTheme();
+  const { isLogged } = useContext(UserContext);
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { cartItems } = useContext(CartContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showScrollButton, setShowScrollButton] = useState(false);
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
@@ -59,9 +99,41 @@ const Header = () => {
   }
 
   const handleLogout = () => {
+<<<<<<< HEAD
     localStorage.removeItem('token')
     navigate(-1)
   }
+=======
+    localStorage.removeItem("token");
+    navigate(-1);
+  };
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+
+  const returnHome = () => {
+    navigate("/");
+  };
+
+  const checkScrollTop = useCallback(() => {
+    if (!showScrollButton && window.pageYOffset * 7 > window.innerHeight) {
+      setShowScrollButton(true);
+    } else if (
+      showScrollButton &&
+      window.pageYOffset * 7 <= window.innerHeight
+    ) {
+      setShowScrollButton(false);
+    }
+  }, [showScrollButton]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, [checkScrollTop]);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -69,9 +141,15 @@ const Header = () => {
         {/* // -------------------- Mobile version -------------------------- */}
         <Box
           sx={{
+<<<<<<< HEAD
             display: 'none',
             '@media (max-width: 992px)': {
               display: 'flex',
+=======
+            display: "none",
+            "@media (max-width: 700px)": {
+              display: "flex",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
             },
             position: 'relative',
           }}
@@ -134,6 +212,7 @@ const Header = () => {
                 )}
               </Toolbar>
             </AppBar>
+<<<<<<< HEAD
             <img
               src={mobileLogo}
               alt="Logo de Gyozilla"
@@ -143,7 +222,20 @@ const Header = () => {
                 left: '50%',
                 top: '10px',
                 transform: 'translate(-50%)',
+=======
+            <Box
+              component="img"
+              sx={{
+                width: "80px",
+                position: "absolute",
+                left: "50%",
+                top: "10px",
+                transform: "translate(-50%)",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
               }}
+              alt="Logo de Gyozilla"
+              src={mobileLogo}
+              onClick={returnHome}
             />
           </Box>
         </Box>
@@ -152,8 +244,13 @@ const Header = () => {
           sx={{
             display: 'flex',
             zIndex: 1000,
+<<<<<<< HEAD
             '@media (max-width: 992px)': {
               display: 'none',
+=======
+            "@media (max-width: 700px)": {
+              display: "none",
+>>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
             },
             overflow: 'hidden',
             justifyContent: 'space-between',
@@ -366,6 +463,24 @@ const Header = () => {
           <Cart />
         </Menu>
       </header>
+
+      {showScrollButton && (
+        <Fab
+          size="small"
+          onClick={scrollTop}
+          style={{
+            color: "#000",
+            backgroundColor: "#F8A500",
+            opacity: "0.8",
+            position: "fixed",
+            bottom: 16,
+            right: 16,
+          }}
+          aria-label="return"
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      )}
     </>
   )
 }

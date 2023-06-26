@@ -3,16 +3,19 @@ import Login from './pages/log/Login'
 import Products from './pages/products/Products'
 import { Routes, Route } from 'react-router-dom'
 import Verify from './pages/verify/Verify'
-import ProductDetails from './pages/productDetails/ProductDetails'
+import ProductDetails from './pages/productdetails/ProductDetails'
 import CreateUser from './pages/createuser/CreateUser'
 import Profile from './pages/profile/Profile'
 import ForgotPassword from './pages/forgot-password/ForgotPassword'
 import ResetPassword from './pages/reset-password/ResetPassword'
-import NosEngagements from './pages/nosengagements/NosEngagements'
+import Commitments from './pages/commitments/Commitments'
 import Menu from './pages/menu/Menu'
 import Order from './pages/order/Order'
 import Find from './pages/find/Find'
 import Contact from './pages/contact/Contact'
+import LegalNotices from './pages/legalnotices/LegalNotices'
+import Recrutement from './pages/recrutement/Recrutement'
+import News from './pages/news/News'
 
 function RoutesConfig() {
   const routes = [
@@ -54,7 +57,7 @@ function RoutesConfig() {
     },
     {
       path: '/nosengagements',
-      element: <NosEngagements />,
+      element: <Commitments />,
     },
     {
       path: '/contact',
@@ -75,6 +78,22 @@ function RoutesConfig() {
     {
       path: '/find',
       element: <Find />,
+    },
+    {
+      path: '/mentionslegales',
+      element: <LegalNotices />,
+    },
+    {
+      path: '/recrutement',
+      element: <Recrutement />,
+    },
+    {
+      path: '/news',
+      element: <News />,
+    },
+    {
+      path: '/news/:id',
+      element: <News />,
     },
   ]
 
