@@ -209,7 +209,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src={`https://api-gyozilla.onrender.com/${news.image}`}
+                      src={`${process.env.REACT_APP_URL_API}${news.image}`}
                       style={{
                         width: "100%",
                         height: "250px",
