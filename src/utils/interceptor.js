@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Création d'une instance Axios
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_URL_API + "api",
+  baseURL: process.env.REACT_APP_URL_API + "api/",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
