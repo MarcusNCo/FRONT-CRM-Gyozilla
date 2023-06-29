@@ -123,6 +123,7 @@ const Menu = () => {
               height="200px"
               title={item.name}
               backgroundSize="contain"
+              isProduct={false}
             />
             <Radio
               sx={{ color: "##CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}

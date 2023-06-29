@@ -199,8 +199,8 @@ const Home = () => {
                     to={`news/${news.id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    <Paper
-                      elevation={5}
+                    <img
+                      src={`${process.env.REACT_APP_URL_API}${news.image}`}
                       style={{
                         borderRadius: "20px",
                         height: "fit-content",

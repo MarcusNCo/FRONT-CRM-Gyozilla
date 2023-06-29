@@ -91,7 +91,7 @@ const News = () => {
               },
             }}
             alt="Photographie d'article"
-            src={`https://api-gyozilla.onrender.com/${news.image}`}
+            src={`${process.env.REACT_APP_URL_API}${news.image}`}
           />
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h7bnw">{news.description}</Typography>
@@ -167,7 +167,7 @@ const News = () => {
                   }}
                 >
                   <img
-                    src={`https://api-gyozilla.onrender.com/${item.image}`}
+                    src={`${process.env.REACT_APP_URL_API}${item.image}`}
                     style={{
                       width: "334px",
                       height: "234px",
