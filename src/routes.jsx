@@ -17,7 +17,7 @@ import LegalNotices from "./pages/legalnotices/LegalNotices";
 import Recrutement from "./pages/recrutement/Recrutement";
 import News from "./pages/news/News";
 
-function RoutesConfig() {
+const RoutesConfig = () => {
   const routes = [
     {
       path: "/",

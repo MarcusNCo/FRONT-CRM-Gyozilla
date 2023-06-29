@@ -39,7 +39,6 @@
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
   },
-  "homepage": "https://web-gyozilla.onrender.com/",
   "scripts": {
     "start": "react-dotenv && react-scripts start",
     "build": "react-scripts build",
