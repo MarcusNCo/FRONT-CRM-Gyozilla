@@ -3,7 +3,7 @@ import { Typography, Box, Divider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CartContext from "../utils/context/CartContext";
+import CartContext from "../../utils/context/CartContext";
 
 const CartItem = ({ item }) => {
   const { dispatch } = useContext(CartContext);

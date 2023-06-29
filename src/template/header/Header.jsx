@@ -22,7 +22,7 @@ import Badge from "@mui/material/Badge";
 import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { UserContext } from "../../utils/context/UserContext";
-import CartContext from "../utils/context/CartContext";
+import CartContext from "../../utils/context/CartContext";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);

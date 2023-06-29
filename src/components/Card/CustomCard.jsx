@@ -7,7 +7,7 @@ import { Box } from "@mui/system";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import CartContext from "../utils/context/CartContext";
+import CartContext from "../../utils/context/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
