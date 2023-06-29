@@ -84,7 +84,11 @@ const Home = () => {
       <Box className="backgroundHome">
         {/* Image background */}
 
-        <img src={src} alt="backgroundImageHome" style={{ objectFit: "cover", objectPosition: "67% center" }} />
+        <img
+          src={src}
+          alt="backgroundImageHome"
+          style={{ objectFit: "cover", objectPosition: "67% center" }}
+        />
 
         {/* Logo */}
         <img src={logo} alt="Logo" className="logoEcriture" />
@@ -199,15 +203,15 @@ const Home = () => {
                     to={`news/${news.id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    <img
-                      src={`${process.env.REACT_APP_URL_API}${news.image}`}
+                    <Paper
+                      elevation={5}
                       style={{
                         borderRadius: "20px",
                         height: "fit-content",
                       }}
                     >
                       <img
-                        src={`https://api-gyozilla.onrender.com/${news.image}`}
+                        src={`${process.env.REACT_APP_URL_API}${news.image}`}
                         style={{
                           width: "100%",
                           height: "250px",
