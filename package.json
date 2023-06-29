@@ -35,6 +35,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.2",
     "react-transition-group": "^4.4.5",
+    "serve": "^14.2.0",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
@@ -43,8 +44,7 @@
     "start": "react-dotenv && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "serve -s build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
