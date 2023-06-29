@@ -7,7 +7,7 @@ import defaultTheme from "./utils/theming/theme";
 import Footer from "./template/footer/Footer";
 import Header from "./template/header/Header";
 import { BrowserRouter as Router } from "react-router-dom";
-import UserContextProvider from "./utils/context/usercontext";
+import UserContextProvider from "/utils/context/usercontext.js";
 import RoutesConfig from "./routes";
 import React from "react";
 
