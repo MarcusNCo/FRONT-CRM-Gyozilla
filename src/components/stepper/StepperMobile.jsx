@@ -20,7 +20,7 @@ import {
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
 import { createOrder, createOrderLine } from "../../utils/api-call/order";
-import { UserContext } from "../../utils/context/UserContext";
+import { usercontext } from "../../utils/context/usercontext";
 import CartContext from "../../utils/context/CartContext";
 import CustomButton from "../button/CustomButton";
 import Paper from "@mui/material/Paper";
@@ -40,7 +40,7 @@ const steps = [
 export default function VerticalLinearStepper() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
-  const { user, isLogged } = useContext(UserContext);
+  const { user, isLogged } = useContext(usercontext);
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../utils/context/UserContext";
+import { usercontext } from "../../utils/context/usercontext";
 import { Box, useTheme } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import coins from "../../images/coins.png";
 
 const Fidelity = () => {
-  const { user, isLogged } = useContext(UserContext);
+  const { user, isLogged } = useContext(usercontext);
   const theme = useTheme();
 
   return (

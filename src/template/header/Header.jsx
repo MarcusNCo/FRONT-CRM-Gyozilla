@@ -21,15 +21,15 @@ import Logout from "@mui/icons-material/Logout";
 import Badge from "@mui/material/Badge";
 import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { UserContext } from "../../utils/context/UserContext";
-import CartContext from "../../utils/context/CartContext";
+import { usercontext } from "../../utils/context/usercontext";
+import CartContext from "../utils/context/CartContext";
 
 const Header = () => {
   const [auth, setAuth] = useState(true);
   const [cartOpen, setCartOpen] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const { isLogged } = useContext(UserContext);
+  const { isLogged } = useContext(usercontext);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { cartItems } = useContext(CartContext);
   const location = useLocation();

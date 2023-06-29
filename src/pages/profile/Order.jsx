@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../utils/context/UserContext";
+import { usercontext } from "../../utils/context/usercontext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
 import { CircularProgress, Divider, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
@@ -10,7 +10,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
-  const { user } = useContext(UserContext);
+  const { user } = useContext(usercontext);
   const id = user.id;
 
   useEffect(() => {

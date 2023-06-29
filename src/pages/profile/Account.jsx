@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../utils/context/UserContext";
+import { usercontext } from "../../utils/context/usercontext";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { LoadingButton } from "@mui/lab";
@@ -11,7 +11,7 @@ import "./Profile.css";
 import { updateCustomer } from "../../utils/api-call/updapteCustomer";
 
 const Account = () => {
-  const { user, isLogged } = useContext(UserContext);
+  const { user, isLogged } = useContext(usercontext);
   const initialValues = {
     lastname: "",
     firstname: "",

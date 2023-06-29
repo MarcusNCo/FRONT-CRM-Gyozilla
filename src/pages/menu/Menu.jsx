@@ -12,7 +12,7 @@ import { Radio, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { ToastContainer, toast } from "react-toastify";
-import CartContext from "../../utils/context/CartContext";
+import CartContext from "../utils/context/CartContext";
 
 const Menu = () => {
   const [productsByMenu, setProductsByMenu] = useState([]);

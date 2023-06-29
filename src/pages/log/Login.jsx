@@ -10,11 +10,11 @@ import CustomInput from "../../components/input/CustomInput";
 import logo from "../../images/gyozilla-logo.png";
 import { Box, useTheme } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../utils/context/UserContext";
+import { usercontext } from "../../utils/context/usercontext";
 
 const Login = () => {
   const { setIsLogged, shouldRedirectToOrder, setShouldRedirectToOrder } =
-    useContext(UserContext);
+    useContext(usercontext);
   const initialValues = {
     email: "",
     password: "",

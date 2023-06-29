@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import CartContext from "../../utils/context/CartContext";
+import CartContext from "../utils/context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
