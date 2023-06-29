@@ -1,7 +1,6 @@
 {
   "name": "crm-gyozilla",
   "version": "0.1.0",
-  "homepage": "/opt/render/project/src/",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.22.5",
