@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, useReducer } from "react";
 import jwt_decode from "jwt-decode";
 import CartContext from "./CartContext";
 
-export const usercontext = createContext({});
+export const UserContext = createContext({});
 
 const cartReducer = (state, action) => {
   const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
@@ -72,7 +72,7 @@ function UserContextProvider(props) {
   };
 
   return (
-    <usercontext.Provider value={{ user, setUser, isLogged, setIsLogged, shouldRedirectToOrder, setShouldRedirectToOrder }}>
+    <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged, shouldRedirectToOrder, setShouldRedirectToOrder }}>
       <CartContext.Provider
         value={{
           cartItems,
@@ -82,7 +82,7 @@ function UserContextProvider(props) {
       >
         {props.children}
       </CartContext.Provider>
-    </usercontext.Provider>
+    </UserContext.Provider>
   );
 }
 

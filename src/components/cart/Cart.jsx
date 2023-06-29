@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
-import { usercontext } from "../../utils/context/usercontext";
+import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 
 const Cart = () => {
   const { cartItems, dispatch } = useContext(CartContext);
   const { isLogged, setShouldRedirectToOrder } =
-    useContext(usercontext);
+    useContext(UserContext);
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,

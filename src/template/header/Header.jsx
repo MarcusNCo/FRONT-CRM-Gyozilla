@@ -21,7 +21,7 @@ import Logout from "@mui/icons-material/Logout";
 import Badge from "@mui/material/Badge";
 import Cart from "../../components/cart/Cart";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { usercontext } from "../../utils/context/usercontext";
+import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../utils/context/CartContext";
 
 const Header = () => {
@@ -29,7 +29,7 @@ const Header = () => {
   const [cartOpen, setCartOpen] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const { isLogged } = useContext(usercontext);
+  const { isLogged } = useContext(UserContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { cartItems } = useContext(CartContext);
   const location = useLocation();
