@@ -1,6 +1,7 @@
 {
   "name": "crm-gyozilla",
   "version": "0.1.0",
+  "homepage": "https://gyozilla-restaurants.fr",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.22.5",
