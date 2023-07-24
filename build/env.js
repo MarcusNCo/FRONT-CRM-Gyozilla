@@ -1,3 +1,3 @@
 window.env = {
-  "REACT_APP_URL_API": "api.gyozilla-restaurants.fr/"
+  "REACT_APP_URL_API": "https://api.gyozilla-restaurants.fr/"
 };
