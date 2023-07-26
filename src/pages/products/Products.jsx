@@ -1,20 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react'
-
-<<<<<<< HEAD
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import { Badge, Fab, IconButton, Typography } from '@mui/material'
 import { useTheme } from '@mui/system'
-
-import { Paginator } from 'primereact/paginator'
-=======
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { Badge, Typography, Pagination } from "@mui/material";
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
-
+import { Pagination } from '@mui/material'
 import { getAllProducts } from '../../utils/api-call/getAllProducts'
 import CustomCard from '../../components/card/CustomCard'
 import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
@@ -24,8 +14,7 @@ import styles from './Products.module.css'
 
 import nouveautes from '../../images/badge nouveautesFichier 125.png'
 
-<<<<<<< HEAD
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 
 const Products = () => {
@@ -33,44 +22,19 @@ const Products = () => {
   const [error, setError] = useState(null)
   const [selected, setSelected] = useState(0)
   const [first, setFirst] = useState(0)
-  const [rows, setRows] = useState(10)
   const location = useLocation()
   const [activeCategory, setActiveCategory] = useState(0)
   const [selectedTypeRepas, setSelectedTypeRepas] = useState(0)
   const [displayBackButton, setDisplayBackButton] = useState(true)
-  const [productList, setProductList] = useState([])
   const [displayedProducts, setDisplayedProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const rows = 10
 
-  const theme = useTheme()
   const navigate = useNavigate()
 
-  const onPageChange = (event) => {
-    setFirst(event.first)
-    setRows(event.rows)
-  }
-=======
-import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-
-const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-  const [selected, setSelected] = useState(0);
-  const [first, setFirst] = useState(0);
-  const location = useLocation();
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [selectedTypeRepas, setSelectedTypeRepas] = useState(0);
-  const [displayBackButton, setDisplayBackButton] = useState(true);
-  const [displayedProducts, setDisplayedProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const rows = 10;
-
-  const navigate = useNavigate();
-
   const handlePageChange = (event, page) => {
-    setFirst((page - 1) * rows);
-  };
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+    setFirst((page - 1) * rows)
+  }
 
   const TYPE_REPAS = {
     ENTREES: 1,
@@ -82,75 +46,39 @@ const Products = () => {
   const categories = [
     {
       id: 1,
-<<<<<<< HEAD
       name: 'Nouveautés',
       description: 'Découvrez nos nouveautés',
-      image: 'badgeHome/badge-nouveautes.png',
+      image: 'image/badge-nouveautes.png',
     },
     {
       id: 2,
       name: 'Menus',
       description: 'Découvrez nos menus',
-      image: 'nouveautes.jpg',
+      image: 'image/nouveautes.jpg',
     },
     {
       id: 3,
       name: 'Entrées',
       description: 'Découvrez nos entrées',
-      image: 'entrees.jpg',
+      image: 'image/entrees.jpg',
     },
     {
       id: 4,
       name: 'Plats',
       description: 'Découvrez nos plats',
-      image: 'plats.jpg',
+      image: 'image/plats.jpg',
     },
     {
       id: 5,
       name: 'Desserts',
       description: 'Découvrez nos desserts',
-      image: 'desserts.jpg',
+      image: 'image/desserts.jpg',
     },
     {
       id: 6,
       name: 'Boissons',
       description: 'Découvrez nos boissons',
-      image: 'boissons.jpg',
-=======
-      name: "Nouveautés",
-      description: "Découvrez nos nouveautés",
-      image: "image/badge-nouveautes.png",
-    },
-    {
-      id: 2,
-      name: "Menus",
-      description: "Découvrez nos menus",
-      image: "image/nouveautes.jpg",
-    },
-    {
-      id: 3,
-      name: "Entrées",
-      description: "Découvrez nos entrées",
-      image: "image/entrees.jpg",
-    },
-    {
-      id: 4,
-      name: "Plats",
-      description: "Découvrez nos plats",
-      image: "image/plats.jpg",
-    },
-    {
-      id: 5,
-      name: "Desserts",
-      description: "Découvrez nos desserts",
-      image: "image/desserts.jpg",
-    },
-    {
-      id: 6,
-      name: "Boissons",
-      description: "Découvrez nos boissons",
-      image: "image/boissons.jpg",
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+      image: 'image/boissons.jpg',
     },
   ]
 
@@ -193,15 +121,11 @@ const Products = () => {
       if (selectedTypeRepas === null || selectedTypeRepas === 0) {
         return true
       } else if (selectedTypeRepas === 1) {
-<<<<<<< HEAD
-        return checkNew(product)
-=======
-        const newProduct = checkNew(product);
+        const newProduct = checkNew(product)
         if (!newProduct) {
-          setLoading(false);
+          setLoading(false)
         }
-        return checkNew(product);
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+        return checkNew(product)
       } else if (selectedTypeRepas === 3) {
         return product.productCategory.id === TYPE_REPAS.ENTREES
       } else if (selectedTypeRepas === 4) {
@@ -226,21 +150,17 @@ const Products = () => {
   useEffect(() => {
     if (!loading) {
       const timer = setTimeout(() => {
-        setError("Il n'y a aucune nouveauté pour le moment.");
-      }, 2000);
-      return () => clearTimeout(timer);
+        setError("Il n'y a aucune nouveauté pour le moment.")
+      }, 2000)
+      return () => clearTimeout(timer)
     }
-  }, [loading]);
+  }, [loading])
 
   useEffect(() => {
-    setFirst(0);
+    setFirst(0)
 
     if (selectedTypeRepas === 2) {
-<<<<<<< HEAD
-      navigate('../menu')
-=======
-      navigate("/menu");
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+      navigate('/menu')
     }
   }, [selectedTypeRepas, navigate])
 
@@ -254,18 +174,10 @@ const Products = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-<<<<<<< HEAD
-        theme: 'light',
       })
-      location.state = null
+      location.state.successMessage = null
     }
-  }, [])
-=======
-      });
-      location.state.successMessage = null;
-    }
-  }, [location]);
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+  }, [location])
 
   useEffect(() => {
     getAllProducts()
@@ -315,29 +227,22 @@ const Products = () => {
           onChange={handlePageChange}
           size="large"
           style={{
-            marginTop: "50px",
-            margin: "50px auto 0 auto",
+            marginTop: '50px',
+            margin: '50px auto 0 auto',
           }}
         />
       )}
       <Box
-<<<<<<< HEAD
-        style={{
+        sx={{
           display: 'flex',
           margin: '0',
-          minHeight: 'calc(100vh - 71px)',
-=======
-        sx={{
-          display: "flex",
-          margin: "0",
           minHeight:
             selectedTypeRepas !== null && selectedTypeRepas !== 0
-              ? "calc(100vh - 71px - 87px)"
-              : "calc(100vh - 71px)",
-          "@media (max-width:700px)": {
-            minHeight: "calc(100vh - 56px)",
+              ? 'calc(100vh - 71px - 87px)'
+              : 'calc(100vh - 71px)',
+          '@media (max-width:700px)': {
+            minHeight: 'calc(100vh - 56px)',
           },
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
         }}
       >
         <Box>
@@ -352,19 +257,11 @@ const Products = () => {
           {displayBackButton && (
             <Box
               sx={{
-<<<<<<< HEAD
                 position: 'fixed',
                 bottom: '10px',
                 left: '50px',
-                [theme.breakpoints.down('sm')]: {
+                '@media (max-width:700px)': {
                   display: 'none',
-=======
-                position: "fixed",
-                bottom: "10px",
-                left: "50px",
-                "@media (max-width:700px)": {
-                  display: "none",
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                 },
               }}
             >
@@ -393,27 +290,12 @@ const Products = () => {
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
-<<<<<<< HEAD
-                <CustomCard
-                  key={category.id}
-                  description={category.description}
-                  title={category.name}
-                  buttonCardText="Voir les produits"
-                  variantButton={'contained'}
-                  onButtonCardClick={() => handleCardClick(category)}
-                  width="400px"
-                  height="250px"
-                  image={category.image}
-                  backgroundSize="100% auto"
-                ></CustomCard>
-              )
-=======
                 <>
                   <CustomCard
                     description={category.description}
                     title={category.name}
                     buttonCardText="Voir les produits"
-                    variantButton={"contained"}
+                    variantButton={'contained'}
                     onButtonCardClick={() => handleCardClick(category)}
                     width="400px"
                     height="250px"
@@ -422,22 +304,14 @@ const Products = () => {
                     isProduct={false}
                   ></CustomCard>
                 </>
-              );
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+              )
             })
           ) : displayedProducts.length === 0 ? (
             <Box
               sx={{
-<<<<<<< HEAD
-                display: 'flex',
-                flexDirection: 'column',
+                display: 'center',
                 justifyContent: 'center',
-                textAlign: 'center',
-=======
-                display: "center",
-                justifyContent: "center",
-                alignItems: "center",
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
+                alignItems: 'center',
               }}
             >
               {loading ? (
@@ -453,12 +327,7 @@ const Products = () => {
               const isNew = checkNew(item)
               return (
                 <Box
-<<<<<<< HEAD
-                  key={item.id}
                   style={{ position: 'relative' }}
-=======
-                  style={{ position: "relative" }}
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                   sx={{
                     ':hover': {
                       transform: ' scale(1.02)',
@@ -476,30 +345,9 @@ const Products = () => {
                     width="300px"
                     height="300px"
                     title={item.name}
-<<<<<<< HEAD
-                    onButtonCardClick={() => {
-                      const newProduct = {
-                        id: item.id,
-                        name: item.name,
-                        description: item.description,
-                        price: item.price,
-                        image: item.image,
-                        category: item.id_product_categories,
-                        menu: item.id_menus,
-                      }
-                      const newProductList = [...productList, newProduct]
-                      setProductList(newProductList)
-                      navigate(`/products/${item.name}`, {
-                        state: {
-                          productList: newProductList,
-                        },
-                      })
-                    }}
-=======
                     isProduct={true}
                     id_product_categories={item.id_product_categories}
                     id_menus={item.id_menus}
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
                     backgroundSize="contain"
                   />
                   {isNew && (
@@ -530,7 +378,6 @@ const Products = () => {
           )}
         </Box>
       </Box>
-<<<<<<< HEAD
 
       {/* bouton retour en version mobile */}
       <Box
@@ -558,8 +405,6 @@ const Products = () => {
           <KeyboardReturnIcon />
         </Fab>
       </Box>
-=======
->>>>>>> 379495d7df5fc79e1c3d66f7117ae47c5f09158d
     </>
   )
 }
