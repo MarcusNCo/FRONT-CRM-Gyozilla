@@ -9,7 +9,7 @@ import { getAllProducts } from '../../utils/api-call/getAllProducts'
 import CustomCard from '../../components/card/CustomCard'
 import CustomListItemProducts from '../../components/customlistitem/CustomListItemProducts'
 import CustomButton from '../../components/button/CustomButton'
-
+import theme from '../../utils/theming/theme'
 import styles from './Products.module.css'
 
 import nouveautes from '../../images/badge nouveautesFichier 125.png'

@@ -124,7 +124,7 @@ export default function HorizontalLinearStepper() {
   const getImage = (image) => {
     let dbImage;
     if (image !== undefined) {
-      dbImage = "https://api-gyozilla.onrender.com/" + image;
+      dbImage = process.env.REACT_APP_URL_API + image;
     }
     return dbImage;
   };

@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box'
 import React, { useEffect, useRef, useState } from 'react'
-import backgroundImageHome from '../../images/backgroundHomePage.webp'
-import backgroundImageHomeMobile from '../../images/backgroundHomePage-Mobile-min.webp'
+
+// import backgroundImageHome from "../../images/backgroundHomePage.webp";
+import backgroundImageHome from '../../images/gyozilla_restaurant.webp'
+// import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
+import backgroundImageHomeMobile from '../../images/gyozilla_restaurant _mobile.webp'
 import logo from '../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png'
 import nouveautes from '../../images/badgeHome/badge-nouveautes.png'
 import bonPlans from '../../images/badgeHome/badge-bonPlans.png'
@@ -10,12 +13,18 @@ import logoPrez from '../../images/logoHeader.png'
 
 import './Home.css'
 
-import { Container, Grid, IconButton, Paper } from '@mui/material'
+import { Container, Grid, IconButton, Paper, Typography } from '@mui/material'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { getLastThreeNews } from '../../utils/api-call/news'
+import CustomButton from '../../components/button/CustomButton'
 
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome)
+  const [allNews, setAllNews] = useState([])
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
   const cardHomepages = [
     {
       id: 1,
@@ -49,21 +58,17 @@ const Home = () => {
       })
   }, [])
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     const width = window.innerWidth;
-  //     if (width <= 992) {
-  //       setSrc(backgroundImageHomeMobile)
-  //     } else {
-  //       setSrc(backgroundImageHome)
-  //     }
-  //   }
-
-  //   window.addEventListener('resize', handleResize)
-  //   handleResize() // call once on mount to set initial value
-
-  //   return () => window.removeEventListener('resize', handleResize)
-  // }, [])
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const width = window.innerWidth
+      if (width <= 992) {
+        setSrc(backgroundImageHomeMobile)
+      } else {
+        setSrc(backgroundImageHome)
+      }
+    })
+    return () => window.removeEventListener('resize', null)
+  }, [])
 
   const productDetailsRef = useRef(null)
   const handleArrowClick = () => {
@@ -107,7 +112,6 @@ const Home = () => {
               transform: 'translate(-50%, -5%)',
             },
           }}
-          // onClick={handleArrowClick}
         >
           <KeyboardDoubleArrowDownIcon
             sx={{ color: '#F8A500', height: '4rem', width: '4rem' }}
@@ -120,7 +124,7 @@ const Home = () => {
           container
           className="gridContainer"
           spacing={5}
-          sx={{ justifyContent: 'center' }} // corrected here
+          sx={{ justifyContent: 'center' }}
         >
           {cardHomepages.map((cardHomePage) => {
             return (
@@ -149,6 +153,7 @@ const Home = () => {
           })}
         </Grid>
       </Container>
+
       <Box
         sx={{
           display: 'flex',
@@ -190,7 +195,7 @@ const Home = () => {
           spacing={5}
           sx={{ justifyContent: 'center' }}
         >
-          {allNews?.map((news) => {
+          {allNews.map((news) => {
             return (
               <Grid item lg={4} md={4} key={news.id} className={'zoomEffect'}>
                 <Link to={`news/${news.id}`} style={{ textDecoration: 'none' }}>
@@ -202,7 +207,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src={`https://api-gyozilla.onrender.com/${news.image}`}
+                      src={`${process.env.REACT_APP_URL_API}${news.image}`}
                       style={{
                         width: '100%',
                         height: '250px',
