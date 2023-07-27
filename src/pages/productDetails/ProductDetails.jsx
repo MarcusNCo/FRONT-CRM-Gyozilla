@@ -40,6 +40,9 @@ const ProductDetails = () => {
   };
 
   const addToCart = () => {
+
+    console.log(productInfo)
+
     const product = {
       id: productInfo.id,
       name: productInfo.name,

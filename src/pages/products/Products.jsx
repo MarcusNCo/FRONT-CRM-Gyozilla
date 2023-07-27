@@ -336,6 +336,8 @@ const Products = () => {
                   }}
                 >
                   <CustomCard
+                  
+                    id={item.id}
                     name={item.name}
                     description={item.description}
                     image={item.image}
