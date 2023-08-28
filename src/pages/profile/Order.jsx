@@ -1,10 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
-import { CircularProgress, Divider, Typography, useTheme } from "@mui/material";
+import {
+  CircularProgress,
+  Divider,
+  Typography,
+  useTheme,
+  Button,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { updateOrder } from "../../utils/api-call/order";
+import CustomButton from "../../components/button/CustomButton";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -12,6 +20,17 @@ const Order = () => {
   const theme = useTheme();
   const { user } = useContext(UserContext);
   const id = user.id;
+  const [error, setError] = useState([]);
+
+  const paiementClick = (id) => {
+    const values = {
+      id_status: 2,
+    };
+
+    updateOrder(id, values).catch((error) => {
+      setError(error);
+    });
+  };
 
   useEffect(() => {
     getAllOrdersByCustomer(id)
@@ -49,7 +68,7 @@ const Order = () => {
         console.log(error.response.data.message);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, loading]);
 
   if (loading) {
     return (
@@ -151,7 +170,6 @@ const Order = () => {
                 ))
               )
             )}
-
             <Divider sx={{ borderColor: "#00000030", paddingTop: "10px" }} />
             <Typography
               variant="h9bwpm"
@@ -160,6 +178,21 @@ const Order = () => {
             >
               {order.order_type.name}, pour un total de {order.total_price}€
             </Typography>
+            {order.id_status === 1 && 
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                onClick={() => {
+                  paiementClick(order.id)
+                  setLoading(true)
+                }}
+                sx={{ width: "fit-content", padding: "5px", margin: "5px" }}
+                variant=""
+                color="primary"
+              >
+                Passer au paiement
+              </Button>
+            </Box>
+            }
           </Box>
         ))}
       </Box>
