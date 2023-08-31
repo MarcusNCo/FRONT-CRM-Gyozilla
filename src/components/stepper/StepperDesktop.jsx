@@ -36,13 +36,12 @@ export default function HorizontalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
-  const theme = useTheme();
 
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
       const token = window.localStorage.getItem("token");
-      const date = new Date().toISOString().split("T")[0];
+      const date = new Date().toISOString();
 
       let ordertype = 0;
       switch (deliveryType) {
