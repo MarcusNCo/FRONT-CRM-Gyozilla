@@ -37,7 +37,6 @@ const Order = () => {
       .then((response) => {
         const ordersWithGroupedProducts = response.data.data.map((order) => {
           const groupedProducts = {};
-          console.log(order.order_lines);
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
 
@@ -60,7 +59,6 @@ const Order = () => {
           });
           return { ...order, groupedProducts };
         });
-        console.log(ordersWithGroupedProducts);
         setOrders(ordersWithGroupedProducts);
         setLoading(false);
       })

@@ -14,7 +14,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  useTheme,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
@@ -42,6 +41,8 @@ export default function HorizontalLinearStepper() {
       const totalPrice = getTotal();
       const token = window.localStorage.getItem("token");
       const date = new Date().toISOString();
+
+      console.log(date)
 
       let ordertype = 0;
       switch (deliveryType) {

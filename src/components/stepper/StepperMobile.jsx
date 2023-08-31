@@ -15,7 +15,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  useTheme,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
