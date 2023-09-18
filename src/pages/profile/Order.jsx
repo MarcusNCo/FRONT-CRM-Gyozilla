@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
 import {
@@ -12,7 +12,6 @@ import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { updateOrder } from "../../utils/api-call/order";
-import CustomButton from "../../components/button/CustomButton";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -20,7 +19,6 @@ const Order = () => {
   const theme = useTheme();
   const { user } = useContext(UserContext);
   const id = user.id;
-  const [error, setError] = useState([]);
 
   const paiementClick = (id) => {
     const values = {
@@ -28,7 +26,7 @@ const Order = () => {
     };
 
     updateOrder(id, values).catch((error) => {
-      setError(error);
+      console.log(error)
     });
   };
 
