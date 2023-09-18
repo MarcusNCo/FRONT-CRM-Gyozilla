@@ -14,7 +14,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  useTheme,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
@@ -36,13 +35,14 @@ export default function HorizontalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
-  const theme = useTheme();
 
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
       const token = window.localStorage.getItem("token");
-      const date = new Date().toISOString().split("T")[0];
+      const date = new Date().toISOString();
+
+      console.log(date)
 
       let ordertype = 0;
       switch (deliveryType) {
