@@ -47,9 +47,9 @@ const Cart = () => {
           backgroundColor: "#F8A50050",
           borderRadius: "20px 20px 5px 5px",
           textAlign: "center",
-          marginTop: "12px",
           paddingTop: "5px",
           paddingBottom: "10px",
+          marginTop: 'auto',
         }}
       >
         <Box sx={{ padding: "5px 0 5px 0" }}>

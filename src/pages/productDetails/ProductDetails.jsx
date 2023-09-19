@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import CartContext from "../../utils/context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -134,7 +136,7 @@ const ProductDetails = () => {
         <Box
           sx={{
             width: "400px",
-            height: "400px",
+            height: "fit-content",
             "@media (max-width: 900px)": {
               width: "100%",
             },
@@ -148,7 +150,7 @@ const ProductDetails = () => {
               "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
           }}
         >
-          <Typography variant="h6g">{productInfo.name}</Typography>
+          <Typography variant="h6">{productInfo.name}</Typography>
           <Box
             sx={{
               display: "flex",
@@ -160,7 +162,7 @@ const ProductDetails = () => {
               sx={{
                 width: "200px",
                 fontSize: "1.2rem",
-                backgroundColor: "#5F8D85",
+                backgroundColor: "#F8A500",
                 borderRadius: "5px 0",
                 paddingLeft: "10px",
                 marginBottom: "10px",
@@ -173,7 +175,7 @@ const ProductDetails = () => {
               Prix à l'unité : {productInfo.price}€
             </Typography>
           </Box>
-          <Divider sx={{ borderBottom: 1, borderColor: "#00000050" }} />
+          {/* <Divider sx={{ borderBottom: 1, borderColor: "#00000050" }} /> */}
           <Box
             sx={{
               display: "flex",
@@ -181,6 +183,7 @@ const ProductDetails = () => {
               justifyContent: "space-between",
               height: "100px",
               justifySelf: "end",
+              paddingTop: '10px'
             }}
           >
             <Box
@@ -190,11 +193,27 @@ const ProductDetails = () => {
                 alignItems: "center",
               }}
             >
-              <Button onClick={decrementQuantity}>-</Button>
-              <Typography variant="h7bnw">
-                Nombre de produit : {quantity}
+
+
+            <RemoveIcon
+              sx={{ color: "white", backgroundColor: '#F8A500', borderRadius: "50%" }}
+              fontSize="medium"
+              onClick={decrementQuantity}
+            ></RemoveIcon>
+
+
+<Typography variant="h7bnw">
+                Quantité : {quantity}
               </Typography>
-              <Button onClick={incrementQuantity}>+</Button>
+
+
+            <AddIcon
+              sx={{ color: "white",backgroundColor: '#F8A500', borderRadius: "50%" }}
+              fontSize="medium"
+              onClick={incrementQuantity}
+            ></AddIcon>
+
+
             </Box>
             <Box
               sx={{
@@ -208,9 +227,9 @@ const ProductDetails = () => {
                   display: "flex",
                   alignItems: "center",
                 }}
-                variant="h7b"
+                variant="h7bnw"
               >
-                Total: {total}€
+                Total : {total}€
               </Typography>
               <Button
                 sx={{ alignSelf: "center", width: "fit-content" }}

@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./CustomCard.css";
 import { Box } from "@mui/system";
-import AddCardIcon from "@mui/icons-material/AddCard";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CartContext from "../../utils/context/CartContext";
@@ -134,7 +134,7 @@ const CustomCard = ({
           {title && (
             <Box
               sx={{
-                backgroundColor: "#5F8D85",
+                backgroundColor: "#F8A500",
                 opacity: "0.8",
                 padding: "5px 5px 5px 10px",
                 display: "flex",
@@ -189,8 +189,7 @@ const CustomCard = ({
               position: "absolute",
               bottom: "-50px",
               left: 0,
-              backgroundColor: "#5F8D85",
-              opacity: "0.6",
+              backgroundColor: "#F8A500",
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
@@ -199,21 +198,21 @@ const CustomCard = ({
             className="displayBox"
           >
             <RemoveIcon
-              sx={{ backgroundColor: "black", borderRadius: "50%" }}
+              sx={{ color: "black", borderRadius: "50%" }}
               fontSize="medium"
               onClick={decrementQuantity}
             ></RemoveIcon>
             <Typography variant="h7bnw">{quantity}</Typography>
             <AddIcon
-              sx={{ backgroundColor: "black", borderRadius: "50%" }}
+              sx={{ color: "black", borderRadius: "50%" }}
               fontSize="medium"
               onClick={incrementQuantity}
             ></AddIcon>
-            <AddCardIcon
+            <AddShoppingCartIcon
               onClick={addToCart}
               sx={{ color: "black" }}
-              fontSize="large"
-            ></AddCardIcon>
+              fontSize="medium"
+            ></AddShoppingCartIcon>
           </Box>
         )}
       </Card>
