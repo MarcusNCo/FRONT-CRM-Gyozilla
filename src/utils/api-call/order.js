@@ -15,3 +15,11 @@ export const createOrderLine = async (values, token) => {
     },
   });
 };
+
+export const updateOrder = async (id, values, token) => {
+  return await instance.patch(`orders/${id}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

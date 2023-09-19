@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Button, Box, Typography, Divider } from "@mui/material";
 import CartItem from "./CartItem";
-import CartContext from "../../utils/context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../utils/context/UserContext";
+import CartContext from "../../utils/context/CartContext";
 
 const Cart = () => {
   const { cartItems, dispatch } = useContext(CartContext);

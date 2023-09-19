@@ -46,7 +46,7 @@ const cartReducer = (state, action) => {
   }
 };
 
-function UserContextProvider(props) {
+const  UserContextProvider = (props) => {
   const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
   const [shouldRedirectToOrder, setShouldRedirectToOrder] = useState(false);

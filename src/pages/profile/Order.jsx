@@ -1,10 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
-import { CircularProgress, Divider, Typography, useTheme } from "@mui/material";
+import {
+  CircularProgress,
+  Divider,
+  Typography,
+  useTheme,
+  Button,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { updateOrder } from "../../utils/api-call/order";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -13,12 +20,21 @@ const Order = () => {
   const { user } = useContext(UserContext);
   const id = user.id;
 
+  const paiementClick = (id) => {
+    const values = {
+      id_status: 2,
+    };
+
+    updateOrder(id, values).catch((error) => {
+      console.log(error)
+    });
+  };
+
   useEffect(() => {
     getAllOrdersByCustomer(id)
       .then((response) => {
         const ordersWithGroupedProducts = response.data.data.map((order) => {
           const groupedProducts = {};
-          console.log(order.order_lines);
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
 
@@ -41,7 +57,6 @@ const Order = () => {
           });
           return { ...order, groupedProducts };
         });
-        console.log(ordersWithGroupedProducts);
         setOrders(ordersWithGroupedProducts);
         setLoading(false);
       })
@@ -49,7 +64,7 @@ const Order = () => {
         console.log(error.response.data.message);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, loading]);
 
   if (loading) {
     return (
@@ -151,7 +166,6 @@ const Order = () => {
                 ))
               )
             )}
-
             <Divider sx={{ borderColor: "#00000030", paddingTop: "10px" }} />
             <Typography
               variant="h9bwpm"
@@ -160,6 +174,21 @@ const Order = () => {
             >
               {order.order_type.name}, pour un total de {order.total_price}€
             </Typography>
+            {order.id_status === 1 && 
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                onClick={() => {
+                  paiementClick(order.id)
+                  setLoading(true)
+                }}
+                sx={{ width: "fit-content", padding: "5px", margin: "5px" }}
+                variant=""
+                color="primary"
+              >
+                Passer au paiement
+              </Button>
+            </Box>
+            }
           </Box>
         ))}
       </Box>
