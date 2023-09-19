@@ -263,6 +263,13 @@ const theme = createTheme({
       fontWeight: "bold",
       marginBottom: "10px",
     },
+    h6bm: {
+      color: "#000",
+      fontSize: "2.0rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
     hbox: {
       color: "#F8A500",
       fontSize: "1.5rem",
@@ -318,11 +325,21 @@ const theme = createTheme({
       color: "#000000",
       fontSize: "1.0rem",
     },
+    h7wg: {
+      color: "#EAEAEA",
+      fontSize: "1.0rem",
+      fontFamily: "Garamond",
+    },
     h8b: {
       color: "#000000",
       fontSize: "0.9rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    h8bn: {
+      color: "#000000",
+      fontSize: "1.0rem",
+      fontFamily: "Garamond",
     },
     h9g: {
       color: "#5F8D85",
