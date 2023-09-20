@@ -18,10 +18,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { getLastThreeNews } from "../../utils/api-call/news";
 import CustomButton from "../../components/button/CustomButton";
 
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+}
+
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
   const [allNews, setAllNews] = useState([]);
   const navigate = useNavigate();
+  const isMobile = isMobileDevice();
   const cardHomepages = [
     {
       id: 1,
@@ -50,20 +57,22 @@ const Home = () => {
       })
       .catch((error) => {
         setAllNews([]);
-        console.log(error)
+        console.log(error);
       });
   }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const setProperImage = () => {
       const width = window.innerWidth;
       if (width <= 992) {
         setSrc(backgroundImageHomeMobile);
       } else {
         setSrc(backgroundImageHome);
       }
-    });
-    return () => window.removeEventListener("resize", null);
+    };
+    setProperImage();
+    window.addEventListener("resize", setProperImage);
+    return () => window.removeEventListener("resize", setProperImage);
   }, []);
 
   const productDetailsRef = useRef(null);
@@ -83,7 +92,6 @@ const Home = () => {
         <img
           src={src}
           alt="backgroundImageHome"
-          style={{ objectFit: "cover" }}
         />
 
         {/* Logo */}
@@ -195,13 +203,21 @@ const Home = () => {
         >
           {allNews.map((news) => {
             return (
-              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={news.id}
+                className={"zoomEffect"}
+                style={{ width: isMobile ? "90%" : "auto" }}
+              >
                 <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
                   <Paper
                     elevation={5}
                     style={{
                       borderRadius: "20px",
                       height: "fit-content",
+                      marginBottom: "15px",
                     }}
                   >
                     <img

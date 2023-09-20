@@ -138,7 +138,8 @@ const ProductDetails = () => {
             width: "400px",
             height: "fit-content",
             "@media (max-width: 900px)": {
-              width: "100%",
+              width: "95%",
+              marginBottom: '10px'
             },
             display: "flex",
             flexDirection: "column",
@@ -160,11 +161,12 @@ const ProductDetails = () => {
           >
             <Typography
               sx={{
-                width: "200px",
+                width: "fit-content",
                 fontSize: "1.2rem",
                 backgroundColor: "#F8A500",
                 borderRadius: "5px 0",
                 paddingLeft: "10px",
+                paddingRight: "10px",
                 marginBottom: "10px",
               }}
             >
@@ -175,7 +177,6 @@ const ProductDetails = () => {
               Prix à l'unité : {productInfo.price}€
             </Typography>
           </Box>
-          {/* <Divider sx={{ borderBottom: 1, borderColor: "#00000050" }} /> */}
           <Box
             sx={{
               display: "flex",
@@ -183,7 +184,7 @@ const ProductDetails = () => {
               justifyContent: "space-between",
               height: "100px",
               justifySelf: "end",
-              paddingTop: '10px'
+              paddingTop: "10px",
             }}
           >
             <Box
@@ -193,27 +194,27 @@ const ProductDetails = () => {
                 alignItems: "center",
               }}
             >
+              <RemoveIcon
+                sx={{
+                  color: "white",
+                  backgroundColor: "#F8A500",
+                  borderRadius: "50%",
+                }}
+                fontSize="medium"
+                onClick={decrementQuantity}
+              ></RemoveIcon>
 
+              <Typography variant="h7bnw">Quantité : {quantity}</Typography>
 
-            <RemoveIcon
-              sx={{ color: "white", backgroundColor: '#F8A500', borderRadius: "50%" }}
-              fontSize="medium"
-              onClick={decrementQuantity}
-            ></RemoveIcon>
-
-
-<Typography variant="h7bnw">
-                Quantité : {quantity}
-              </Typography>
-
-
-            <AddIcon
-              sx={{ color: "white",backgroundColor: '#F8A500', borderRadius: "50%" }}
-              fontSize="medium"
-              onClick={incrementQuantity}
-            ></AddIcon>
-
-
+              <AddIcon
+                sx={{
+                  color: "white",
+                  backgroundColor: "#F8A500",
+                  borderRadius: "50%",
+                }}
+                fontSize="medium"
+                onClick={incrementQuantity}
+              ></AddIcon>
             </Box>
             <Box
               sx={{

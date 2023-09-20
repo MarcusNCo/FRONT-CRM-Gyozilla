@@ -33,6 +33,8 @@
 
   .backgroundHome {
     height: calc(100vh - 56px);
+    object-fit: cover;
+    object-position: center center;
   }
 
   .gridContainer {
@@ -65,10 +67,4 @@
 
 .zoomEffect:hover {
   transform: scale(1.03);
-}
-
-@media (max-width: 800px) {
-  .css-1qgewj0-MuiGrid-root>.MuiGrid-item {
-    width: 90%;
-  }
 }
