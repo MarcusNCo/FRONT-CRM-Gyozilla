@@ -1,10 +1,8 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useRef, useState } from "react";
 
-// import backgroundImageHome from "../../images/backgroundHomePage.webp";
 import backgroundImageHome from "../../images/gyozilla_restaurant.webp";
-// import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
-import backgroundImageHomeMobile from "../../images/gyozilla_restaurant _mobile.webp";
+import backgroundImageHomeMobile from "../../images/gyozilla_restaurant_mobile.webp";
 import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
 import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
 import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
@@ -23,7 +21,6 @@ import CustomButton from "../../components/button/CustomButton";
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
   const [allNews, setAllNews] = useState([]);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const cardHomepages = [
     {
@@ -50,11 +47,10 @@ const Home = () => {
     getLastThreeNews()
       .then((res) => {
         setAllNews(res.data);
-        setError(null);
       })
       .catch((error) => {
         setAllNews([]);
-        setError(error);
+        console.log(error)
       });
   }, []);
 
@@ -84,7 +80,11 @@ const Home = () => {
       <Box className="backgroundHome">
         {/* Image background */}
 
-        <img src={src} alt="backgroundImageHome" style={{ objectFit: "cover", objectPosition: "67% center" }} />
+        <img
+          src={src}
+          alt="backgroundImageHome"
+          style={{ objectFit: "cover" }}
+        />
 
         {/* Logo */}
         <img src={logo} alt="Logo" className="logoEcriture" />
@@ -189,17 +189,13 @@ const Home = () => {
           container
           className="gridContainer"
           spacing={5}
-          sx={{ justifyContent: "center" }}
+          sx={{
+            justifyContent: "center",
+          }}
         >
           {allNews.map((news) => {
             return (
-              <Grid
-                item
-                lg={4}
-                md={4}
-                key={news.id}
-                className={"zoomEffect"}
-              >
+              <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
                 <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
                   <Paper
                     elevation={5}

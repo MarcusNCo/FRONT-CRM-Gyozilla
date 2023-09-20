@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Box, Typography, Divider } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../utils/context/UserContext";
@@ -49,7 +49,7 @@ const Cart = () => {
           textAlign: "center",
           paddingTop: "5px",
           paddingBottom: "10px",
-          marginTop: 'auto',
+          marginTop: "auto",
         }}
       >
         <Box sx={{ padding: "5px 0 5px 0" }}>

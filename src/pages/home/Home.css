@@ -15,8 +15,9 @@
 .logoEcriture {
   width: 40vw;
   position: absolute;
-  right: 18vw;
-  bottom: 25vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: transparent;
   border-radius: 0;
 }
@@ -26,8 +27,8 @@
     width: 20rem;
     position: absolute;
     left: 50%;
-    top: 40%;
-    transform: translate(-50%, -40%);
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .backgroundHome {
@@ -39,11 +40,6 @@
     flex-wrap: nowrap;
     overflow-x: scroll !important;
     white-space: "nowrap";
-  }
-
-  .logoEcriture {
-    background-color: #5F8D8590;
-    border-radius: 50px;
   }
 }
 
@@ -69,4 +65,10 @@
 
 .zoomEffect:hover {
   transform: scale(1.03);
+}
+
+@media (max-width: 800px) {
+  .css-1qgewj0-MuiGrid-root>.MuiGrid-item {
+    width: 90%;
+  }
 }
