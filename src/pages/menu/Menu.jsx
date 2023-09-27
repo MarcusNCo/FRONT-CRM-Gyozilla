@@ -91,7 +91,7 @@ const Menu = () => {
     } else if (category === "Boissons") {
       setSelected = setSelectedDrink;
     }
-
+  
     return items.map((item) => {
       let selectedItem;
       if (category === "Entrées") {
@@ -103,9 +103,13 @@ const Menu = () => {
       } else if (category === "Boissons") {
         selectedItem = selectedDrink;
       }
-
+  
       return (
-        <Box key={item.id} style={{ position: "relative" }}>
+        <Box 
+          key={item.id} 
+          style={{ position: "relative" }}
+          onClick={() => setSelected(item.id)}
+        >
           <div
             style={{
               display: "flex",
@@ -124,6 +128,7 @@ const Menu = () => {
               title={item.name}
               backgroundSize="contain"
               isProduct={false}
+              onButtonCardClick={() => {}}
             />
             <Radio
               sx={{ color: "##CDE8E7", "&.Mui-checked": { color: "#F8A500" } }}
@@ -137,6 +142,7 @@ const Menu = () => {
       );
     });
   };
+  
 
   const addToLocalStorage = () => {
     const foundStarter = productsByMenu.find(

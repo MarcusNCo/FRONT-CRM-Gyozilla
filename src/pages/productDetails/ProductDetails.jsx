@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Divider, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import CustomButton from "../../components/button/CustomButton";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import AddIcon from "@mui/icons-material/Add";

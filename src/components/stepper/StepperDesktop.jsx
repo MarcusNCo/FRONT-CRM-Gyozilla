@@ -70,7 +70,7 @@ export default function HorizontalLinearStepper() {
       const orderValues = {
         date_order: date,
         total_price: totalPrice,
-        id_status: 1,
+        id_status: 2,
         id_franchises: 1,
         id_customers: user.id,
         id_order_types: ordertype,

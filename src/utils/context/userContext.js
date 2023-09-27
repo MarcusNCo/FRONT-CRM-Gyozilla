@@ -53,10 +53,20 @@ const  UserContextProvider = (props) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token && !isLogged) {
+    if (token) {
       const decoded = jwt_decode(token);
-      setUser(decoded);
-      setIsLogged(true);
+      
+      const currentTime = Date.now() / 1000;
+      if (decoded.exp && decoded.exp < currentTime) {
+        localStorage.removeItem("token");
+        setIsLogged(false);
+        setUser({});
+      } else {
+        if (!isLogged) {
+          setUser(decoded);
+          setIsLogged(true);
+        }
+      }
     }
   }, [isLogged]);
 

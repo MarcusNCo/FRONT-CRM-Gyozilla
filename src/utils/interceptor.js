@@ -39,7 +39,6 @@ instance.interceptors.response.use(
         console.log(error.response)
         // Déconnexion de l'utilisateur et suppression du token
         localStorage.removeItem('token');
-        // window.location.href = '/login'; // rediriger vers la page de connexion
       }
       return Promise.reject(error);
   }

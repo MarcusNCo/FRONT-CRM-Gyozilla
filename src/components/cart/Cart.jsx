@@ -59,7 +59,7 @@ const Cart = () => {
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
           <Button
-            variant="contained"
+            color="inherit"
             onClick={(event) => removeCart(event)}
             sx={{
               width: "120px",
@@ -70,7 +70,7 @@ const Cart = () => {
             Vider
           </Button>
           <Button
-            variant="contained"
+            color="inherit"
             disabled={!cartItems.length}
             onClick={() => {
               if (isLogged) {

@@ -6,12 +6,10 @@ import {
   Divider,
   Typography,
   useTheme,
-  Button,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { updateOrder } from "../../utils/api-call/order";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -20,32 +18,20 @@ const Order = () => {
   const { user } = useContext(UserContext);
   const id = user.id;
 
-  const paiementClick = (id) => {
-    const values = {
-      id_status: 2,
-    };
-
-    updateOrder(id, values).catch((error) => {
-      console.log(error)
-    });
-  };
-
   useEffect(() => {
     getAllOrdersByCustomer(id)
       .then((response) => {
-        const ordersWithGroupedProducts = response.data.data.map((order) => {
+        const sortedOrders = response.data.data.sort((a, b) => new Date(b.date_order) - new Date(a.date_order));
+        
+        const ordersWithGroupedProducts = sortedOrders.map((order) => {
           const groupedProducts = {};
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
-
+  
             if (!groupedProducts[menuReference]) {
               groupedProducts[menuReference] = {
-                menu: lineItem.products.menu
-                  ? lineItem.products.menu.name
-                  : "noMenu",
-                price: lineItem.products.menu
-                  ? lineItem.products.menu.price
-                  : lineItem.products.price,
+                menu: menuReference !== "noMenu" ? lineItem.products.menu.name : "noMenu",
+                price: lineItem.products.price,
                 products: [],
               };
             }
@@ -65,6 +51,7 @@ const Order = () => {
         setLoading(false);
       });
   }, [id, loading]);
+  
 
   if (loading) {
     return (
@@ -174,21 +161,6 @@ const Order = () => {
             >
               {order.order_type.name}, pour un total de {order.total_price}€
             </Typography>
-            {order.id_status === 1 && 
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                onClick={() => {
-                  paiementClick(order.id)
-                  setLoading(true)
-                }}
-                sx={{ width: "fit-content", padding: "5px", margin: "5px" }}
-                variant=""
-                color="primary"
-              >
-                Passer au paiement
-              </Button>
-            </Box>
-            }
           </Box>
         ))}
       </Box>
