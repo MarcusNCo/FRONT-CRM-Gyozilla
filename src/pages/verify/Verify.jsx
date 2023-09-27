@@ -13,11 +13,10 @@ const Verify = () => {
     const [isVerified, setIsVerified] = useState(false)
 
     useEffect(() => {
-
         verifyUser(token)
             .then((response) => {
                 if (response.data.message === "Votre compte a été vérifié avec succès.") {
-                    setIsVerified(true)
+                    setIsVerified(true);
                 }
             })
             .catch((error) => {
@@ -37,14 +36,19 @@ const Verify = () => {
                 );
             });
     }, [token]);
-
-    if (isVerified) {
-        navigate("/login", {
-            state: {
-                successMessage: "Votre compte a été vérifié !",
-            }
-        })
-    }
+    
+    useEffect(() => {
+        if (isVerified) {
+            const timer = setTimeout(() => {
+                navigate("/login", {
+                    state: {
+                        successMessage: "Votre compte a été vérifié ! Vous pouvez maintenant vous connectez pour vous régalez !",
+                    }
+                });
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [isVerified, navigate]);
 
     return (
         <>

@@ -16,7 +16,6 @@ import CartContext from "../../utils/context/CartContext";
 
 const Menu = () => {
   const [productsByMenu, setProductsByMenu] = useState([]);
-  const [error, setError] = useState(null);
   const [selectedTypeMenu, setSelectedTypeMenu] = useState(1);
   const [selectedStarter, setSelectedStarter] = useState(null);
   const [selectedMain, setSelectedMain] = useState(null);
@@ -64,11 +63,10 @@ const Menu = () => {
     getAllProductByMenu(selectedTypeMenu)
       .then((res) => {
         setProductsByMenu(res.data.data);
-        setError(null);
       })
       .catch((error) => {
         setProductsByMenu([]);
-        setError(error);
+        console.log(error)
       });
   }, [selectedTypeMenu]);
 

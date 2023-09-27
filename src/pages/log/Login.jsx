@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -9,10 +9,11 @@ import { toast, ToastContainer } from "react-toastify";
 import CustomInput from "../../components/input/CustomInput";
 import logo from "../../images/gyozilla-logo.png";
 import { Box, useTheme } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../utils/context/UserContext";
 
 const Login = () => {
+  const location = useLocation();
   const { setIsLogged, shouldRedirectToOrder, setShouldRedirectToOrder } =
     useContext(UserContext);
   const initialValues = {
@@ -28,6 +29,21 @@ const Login = () => {
       .min(8, "Il faut 8 caractères minimum")
       .required("Mot de passe obligatoire"),
   });
+
+  useEffect(() => {
+    if (location.state?.successMessage) {
+      toast.success(location.state.successMessage, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [location.state]);
 
   const theme = useTheme();
   const navigate = useNavigate();
