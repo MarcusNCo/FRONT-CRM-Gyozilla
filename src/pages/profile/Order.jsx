@@ -16,10 +16,16 @@ const Order = () => {
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const { user } = useContext(UserContext);
-  const id = user.id;
+
+  const MENU_PRICES = {
+    "Menu Enfant": 8,
+    "Menu Petit Prix": 12,
+    "Menu Découverte": 18,
+    "Menu Gourmand": 25,
+  };
 
   useEffect(() => {
-    getAllOrdersByCustomer(id)
+    getAllOrdersByCustomer(user.id)
       .then((response) => {
         const sortedOrders = response.data.data.sort((a, b) => new Date(b.date_order) - new Date(a.date_order));
         
@@ -31,10 +37,12 @@ const Order = () => {
             if (!groupedProducts[menuReference]) {
               groupedProducts[menuReference] = {
                 menu: menuReference !== "noMenu" ? lineItem.products.menu.name : "noMenu",
-                price: lineItem.products.price,
+                price: menuReference !== "noMenu" ? MENU_PRICES[lineItem.products.menu.name] : lineItem.products.price,
                 products: [],
               };
             }
+
+
             groupedProducts[menuReference].products.push({
               name: lineItem.products.name,
               quantity: lineItem.quantity,
@@ -50,7 +58,7 @@ const Order = () => {
         console.log(error.response.data.message);
         setLoading(false);
       });
-  }, [id, loading]);
+  }, [user.id, loading]);
   
 
   if (loading) {

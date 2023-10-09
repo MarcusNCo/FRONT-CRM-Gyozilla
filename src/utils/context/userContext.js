@@ -52,13 +52,13 @@ const  UserContextProvider = (props) => {
   const [shouldRedirectToOrder, setShouldRedirectToOrder] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
     if (token) {
       const decoded = jwt_decode(token);
       
       const currentTime = Date.now() / 1000;
       if (decoded.exp && decoded.exp < currentTime) {
-        localStorage.removeItem("token");
+        window.localStorage.removeItem("token");
         setIsLogged(false);
         setUser({});
       } else {

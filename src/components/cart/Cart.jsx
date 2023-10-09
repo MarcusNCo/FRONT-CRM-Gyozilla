@@ -28,6 +28,7 @@ const Cart = () => {
         padding: "0 10px 0 10px",
         height: "400px",
         overflowY: "auto",
+        minWidth: "280px"
       }}
     >
       <Box

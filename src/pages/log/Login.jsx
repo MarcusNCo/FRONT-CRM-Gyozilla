@@ -78,7 +78,7 @@ const Login = () => {
         <Box className="containedLogin">
           <h2 className="loginTitle">Connexion</h2>
           <Formik
-            initialValues={initialValues} //transforme en state
+            initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
               login(values)
@@ -98,7 +98,6 @@ const Login = () => {
                   }
                 })
                 .catch((error) => {
-                  console.error(error.response.data.message);
                   if (error.response.data.message === "L'email n'existe pas") {
                     toast.error(
                       "Aucun utilisateur avec cet e-mail n'a été trouvé.",

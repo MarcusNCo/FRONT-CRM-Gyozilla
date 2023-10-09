@@ -59,7 +59,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
     navigate(-1);
   };
 
