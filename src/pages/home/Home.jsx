@@ -168,18 +168,18 @@ const Home = () => {
           />
         </Box>
         <Box className="titlePrez">
-          <h3 style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
+          <Typography variant="h4" style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
             Premier Fast - Food Asiatique sur Amiens
-          </h3>
+          </Typography>
         </Box>
         <Box className="description">
-          <p style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
+          <Typography variant="h7w" style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
             GYOZILLA est un fast-food asiatique, situé à Amiens. Venez découvrir
             la gastronomie japonaise et chinoise sur place ou tout simplement
             depuis chez vous. Nos livreurs sont équipés d'un terminal de
             paiement par CB. Modes de paiement acceptés : Carte Bancaire,
             espèces et Ticket Restaurant. Nous n'acceptons pas les chèques.
-          </p>
+          </Typography>
         </Box>
       </Box>
 
