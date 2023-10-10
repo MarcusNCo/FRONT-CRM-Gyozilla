@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('./utils/fonts/Manrope-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('./utils/fonts/Oswald-Regular.ttf')
+}
+
 /* Remove black border when click on a button with MUI */
 button:focus {
   outline: none !important;
@@ -61,9 +71,9 @@ body {
 }
 
 .css-10hburv-MuiTypography-root {
-  font-family: Oswald, sans-serif !important;
+  font-family: "Oswald", sans-serif !important;
 }
 
 #root>div.account>div.MuiBox-root.css-1bnzdrj>ul>li.MuiListItem-root.MuiListItem-gutters.css-g6myhf-MuiListItem-root>div>div.MuiListItemText-root.css-1gtp8j2-MuiListItemText-root>p {
-  font-family: Manrope, sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
 }

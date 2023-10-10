@@ -139,7 +139,7 @@ const ProductDetails = () => {
             height: "fit-content",
             "@media (max-width: 900px)": {
               width: "95%",
-              marginBottom: '10px'
+              marginBottom: "10px",
             },
             display: "flex",
             flexDirection: "column",
@@ -234,6 +234,7 @@ const ProductDetails = () => {
               </Typography>
               <Button
                 sx={{ alignSelf: "center", width: "fit-content" }}
+                aria-label="Ajouter au panier"
                 onClick={addToCart}
               >
                 Ajouter au panier

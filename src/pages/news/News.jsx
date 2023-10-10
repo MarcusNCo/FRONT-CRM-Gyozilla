@@ -157,7 +157,11 @@ const News = () => {
               }}
               className={"zoomEffect"}
             >
-              <Link to={`/news/${item.id}`} style={{ textDecoration: "none" }}>
+              <Link
+                aria-label="News"
+                to={`/news/${item.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Paper
                   elevation={5}
                   style={{

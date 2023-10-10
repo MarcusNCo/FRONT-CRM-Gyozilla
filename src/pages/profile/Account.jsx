@@ -11,7 +11,7 @@ import "./Profile.css";
 import { updateCustomer } from "../../utils/api-call/updapteCustomer";
 
 const Account = () => {
-  const { user, isLogged } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const initialValues = {
     lastname: "",
     firstname: "",
@@ -134,7 +134,13 @@ const Account = () => {
                     variant="outlined"
                   />
                   <ErrorMessage name="email" />
-                  <Link style={{ fontFamily: "Oswald, sans-serif" }} to="/forgot-password">Changer son mot de passe</Link>
+                  <Link
+                    aria-label="Changer mot de passe"
+                    style={{ fontFamily: "Oswald, sans-serif" }}
+                    to="/forgot-password"
+                  >
+                    Changer son mot de passe
+                  </Link>
                   <LoadingButton
                     type="submit"
                     loading={isSubmitting}

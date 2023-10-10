@@ -1,4 +1,4 @@
-import { createTheme, Typography } from "@mui/material";
+import { createTheme } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
 
@@ -139,7 +139,7 @@ const theme = createTheme({
           backgroundColor: "#F8A50050",
           alignSelf: "center",
           justifySelf: "center",
-          fontSize: "2rem",          
+          fontSize: "2rem",
           fontFamily: "Manrope, sans-serif",
           [bp.down("lg")]: {
             fontSize: "1.8rem",
@@ -188,7 +188,7 @@ const theme = createTheme({
         root: {
           color: "#000000",
           backgroundColor: "#F8A500",
-          fontSize: "1.0rem",
+          // fontSize: "1.0rem",
           fontFamily: "Oswald, sans-serif",
           "&:hover": {
             color: "#000000",
@@ -231,17 +231,15 @@ const theme = createTheme({
         },
       },
     },
-  },  
+  },
   //        Style des typographies        //
-
   MuiInputBase: {
     styleOverrides: {
       input: {
         fontFamily: "Oswald, sans-serif",
       },
     },
-  },  
-
+  },
   typography: {
     h2: {
       fontFamily: "Oswald, sans-serif",

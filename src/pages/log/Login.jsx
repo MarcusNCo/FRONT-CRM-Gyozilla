@@ -172,8 +172,26 @@ const Login = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  <Link style={{ paddingBottom:"10px", fontFamily: "Manrope, sans-serif", }} to="/forgot-password">Mot de passe oublié ?</Link>
-                  <Link style={{ paddingBottom:"20px", fontFamily: "Manrope, sans-serif", }} to="/sign-in">Pas encore inscrit ? Faites le ici !</Link>
+                  <Link
+                    aria-label="Mot de passe oublié"
+                    style={{
+                      paddingBottom: "10px",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                    to="/forgot-password"
+                  >
+                    Mot de passe oublié ?
+                  </Link>
+                  <Link
+                    aria-label="Inscription"
+                    style={{
+                      paddingBottom: "20px",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                    to="/sign-in"
+                  >
+                    Pas encore inscrit ? Faites le ici !
+                  </Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Connexion
                   </LoadingButton>

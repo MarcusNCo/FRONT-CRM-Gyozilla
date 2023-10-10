@@ -12,7 +12,7 @@ import CustomButton from "../../components/button/CustomButton";
 
 import styles from "./Products.module.css";
 
-import nouveautes from "../../images/badge nouveautesFichier 125.png";
+import nouveautes from "../../images/badge nouveautesFichier 125.webp";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -48,37 +48,37 @@ const Products = () => {
       id: 1,
       name: "Nouveautés",
       description: "Découvrez nos nouveautés",
-      image: "image/badge-nouveautes.png",
+      image: "image/badge-nouveautes.webp",
     },
     {
       id: 2,
       name: "Menus",
       description: "Découvrez nos menus",
-      image: "image/nouveautes.jpg",
+      image: "image/nouveautes.webp",
     },
     {
       id: 3,
       name: "Entrées",
       description: "Découvrez nos entrées",
-      image: "image/entrees.jpg",
+      image: "image/entrees.webp",
     },
     {
       id: 4,
       name: "Plats",
       description: "Découvrez nos plats",
-      image: "image/plats.jpg",
+      image: "image/plats.webp",
     },
     {
       id: 5,
       name: "Desserts",
       description: "Découvrez nos desserts",
-      image: "image/desserts.jpg",
+      image: "image/desserts.webp",
     },
     {
       id: 6,
       name: "Boissons",
       description: "Découvrez nos boissons",
-      image: "image/boissons.jpg",
+      image: "image/boissons.webp",
     },
   ];
 

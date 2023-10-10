@@ -81,8 +81,9 @@ export default function VerticalLinearStepper() {
 
       for (const itemId in cart) {
         const item = cart[itemId];
-      
-        if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
+
+        if (item.name.toUpperCase().includes("MENU")) {
+          // Si l'article est un menu
           for (const product of item.products) {
             const orderLineValues = {
               id_orders: orderId,
@@ -92,7 +93,8 @@ export default function VerticalLinearStepper() {
             };
             await createOrderLine(orderLineValues);
           }
-        } else { // Si l'article n'est pas un menu
+        } else {
+          // Si l'article n'est pas un menu
           const orderLineValues = {
             id_orders: orderId,
             id_products: item.id,
@@ -236,25 +238,32 @@ export default function VerticalLinearStepper() {
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
-                      <Typography variant="body1" color="initial" component="div">
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        component="div"
+                      >
                         Produits du menu:
-                        <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
+                        <List sx={{ paddingTop: "0", paddingBottom: "0" }}>
                           {item.products.map((product) => (
-                            <ListItem sx={{  
-                              fontFamily: "Garamond",
-                              fontWeight: "400",
-                              fontSize: "1rem",
-                              lineHeight: "1.5",
-                              paddingLeft: "0",
-                              paddingBottom: "0",
-                              paddingRight: "0",
-                            }} 
-                            key={product.id}>- {product.name}</ListItem>
+                            <ListItem
+                              sx={{
+                                fontFamily: "Garamond",
+                                fontWeight: "400",
+                                fontSize: "1rem",
+                                lineHeight: "1.5",
+                                paddingLeft: "0",
+                                paddingBottom: "0",
+                                paddingRight: "0",
+                              }}
+                              key={product.id}
+                            >
+                              - {product.name}
+                            </ListItem>
                           ))}
                         </List>
                       </Typography>
                     )}
-
                   </Box>
                 </Box>
               ))}
@@ -439,6 +448,7 @@ export default function VerticalLinearStepper() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
+                    aria-label="Valider ou continuer"
                     sx={{ mt: 1, mr: 1 }}
                   >
                     {index === steps.length - 1 ? "Valider" : "Continuer"}
@@ -446,6 +456,7 @@ export default function VerticalLinearStepper() {
                   <Button
                     disabled={index === 0}
                     onClick={handleBack}
+                    aria-label="Retour"
                     sx={{ mt: 1, mr: 1 }}
                   >
                     Retour
@@ -458,7 +469,15 @@ export default function VerticalLinearStepper() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography sx={{ mt: 2, mb: 1, color: "black", fontSize: "1.2rem", textAlign: "center" }}>
+          <Typography
+            sx={{
+              mt: 2,
+              mb: 1,
+              color: "black",
+              fontSize: "1.2rem",
+              textAlign: "center",
+            }}
+          >
             Merci d'avoir passé commande chez nous !<br />
             Retrouvez vos informations de la commande sur votre compte.
           </Typography>

@@ -25,7 +25,6 @@ import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 
 const Header = () => {
-  const [auth, setAuth] = useState(true);
   const [cartOpen, setCartOpen] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
@@ -115,56 +114,54 @@ const Header = () => {
                     justifyContent: "center",
                   }}
                 ></Typography>
-                {auth && (
-                  <Box style={{ display: "flex" }}>
-                    {location.pathname !== "/order" && (
-                      <Badge
-                        badgeContent={cartItems.length}
-                        variant="standard"
-                        overlap="circular"
-                        anchorOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        sx={{
-                          ".MuiBadge-badge": {
-                            top: "10px",
-                          },
-                          width: "48px",
-                          height: "48px",
-                          padding: "8px",
-                          marginRight: "8px",
-                        }}
-                      >
-                        <ShoppingCartIcon
-                          sx={{
-                            width: "32px",
-                            height: "32px",
-                          }}
-                          color="inherit"
-                          aria-label="cart of current user"
-                          aria-controls={null}
-                          aria-haspopup="true"
-                          onClick={handleCartOpen}
-                        />
-                      </Badge>
-                    )}
-                    <IconButton
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      onClick={handleMenu}
-                      color="inherit"
+                <Box style={{ display: "flex" }}>
+                  {location.pathname !== "/order" && (
+                    <Badge
+                      badgeContent={cartItems.length}
+                      variant="standard"
+                      overlap="circular"
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      sx={{
+                        ".MuiBadge-badge": {
+                          top: "10px",
+                        },
+                        width: "48px",
+                        height: "48px",
+                        padding: "8px",
+                        marginRight: "8px",
+                      }}
                     >
-                      <AccountCircle
+                      <ShoppingCartIcon
                         sx={{
                           width: "32px",
                           height: "32px",
                         }}
+                        color="inherit"
+                        aria-label="cart of current user"
+                        aria-controls={null}
+                        aria-haspopup="true"
+                        onClick={handleCartOpen}
                       />
-                    </IconButton>
-                  </Box>
-                )}
+                    </Badge>
+                  )}
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <AccountCircle
+                      sx={{
+                        width: "32px",
+                        height: "32px",
+                      }}
+                    />
+                  </IconButton>
+                </Box>
               </Toolbar>
             </AppBar>
             <Box
@@ -196,25 +193,53 @@ const Header = () => {
           }}
         >
           <Box className="header-left">
-            <Link id="gyozilla" to={"/"}>
+            <Link aria-label="Home" id="gyozilla" to={"/"}>
               <img src={Logo} alt="Logo de Gyozilla" />
             </Link>
-            <Link className="menu" to="/products" style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}>
+            <Link
+              className="menu"
+              to="/products"
+              aria-label="La carte"
+              style={{
+                padding: "0",
+                fontFamily: "Oswald, sans-serif",
+                fontVariant: "all-small-caps",
+                fontSize: "27px!important",
+              }}
+            >
               La carte
             </Link>
             <Link
               className="menu"
               to="/nosengagements"
-              style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}
+              aria-label="Nos engagements"
+              style={{
+                padding: "0",
+                fontFamily: "Oswald, sans-serif",
+                fontVariant: "all-small-caps",
+                fontSize: "27px!important",
+              }}
             >
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact" style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}>
+            <Link
+              className="menu"
+              to="/contact"
+              aria-label="Contactez-nous"
+              style={{
+                padding: "0",
+              }}
+            >
               Contactez-nous
             </Link>
           </Box>
           <Box className="header-right">
-            <Link className="containIcon" to={"/find"} onClick={null}>
+            <Link
+              aria-label="Trouvez-nous"
+              className="containIcon"
+              to={"/find"}
+              onClick={null}
+            >
               <LocationOnIcon
                 className="logIcon"
                 style={{ fontSize: 35, color: "#739B94" }}

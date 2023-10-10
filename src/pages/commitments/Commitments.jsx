@@ -9,12 +9,12 @@ import {
   Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
-import example1 from '../../images/example1.jpg'
-import team from '../../images/example.jpg'
-import example2 from '../../images/example2.jpg'
-import boissons from '../../images/boissons.jpg'
-import plats from '../../images/plats.jpg'
-import desserts from '../../images/desserts.jpg'
+import example1 from '../../images/example1.webp'
+import team from '../../images/example.webp'
+import example2 from '../../images/example2.webp'
+import boissons from '../../images/boissons.webp'
+import plats from '../../images/plats.webp'
+import desserts from '../../images/desserts.webp'
 
 const Commitments = () => {
   return (

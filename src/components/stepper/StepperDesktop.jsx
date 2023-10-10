@@ -45,9 +45,8 @@ export default function HorizontalLinearStepper() {
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCVV] = useState("");
 
-
   // const token = window.localStorage.getItem("token");
-  // const 
+  // const
 
   const saveOrder = async () => {
     try {
@@ -490,6 +489,7 @@ export default function HorizontalLinearStepper() {
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
+              aria-label="Retour"
               onClick={
                 activeStep === 0 ? () => navigate("/products") : handleBack
               }
@@ -500,6 +500,7 @@ export default function HorizontalLinearStepper() {
             <Box sx={{ flex: "1 1 auto" }} />
             <Button
               onClick={handleNext}
+              aria-label="Valider ou continuer"
               disabled={activeStep === 1 && deliveryType === ""}
             >
               {activeStep === steps.length - 1 ? "Valider" : "Continuer"}
@@ -519,10 +520,7 @@ export default function HorizontalLinearStepper() {
           margin: "0 auto 0 auto",
         }}
       >
-        <DialogTitle>
-          Information de paiement
-          "Fake"
-        </DialogTitle>
+        <DialogTitle>Information de paiement "Fake"</DialogTitle>
         <DialogContent>
           <form>
             <TextField
@@ -560,6 +558,7 @@ export default function HorizontalLinearStepper() {
             />
             <DialogActions>
               <Button
+                aria-label="Annuler"
                 onClick={() => {
                   handleClose();
                   setActiveStep(activeStep - 1);
@@ -568,7 +567,7 @@ export default function HorizontalLinearStepper() {
               >
                 Annuler
               </Button>
-              <Button onClick={handleClose} color="primary">
+              <Button aria-label="Payer" onClick={handleClose} color="primary">
                 Payer
               </Button>
             </DialogActions>

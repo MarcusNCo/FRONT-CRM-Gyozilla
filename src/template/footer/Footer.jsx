@@ -10,8 +10,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import styled from "@mui/material/styles/styled";
 import logo from "../../images/gyozilla-ecriture.png";
-import android from "../../images/appstore-300x101.png";
-import apple from "../../images/Play_Store.png";
+import android from "../../images/appstore-300x101.webp";
+import apple from "../../images/Play_Store.webp";
 import "./Footer.css";
 
 const Footer = (props) => {
@@ -202,6 +202,7 @@ const Footer = (props) => {
                 <Link
                   href="#"
                   underline="none"
+                  aria-label="Carte"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -213,6 +214,7 @@ const Footer = (props) => {
                 <Link
                   href="#"
                   underline="none"
+                  aria-label="Nos engagements"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -224,6 +226,7 @@ const Footer = (props) => {
                 <Link
                   href="/news"
                   underline="none"
+                  aria-label="Actualités"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -239,6 +242,7 @@ const Footer = (props) => {
                 <Link
                   href="/recrutement"
                   underline="none"
+                  aria-label="Recrutement"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -250,6 +254,7 @@ const Footer = (props) => {
                 <Link
                   href="/mentionslegales"
                   underline="none"
+                  aria-label="Mention légales"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -262,6 +267,7 @@ const Footer = (props) => {
                 <Link
                   href="/contact"
                   underline="none"
+                  aria-label="Contactez-nous"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -271,13 +277,6 @@ const Footer = (props) => {
                 >
                   Contactez-nous
                 </Link>
-                {/* <CustomButton
-                  text="Contactez-nous"
-                  variant="contained"
-                  height="40px"
-                  fontSize="0.8rem"
-                  onClick={}
-                /> */}
               </LinkContainer>
             </Grid>
           </Grid>
@@ -292,6 +291,7 @@ const Footer = (props) => {
               href="https://www.mangerbouger.fr/"
               target="_blank"
               rel="noopener"
+              aria-label="MangerBouger"
               sx={{
                 padding: "0 0 0 5px !important",
                 fontSize: "0.9rem !important",

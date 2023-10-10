@@ -28,7 +28,7 @@ const Cart = () => {
         padding: "0 10px 0 10px",
         height: "400px",
         overflowY: "auto",
-        minWidth: "280px"
+        minWidth: "280px",
       }}
     >
       <Box
@@ -62,6 +62,7 @@ const Cart = () => {
           <Button
             color="inherit"
             onClick={(event) => removeCart(event)}
+            aria-label="Vider"
             sx={{
               width: "120px",
               height: "30px",
@@ -73,6 +74,7 @@ const Cart = () => {
           <Button
             color="inherit"
             disabled={!cartItems.length}
+            aria-label="Confirmer"
             onClick={() => {
               if (isLogged) {
                 navigate("/order");

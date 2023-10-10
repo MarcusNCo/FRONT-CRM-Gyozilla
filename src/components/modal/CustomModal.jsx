@@ -1,16 +1,16 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -28,7 +28,9 @@ function ChildModal() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Open Child Modal</Button>
+      <Button aria-label="Open modal" onClick={handleOpen}>
+        Open Child Modal
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -40,7 +42,9 @@ function ChildModal() {
           <p id="child-modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button aria-label="Close modal" onClick={handleClose}>
+            Close Child Modal
+          </Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -58,7 +62,9 @@ export default function NestedModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button aria-label="Open modal" onClick={handleOpen}>
+        Open modal
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

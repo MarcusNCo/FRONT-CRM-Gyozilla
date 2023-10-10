@@ -132,6 +132,7 @@ export default function MenuBurger({ onCloseMenu }) {
           <Link
             to="/nosengagements"
             className="link-container"
+            aria-label="Nos engagements"
             onClick={handleLinkClick}
           >
             <Box
@@ -153,6 +154,7 @@ export default function MenuBurger({ onCloseMenu }) {
           <Link
             to="/contact"
             className="link-container"
+            aria-label="Contact"
             onClick={handleLinkClick}
           >
             <Box
@@ -171,7 +173,12 @@ export default function MenuBurger({ onCloseMenu }) {
             </Box>
           </Link>
           <Divider />
-          <Link to="/find" className="link-container" onClick={handleLinkClick}>
+          <Link
+            to="/find"
+            aria-label="Trouvez-nous"
+            className="link-container"
+            onClick={handleLinkClick}
+          >
             <Box
               className="link-hover"
               sx={{
