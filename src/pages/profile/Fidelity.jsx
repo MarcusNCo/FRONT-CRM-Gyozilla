@@ -94,15 +94,14 @@ const Fidelity = () => {
           </Box>
 
           <Box
-            sx={{ 
-              height: "120px", 
-              display: "flex", 
+            sx={{
+              height: "120px",
+              display: "flex",
               flexDirection: "column",
               [theme.breakpoints.down("sm")]: {
                 padding: "0 12px 0 12px",
                 height: "fit-content",
               },
-            
             }}
           >
             <Typography variant="h7bb" color="initial">
