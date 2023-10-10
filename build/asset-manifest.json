@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "https://gyozilla-restaurants.fr/static/css/main.47889abd.css",
+    "main.css": "https://gyozilla-restaurants.fr/static/css/main.fa0eef4c.css",
     "main.js": "https://gyozilla-restaurants.fr/static/js/main.54f50525.js",
     "static/js/787.97d9a0e3.chunk.js": "https://gyozilla-restaurants.fr/static/js/787.97d9a0e3.chunk.js",
     "static/media/gyozilla-logo.png": "https://gyozilla-restaurants.fr/static/media/gyozilla-logo.065e8e8f8ce4bb83e176.png",
@@ -32,12 +32,12 @@
     "static/media/color.png": "https://gyozilla-restaurants.fr/static/media/color.6441e63a57ccc5105bad.png",
     "static/media/appstore-300x101.webp": "https://gyozilla-restaurants.fr/static/media/appstore-300x101.21ff0e39b59e8aa16f1e.webp",
     "index.html": "https://gyozilla-restaurants.fr/index.html",
-    "main.47889abd.css.map": "https://gyozilla-restaurants.fr/static/css/main.47889abd.css.map",
+    "main.fa0eef4c.css.map": "https://gyozilla-restaurants.fr/static/css/main.fa0eef4c.css.map",
     "main.54f50525.js.map": "https://gyozilla-restaurants.fr/static/js/main.54f50525.js.map",
     "787.97d9a0e3.chunk.js.map": "https://gyozilla-restaurants.fr/static/js/787.97d9a0e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.47889abd.css",
+    "static/css/main.fa0eef4c.css",
     "static/js/main.54f50525.js"
   ]
 }
