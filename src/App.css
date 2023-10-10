@@ -48,6 +48,7 @@ footer {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -57,4 +58,12 @@ body {
   margin: 0;
   padding-right: 0 !important;
   overflow: auto !important;
+}
+
+.css-10hburv-MuiTypography-root {
+  font-family: Oswald, sans-serif !important;
+}
+
+#root>div.account>div.MuiBox-root.css-1bnzdrj>ul>li.MuiListItem-root.MuiListItem-gutters.css-g6myhf-MuiListItem-root>div>div.MuiListItemText-root.css-1gtp8j2-MuiListItemText-root>p {
+  font-family: Manrope, sans-serif !important;
 }

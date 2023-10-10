@@ -49,8 +49,9 @@ export default function CustomListItemProducts({
             selected={selected === 1 || activeCategory === 1}
             className={selected === 1 || activeCategory === 1 ? "active" : null}
             onClick={(e) => handleClick(e, 1)}
+            sx={{}}
           >
-            <ListItemText sx={{ textAlign: "center" }} primary="Nouveautés" />
+            <ListItemText sx={{ textAlign: "center", fontFamily: "Oswald, sans-serif", }} primary="Nouveautés" />
           </ListItemButton>
           <Divider />
           <ListItemButton

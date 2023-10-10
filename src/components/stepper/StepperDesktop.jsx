@@ -230,7 +230,7 @@ export default function HorizontalLinearStepper() {
                       marginLeft: "50px",
                     }}
                   >
-                    <Typography variant="hboxb" color="initial">
+                    <Typography variant="hboxbnb" color="initial">
                       {item.name}
                     </Typography>
 
