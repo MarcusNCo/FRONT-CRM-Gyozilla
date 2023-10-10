@@ -199,17 +199,17 @@ const Header = () => {
             <Link id="gyozilla" to={"/"}>
               <img src={Logo} alt="Logo de Gyozilla" />
             </Link>
-            <Link className="menu" to="/products" style={{ padding: "0" }}>
+            <Link className="menu" to="/products" style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}>
               La carte
             </Link>
             <Link
               className="menu"
               to="/nosengagements"
-              style={{ padding: "0" }}
+              style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}
             >
               Nos engagements
             </Link>
-            <Link className="menu" to="/contact" style={{ padding: "0" }}>
+            <Link className="menu" to="/contact" style={{ padding: "0", fontFamily: 'Manrope, sans-serif' }}>
               Contactez-nous
             </Link>
           </Box>

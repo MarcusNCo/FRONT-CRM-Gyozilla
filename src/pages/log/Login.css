@@ -28,6 +28,7 @@
 
 .loginTitle {
   color: #5f8d85;
+  font-family: Oswald, sans-serif;
 }
 
 @media (min-width: 900px) {

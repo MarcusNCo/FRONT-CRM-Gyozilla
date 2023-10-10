@@ -172,8 +172,8 @@ const Login = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  <Link style={{ paddingBottom:"10px" }} to="/forgot-password">Mot de passe oublié ?</Link>
-                  <Link style={{ paddingBottom:"20px" }} to="/sign-in">Pas encore inscrit ? Faites le ici !</Link>
+                  <Link style={{ paddingBottom:"10px", fontFamily: "Manrope, sans-serif", }} to="/forgot-password">Mot de passe oublié ?</Link>
+                  <Link style={{ paddingBottom:"20px", fontFamily: "Manrope, sans-serif", }} to="/sign-in">Pas encore inscrit ? Faites le ici !</Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Connexion
                   </LoadingButton>

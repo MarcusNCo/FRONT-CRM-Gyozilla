@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { LoadingButton } from "@mui/lab";
 import CustomInput from "../../components/input/CustomInput";
 import { Box, useTheme } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./Profile.css";
 import { updateCustomer } from "../../utils/api-call/updapteCustomer";
@@ -25,7 +25,6 @@ const Account = () => {
   });
 
   const theme = useTheme();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -135,7 +134,7 @@ const Account = () => {
                     variant="outlined"
                   />
                   <ErrorMessage name="email" />
-                  <Link to="/forgot-password">Changer son mot de passe</Link>
+                  <Link style={{ fontFamily: "Oswald, sans-serif" }} to="/forgot-password">Changer son mot de passe</Link>
                   <LoadingButton
                     type="submit"
                     loading={isSubmitting}

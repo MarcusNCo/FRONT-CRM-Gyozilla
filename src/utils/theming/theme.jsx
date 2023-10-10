@@ -1,6 +1,7 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Typography } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
+
 const bp = createBreakpoints({
   values: {
     xs: 0,
@@ -24,7 +25,7 @@ const theme = createTheme({
           },
           "& label": {
             color: "black",
-            fontFamily: "Garamond",
+            fontFamily: "Manrope, sans-serif",
           },
           "& .MuiInput-underline:after": {
             borderBottomColor: "#5F8D85",
@@ -138,7 +139,8 @@ const theme = createTheme({
           backgroundColor: "#F8A50050",
           alignSelf: "center",
           justifySelf: "center",
-          fontSize: "2rem",
+          fontSize: "2rem",          
+          fontFamily: "Manrope, sans-serif",
           [bp.down("lg")]: {
             fontSize: "1.8rem",
             padding: "8px",
@@ -158,6 +160,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1.0rem",
+          fontFamily: "Oswald, sans-serif",
           [bp.down("lg")]: {
             fontSize: "0.8rem",
             padding: "8px",
@@ -186,6 +189,7 @@ const theme = createTheme({
           color: "#000000",
           backgroundColor: "#F8A500",
           fontSize: "1.0rem",
+          fontFamily: "Oswald, sans-serif",
           "&:hover": {
             color: "#000000",
             backgroundColor: "#F8A50099",
@@ -218,160 +222,176 @@ const theme = createTheme({
   MuiPaginationItem: {
     styleOverrides: {
       page: {
-        '&&.Mui-selected': {
-          backgroundColor: '#5F8D85',
-          color: 'white',
+        "&&.Mui-selected": {
+          backgroundColor: "#5F8D85",
+          color: "white",
         },
-        '&&.Mui-selected:hover': {
-          backgroundColor: '#5F8D85',
+        "&&.Mui-selected:hover": {
+          backgroundColor: "#5F8D85",
         },
       },
     },
-  },
+  },  
   //        Style des typographies        //
+
+  MuiInputBase: {
+    styleOverrides: {
+      input: {
+        fontFamily: "Oswald, sans-serif",
+      },
+    },
+  },  
+
   typography: {
-    fontFamily: "Garamond",
+    h2: {
+      fontFamily: "Oswald, sans-serif",
+    },
+    h3: {
+      fontFamily: "Oswald, sans-serif",
+    },
+    h4: {
+      fontFamily: "Oswald, sans-serif",
+    },
     h5: {
       color: "#F8A500",
       fontSize: "4rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     h6: {
       color: "#F8A500",
       fontSize: "2.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     h6g: {
       color: "#5F8D85",
       fontSize: "2.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     h6b: {
       color: "#000",
       fontSize: "2.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     h6bm: {
       color: "#000",
       fontSize: "2.0rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     hbox: {
       color: "#F8A500",
       fontSize: "1.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
     },
     hboxnb: {
       color: "#000",
       fontSize: "1.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     hboxb: {
       color: "#000000",
       fontSize: "1.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
+    },
+    hboxbnb: {
+      color: "#000000",
+      fontSize: "1.5rem",
+      fontFamily: "Manrope, sans-serif",
     },
     hboxg: {
       color: "#5F8D85",
       fontSize: "1.5rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
     },
     h7: {
       color: "#F8A500",
       fontSize: "1.2rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
     },
     h7b: {
       color: "#000000",
       fontSize: "1.2rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
     },
     h7g: {
       color: "#5F8D85",
       fontSize: "2.0rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       fontWeight: "bold",
       marginBottom: "10px",
     },
     h7bnw: {
       color: "#000000",
       fontSize: "1.2rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     h7w: {
       color: "#EAEAEA",
       fontSize: "1.0rem",
+      fontFamily: "Manrope, sans-serif",
     },
     h7bb: {
       color: "#000000",
       fontSize: "1.0rem",
+      fontFamily: "Manrope, sans-serif",
     },
     h7wg: {
       color: "#EAEAEA",
       fontSize: "1.0rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     h8b: {
       color: "#000000",
       fontSize: "0.9rem",
-      fontFamily: "Garamond",
-      fontWeight: "bold",
+      fontFamily: "Manrope, sans-serif",
     },
     h8bn: {
       color: "#000000",
       fontSize: "1.0rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     h9g: {
       color: "#5F8D85",
       fontSize: "1.1rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       marginBottom: "10px",
       paddingLeft: "10px",
     },
     h9b: {
       color: "#000",
       fontSize: "1.1rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
       marginBottom: "10px",
       paddingLeft: "10px",
     },
     h9bwpm: {
       color: "#000",
       fontSize: "1.1rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     subTitle: {
       color: "#5F8D85",
       fontSize: "2rem",
-      fontFamily: "Garamond",
+      fontFamily: "Manrope, sans-serif",
     },
     p: {
       color: "#EAEAEA",
       fontSize: "0.9rem",
-      fontFamily: "Garamond",
-    },
-    "@font-face": {
-      fontFamily: "Garamond",
-      src: 'url("../fonts/Nunito-Regular.ttf") format("truetype")',
-      fontWeight: "normal",
-      fontStyle: "normal",
-      fontDisplay: "swap",
+      fontFamily: "Manrope, sans-serif",
     },
   },
   palette: {

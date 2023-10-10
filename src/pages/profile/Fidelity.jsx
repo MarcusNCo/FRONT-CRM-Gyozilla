@@ -105,7 +105,7 @@ const Fidelity = () => {
             
             }}
           >
-            <Typography variant="body1" color="initial">
+            <Typography variant="h7bb" color="initial">
               50
               <Box
                 component="img"
@@ -119,7 +119,7 @@ const Fidelity = () => {
               />
               = 5€ de réduction déduit de votre prochaine commande
             </Typography>
-            <Typography variant="body1" color="initial">
+            <Typography variant="h7bb" color="initial">
               100
               <Box
                 component="img"
@@ -133,7 +133,7 @@ const Fidelity = () => {
               />
               = 10€ de réduction déduit de votre prochaine commande
             </Typography>
-            <Typography variant="body1" color="initial">
+            <Typography variant="h7bb" color="initial">
               300
               <Box
                 component="img"
@@ -147,7 +147,7 @@ const Fidelity = () => {
               />
               = 50€ de réduction déduit de votre prochaine commande
             </Typography>
-            <Typography variant="body1" color="initial">
+            <Typography variant="h7bb" color="initial">
               600
               <Box
                 component="img"

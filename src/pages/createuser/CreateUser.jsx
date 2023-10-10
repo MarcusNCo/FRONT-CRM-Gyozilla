@@ -162,7 +162,7 @@ const CreateUser = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  <Link style={{ paddingBottom:"20px" }} to="/login">Déjà inscrit ?</Link>
+                  <Link style={{ paddingBottom:"20px", fontFamily: "Manrope, sans-serif", }} to="/login">Déjà inscrit ?</Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Inscription
                   </LoadingButton>

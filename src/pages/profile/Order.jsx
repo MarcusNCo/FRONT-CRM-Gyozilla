@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
@@ -33,7 +34,6 @@ const Order = () => {
           const groupedProducts = {};
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
-  
             if (!groupedProducts[menuReference]) {
               groupedProducts[menuReference] = {
                 menu: menuReference !== "noMenu" ? lineItem.products.menu.name : "noMenu",
@@ -41,8 +41,6 @@ const Order = () => {
                 products: [],
               };
             }
-
-
             groupedProducts[menuReference].products.push({
               name: lineItem.products.name,
               quantity: lineItem.quantity,
