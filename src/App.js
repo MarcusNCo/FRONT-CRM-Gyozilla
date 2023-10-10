@@ -10,7 +10,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import RoutesConfig from "./routes";
 import React from "react";
 import UserContextProvider from "./utils/context/UserContext";
-
+import ScrollToTop from "./components/scrolltop/ScrollTop";
 
 const App = () => {
   return (
@@ -18,6 +18,7 @@ const App = () => {
       <ThemeProvider theme={defaultTheme}>
         <UserContextProvider>
           <Router>
+            <ScrollToTop />
             <Header />
             <RoutesConfig />
             <Footer />

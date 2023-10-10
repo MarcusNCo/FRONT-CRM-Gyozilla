@@ -1,10 +1,8 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useRef, useState } from "react";
 
-// import backgroundImageHome from "../../images/backgroundHomePage.webp";
 import backgroundImageHome from "../../images/gyozilla_restaurant.webp";
-// import backgroundImageHomeMobile from "../../images/backgroundHomePage-Mobile-min.webp";
-import backgroundImageHomeMobile from "../../images/gyozilla_restaurant _mobile.webp";
+import backgroundImageHomeMobile from "../../images/gyozilla_restaurant_mobile.webp";
 import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
 import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
 import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
@@ -20,11 +18,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { getLastThreeNews } from "../../utils/api-call/news";
 import CustomButton from "../../components/button/CustomButton";
 
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+}
+
 const Home = () => {
   const [src, setSrc] = useState(backgroundImageHome);
   const [allNews, setAllNews] = useState([]);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const isMobile = isMobileDevice();
   const cardHomepages = [
     {
       id: 1,
@@ -50,24 +54,25 @@ const Home = () => {
     getLastThreeNews()
       .then((res) => {
         setAllNews(res.data);
-        setError(null);
       })
       .catch((error) => {
         setAllNews([]);
-        setError(error);
+        console.log(error);
       });
   }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const setProperImage = () => {
       const width = window.innerWidth;
       if (width <= 992) {
         setSrc(backgroundImageHomeMobile);
       } else {
         setSrc(backgroundImageHome);
       }
-    });
-    return () => window.removeEventListener("resize", null);
+    };
+    setProperImage();
+    window.addEventListener("resize", setProperImage);
+    return () => window.removeEventListener("resize", setProperImage);
   }, []);
 
   const productDetailsRef = useRef(null);
@@ -87,7 +92,6 @@ const Home = () => {
         <img
           src={src}
           alt="backgroundImageHome"
-          style={{ objectFit: "cover", objectPosition: "67% center" }}
         />
 
         {/* Logo */}
@@ -193,15 +197,28 @@ const Home = () => {
           container
           className="gridContainer"
           spacing={5}
-          sx={{ justifyContent: "center" }}
+          sx={{
+            justifyContent: "center",
+          }}
         >
-          {Array.isArray(allNews) &&
-            allNews.map((news) => {
-              return (
-                <Grid item lg={4} md={4} key={news.id} className={"zoomEffect"}>
-                  <Link
-                    to={`news/${news.id}`}
-                    style={{ textDecoration: "none" }}
+          {allNews.map((news) => {
+            return (
+              <Grid
+                item
+                lg={4}
+                md={4}
+                key={news.id}
+                className={"zoomEffect"}
+                style={{ width: isMobile ? "90%" : "auto" }}
+              >
+                <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
+                  <Paper
+                    elevation={5}
+                    style={{
+                      borderRadius: "20px",
+                      height: "fit-content",
+                      marginBottom: "15px",
+                    }}
                   >
                     <Paper
                       elevation={5}

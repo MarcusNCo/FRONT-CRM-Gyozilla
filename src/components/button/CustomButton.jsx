@@ -14,6 +14,7 @@ const CustomButton = ({
   backgroundColor,
   margin,
   padding,
+  type
 }) => {
   return (
     <Button
@@ -29,6 +30,7 @@ const CustomButton = ({
         margin: margin,
         padding: padding,
       }}
+      type={type}
     >
       {text}
     </Button>
@@ -36,3 +38,4 @@ const CustomButton = ({
 };
 
 export default CustomButton;
+

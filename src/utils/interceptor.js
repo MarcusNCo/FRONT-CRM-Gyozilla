@@ -13,7 +13,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
         // Récupération du token depuis le local storage
-        const token = localStorage.getItem("token");
+        const token = window.localStorage.getItem("token");
 
         // Si il y a un token on l'ajoute dans l'en-tête de la requête
         if (token) {
@@ -30,7 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     (response) => {
       if (response.data.message === 'Authentification réussi') {
-        localStorage.setItem('token', response.data.token)
+        window.localStorage.setItem('token', response.data.token)
       }
       return response;
     },
@@ -38,8 +38,7 @@ instance.interceptors.response.use(
       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
         console.log(error.response)
         // Déconnexion de l'utilisateur et suppression du token
-        localStorage.removeItem('token');
-        // window.location.href = '/login'; // rediriger vers la page de connexion
+        // localStorage.removeItem('token');
       }
       return Promise.reject(error);
   }

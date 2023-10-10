@@ -47,7 +47,7 @@ export default function VerticalLinearStepper() {
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
-      const token = window.localStorage.getItem("token");
+      // const token = window.localStorage.getItem("token");
       const date = new Date().toISOString();
 
       let ordertype = 0;
@@ -75,7 +75,7 @@ export default function VerticalLinearStepper() {
         id_order_types: ordertype,
       };
 
-      const orderResponse = await createOrder(orderValues, token);
+      const orderResponse = await createOrder(orderValues);
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
 
@@ -90,7 +90,7 @@ export default function VerticalLinearStepper() {
               quantity: product.quantity,
               menu_reference: itemId,
             };
-            await createOrderLine(orderLineValues, token);
+            await createOrderLine(orderLineValues);
           }
         } else { // Si l'article n'est pas un menu
           const orderLineValues = {
@@ -98,7 +98,7 @@ export default function VerticalLinearStepper() {
             id_products: item.id,
             quantity: item.quantity,
           };
-          await createOrderLine(orderLineValues, token);
+          await createOrderLine(orderLineValues);
         }
       }
       dispatch({ type: "CLEAR" });
@@ -121,7 +121,7 @@ export default function VerticalLinearStepper() {
   };
 
   useEffect(() => {
-    const cartData = localStorage.getItem("cart");
+    const cartData = window.localStorage.getItem("cart");
     if (cartData) {
       const cartParsed = JSON.parse(cartData);
       setCartItems(Object.values(cartParsed));

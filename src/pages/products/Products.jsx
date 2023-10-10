@@ -290,7 +290,7 @@ const Products = () => {
             // Afficher les cartes de catégorie ici
             categories.map((category) => {
               return (
-                <>
+                <React.Fragment key={category.id}>
                   <CustomCard
                     description={category.description}
                     title={category.name}
@@ -303,7 +303,7 @@ const Products = () => {
                     backgroundSize="100% auto"
                     isProduct={false}
                   ></CustomCard>
-                </>
+                </React.Fragment>
               );
             })
           ) : displayedProducts.length === 0 ? (
@@ -328,6 +328,7 @@ const Products = () => {
               return (
                 <Box
                   style={{ position: "relative" }}
+                  key={item.id}
                   sx={{
                     ":hover": {
                       transform: " scale(1.02)",

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import './Find.css'
+import "./Find.css";
 import { getAllFranchises } from "../../utils/api-call/franchise";
 import haversine from "haversine";
 
@@ -10,6 +10,10 @@ import marker from "../../images/marker.png";
 import { Box, styled } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import "leaflet/dist/leaflet.css";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+import MarkerClusterGroup from "../../components/clustergroup/MarkerClusterGroup";
 
 const icon = L.icon({
   iconUrl: logo,
@@ -25,7 +29,6 @@ const Find = () => {
   const [franchises, setFranchises] = useState([]);
   const [userPosition, setUserPosition] = useState(null);
   const [closestFranchise, setClosestFranchise] = useState(null);
-  const [error, setError] = useState(null);
   const [searching, setSearching] = useState(false);
   const [mapCenter, setMapCenter] = useState([49.8929565, 2.2953686]);
   const mapRef = useRef();
@@ -47,11 +50,10 @@ const Find = () => {
     getAllFranchises()
       .then((res) => {
         setFranchises(res.data);
-        setError(null);
       })
       .catch((error) => {
         setFranchises([]);
-        setError(error);
+        console.log(error);
       });
   }, []);
 
@@ -126,22 +128,24 @@ const Find = () => {
     mapRef.current = map;
   };
 
-useEffect(() => {
-  if (closestFranchise && userPosition) {
-    const franchisePosition = closestFranchise.geography.split(",").map(parseFloat);
-    const distance = getDistance(userPosition, franchisePosition);
+  useEffect(() => {
+    if (closestFranchise && userPosition) {
+      const franchisePosition = closestFranchise.geography
+        .split(",")
+        .map(parseFloat);
+      const distance = getDistance(userPosition, franchisePosition);
 
-    let zoomLevel;
-    if (distance < 1) zoomLevel = 14;
-    else if (distance < 5) zoomLevel = 13;
-    else if (distance < 10) zoomLevel = 12;
-    else zoomLevel = 11;
+      let zoomLevel;
+      if (distance < 1) zoomLevel = 14;
+      else if (distance < 5) zoomLevel = 13;
+      else if (distance < 10) zoomLevel = 12;
+      else zoomLevel = 11;
 
-    if (mapRef.current) {
-      mapRef.current.setView(mapCenter, zoomLevel);
+      if (mapRef.current) {
+        mapRef.current.setView(mapCenter, zoomLevel);
+      }
     }
-  }
-}, [closestFranchise, userPosition]);
+  }, [closestFranchise, userPosition, mapCenter]);
 
   return (
     <>
@@ -187,36 +191,30 @@ useEffect(() => {
               <Popup>Votre position</Popup>
             </Marker>
           )}
-          {franchises.map((franchise, index) => {
-            if (!franchise.geography) {
-              console.error("Geography is null for franchise", franchise);
-              return null;
-            }
 
-            const [latitude, longitude] = franchise.geography
-              .split(",")
-              .map(parseFloat);
-            return (
-              <Marker key={index} position={[latitude, longitude]} icon={icon}>
-                <Popup>
-                  {franchise.name}
-                  <br /> {franchise.address}
-                </Popup>
-              </Marker>
-            );
-          })}
-          {closestFranchise && (
-            <Marker
-              position={closestFranchise.geography.split(",").map(parseFloat)}
-              anchor={closestFranchise.geography.split(",").map(parseFloat)}
-              icon={icon}
-            >
-              <Popup>
-                Restaurant le plus proche : {closestFranchise.name}
-                <br /> {closestFranchise.address}
-              </Popup>
-            </Marker>
-          )}
+          <MarkerClusterGroup>
+            {franchises.map((franchise, index) => {
+              if (!franchise.geography) {
+                console.error("Geography is null for franchise", franchise);
+                return null;
+              }
+              const [latitude, longitude] = franchise.geography
+                .split(",")
+                .map(parseFloat);
+              return (
+                <Marker
+                  key={index}
+                  position={[latitude, longitude]}
+                  icon={icon}
+                >
+                  <Popup>
+                    {franchise.name}
+                    <br /> {franchise.address}
+                  </Popup>
+                </Marker>
+              );
+            })}
+          </MarkerClusterGroup>
         </MapContainerStyled>
       </Box>
     </>

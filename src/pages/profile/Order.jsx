@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { getAllOrdersByCustomer } from "../../utils/api-call/getAllOrdersByCustomer";
 import {
@@ -6,51 +6,43 @@ import {
   Divider,
   Typography,
   useTheme,
-  Button,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { updateOrder } from "../../utils/api-call/order";
-import CustomButton from "../../components/button/CustomButton";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const { user } = useContext(UserContext);
-  const id = user.id;
-  const [error, setError] = useState([]);
 
-  const paiementClick = (id) => {
-    const values = {
-      id_status: 2,
-    };
-
-    updateOrder(id, values).catch((error) => {
-      setError(error);
-    });
+  const MENU_PRICES = {
+    "Menu Enfant": 8,
+    "Menu Petit Prix": 12,
+    "Menu Découverte": 18,
+    "Menu Gourmand": 25,
   };
 
   useEffect(() => {
-    getAllOrdersByCustomer(id)
+    getAllOrdersByCustomer(user.id)
       .then((response) => {
-        const ordersWithGroupedProducts = response.data.data.map((order) => {
+        const sortedOrders = response.data.data.sort((a, b) => new Date(b.date_order) - new Date(a.date_order));
+        
+        const ordersWithGroupedProducts = sortedOrders.map((order) => {
           const groupedProducts = {};
           order.order_lines.forEach((lineItem) => {
             const menuReference = lineItem.menu_reference || "noMenu";
-
+  
             if (!groupedProducts[menuReference]) {
               groupedProducts[menuReference] = {
-                menu: lineItem.products.menu
-                  ? lineItem.products.menu.name
-                  : "noMenu",
-                price: lineItem.products.menu
-                  ? lineItem.products.menu.price
-                  : lineItem.products.price,
+                menu: menuReference !== "noMenu" ? lineItem.products.menu.name : "noMenu",
+                price: menuReference !== "noMenu" ? MENU_PRICES[lineItem.products.menu.name] : lineItem.products.price,
                 products: [],
               };
             }
+
+
             groupedProducts[menuReference].products.push({
               name: lineItem.products.name,
               quantity: lineItem.quantity,
@@ -66,7 +58,8 @@ const Order = () => {
         console.log(error.response.data.message);
         setLoading(false);
       });
-  }, [id, loading]);
+  }, [user.id, loading]);
+  
 
   if (loading) {
     return (
@@ -176,21 +169,6 @@ const Order = () => {
             >
               {order.order_type.name}, pour un total de {order.total_price}€
             </Typography>
-            {order.id_status === 1 && 
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                onClick={() => {
-                  paiementClick(order.id)
-                  setLoading(true)
-                }}
-                sx={{ width: "fit-content", padding: "5px", margin: "5px" }}
-                variant=""
-                color="primary"
-              >
-                Passer au paiement
-              </Button>
-            </Box>
-            }
           </Box>
         ))}
       </Box>

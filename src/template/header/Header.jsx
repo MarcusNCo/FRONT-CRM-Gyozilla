@@ -59,7 +59,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
     navigate(-1);
   };
 
@@ -122,7 +122,14 @@ const Header = () => {
                         badgeContent={cartItems.length}
                         variant="standard"
                         overlap="circular"
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
                         sx={{
+                          ".MuiBadge-badge": {
+                            top: "10px",
+                          },
                           width: "48px",
                           height: "48px",
                           padding: "8px",

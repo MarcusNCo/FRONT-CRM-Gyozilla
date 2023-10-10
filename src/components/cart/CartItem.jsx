@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import React, { useContext } from "react";
 import { Typography, Box, Divider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -30,9 +31,10 @@ const CartItem = ({ item }) => {
           width: "300px",
           height: "fit-content",
           border: "0",
-          margin: "0px 8px 0px 8px",
+          margin: "5px 5px 5px 5px",
           display: "flex",
           justifyContent: "space-evenly",
+          boxShadow: "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset"
         }}
       >
         <Box
@@ -43,10 +45,10 @@ const CartItem = ({ item }) => {
             width: "60%",
           }}
         >
-          <Typography variant="h7b">{item.name}</Typography>
-
-          <Typography variant="h8b">Prix: {item.price} €</Typography>
-          <Typography variant="h8b">Quantité: {item.quantity}</Typography>
+          <Typography variant="h7bnw">
+            {item.quantity}x {item.name}
+          </Typography>
+          <Typography variant="h8bn">{item.price} € par unité</Typography>
         </Box>
         <Box
           sx={{
@@ -61,9 +63,10 @@ const CartItem = ({ item }) => {
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
+              color: "#5F8D85 !important",
               padding: "5px",
               "&:hover": {
-                color: "white",
+                color: "white !important",
                 backgroundColor: "#5F8D85",
               },
             }}
@@ -74,9 +77,10 @@ const CartItem = ({ item }) => {
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
+              color: "#5F8D85 !important",
               padding: "5px",
               "&:hover": {
-                color: "white",
+                color: "white !important",
                 backgroundColor: "#5F8D85",
               },
             }}
@@ -84,24 +88,18 @@ const CartItem = ({ item }) => {
           <DeleteIcon
             onClick={(event) => handleRemove(event)}
             sx={{
-              border: "1px solid #5F8D85",
+              border: "1px solid #F8A500",
               borderRadius: "50%",
+              color: "#F8A500 !important",
               padding: "5px",
               "&:hover": {
-                color: "white",
-                backgroundColor: "#5F8D85",
+                color: "white !important",
+                backgroundColor: "#F8A500",
               },
             }}
           />
         </Box>
       </Box>
-      <Divider
-        sx={{
-          borderWidth: "1px",
-          opacity: "0.2",
-          borderColor: "black",
-        }}
-      />
     </React.Fragment>
   );
 };

@@ -183,30 +183,26 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#EAEAEA",
+          color: "#000000",
           backgroundColor: "#F8A500",
           fontSize: "1.0rem",
-          fontWeight: "bold",
-          // marginTop: "3vh",
           "&:hover": {
-            color: "#EAEAEA",
+            color: "#000000",
             backgroundColor: "#F8A50099",
           },
         },
         outlined: {
           color: "#F8A500",
-          backgroundColor: "#EAEAEA",
-          border: "1px solid #F8A500",
+          backgroundColor: "#000000",
           marginTop: "3vh",
         },
         contained: {
-          color: "#EAEAEA",
+          color: "#000000",
           backgroundColor: "#F8A500",
-          border: "1px solid #EAEAEA",
           marginTop: "3vh",
           "&:hover": {
             color: "#F8A500",
-            backgroundColor: "#EAEAEA",
+            backgroundColor: "#000000",
             border: "1px solid #F8A500",
           },
         },
@@ -259,6 +255,13 @@ const theme = createTheme({
     h6b: {
       color: "#000",
       fontSize: "2.5rem",
+      fontFamily: "Garamond",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
+    h6bm: {
+      color: "#000",
+      fontSize: "2.0rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
       marginBottom: "10px",
@@ -318,11 +321,21 @@ const theme = createTheme({
       color: "#000000",
       fontSize: "1.0rem",
     },
+    h7wg: {
+      color: "#EAEAEA",
+      fontSize: "1.0rem",
+      fontFamily: "Garamond",
+    },
     h8b: {
       color: "#000000",
       fontSize: "0.9rem",
       fontFamily: "Garamond",
       fontWeight: "bold",
+    },
+    h8bn: {
+      color: "#000000",
+      fontSize: "1.0rem",
+      fontFamily: "Garamond",
     },
     h9g: {
       color: "#5F8D85",
