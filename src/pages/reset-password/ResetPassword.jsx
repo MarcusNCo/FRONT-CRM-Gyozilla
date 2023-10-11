@@ -31,7 +31,7 @@ const ResetPassword = () => {
             <h2 className='loginTitle'>Réinitialiser votre mot de passe</h2>
             <ToastContainer />
             <Formik
-                initialValues={initialValues} //transforme en state
+                initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     resetForm()

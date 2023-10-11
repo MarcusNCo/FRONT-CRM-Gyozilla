@@ -19,7 +19,7 @@ const ForgotPassword = () => {
 
     return (
         <div className='containedLogin'>
-            <h2 className='loginTitle'>Mot de passe oublié ? Entrer votre adresse mail</h2>
+            <h2 className='loginTitle'>Mot de passe oublié ? Entrez votre adresse mail !<br/>On vous envoie un mail pour en redéfinir un ;-)</h2>
             <ToastContainer />
             <Formik
                 initialValues={initialValues} //transforme en state

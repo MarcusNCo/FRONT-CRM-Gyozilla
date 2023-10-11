@@ -189,7 +189,7 @@ const Header = () => {
             },
             overflow: "hidden",
             justifyContent: "space-between",
-            boxShadow: "0 0 .4em black",
+            boxShadow: "0 0 .4em 0.01em black",
           }}
         >
           <Box className="header-left">
@@ -204,7 +204,7 @@ const Header = () => {
                 padding: "0",
                 fontFamily: "Oswald, sans-serif",
                 fontVariant: "all-small-caps",
-                fontSize: "27px!important",
+                fontSize: "25px!important",
               }}
             >
               La carte
@@ -217,7 +217,7 @@ const Header = () => {
                 padding: "0",
                 fontFamily: "Oswald, sans-serif",
                 fontVariant: "all-small-caps",
-                fontSize: "27px!important",
+                fontSize: "25px!important",
               }}
             >
               Nos engagements

@@ -200,7 +200,7 @@ const Footer = (props) => {
             <Grid item xs={12} sm={6}>
               <LinkContainer>
                 <Link
-                  href="#"
+                  href="/products"
                   underline="none"
                   aria-label="Carte"
                   sx={{
@@ -212,7 +212,7 @@ const Footer = (props) => {
                   La carte
                 </Link>
                 <Link
-                  href="#"
+                  href="/nosengagements"
                   underline="none"
                   aria-label="Nos engagements"
                   sx={{

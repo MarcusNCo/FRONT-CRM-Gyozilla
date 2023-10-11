@@ -162,6 +162,9 @@ export default function HorizontalLinearStepper() {
     });
   };
 
+
+  const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "]
+
   const renderStepContent = (step) => {
     switch (step) {
       // CONFIRMATION DE LA COMMANDE
@@ -206,6 +209,8 @@ export default function HorizontalLinearStepper() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginBottom: "20px",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+                    padding: "5px 0 5px 0",
                   }}
                 >
                   <CardMedia
@@ -234,11 +239,11 @@ export default function HorizontalLinearStepper() {
                     </Typography>
 
                     <Typography variant="body1" color="initial">
-                      Prix: {item.price}€
+                      Prix : {item.price}€
                     </Typography>
 
                     <Typography variant="body1" color="initial">
-                      Quantité: {item.quantity}
+                      Quantité : {item.quantity}
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
@@ -247,21 +252,19 @@ export default function HorizontalLinearStepper() {
                         color="initial"
                         component="div"
                       >
-                        Produits du menu:
                         <List sx={{ paddingTop: "0", paddingBottom: "0" }}>
-                          {item.products.map((product) => (
+                          {item.products.map((product, index) => (
                             <ListItem
                               sx={{
                                 fontFamily: "Garamond",
                                 fontWeight: "400",
                                 fontSize: "1rem",
                                 lineHeight: "1.5",
-                                paddingLeft: "0",
-                                paddingBottom: "0",
+                                padding: 0,
                               }}
                               key={product.id}
                             >
-                              - {product.name}
+                              {typeOfProduct[index]}{product.name}
                             </ListItem>
                           ))}
                         </List>
@@ -303,7 +306,6 @@ export default function HorizontalLinearStepper() {
                 width: "50%",
                 textAlign: "center",
                 minHeight: "calc(100vh - 280px)",
-                // backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
@@ -311,7 +313,6 @@ export default function HorizontalLinearStepper() {
                 variant="hboxb"
                 sx={{
                   width: "100%",
-                  // borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}

@@ -184,7 +184,7 @@ const Menu = () => {
     const menu = {
       id: menu_id,
       name: menuName,
-      image: "menu/" + menuImage + ".jpg",
+      image: "menu/" + menuImage + ".webp",
       price: `${menuPrice}`,
       quantity: 1,
 
