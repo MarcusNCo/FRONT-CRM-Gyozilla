@@ -159,7 +159,7 @@ const Menu = () => {
     if (!foundStarter || !foundMain || !foundDessert || !foundDrink) {
       toast.error('Veuillez sélectionner un produit de chaque type.', {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -178,7 +178,7 @@ const Menu = () => {
       (option) => option.id === selectedTypeMenu
     )?.image;
 
-    const menuPrice = MENU_PRICES[menuName.replace(' ', '_').toUpperCase()];
+    const menuPrice = MENU_PRICES[menuName.replace(/ /g, '_').toUpperCase()];
     const menu_id = Date.now()
 
     const menu = {
@@ -209,7 +209,7 @@ const Menu = () => {
   
     toast.success(`Le ${menuName} a bien été ajouté au panier.`, {
       position: "top-right",
-      autoClose: 4000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

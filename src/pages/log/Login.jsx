@@ -34,7 +34,7 @@ const Login = () => {
     if (location.state?.successMessage) {
       toast.success(location.state.successMessage, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -103,7 +103,7 @@ const Login = () => {
                       "Aucun utilisateur avec cet e-mail n'a été trouvé.",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -120,7 +120,7 @@ const Login = () => {
                       "Vous devez valider votre compte pour vous connecter",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -134,7 +134,7 @@ const Login = () => {
                       "Erreur lors de la connexion, veuillez verifier vos informations",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

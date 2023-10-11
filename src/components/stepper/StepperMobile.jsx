@@ -15,6 +15,11 @@ import {
   List,
   ListItem,
   ListItemText,
+  DialogActions,
+  TextField,
+  DialogContent,
+  DialogTitle,
+  Dialog,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
@@ -43,11 +48,14 @@ export default function VerticalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
+  const [open, setOpen] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCVV] = useState("");
 
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
-      // const token = window.localStorage.getItem("token");
       const date = new Date().toISOString();
 
       let ordertype = 0;
@@ -69,7 +77,7 @@ export default function VerticalLinearStepper() {
       const orderValues = {
         date_order: date,
         total_price: totalPrice,
-        id_status: 1,
+        id_status: 2,
         id_franchises: 1,
         id_customers: user.id,
         id_order_types: ordertype,
@@ -81,7 +89,6 @@ export default function VerticalLinearStepper() {
 
       for (const itemId in cart) {
         const item = cart[itemId];
-
         if (item.name.toUpperCase().includes("MENU")) {
           // Si l'article est un menu
           for (const product of item.products) {
@@ -89,7 +96,7 @@ export default function VerticalLinearStepper() {
               id_orders: orderId,
               id_products: product.id,
               quantity: product.quantity,
-              menu_reference: itemId,
+              menu_reference: Number(String(itemId).slice(4)),
             };
             await createOrderLine(orderLineValues);
           }
@@ -112,10 +119,12 @@ export default function VerticalLinearStepper() {
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       if (isLogged) {
+        setOpen(true);
         saveOrder();
       }
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    window.scrollTo(0, 0);
   };
 
   const handleBack = () => {
@@ -157,6 +166,8 @@ export default function VerticalLinearStepper() {
     });
   };
 
+  const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "];
+
   const renderStepContent = (step) => {
     switch (step) {
       // CONFIRMATION DE LA COMMANDE
@@ -178,15 +189,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="h7g"
+                variant="h6bm"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -202,6 +211,8 @@ export default function VerticalLinearStepper() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginBottom: "20px",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+                    padding: "5px 0 5px 0",
                   }}
                 >
                   <CardMedia
@@ -243,9 +254,8 @@ export default function VerticalLinearStepper() {
                         color="initial"
                         component="div"
                       >
-                        Produits du menu:
                         <List sx={{ paddingTop: "0", paddingBottom: "0" }}>
-                          {item.products.map((product) => (
+                          {item.products.map((product, index) => (
                             <ListItem
                               sx={{
                                 fontFamily: "Garamond",
@@ -258,7 +268,8 @@ export default function VerticalLinearStepper() {
                               }}
                               key={product.id}
                             >
-                              - {product.name}
+                              {typeOfProduct[index]}
+                              {product.name}
                             </ListItem>
                           ))}
                         </List>
@@ -268,11 +279,9 @@ export default function VerticalLinearStepper() {
                 </Box>
               ))}
               <Typography
-                variant="hbox"
-                color="#5F8D85"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderTop: "1px solid #000",
                   padding: "10px 0 10px 0",
                 }}
               >
@@ -301,15 +310,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="h7g"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -368,15 +375,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="hboxg"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -387,7 +392,7 @@ export default function VerticalLinearStepper() {
                 Type de commande: {deliveryType}
               </Typography>
               <Typography
-                variant="h7w"
+                variant="hboxb"
                 color="initial"
                 sx={{ marginTop: "20px", marginBottom: "10px" }}
               >
@@ -416,6 +421,27 @@ export default function VerticalLinearStepper() {
       default:
         return "Étape inconnue";
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCardNumberChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    const formattedValue = value.replace(/(\d{4})/g, "$1-").replace(/-$/, "");
+    setCardNumber(formattedValue);
+  };
+
+  const handleExpirationDateChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    const formattedValue = value.replace(/(\d{2})/, "$1/").replace(/\/$/, "");
+    setExpirationDate(formattedValue);
+  };
+
+  const handleCVVChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setCVV(value);
   };
 
   return (
@@ -491,6 +517,72 @@ export default function VerticalLinearStepper() {
           ></CustomButton>
         </Paper>
       )}
+      <Dialog
+        open={open}
+        disableEscapeKeyDown
+        maxWidth="md"
+        fullWidth
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          textAlign: "center",
+          margin: "0 auto 0 auto",
+        }}
+      >
+        <DialogTitle>Information de paiement "Fake"</DialogTitle>
+        <DialogContent>
+          <form>
+            <TextField
+              label="Nom du titulaire de la carte"
+              fullWidth
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              label="Numéro de la carte"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 19 }}
+            />
+            <TextField
+              label="Date d'expiration"
+              value={expirationDate}
+              onChange={handleExpirationDateChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 5 }}
+            />
+            <TextField
+              label="CVV"
+              value={cvv}
+              onChange={handleCVVChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 3 }}
+            />
+            <DialogActions>
+              <Button
+                aria-label="Annuler"
+                onClick={() => {
+                  handleClose();
+                  setActiveStep(activeStep - 1);
+                }}
+                color="primary"
+              >
+                Annuler
+              </Button>
+              <Button aria-label="Payer" onClick={handleClose} color="primary">
+                Payer
+              </Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

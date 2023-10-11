@@ -70,7 +70,7 @@ const CreateUser = () => {
                 .then((response) => {
                   toast.success("Un email de validation a été envoyé", {
                     position: "top-right",
-                    autoClose: 4000,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -87,7 +87,7 @@ const CreateUser = () => {
                   ) {
                     toast.error("Le mail est déjà utilisé", {
                       position: "top-right",
-                      autoClose: 4000,
+                      autoClose: 2000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
@@ -100,7 +100,7 @@ const CreateUser = () => {
                       "Erreur lors de l'envoi, veuillez verifier vos informations",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

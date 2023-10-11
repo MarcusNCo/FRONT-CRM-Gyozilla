@@ -53,7 +53,7 @@ const Account = () => {
                   ) {
                     toast.success("Votre compte a été mit à jour !", {
                       position: "top-right",
-                      autoClose: 4000,
+                      autoClose: 2000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
@@ -73,7 +73,7 @@ const Account = () => {
                       "Un problème a eu lieu pendant la mise à jour !",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -87,7 +87,7 @@ const Account = () => {
                       "Erreur lors de la connexion, veuillez verifier vos informations",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

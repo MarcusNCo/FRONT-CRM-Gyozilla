@@ -168,7 +168,7 @@ const Products = () => {
     if (location.state && location.state.successMessage) {
       toast.success(location.state.successMessage, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -162,7 +162,6 @@ export default function HorizontalLinearStepper() {
     });
   };
 
-
   const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "]
 
   const renderStepContent = (step) => {
@@ -399,7 +398,7 @@ export default function HorizontalLinearStepper() {
                   <ListItem key={item.id} sx={{ padding: 0, margin: 0 }}>
                     <ListItemText
                       sx={{ color: "black" }}
-                      primary={`${item.quantity}x ${item.name} : ${item.price}€`}
+                      primary={`${item.name} - Quantité: ${item.quantity} - Prix: ${item.price}€`}
                     />
                   </ListItem>
                 ))}
