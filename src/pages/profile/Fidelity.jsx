@@ -58,7 +58,7 @@ const Fidelity = () => {
 
           <Box
             sx={{
-              height: "220px",
+              height: "200px",
               display: "center",
               justifyContent: "center",
               alignItems: "center",
