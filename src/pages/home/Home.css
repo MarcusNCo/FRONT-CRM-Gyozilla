@@ -39,9 +39,9 @@
     height: calc(100vh - 56px);
     object-fit: cover;
     object-position: center center;
-    overflow-x: auto;
+    /* overflow-x: auto;
     overflow-y: hidden;
-    position: relative;
+    position: relative; */
   }
 
   .gridContainer {
@@ -51,14 +51,14 @@
     white-space: "nowrap";
   }
 
-  .backgroundHome img:first-of-type {
-    width: 150%;
-    position: absolute;
+  /* .backgroundHome img:first-of-type { */
+    /* width: 150%; */
+    /* position: absolute;
     top: 50%;
     left: 0;
     transform: translate(0, -50%); 
-    z-index: -1;
-  }
+    z-index: -1; */
+  /* } */
 
   .description {
     width: 100%;
