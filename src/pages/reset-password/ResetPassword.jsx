@@ -53,7 +53,7 @@ const ResetPassword = () => {
             setTimeout(() => {
                   setIsReseted(true);
                 setSubmitting(false);
-              }, 3000);
+              }, 2000);
             })
             .catch((error) => {
               console.error(error);
@@ -69,7 +69,7 @@ const ResetPassword = () => {
               });
               setTimeout(() => {
                 setSubmitting(false);
-              }, 3000);
+              }, 2000);
             });
         }}
       >
