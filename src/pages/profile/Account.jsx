@@ -9,15 +9,10 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./Profile.css";
 import { updateCustomer } from "../../utils/api-call/updapteCustomer";
+import Typography from "@mui/material/Typography";
 
 const Account = () => {
-  const { user, isLogged } = useContext(UserContext);
-  const initialValues = {
-    lastname: "",
-    firstname: "",
-    email: "",
-  };
-
+  const { user } = useContext(UserContext);
   const validationSchema = Yup.object().shape({
     lastname: Yup.string(),
     firstname: Yup.string(),
@@ -42,7 +37,12 @@ const Account = () => {
       >
         <Box className="containedLoginUser">
           <Formik
-            initialValues={initialValues}
+            key={user.id}
+            initialValues={{
+              lastname: user.lastname || "",
+              firstname: user.firstname || "",
+              email: user.email || "",
+            }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
               const id = user.id;
@@ -53,7 +53,7 @@ const Account = () => {
                   ) {
                     toast.success("Votre compte a été mit à jour !", {
                       position: "top-right",
-                      autoClose: 4000,
+                      autoClose: 2000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
@@ -73,7 +73,7 @@ const Account = () => {
                       "Un problème a eu lieu pendant la mise à jour !",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -87,7 +87,7 @@ const Account = () => {
                       "Erreur lors de la connexion, veuillez verifier vos informations",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -103,46 +103,57 @@ const Account = () => {
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => {
               return (
-                <Form className="formLogin">
-                  <CustomInput
-                    name="lastname"
-                    label="Nom"
-                    type="lastname"
-                    value={values.lastname}
-                    onChange={handleChange}
-                    errors={touched.lastname && errors.lastname}
-                    variant="outlined"
-                  />
-                  <ErrorMessage name="lastname" />
-                  <CustomInput
-                    name="firstname"
-                    label="Prénom"
-                    type="firstname"
-                    value={values.firstname}
-                    onChange={handleChange}
-                    errors={touched.firstname && errors.firstname}
-                    variant="outlined"
-                  />
-                  <ErrorMessage name="firstname" />
-                  <CustomInput
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    errors={touched.email && errors.email}
-                    variant="outlined"
-                  />
-                  <ErrorMessage name="email" />
-                  <Link style={{ fontFamily: "Oswald, sans-serif" }} to="/forgot-password">Changer son mot de passe</Link>
-                  <LoadingButton
-                    type="submit"
-                    loading={isSubmitting}
-                    sx={{ marginTop: "20px" }}
-                  >
-                    Enregistrer
-                  </LoadingButton>
-                </Form>
+                <>
+                  <Typography variant="h4">
+                    Vos informations personnels
+                  </Typography>
+                  <Form className="formLogin">
+                    <CustomInput
+                      name="lastname"
+                      label="Nom"
+                      type="lastname"
+                      value={values.lastname}
+                      onChange={handleChange}
+                      errors={touched.lastname && errors.lastname}
+                      variant="outlined"
+                    />
+                    <ErrorMessage name="lastname" />
+                    <CustomInput
+                      name="firstname"
+                      label="Prénom"
+                      type="firstname"
+                      value={values.firstname}
+                      onChange={handleChange}
+                      errors={touched.firstname && errors.firstname}
+                      variant="outlined"
+                    />
+                    <ErrorMessage name="firstname" />
+                    <CustomInput
+                      name="email"
+                      label="Email"
+                      type="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      errors={touched.email && errors.email}
+                      variant="outlined"
+                    />
+                    <ErrorMessage name="email" />
+                    <Link
+                      aria-label="Changer mot de passe"
+                      style={{ fontFamily: "Oswald, sans-serif" }}
+                      to="/forgot-password"
+                    >
+                      Changer son mot de passe
+                    </Link>
+                    <LoadingButton
+                      type="submit"
+                      loading={isSubmitting}
+                      sx={{ marginTop: "20px" }}
+                    >
+                      Enregistrer
+                    </LoadingButton>
+                  </Form>
+                </>
               );
             }}
           </Formik>

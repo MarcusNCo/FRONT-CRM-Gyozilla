@@ -29,7 +29,7 @@ const Contact = () => {
         if (response.status === 200) {
           toast.success("Email envoyé", {
             position: "top-right",
-            autoClose: 4000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -39,7 +39,7 @@ const Contact = () => {
         } else {
           toast.error("Erreur lors de l'envoi de l'email", {
             position: "top-right",
-            autoClose: 4000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -48,7 +48,7 @@ const Contact = () => {
           });
         }
       } catch (error) {
-        console.log("Erreur de réseau", error);
+        //console.log("Erreur de réseau", error);
       }
     },
   });

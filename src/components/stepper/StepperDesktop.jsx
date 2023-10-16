@@ -22,7 +22,11 @@ import {
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
-import { createOrder, createOrderLine } from "../../utils/api-call/order";
+import {
+  createOrder,
+  createOrderLine,
+  sendOrderEmail,
+} from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 import CustomButton from "../button/CustomButton";
@@ -45,9 +49,7 @@ export default function HorizontalLinearStepper() {
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCVV] = useState("");
 
-
-  // const token = window.localStorage.getItem("token");
-  // const 
+  const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "];
 
   const saveOrder = async () => {
     try {
@@ -82,6 +84,7 @@ export default function HorizontalLinearStepper() {
       const orderResponse = await createOrder(orderValues);
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+      let orderLines = [];
 
       for (const itemId in cart) {
         const item = cart[itemId];
@@ -105,7 +108,44 @@ export default function HorizontalLinearStepper() {
           };
           await createOrderLine(orderLineValues);
         }
+
+        if (item.name.toUpperCase().includes("MENU")) {
+          // Si l'article est un menu
+          const menuOrderLine = {
+            is_menu: true,
+            menu_type: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+            products: item.products.map((product, index) => ({
+              type: typeOfProduct[index],
+              name: product.name,
+              product_price: product.price,
+              product_quantity: product.quantity,
+            })),
+          };
+
+          orderLines.push(menuOrderLine);
+        } else {
+          // Si l'article n'est pas un menu
+          const productOrderLine = {
+            is_menu: false,
+            menu_type: null,
+            product_name: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+          };
+          orderLines.push(productOrderLine);
+        }
       }
+
+      const dataToSend = {
+        orderLines,
+        orderResponse: orderResponse.data.data,
+        userFirstname: user.firstname,
+        userEmail: user.email,
+      };
+      await sendOrderEmail(dataToSend);
+
       dispatch({ type: "CLEAR" });
     } catch (error) {
       console.error("Erreur lors de l'enregistrement de la commande :", error);
@@ -207,6 +247,8 @@ export default function HorizontalLinearStepper() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginBottom: "20px",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+                    padding: "5px 0 5px 0",
                   }}
                 >
                   <CardMedia
@@ -235,11 +277,11 @@ export default function HorizontalLinearStepper() {
                     </Typography>
 
                     <Typography variant="body1" color="initial">
-                      Prix: {item.price}€
+                      Prix : {item.price}€
                     </Typography>
 
                     <Typography variant="body1" color="initial">
-                      Quantité: {item.quantity}
+                      Quantité : {item.quantity}
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
@@ -248,21 +290,20 @@ export default function HorizontalLinearStepper() {
                         color="initial"
                         component="div"
                       >
-                        Produits du menu:
                         <List sx={{ paddingTop: "0", paddingBottom: "0" }}>
-                          {item.products.map((product) => (
+                          {item.products.map((product, index) => (
                             <ListItem
                               sx={{
                                 fontFamily: "Garamond",
                                 fontWeight: "400",
                                 fontSize: "1rem",
                                 lineHeight: "1.5",
-                                paddingLeft: "0",
-                                paddingBottom: "0",
+                                padding: 0,
                               }}
                               key={product.id}
                             >
-                              - {product.name}
+                              {typeOfProduct[index]}
+                              {product.name}
                             </ListItem>
                           ))}
                         </List>
@@ -304,7 +345,6 @@ export default function HorizontalLinearStepper() {
                 width: "50%",
                 textAlign: "center",
                 minHeight: "calc(100vh - 280px)",
-                // backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
@@ -312,7 +352,6 @@ export default function HorizontalLinearStepper() {
                 variant="hboxb"
                 sx={{
                   width: "100%",
-                  // borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -399,7 +438,7 @@ export default function HorizontalLinearStepper() {
                   <ListItem key={item.id} sx={{ padding: 0, margin: 0 }}>
                     <ListItemText
                       sx={{ color: "black" }}
-                      primary={`${item.quantity}x ${item.name} : ${item.price}€`}
+                      primary={`${item.name} - Quantité: ${item.quantity} - Prix: ${item.price}€`}
                     />
                   </ListItem>
                 ))}
@@ -472,6 +511,9 @@ export default function HorizontalLinearStepper() {
               >
                 Merci d'avoir passé commande chez nous !<br />
                 Retrouvez vos informations de la commande sur votre compte.
+                <br />
+                Un récapitulatif vous a aussi été envoyé par sur votre adresse
+                mail.
               </Typography>
               <CustomButton
                 text="Accéder au compte"
@@ -490,6 +532,7 @@ export default function HorizontalLinearStepper() {
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
+              aria-label="Retour"
               onClick={
                 activeStep === 0 ? () => navigate("/products") : handleBack
               }
@@ -500,6 +543,7 @@ export default function HorizontalLinearStepper() {
             <Box sx={{ flex: "1 1 auto" }} />
             <Button
               onClick={handleNext}
+              aria-label="Valider ou continuer"
               disabled={activeStep === 1 && deliveryType === ""}
             >
               {activeStep === steps.length - 1 ? "Valider" : "Continuer"}
@@ -519,10 +563,7 @@ export default function HorizontalLinearStepper() {
           margin: "0 auto 0 auto",
         }}
       >
-        <DialogTitle>
-          Information de paiement
-          "Fake"
-        </DialogTitle>
+        <DialogTitle>Information de paiement "Fake"</DialogTitle>
         <DialogContent>
           <form>
             <TextField
@@ -560,6 +601,7 @@ export default function HorizontalLinearStepper() {
             />
             <DialogActions>
               <Button
+                aria-label="Annuler"
                 onClick={() => {
                   handleClose();
                   setActiveStep(activeStep - 1);
@@ -568,7 +610,7 @@ export default function HorizontalLinearStepper() {
               >
                 Annuler
               </Button>
-              <Button onClick={handleClose} color="primary">
+              <Button aria-label="Payer" onClick={handleClose} color="primary">
                 Payer
               </Button>
             </DialogActions>

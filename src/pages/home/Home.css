@@ -22,6 +22,10 @@
   border-radius: 0;
 }
 
+.description {
+  width: 50%;
+}
+
 @media (max-width: 700px) {
   .logoEcriture {
     width: 20rem;
@@ -35,6 +39,9 @@
     height: calc(100vh - 56px);
     object-fit: cover;
     object-position: center center;
+    /* overflow-x: auto;
+    overflow-y: hidden;
+    position: relative; */
   }
 
   .gridContainer {
@@ -42,6 +49,20 @@
     flex-wrap: nowrap;
     overflow-x: scroll !important;
     white-space: "nowrap";
+  }
+
+  /* .backgroundHome img:first-of-type { */
+    /* width: 150%; */
+    /* position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%); 
+    z-index: -1; */
+  /* } */
+
+  .description {
+    width: 100%;
+    text-align: center;
   }
 }
 

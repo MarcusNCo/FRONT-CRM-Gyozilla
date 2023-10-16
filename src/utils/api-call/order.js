@@ -11,3 +11,7 @@ export const createOrderLine = async (values) => {
 export const updateOrder = async (id, values) => {
   return await instance.patch(`orders/${id}`, values);
 };
+
+export const sendOrderEmail = async (values) => {
+  return await instance.post('send_email', values);
+};

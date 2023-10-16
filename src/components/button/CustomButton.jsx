@@ -14,10 +14,11 @@ const CustomButton = ({
   backgroundColor,
   margin,
   padding,
-  type
+  type,
 }) => {
   return (
     <Button
+      aria-label="Un bouton"
       onClick={onClick}
       variant={variant}
       startIcon={startIcon}
@@ -38,4 +39,3 @@ const CustomButton = ({
 };
 
 export default CustomButton;
-

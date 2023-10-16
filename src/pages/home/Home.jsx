@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 
 import backgroundImageHome from "../../images/gyozilla_restaurant.webp";
 import backgroundImageHomeMobile from "../../images/gyozilla_restaurant_mobile.webp";
-import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
-import nouveautes from "../../images/badgeHome/badge-nouveautes.png";
-import bonPlans from "../../images/badgeHome/badge-bonPlans.png";
-import coinFamille from "../../images/badgeHome/badge-coinFamille.png";
+// import logo from "../../images/logo texteLogo horizontal ecriture2_Logo horizontal ecriture.png";
+import nouveautes from "../../images/badgeHome/badge-nouveautes.webp";
+import bonPlans from "../../images/badgeHome/badge-bonPlans.webp";
+import coinFamille from "../../images/badgeHome/badge-coinFamille.webp";
 import logoPrez from "../../images/logoHeader.png";
 
 import "./Home.css";
@@ -57,7 +57,7 @@ const Home = () => {
       })
       .catch((error) => {
         setAllNews([]);
-        console.log(error);
+        //console.log(error);
       });
   }, []);
 
@@ -87,17 +87,8 @@ const Home = () => {
   return (
     <>
       <Box className="backgroundHome">
-        {/* Image background */}
-
-        <img
-          src={src}
-          alt="backgroundImageHome"
-        />
-
-        {/* Logo */}
-        <img src={logo} alt="Logo" className="logoEcriture" />
-
-        {/* Icône de flèche vers le bas */}
+        <img src={src} alt="backgroundImageHome" />
+        {/* <img src={logo} alt="Logo" className="logoEcriture" /> */}
         <IconButton
           className="arrowBottom"
           aria-label="Flèche vers le bas"
@@ -139,7 +130,7 @@ const Home = () => {
                 key={cardHomePage.id}
                 className={"zoomEffect"}
               >
-                <Link to={cardHomePage.url}>
+                <Link aria-label="Cartes" to={cardHomePage.url}>
                   <Paper elevation={5} style={{ borderRadius: "20px" }}>
                     <img
                       src={cardHomePage.image}
@@ -177,18 +168,24 @@ const Home = () => {
           />
         </Box>
         <Box className="titlePrez">
-          <h3 style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
+          <Typography
+            variant="h4"
+            style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}
+          >
             Premier Fast - Food Asiatique sur Amiens
-          </h3>
+          </Typography>
         </Box>
-        <Box className="textPrez">
-          <p style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}>
+        <Box className="description">
+          <Typography
+            variant="h7w"
+            style={{ color: "#CDE8E7", textAlign: "center", margin: "1rem" }}
+          >
             GYOZILLA est un fast-food asiatique, situé à Amiens. Venez découvrir
             la gastronomie japonaise et chinoise sur place ou tout simplement
             depuis chez vous. Nos livreurs sont équipés d'un terminal de
             paiement par CB. Modes de paiement acceptés : Carte Bancaire,
             espèces et Ticket Restaurant. Nous n'acceptons pas les chèques.
-          </p>
+          </Typography>
         </Box>
       </Box>
 
@@ -211,7 +208,11 @@ const Home = () => {
                 className={"zoomEffect"}
                 style={{ width: isMobile ? "90%" : "auto" }}
               >
-                <Link to={`news/${news.id}`} style={{ textDecoration: "none" }}>
+                <Link
+                  aria-label="News"
+                  to={`news/${news.id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <Paper
                     elevation={5}
                     style={{

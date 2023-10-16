@@ -10,8 +10,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import styled from "@mui/material/styles/styled";
 import logo from "../../images/gyozilla-ecriture.png";
-import android from "../../images/appstore-300x101.png";
-import apple from "../../images/Play_Store.png";
+import android from "../../images/appstore-300x101.webp";
+import apple from "../../images/Play_Store.webp";
 import "./Footer.css";
 
 const Footer = (props) => {
@@ -151,15 +151,33 @@ const Footer = (props) => {
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperLeft>
               <SocialIcons>
-                <Icon>
-                  <Facebook />
-                </Icon>
-                <Icon>
-                  <Instagram />
-                </Icon>
-                <Icon>
-                  <Twitter />
-                </Icon>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61552235619125"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Facebook />
+                  </Icon>
+                </a>
+                <a
+                  href="https://www.instagram.com/gyozillarestaurants/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Instagram />
+                  </Icon>
+                </a>
+                <a
+                  href="https://twitter.com/ContactGyozilla"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Twitter />
+                  </Icon>
+                </a>
               </SocialIcons>
             </Grid>
             <Grid
@@ -190,6 +208,8 @@ const Footer = (props) => {
                 textalignment={textAlignmentRight}
               >
                 Télécharger l'application sur votre smartphone
+                <br />
+                (Bientôt disponible)
               </TypographyWrapperRight>
               <AppIcons>
                 <AppIcon src={android} alt="Apple" />
@@ -200,8 +220,9 @@ const Footer = (props) => {
             <Grid item xs={12} sm={6}>
               <LinkContainer>
                 <Link
-                  href="#"
+                  href="/products"
                   underline="none"
+                  aria-label="Carte"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -211,8 +232,9 @@ const Footer = (props) => {
                   La carte
                 </Link>
                 <Link
-                  href="#"
+                  href="/nosengagements"
                   underline="none"
+                  aria-label="Nos engagements"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -224,6 +246,7 @@ const Footer = (props) => {
                 <Link
                   href="/news"
                   underline="none"
+                  aria-label="Actualités"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -239,6 +262,7 @@ const Footer = (props) => {
                 <Link
                   href="/recrutement"
                   underline="none"
+                  aria-label="Recrutement"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -250,6 +274,7 @@ const Footer = (props) => {
                 <Link
                   href="/mentionslegales"
                   underline="none"
+                  aria-label="Mention légales"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -262,6 +287,7 @@ const Footer = (props) => {
                 <Link
                   href="/contact"
                   underline="none"
+                  aria-label="Contactez-nous"
                   sx={{
                     margin: "0 10px 0 10px",
                     color: "#CDE8E7",
@@ -271,13 +297,6 @@ const Footer = (props) => {
                 >
                   Contactez-nous
                 </Link>
-                {/* <CustomButton
-                  text="Contactez-nous"
-                  variant="contained"
-                  height="40px"
-                  fontSize="0.8rem"
-                  onClick={}
-                /> */}
               </LinkContainer>
             </Grid>
           </Grid>
@@ -292,6 +311,7 @@ const Footer = (props) => {
               href="https://www.mangerbouger.fr/"
               target="_blank"
               rel="noopener"
+              aria-label="MangerBouger"
               sx={{
                 padding: "0 0 0 5px !important",
                 fontSize: "0.9rem !important",

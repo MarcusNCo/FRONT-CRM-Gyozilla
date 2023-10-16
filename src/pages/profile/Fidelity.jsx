@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../utils/context/UserContext";
 import { Box, useTheme } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import coins from "../../images/coins.png";
+import coins from "../../images/coins.webp";
 
 const Fidelity = () => {
   const { user, isLogged } = useContext(UserContext);
@@ -58,7 +58,7 @@ const Fidelity = () => {
 
           <Box
             sx={{
-              height: "220px",
+              height: "200px",
               display: "center",
               justifyContent: "center",
               alignItems: "center",
@@ -94,15 +94,14 @@ const Fidelity = () => {
           </Box>
 
           <Box
-            sx={{ 
-              height: "120px", 
-              display: "flex", 
+            sx={{
+              height: "120px",
+              display: "flex",
               flexDirection: "column",
               [theme.breakpoints.down("sm")]: {
                 padding: "0 12px 0 12px",
                 height: "fit-content",
               },
-            
             }}
           >
             <Typography variant="h7bb" color="initial">

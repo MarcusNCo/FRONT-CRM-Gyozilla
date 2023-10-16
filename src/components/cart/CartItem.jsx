@@ -34,7 +34,8 @@ const CartItem = ({ item }) => {
           margin: "5px 5px 5px 5px",
           display: "flex",
           justifyContent: "space-evenly",
-          boxShadow: "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset"
+          boxShadow:
+            "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset",
         }}
       >
         <Box
@@ -58,8 +59,9 @@ const CartItem = ({ item }) => {
             width: "40%",
           }}
         >
-          <AddIcon
-            onClick={(event) => handleIncrement(event)}
+          <RemoveIcon
+            onClick={(event) => handleDecrement(event)}
+            disabled={item.quantity === 1}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",
@@ -71,9 +73,8 @@ const CartItem = ({ item }) => {
               },
             }}
           />
-          <RemoveIcon
-            onClick={(event) => handleDecrement(event)}
-            disabled={item.quantity === 1}
+          <AddIcon
+            onClick={(event) => handleIncrement(event)}
             sx={{
               border: "1px solid #5F8D85",
               borderRadius: "50%",

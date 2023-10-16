@@ -1,4 +1,4 @@
-import "./CreateUser.css"
+import "./CreateUser.css";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { signIn } from "../../utils/api-call/sign-in";
 
 const CreateUser = () => {
-
   const initialValues = {
     lastname: "",
     firstname: "",
@@ -21,10 +20,8 @@ const CreateUser = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    lastname: Yup.string()
-      .required("Le nom est obligatoire"),
-    firstname: Yup.string()
-      .required("Le prénom est obligatoire"),
+    lastname: Yup.string().required("Le nom est obligatoire"),
+    firstname: Yup.string().required("Le prénom est obligatoire"),
     email: Yup.string()
       .email("Email invalide")
       .required("L'email est obligatoire"),
@@ -44,7 +41,7 @@ const CreateUser = () => {
           alignItems: "center",
           height: "calc(100vh - 71px)",
           [theme.breakpoints.down("sm")]: {
-            height: "calc(100vh - 56px)"
+            height: "calc(100vh - 56px)",
           },
         }}
       >
@@ -55,7 +52,7 @@ const CreateUser = () => {
             width: 300,
             objectFit: "cover",
             [theme.breakpoints.down("sm")]: {
-              display: 'none'
+              display: "none",
             },
           }}
           alt="The house from the offer."
@@ -68,12 +65,12 @@ const CreateUser = () => {
             initialValues={initialValues} //transforme en state
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              resetForm()
+              resetForm();
               signIn(values)
                 .then((response) => {
                   toast.success("Un email de validation a été envoyé", {
                     position: "top-right",
-                    autoClose: 4000,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -85,26 +82,25 @@ const CreateUser = () => {
                 })
                 .catch((error) => {
                   console.error(error);
-                  if (error.response.data.message === "Le mail est déjà utilisé") {
-                    toast.error(
-                      "Le mail est déjà utilisé",
-                      {
-                        position: "top-right",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      }
-                    );
+                  if (
+                    error.response.data.message === "Le mail est déjà utilisé"
+                  ) {
+                    toast.error("Le mail est déjà utilisé", {
+                      position: "top-right",
+                      autoClose: 2000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
                   } else {
                     toast.error(
                       "Erreur lors de l'envoi, veuillez verifier vos informations",
                       {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -162,7 +158,16 @@ const CreateUser = () => {
                     secure="true"
                   />
                   <ErrorMessage name="password" />
-                  <Link style={{ paddingBottom:"20px", fontFamily: "Manrope, sans-serif", }} to="/login">Déjà inscrit ?</Link>
+                  <Link
+                    aria-label="Connexion"
+                    style={{
+                      paddingBottom: "20px",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                    to="/login"
+                  >
+                    Déjà inscrit ?
+                  </Link>
                   <LoadingButton type="submit" loading={isSubmitting}>
                     Inscription
                   </LoadingButton>
@@ -174,6 +179,6 @@ const CreateUser = () => {
       </Box>
     </>
   );
-}
+};
 
-export default CreateUser
+export default CreateUser;

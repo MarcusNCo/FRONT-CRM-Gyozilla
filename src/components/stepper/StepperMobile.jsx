@@ -15,14 +15,21 @@ import {
   List,
   ListItem,
   ListItemText,
+  DialogActions,
+  TextField,
+  DialogContent,
+  DialogTitle,
+  Dialog,
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
-import { createOrder, createOrderLine } from "../../utils/api-call/order";
+import { createOrder, createOrderLine, sendOrderEmail } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 import CustomButton from "../button/CustomButton";
 import Paper from "@mui/material/Paper";
+
+const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "];
 
 const steps = [
   {
@@ -43,11 +50,14 @@ export default function VerticalLinearStepper() {
   const [cartItems, setCartItems] = useState([]);
   const [deliveryType, setDeliveryType] = useState("");
   const { dispatch } = useContext(CartContext);
+  const [open, setOpen] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCVV] = useState("");
 
   const saveOrder = async () => {
     try {
       const totalPrice = getTotal();
-      // const token = window.localStorage.getItem("token");
       const date = new Date().toISOString();
 
       let ordertype = 0;
@@ -69,7 +79,7 @@ export default function VerticalLinearStepper() {
       const orderValues = {
         date_order: date,
         total_price: totalPrice,
-        id_status: 1,
+        id_status: 2,
         id_franchises: 1,
         id_customers: user.id,
         id_order_types: ordertype,
@@ -78,21 +88,23 @@ export default function VerticalLinearStepper() {
       const orderResponse = await createOrder(orderValues);
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+      let orderLines = [];
 
       for (const itemId in cart) {
         const item = cart[itemId];
-      
-        if(item.name.toUpperCase().includes("MENU")) { // Si l'article est un menu
+        if (item.name.toUpperCase().includes("MENU")) {
+          // Si l'article est un menu
           for (const product of item.products) {
             const orderLineValues = {
               id_orders: orderId,
               id_products: product.id,
               quantity: product.quantity,
-              menu_reference: itemId,
+              menu_reference: Number(String(itemId).slice(4)),
             };
             await createOrderLine(orderLineValues);
           }
-        } else { // Si l'article n'est pas un menu
+        } else {
+          // Si l'article n'est pas un menu
           const orderLineValues = {
             id_orders: orderId,
             id_products: item.id,
@@ -100,7 +112,44 @@ export default function VerticalLinearStepper() {
           };
           await createOrderLine(orderLineValues);
         }
+
+        if (item.name.toUpperCase().includes("MENU")) {
+          // Si l'article est un menu
+          const menuOrderLine = {
+            is_menu: true,
+            menu_type: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+            products: item.products.map((product, index) => ({
+              type: typeOfProduct[index],
+              name: product.name,
+              product_price: product.price,
+              product_quantity: product.quantity,
+            })),
+          };
+
+          orderLines.push(menuOrderLine);
+        } else {
+          // Si l'article n'est pas un menu
+          const productOrderLine = {
+            is_menu: false,
+            menu_type: null,
+            product_name: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+          };
+          orderLines.push(productOrderLine);
+        }
       }
+
+      const dataToSend = {
+        orderLines,
+        orderResponse: orderResponse.data.data,
+        userFirstname: user.firstname,
+        userEmail: user.email,
+      };
+      await sendOrderEmail(dataToSend);
+
       dispatch({ type: "CLEAR" });
     } catch (error) {
       console.error("Erreur lors de l'enregistrement de la commande :", error);
@@ -110,10 +159,12 @@ export default function VerticalLinearStepper() {
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       if (isLogged) {
+        setOpen(true);
         saveOrder();
       }
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    window.scrollTo(0, 0);
   };
 
   const handleBack = () => {
@@ -176,15 +227,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="h7g"
+                variant="h6bm"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -200,6 +249,8 @@ export default function VerticalLinearStepper() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginBottom: "20px",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+                    padding: "5px 0 5px 0",
                   }}
                 >
                   <CardMedia
@@ -236,34 +287,39 @@ export default function VerticalLinearStepper() {
                     </Typography>
 
                     {item.products && item.products.length > 0 && (
-                      <Typography variant="body1" color="initial" component="div">
-                        Produits du menu:
-                        <List sx={{ paddingTop: "0", paddingBottom: "0", }}>
-                          {item.products.map((product) => (
-                            <ListItem sx={{  
-                              fontFamily: "Garamond",
-                              fontWeight: "400",
-                              fontSize: "1rem",
-                              lineHeight: "1.5",
-                              paddingLeft: "0",
-                              paddingBottom: "0",
-                              paddingRight: "0",
-                            }} 
-                            key={product.id}>- {product.name}</ListItem>
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        component="div"
+                      >
+                        <List sx={{ paddingTop: "0", paddingBottom: "0" }}>
+                          {item.products.map((product, index) => (
+                            <ListItem
+                              sx={{
+                                fontFamily: "Garamond",
+                                fontWeight: "400",
+                                fontSize: "1rem",
+                                lineHeight: "1.5",
+                                paddingLeft: "0",
+                                paddingBottom: "0",
+                                paddingRight: "0",
+                              }}
+                              key={product.id}
+                            >
+                              {typeOfProduct[index]}
+                              {product.name}
+                            </ListItem>
                           ))}
                         </List>
                       </Typography>
                     )}
-
                   </Box>
                 </Box>
               ))}
               <Typography
-                variant="hbox"
-                color="#5F8D85"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderTop: "1px solid #000",
                   padding: "10px 0 10px 0",
                 }}
               >
@@ -292,15 +348,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="h7g"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -359,15 +413,13 @@ export default function VerticalLinearStepper() {
                 width: "100%",
                 textAlign: "center",
                 height: "auto",
-                backgroundColor: "#5F8D8550",
                 borderRadius: "10px",
               }}
             >
               <Typography
-                variant="hboxg"
+                variant="hboxb"
                 sx={{
                   width: "100%",
-                  borderBottom: "2px solid #5F8D85",
                   marginBottom: "20px",
                   padding: "5px",
                 }}
@@ -378,7 +430,7 @@ export default function VerticalLinearStepper() {
                 Type de commande: {deliveryType}
               </Typography>
               <Typography
-                variant="h7w"
+                variant="hboxb"
                 color="initial"
                 sx={{ marginTop: "20px", marginBottom: "10px" }}
               >
@@ -407,6 +459,27 @@ export default function VerticalLinearStepper() {
       default:
         return "Étape inconnue";
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCardNumberChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    const formattedValue = value.replace(/(\d{4})/g, "$1-").replace(/-$/, "");
+    setCardNumber(formattedValue);
+  };
+
+  const handleExpirationDateChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    const formattedValue = value.replace(/(\d{2})/, "$1/").replace(/\/$/, "");
+    setExpirationDate(formattedValue);
+  };
+
+  const handleCVVChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setCVV(value);
   };
 
   return (
@@ -439,6 +512,7 @@ export default function VerticalLinearStepper() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
+                    aria-label="Valider ou continuer"
                     sx={{ mt: 1, mr: 1 }}
                   >
                     {index === steps.length - 1 ? "Valider" : "Continuer"}
@@ -446,6 +520,7 @@ export default function VerticalLinearStepper() {
                   <Button
                     disabled={index === 0}
                     onClick={handleBack}
+                    aria-label="Retour"
                     sx={{ mt: 1, mr: 1 }}
                   >
                     Retour
@@ -458,7 +533,15 @@ export default function VerticalLinearStepper() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography sx={{ mt: 2, mb: 1, color: "black", fontSize: "1.2rem", textAlign: "center" }}>
+          <Typography
+            sx={{
+              mt: 2,
+              mb: 1,
+              color: "black",
+              fontSize: "1.2rem",
+              textAlign: "center",
+            }}
+          >
             Merci d'avoir passé commande chez nous !<br />
             Retrouvez vos informations de la commande sur votre compte.
           </Typography>
@@ -472,6 +555,72 @@ export default function VerticalLinearStepper() {
           ></CustomButton>
         </Paper>
       )}
+      <Dialog
+        open={open}
+        disableEscapeKeyDown
+        maxWidth="md"
+        fullWidth
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          textAlign: "center",
+          margin: "0 auto 0 auto",
+        }}
+      >
+        <DialogTitle>Information de paiement "Fake"</DialogTitle>
+        <DialogContent>
+          <form>
+            <TextField
+              label="Nom du titulaire de la carte"
+              fullWidth
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              label="Numéro de la carte"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 19 }}
+            />
+            <TextField
+              label="Date d'expiration"
+              value={expirationDate}
+              onChange={handleExpirationDateChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 5 }}
+            />
+            <TextField
+              label="CVV"
+              value={cvv}
+              onChange={handleCVVChange}
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              inputProps={{ maxLength: 3 }}
+            />
+            <DialogActions>
+              <Button
+                aria-label="Annuler"
+                onClick={() => {
+                  handleClose();
+                  setActiveStep(activeStep - 1);
+                }}
+                color="primary"
+              >
+                Annuler
+              </Button>
+              <Button aria-label="Payer" onClick={handleClose} color="primary">
+                Payer
+              </Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

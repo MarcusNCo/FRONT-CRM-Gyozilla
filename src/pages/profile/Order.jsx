@@ -53,7 +53,7 @@ const Order = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        //console.log(error.response.data.message);
         setLoading(false);
       });
   }, [user.id, loading]);
@@ -91,7 +91,6 @@ const Order = () => {
             sx={{
               width: "fit-content",
               margin: "50px 20px 50px 20px",
-              borderRadius: "0 0 20px 0",
               boxShadow:
                 "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
               padding: "0 0 10px 0",

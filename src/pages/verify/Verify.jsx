@@ -25,7 +25,7 @@ const Verify = () => {
                     "Erreur lors de la verification",
                     {
                         position: "top-right",
-                        autoClose: 4000,
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

@@ -45,7 +45,6 @@ const CustomInput = (props) => {
     rows: input.rows,
   }
   return (
-    // Voici un exemple d'importation du components. Pour un input de type password il faut ajouter l'attributs secure = 'true' !
     <>
       <TextField
         {...inputAttribute}
@@ -56,6 +55,7 @@ const CustomInput = (props) => {
               ? 'text'
               : 'password'
         }
+        autoComplete="off"
         InputProps={{
           endAdornment: (
             inputAttribute.secure ? (
