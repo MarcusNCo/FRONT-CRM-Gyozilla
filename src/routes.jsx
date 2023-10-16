@@ -1,7 +1,7 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/log/Login";
 import Products from "./pages/products/Products";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Verify from "./pages/verify/Verify";
 import ProductDetails from "./pages/productdetails/ProductDetails";
 import CreateUser from "./pages/createuser/CreateUser";
@@ -16,6 +16,7 @@ import Contact from "./pages/contact/Contact";
 import LegalNotices from "./pages/legalnotices/LegalNotices";
 import Recrutement from "./pages/recrutement/Recrutement";
 import News from "./pages/news/News";
+import NotExist from "./pages/not-exist/NotExist";
 
 const RoutesConfig = () => {
   const routes = [
@@ -95,6 +96,14 @@ const RoutesConfig = () => {
       path: "/news/:id",
       element: <News />,
     },
+    {
+      path: "/error404",
+      element: <NotExist />,
+    },
+    {
+      path: "*",
+      element: <Navigate to="/error404" />,
+    },
   ];
 
   return (
@@ -104,6 +113,6 @@ const RoutesConfig = () => {
       ))}
     </Routes>
   );
-}
+};
 
 export default RoutesConfig;
