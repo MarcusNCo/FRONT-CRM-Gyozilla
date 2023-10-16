@@ -66,7 +66,7 @@ const Menu = () => {
       })
       .catch((error) => {
         setProductsByMenu([]);
-        console.log(error)
+        //console.log(error)
       });
   }, [selectedTypeMenu]);
 

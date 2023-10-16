@@ -48,7 +48,7 @@ const Contact = () => {
           });
         }
       } catch (error) {
-        console.log("Erreur de réseau", error);
+        //console.log("Erreur de réseau", error);
       }
     },
   });

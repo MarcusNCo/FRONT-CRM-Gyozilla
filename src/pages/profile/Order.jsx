@@ -53,7 +53,7 @@ const Order = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        //console.log(error.response.data.message);
         setLoading(false);
       });
   }, [user.id, loading]);

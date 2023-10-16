@@ -23,11 +23,13 @@ import {
 } from "@mui/material";
 import "./Stepper.css";
 import { useNavigate } from "react-router-dom";
-import { createOrder, createOrderLine } from "../../utils/api-call/order";
+import { createOrder, createOrderLine, sendOrderEmail } from "../../utils/api-call/order";
 import { UserContext } from "../../utils/context/UserContext";
 import CartContext from "../../utils/context/CartContext";
 import CustomButton from "../button/CustomButton";
 import Paper from "@mui/material/Paper";
+
+const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "];
 
 const steps = [
   {
@@ -86,6 +88,7 @@ export default function VerticalLinearStepper() {
       const orderResponse = await createOrder(orderValues);
       const orderId = orderResponse.data["data"].id;
       const cart = JSON.parse(window.localStorage.getItem("cart")) || {};
+      let orderLines = [];
 
       for (const itemId in cart) {
         const item = cart[itemId];
@@ -109,7 +112,44 @@ export default function VerticalLinearStepper() {
           };
           await createOrderLine(orderLineValues);
         }
+
+        if (item.name.toUpperCase().includes("MENU")) {
+          // Si l'article est un menu
+          const menuOrderLine = {
+            is_menu: true,
+            menu_type: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+            products: item.products.map((product, index) => ({
+              type: typeOfProduct[index],
+              name: product.name,
+              product_price: product.price,
+              product_quantity: product.quantity,
+            })),
+          };
+
+          orderLines.push(menuOrderLine);
+        } else {
+          // Si l'article n'est pas un menu
+          const productOrderLine = {
+            is_menu: false,
+            menu_type: null,
+            product_name: item.name,
+            product_price: item.price,
+            product_quantity: item.quantity,
+          };
+          orderLines.push(productOrderLine);
+        }
       }
+
+      const dataToSend = {
+        orderLines,
+        orderResponse: orderResponse.data.data,
+        userFirstname: user.firstname,
+        userEmail: user.email,
+      };
+      await sendOrderEmail(dataToSend);
+
       dispatch({ type: "CLEAR" });
     } catch (error) {
       console.error("Erreur lors de l'enregistrement de la commande :", error);
@@ -165,8 +205,6 @@ export default function VerticalLinearStepper() {
       },
     });
   };
-
-  const typeOfProduct = ["Entrée : ", "Plat : ", "Dessert : ", "Boisson : "];
 
   const renderStepContent = (step) => {
     switch (step) {

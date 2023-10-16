@@ -36,7 +36,7 @@ instance.interceptors.response.use(
     },
     (error) => {
       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-        console.log(error.response)
+        //console.log(error.response)
         // Déconnexion de l'utilisateur et suppression du token
         // localStorage.removeItem('token');
       }

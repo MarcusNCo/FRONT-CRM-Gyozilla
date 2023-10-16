@@ -151,15 +151,33 @@ const Footer = (props) => {
                 Télécharger l'application sur votre smartphone
               </TypographyWrapperLeft>
               <SocialIcons>
-                <Icon>
-                  <Facebook />
-                </Icon>
-                <Icon>
-                  <Instagram />
-                </Icon>
-                <Icon>
-                  <Twitter />
-                </Icon>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61552235619125"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Facebook />
+                  </Icon>
+                </a>
+                <a
+                  href="https://www.instagram.com/gyozillarestaurants/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Instagram />
+                  </Icon>
+                </a>
+                <a
+                  href="https://twitter.com/ContactGyozilla"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon>
+                    <Twitter />
+                  </Icon>
+                </a>
               </SocialIcons>
             </Grid>
             <Grid
@@ -190,6 +208,8 @@ const Footer = (props) => {
                 textalignment={textAlignmentRight}
               >
                 Télécharger l'application sur votre smartphone
+                <br />
+                (Bientôt disponible)
               </TypographyWrapperRight>
               <AppIcons>
                 <AppIcon src={android} alt="Apple" />

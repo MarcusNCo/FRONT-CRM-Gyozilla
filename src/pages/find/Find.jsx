@@ -53,7 +53,7 @@ const Find = () => {
       })
       .catch((error) => {
         setFranchises([]);
-        console.log(error);
+        //console.log(error);
       });
   }, []);
 

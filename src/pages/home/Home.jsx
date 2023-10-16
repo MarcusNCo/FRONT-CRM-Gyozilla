@@ -57,7 +57,7 @@ const Home = () => {
       })
       .catch((error) => {
         setAllNews([]);
-        console.log(error);
+        //console.log(error);
       });
   }, []);
 
